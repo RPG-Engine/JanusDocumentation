@@ -1,0 +1,193 @@
+/**
+\defgroup coretypes CoreTypes
+\brief Data types several modules share: textures and sprites, LDtk levels, frame timing, and the debug-collider switch.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Types} · \srcdir{src/Types}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Types/Graphics.hpp>` (textures, sprites) · `<Types/World.hpp>` (levels) · `<Types/EngineGlobals.hpp>` (frame timing) · `<Types/Module.hpp>` (debug-collider switch)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`Graphics`, `World`, `Engine::Globals`, `CoreTypes`</td></tr>
+<tr><td><b>Started by</b></td><td>Nothing to start: `CoreTypes::Module()` is empty and not called by the engine</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_assets (textures) · \ref ex_editor (frame timing) · \ref ex_collision (debug colliders)</td></tr>
+</table>
+
+## How to use
+
+### Frame timing
+
+Engine::Globals::GetDeltaTime() returns how long the last frame took, in seconds, and Engine::Globals::GetFPS() the matching frame rate. Inside a flecs system, `it.delta_time()` gives the same value.
+
+\genexopen{modules/EditorTools.cpp,Showing the frame rate in a tool window}
+\snippet modules/EditorTools.cpp tool
+\endex
+
+### Textures
+
+A Graphics::STexture2D holds an image in memory (`Surface`, an `SDL_Surface` in RGBA byte order) and, once uploaded, on the GPU (`LoadedGPUTexture`). Get one by loading an image file, or build one in code:
+
+\genexopen{modules/AssetsAndMemory.cpp,A texture generated in code}
+\snippet modules/AssetsAndMemory.cpp generated_texture
+\endex
+
+Sprites refer to textures through a Graphics::SSprite inside Components::FTexture2DComponent: the texture's asset path plus the part of it to draw (see \ref rendering).
+
+### Levels
+
+`World::GenerateLevel(projectPath, levelName)` builds a World::SLevel from an [LDtk](https://ldtk.io) project saved with *separate level files*:
+
+| Argument | Example | File it loads |
+| --- | --- | --- |
+| `projectPath` | `"Levels/MyWorld/MyWorld"` | `Resources/Levels/MyWorld/MyWorld.ldtk` |
+| `levelName` | `"Level_0"` | `Resources/Levels/MyWorld/MyWorld/Level_0.ldtkl` |
+
+For each LDtk layer it records the tiles (auto-layer and grid tiles), loads the layer's tileset image as a Graphics::STilemap, and turns IntGrid values into World::SGridTile cells. An entity named `PlayerStart` sets World::SLevel::PlayerStart (\src{src/Types/World.cpp,14,126}).
+
+Then draw it and get its collision rectangles with Renderer::LoadLevel(), and remember it with World::SetCurrentLevel(). ProtoRPG loads its level this way:
+
+```
+auto level = World::GenerateLevel("Levels/PoutineDetective/PoutineDetectiveWorld", "Diner");
+Collisions = Renderer::LoadLevel(level);
+World::SetCurrentLevel(level);
+```
+
+### Debug colliders
+
+CoreTypes::bShouldDisplayDebugColliders switches the renderer's debug-collider overlay on and off. The engine declares an input action for it, `Input::Actions::ToggleDebugColliders`, but binds no key and does not toggle the flag itself. See \ref ex_collision.
+
+## Things to watch out for
+
+- Graphics::SSpriteAnimation and Graphics::SGraphicsShader are data only: nothing in the engine plays animations or loads shaders through them at this commit.
+- `World::GenerateLevel` skips IntGrid collision for a layer named `TerrainInt` and gives a layer named `Wall_Top` a higher `ZDepth`, which the renderer does not use. These names come from ProtoRPG's levels.
+- `Graphics::GetTile` uses `Row` and `Col` directly as the rectangle's position; they are not multiplied by the tile size.
+*/
+
+/**
+\fn double Engine::Globals::GetFPS()
+\ingroup coretypes
+\brief Frames per second, from the last frame's duration. Defined at \src{src/Types/EngineGlobals.cpp,17}.
+*/
+
+/**
+\fn float Engine::Globals::GetDeltaTime()
+\ingroup coretypes
+\brief The last frame's duration in seconds (0 on the first frame). Defined at \src{src/Types/EngineGlobals.cpp,18}.
+*/
+
+/**
+\fn void Engine::Globals::ReportRenderTime_NS(uint64_t InRenderTimeNS)
+\ingroup coretypes
+\brief Sets the frame duration in nanoseconds and recalculates FPS and delta time. Engine::Run() calls it once per frame; don't call it yourself.
+*/
+
+/**
+\var CoreTypes::bShouldDisplayDebugColliders
+\ingroup coretypes
+\brief When `true`, the renderer draws Renderer::CollisionInstances on top of the scene. Default `false`.
+*/
+
+/**
+\fn void CoreTypes::Module()
+\ingroup coretypes
+\brief Empty. The engine does not call it.
+*/
+
+/**
+\fn void CoreTypes::TeardownModule()
+\ingroup coretypes
+\brief Empty. The engine does not call it.
+*/
+
+/**
+\struct Graphics::STexture2D
+\ingroup coretypes
+\brief A 2D texture: pixels in memory (`Surface`, RGBA bytes) and, after Renderer::LoadTextureToVRam(), on the GPU (`LoadedGPUTexture`, `Sampler`). `Width` and `Height` are in pixels.
+
+Load an image with `Filesystem::Importers::LoadFile<Graphics::STexture2D>(path)`, which converts it to `SDL_PIXELFORMAT_ABGR8888` (\src{src/Types/Graphics.cpp,51,73}). `LoadedTexture`, `UVCoords`, `WHCoords` and `RGBA` are not used by the renderer. Declared at \src{include/Types/Graphics.hpp,25,54}.
+*/
+
+/**
+\struct Graphics::SSprite
+\ingroup coretypes
+\brief Which texture a sprite uses (`SpriteSheet`, an asset path) and which part of it: `UVCoords` (top-left) and `WHCoords` (size), as fractions of the texture.
+
+Declared at \src{include/Types/Graphics.hpp,85,89}. Used by Components::FTexture2DComponent.
+*/
+
+/**
+\struct Graphics::SSpriteSheet
+\ingroup coretypes
+\brief A texture divided into a grid (`GridSize`, `Padding`, `Offset`). Loaded like a texture; used by the editor's Sprite Sheet viewer. Declared at \src{include/Types/Graphics.hpp,78,83}.
+*/
+
+/**
+\struct Graphics::SSpriteAnimation
+\ingroup coretypes
+\brief A list of sprites with a frame rate and a loop flag. Data only at this commit: nothing plays it.
+*/
+
+/**
+\struct Graphics::SGraphicsShader
+\ingroup coretypes
+\brief Describes a GPU shader asset. Not used at this commit; the renderer loads its shaders directly.
+*/
+
+/**
+\struct Graphics::STilemap
+\ingroup coretypes
+\brief A tileset: a texture plus its tile size (`GridX`, `GridY`) and tile count (`Columns`, `Rows`). Created by Graphics::LoadTilemap().
+*/
+
+/**
+\fn TObjectPtr<STilemap> Graphics::LoadTilemap(const std::string& AssetPath, uint16_t GridX, int16_t GridY)
+\ingroup coretypes
+\brief Loads a texture and wraps it as a tileset with the given tile size. Defined at \src{src/Types/Graphics.cpp,34,46}.
+*/
+
+/**
+\fn TObjectPtr<SLevel> World::GenerateLevel(const std::string& LevelAssetName, const std::string& LevelName)
+\ingroup coretypes
+\brief Builds a World::SLevel from an LDtk project (`LevelAssetName`, an asset path) and one of its separately saved levels (`LevelName`).
+
+Defined at \src{src/Types/World.cpp,14,126}. See \ref coretypes for the file layout it expects.
+*/
+
+/**
+\fn void World::SetCurrentLevel(const TObjectPtr<SLevel>& NewLevel)
+\ingroup coretypes
+\brief Remembers a level as the current one. Nothing else in the engine reads it; it is for your game code.
+*/
+
+/**
+\fn TObjectPtr<SLevel> World::GetCurrentLevel()
+\ingroup coretypes
+\brief The level last passed to World::SetCurrentLevel(), or empty.
+*/
+
+/**
+\struct World::SLevel
+\ingroup coretypes
+\brief A loaded level: its layers (back to front), the `PlayerStart` position and its name. Declared at \src{include/Types/World.hpp,56,60}.
+*/
+
+/**
+\struct World::SLevelLayer
+\ingroup coretypes
+\brief One level layer: its tiles, IntGrid cells, tileset, grid size, offset and opacity. Declared at \src{include/Types/World.hpp,38,54}.
+*/
+
+/**
+\struct World::STile
+\ingroup coretypes
+\brief One tile: where it goes in the world, where it comes from in the tileset, its flip and opacity.
+*/
+
+/**
+\struct World::SGridTile
+\ingroup coretypes
+\brief One IntGrid cell: its value (`GridType`) and its rectangle in world units. Renderer::LoadLevel() treats value 1 as solid.
+*/
+
+/**
+\struct World::SLevelObject
+\ingroup coretypes
+\brief Empty at this commit.
+*/

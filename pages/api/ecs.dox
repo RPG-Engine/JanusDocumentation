@@ -1,0 +1,343 @@
+/**
+\defgroup ecs ECS
+\brief The flecs world every game object lives in, macros for defining components with reflection and editor panels, and the engine's built-in components.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Gameplay/ECS} · \srcdir{src/Gameplay/ECS}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Gameplay/ECS/Module.hpp>` (world) · `#include <Gameplay/ECS/Components.hpp>` (component macros) · `#include <Gameplay/ECS/Modules/TransformModule.hpp>`, `<Gameplay/ECS/Modules/GraphicsModule.hpp>` (built-in components)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`ECS` (world, phases), `Components` (all components)</td></tr>
+<tr><td><b>Started by</b></td><td>\srclink{src/Module.cpp,86,Engine::InitializePlugins()}, after Filesystem and ImGuiWrapper</td></tr>
+<tr><td><b>Built on</b></td><td>[flecs 4](https://www.flecs.dev/flecs/) — the [flecs manual](https://www.flecs.dev/flecs/md_docs_2Docs.html) applies to everything here</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_movement · \ref ex_spawning · \ref ex_queries · \ref ex_collision, and every game</td></tr>
+</table>
+
+## How to use
+
+Everything in a Janus game is an **entity** (an ID) with **components** (plain structs of data). **Systems** are functions that run every frame for every entity that has a given set of components. The engine runs them in Engine::Run().
+
+<b>1. Get the world.</b> There is one flecs world, created on first use. ECS::GetWorld() returns it; use the normal [flecs C++ API](https://www.flecs.dev/flecs/md_docs_2EntitiesComponents.html) on it.
+
+```cpp
+flecs::world& world = ECS::GetWorld();
+```
+
+<b>2. Define components</b> with #DEFINE_COMPONENT, inside `namespace Components`. Each member is an #ECS_MEMBER with a type, a name and a default value:
+
+\genexopen{ecs/Movement.cpp,Three components}
+\snippet ecs/Movement.cpp components
+\endex
+
+<b>3. Register them</b> after Engine::InitializePlugins() with #ECS_REGISTER_COMPONENT. This adds flecs reflection data (so the components can be printed, saved and edited) and a panel in the Entity Debugger:
+
+```cpp
+ECS_REGISTER_COMPONENT(FVelocity, world);
+```
+
+<b>4. Create entities</b> and give them components with `set` (with a value) or `add` (default value):
+
+\genexopen{ecs/Movement.cpp,An entity with engine and game components}
+\snippet ecs/Movement.cpp player
+\endex
+
+<b>5. Add systems.</b> A system lists the components it needs; its function runs once per matching entity, every frame:
+
+\genexopen{ecs/Movement.cpp,Three systems}
+\snippet ecs/Movement.cpp systems
+\endex
+
+<b>6. Inspect it live.</b> Open *Entity Debugger → Entity Outliner* in the running game to see entities with an `FTransformComponent`, select one, and edit its registered components.
+
+## Built-in components
+
+| Component | Members (default) | What uses it | Defined |
+| --- | --- | --- | --- |
+| Components::FTransformComponent | `glm::vec3 Location (0,0,0)`, `glm::vec3 Rotation (0,0,0)`, `glm::vec3 Scale (0,0,0)` | Renderer (position; `Rotation.x` in radians), camera, lights, Entity Debugger, mouse hover | \src{include/Gameplay/ECS/Modules/TransformModule.hpp,16,20} |
+| Components::FBoundingBoxComponent | `glm::vec4 Bounds (0,32,0,32)`, `float Height 32`, `float Width 32`, `glm::vec2 Offset (0,0)` | Mouse hover (`Width`, `Height`, `Offset`) | \src{include/Gameplay/ECS/Modules/TransformModule.hpp,28,33} |
+| Components::FCameraComponent | `glm::vec2 CameraSize (30,15)`, `glm::vec2 CenterSize (32,32)`, `glm::vec4 Boundaries (0,2000,0,2000)` | Renderer: the view | \src{include/Gameplay/ECS/Modules/GraphicsModule.hpp,23,27} |
+| Components::FLightComponent | `float Radius 0.15`, `float Falloff -0.3`, `float Intensity 1`, `glm::vec2 PositionOffset (0,0)`, `SDL_FColor RGB (1,1,1,1)` | Renderer: lighting | \src{include/Gameplay/ECS/Modules/GraphicsModule.hpp,15,21} |
+| Components::FTexture2DComponent | Sprite, size, colour | Renderer: sprites | \ref rendering |
+| Components::FRenderingComponent | Render layer | Renderer: sprites | \ref rendering |
+| Components::FColliderComponent, Components::FMouseState | Collider shape; mouse position and hovered entity | GameplayFramework | \ref gameplay |
+
+The camera and light are explained in \ref rendering. The engine registers reflection data for `glm::vec2`, `glm::vec3`, `glm::vec4`, `SDL_FColor`, `std::string` and Filesystem::SSoftAssetPath, so components can use those as member types (\src{src/Gameplay/ECS/Module.cpp,39,55}).
+
+## Defining components {#ecs_components}
+
+| Macro | Makes | Register with |
+| --- | --- | --- |
+| #DEFINE_COMPONENT `(Name, members...)` | The struct, reflection data and an Entity Debugger panel | #ECS_REGISTER_COMPONENT |
+| #DEFINE_COMPONENT_NO_DEBUG `(Name, members...)` | The struct and reflection data, no panel | #ECS_REGISTER_COMPONENT_NO_DEBUG |
+| #DEFINE_COMPONENT_OVERRIDE_DEBUG `(Name, Pre, Post, members...)` | Like #DEFINE_COMPONENT, but calls your `Pre(Name*)` and `Post(Name*)` around the automatic widgets | #ECS_REGISTER_COMPONENT |
+
+\genexopen{ecs/ComponentsAndQueries.cpp,All three variants\, and plain flecs tags}
+\snippet ecs/ComponentsAndQueries.cpp components
+\snippet ecs/ComponentsAndQueries.cpp debug_draw
+\snippet ecs/ComponentsAndQueries.cpp register
+\endex
+
+Rules:
+
+- Use the macros **inside `namespace Components`**; the registration macros refer to `Components::Name`.
+- A component with no members (`DEFINE_COMPONENT(FPlayer)`) works as a marker. Plain empty structs also work as flecs *tags*, without registration, but don't appear in the Entity Debugger.
+- The Entity Debugger draws members of type `float`, `glm::vec2/3/4`, `SDL_FColor`, Filesystem::SSoftAssetPath and Renderer::EInstanceLayer (\src{include/Gameplay/ECS/Components.hpp,125,170}). Members of other types (`int`, `bool`, ...) are stored and reflected but not shown. To draw another type, specialize `Components::ECSDebug_DrawElement<T>` the way \src{include/Rendering/SpriteInstanceContainer.hpp,28,34} does for render layers.
+- Member types must be known to flecs reflection: built-in types, or one of the types listed above.
+
+## Systems, phases and queries
+
+flecs runs systems in **phases**, in order: `OnLoad`, `PostLoad`, `PreUpdate`, `OnUpdate` (the default), `OnValidate`, `PostUpdate`, `PreStore`, `OnStore`. Choose one with `.kind(...)`. The engine adds:
+
+| Phase | Runs after | Used for |
+| --- | --- | --- |
+| `ECS::Phase::OnInput()` | `PostUpdate` | Defined by the Input module (\src{include/Input/Module.hpp,9}); ProtoRPG moves its player here |
+| `ECS::Phase::OnCollision` | `PostUpdate` | Defined at startup for collision checks (\src{src/Gameplay/ECS/Module.cpp,58}) |
+| `ECS::Phase::OnPreRender()` | `OnStore` | The renderer gathers sprites, lights and the camera here (\src{include/Rendering/Module.hpp,18}) |
+
+Add your own with #DEFINE_NEW_ECS_PHASE:
+
+\genexopen{ecs/ComponentsAndQueries.cpp,A custom phase and systems that use it}
+\snippet ecs/ComponentsAndQueries.cpp phase
+\snippet ecs/ComponentsAndQueries.cpp systems
+\endex
+
+<b>Queries</b> find entities outside a system's own match, for collision checks or counting. Build them once and keep them:
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Queries filtered by tags}
+\snippet ecs/ComponentsAndQueries.cpp queries
+\snippet ecs/ComponentsAndQueries.cpp build_queries
+\endex
+
+<b>Observers</b> run as soon as something happens to an entity (a component added, set or removed) instead of every frame:
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Observers}
+\snippet ecs/ComponentsAndQueries.cpp observers
+\endex
+
+<b>Prefabs</b> hold components that many entities start with:
+
+\genexopen{ecs/Spawning.cpp,A prefab and its instances}
+\snippet ecs/Spawning.cpp prefab
+\snippet ecs/Spawning.cpp spawn
+\endex
+
+The flecs manual covers all of these in depth: [systems](https://www.flecs.dev/flecs/md_docs_2Systems.html), [queries](https://www.flecs.dev/flecs/md_docs_2Queries.html), [observers](https://www.flecs.dev/flecs/md_docs_2ObserversManual.html), [prefabs](https://www.flecs.dev/flecs/md_docs_2PrefabsManual.html).
+
+## The global entity and selection
+
+- ECS::GetGlobalSystemsEntity() returns one entity created on first use. Store game-wide settings on it as components; the Entity Debugger shows them under **Global Entity**. The mouse-hover system keeps its Components::FMouseState there.
+- ECS::SelectEntity() chooses which entity the Entity Debugger shows; ECS::GetSelectedEntity() returns it.
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Settings on the global entity}
+\snippet ecs/ComponentsAndQueries.cpp global_entity
+\endex
+
+## Things to watch out for
+
+- Changes made inside a system (creating, destroying, `set`, `add`, `remove`) are **deferred** until the system finishes. Reading a component you just `set` on another entity in the same system returns the old value, and an entity created in the system has no components yet (use `try_get`).
+- Outside systems (for example in an editor tool's ImGui code), changes are immediate. Wrap loops that destroy entities in `world.defer(...)`.
+- ECS::Module() gives flecs 8 worker threads (\src{src/Gameplay/ECS/Module.cpp,34}), but systems only use them if you add `.multi_threaded()`. Engine and example systems are single-threaded.
+- The Entity Outliner only lists entities that have an `FTransformComponent`.
+- The Entity Debugger's **Save Entity** button writes a flecs script to `Resources/Output/ECS/<name>`, which must already exist. Load such a file with `world.script_run(name, text)`.
+- ECS::TeardownModule() destroys the world, which then is destroyed again at exit; see \ref known_issues_shutdown.
+*/
+
+/**
+\fn flecs::world& ECS::GetWorld()
+\ingroup ecs
+\brief Returns the engine's flecs world. Created on first use; there is only one.
+
+Defined at \src{src/Gameplay/ECS/Module.cpp,66,69}.
+*/
+
+/**
+\fn flecs::entity& ECS::GetGlobalSystemsEntity()
+\ingroup ecs
+\brief Returns an entity for game-wide components, created on first use. The Entity Debugger shows it under *Global Entity*.
+
+Defined at \src{src/Gameplay/ECS/Module.cpp,71,77}.
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Global entity}
+\snippet ecs/ComponentsAndQueries.cpp global_entity
+\endex
+*/
+
+/**
+\fn void ECS::Module()
+\ingroup ecs
+\brief Starts the ECS module: sets 8 worker threads, registers reflection for `std::string`, Filesystem::SSoftAssetPath and glm vectors, imports the built-in component modules and creates the `OnCollision` phase. Called by Engine::InitializePlugins().
+
+Defined at \src{src/Gameplay/ECS/Module.cpp,31,59}.
+*/
+
+/**
+\fn void ECS::TeardownModule()
+\ingroup ecs
+\brief Destroys the flecs world (`ecs_fini`). Called by Engine::TeardownPlugins(). Defined at \src{src/Gameplay/ECS/Module.cpp,61,64}.
+*/
+
+/**
+\fn void ECS::UpdateEntities(const float& DeltaTime)
+\ingroup ecs
+\brief Runs every system once (`world.progress(DeltaTime)`). Engine::Run() calls it every frame; you don't need to.
+
+Defined at \src{src/Gameplay/ECS/Module.cpp,79,82}.
+*/
+
+/**
+\fn void ECS::SelectEntity(flecs::entity Entity)
+\ingroup ecs
+\brief Makes `Entity` the one the Entity Debugger shows. Defined at \src{src/Gameplay/ECS/Module.cpp,84,86}.
+*/
+
+/**
+\fn flecs::entity ECS::GetSelectedEntity()
+\ingroup ecs
+\brief Returns the entity selected in the Entity Debugger (or with ECS::SelectEntity()). Defined at \src{src/Gameplay/ECS/Module.cpp,88,90}.
+*/
+
+/**
+\var ECS::Phase::OnCollision
+\ingroup ecs
+\brief A pipeline phase that runs after `flecs::PostUpdate`, meant for collision checks. Valid after Engine::InitializePlugins(). Created at \src{src/Gameplay/ECS/Module.cpp,58}.
+*/
+
+/**
+\def DEFINE_NEW_ECS_PHASE(PhaseName, AfterPhase)
+\ingroup ecs
+\brief Defines `ECS::Phase::PhaseName()`, a pipeline phase that runs after the flecs phase `flecs::AfterPhase`.
+
+`AfterPhase` is a flecs phase name without the `flecs::` prefix, such as `PostUpdate` or `OnStore`. The phase is created the first time the function is called. Use it at global scope, then pass `ECS::Phase::PhaseName()` to a system's `.kind()`. Defined at \src{include/Gameplay/ECS/Module.hpp,5,14}.
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Phase}
+\snippet ecs/ComponentsAndQueries.cpp phase
+\endex
+*/
+
+/**
+\def DEFINE_COMPONENT(ComponentName, ...)
+\ingroup ecs
+\brief Defines `struct Components::ComponentName` with the given #ECS_MEMBER fields, its reflection data, and an Entity Debugger panel.
+
+Use inside `namespace Components`, then register it with #ECS_REGISTER_COMPONENT. Defined at \src{include/Gameplay/ECS/Components.hpp,88,93}.
+
+\genexopen{ecs/Movement.cpp,Components}
+\snippet ecs/Movement.cpp components
+\endex
+*/
+
+/**
+\def DEFINE_COMPONENT_NO_DEBUG(ComponentName, ...)
+\ingroup ecs
+\brief Like #DEFINE_COMPONENT, without the Entity Debugger panel. Register it with #ECS_REGISTER_COMPONENT_NO_DEBUG. Defined at \src{include/Gameplay/ECS/Components.hpp,100,102}.
+*/
+
+/**
+\def DEFINE_COMPONENT_OVERRIDE_DEBUG(ComponentName, PreDebugDraw, PostDebugDraw, ...)
+\ingroup ecs
+\brief Like #DEFINE_COMPONENT, but the Entity Debugger panel calls `PreDebugDraw(ComponentName*)` before and `PostDebugDraw(ComponentName*)` after the automatic member widgets.
+
+Declare both functions (and forward-declare the struct) before the macro. Defined at \src{include/Gameplay/ECS/Components.hpp,95,98}.
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Debug draw}
+\snippet ecs/ComponentsAndQueries.cpp debug_draw
+\endex
+*/
+
+/**
+\def ECS_MEMBER(MemberType, MemberName, DefaultValue)
+\ingroup ecs
+\brief One field of a component: its type, name and default value. Only valid inside the `DEFINE_COMPONENT` macros.
+*/
+
+/**
+\def ECS_REGISTER_COMPONENT(ComponentName, World)
+\ingroup ecs
+\brief Registers a #DEFINE_COMPONENT component with `World`: its reflection data and its Entity Debugger panel. Call after Engine::InitializePlugins().
+
+Defined at \src{include/Gameplay/ECS/Components.hpp,54,56}.
+*/
+
+/**
+\def ECS_REGISTER_COMPONENT_NO_DEBUG(ComponentName, World)
+\ingroup ecs
+\brief Registers a component's reflection data only. Use it for #DEFINE_COMPONENT_NO_DEBUG components. Defined at \src{include/Gameplay/ECS/Components.hpp,58,59}.
+*/
+
+/**
+\def REGISTER_COMPONENT_DEBUGGER(ComponentClass)
+\ingroup ecs
+\brief Registers a component's Entity Debugger panel. #ECS_REGISTER_COMPONENT does this for you.
+*/
+
+/**
+\def DEFINE_COMPONENT_DEBUGGER(ComponentClass, PreDrawFunction, PostDrawFunction)
+\ingroup ecs
+\brief Defines the Entity Debugger panel class for a component. Used by the `DEFINE_COMPONENT` macros; the editor uses it directly to give `FTransformComponent` a move gizmo (\src{include/Editor/EntityEditorTool.hpp,16}).
+*/
+
+/**
+\struct Components::FTransformComponent
+\ingroup ecs
+\brief Where an entity is: `glm::vec3 Location`, `glm::vec3 Rotation`, `glm::vec3 Scale`.
+
+For sprites, `Location.x/y` is the top-left corner in world units and `Rotation.x` the rotation in radians. `Location.z` and `Scale` are not used by the renderer. In the Entity Debugger it has a translate gizmo. Defined at \src{include/Gameplay/ECS/Modules/TransformModule.hpp,16,20}.
+*/
+
+/**
+\struct Components::FBoundingBoxComponent
+\ingroup ecs
+\brief The area an entity takes up, for interaction and mouse hover (not collision): `Width`, `Height` and `Offset` from the transform. `Bounds` is unused.
+
+Defined at \src{include/Gameplay/ECS/Modules/TransformModule.hpp,22,33}. See GameplayFramework::ActivateMouseStateSystem().
+*/
+
+/**
+\struct Components::FCameraComponent
+\ingroup ecs
+\brief Makes its entity the camera. See \ref rendering_camera for how `CameraSize`, `CenterSize` and `Boundaries` work.
+
+Defined at \src{include/Gameplay/ECS/Modules/GraphicsModule.hpp,23,27}.
+*/
+
+/**
+\struct Components::FLightComponent
+\ingroup ecs
+\brief A 2D light at the entity's position plus `PositionOffset`. See \ref rendering_lights.
+
+Defined at \src{include/Gameplay/ECS/Modules/GraphicsModule.hpp,15,21}.
+*/
+
+/**
+\fn glm::vec2 Components::GetCameraMaxDistance(const FCameraComponent& Component)
+\ingroup ecs
+\brief Half the camera size minus half the centre size: how far the followed entity's position is from the view's top-left corner. Used by the camera system.
+*/
+
+/**
+\struct Components::TransformModule
+\ingroup ecs
+\brief flecs module that registers Components::FTransformComponent and Components::FBoundingBoxComponent. Imported by ECS::Module().
+*/
+
+/**
+\struct Components::GraphicsModule
+\ingroup ecs
+\brief flecs module that registers `SDL_FColor`, Components::FLightComponent and Components::FCameraComponent. Imported by ECS::Module().
+*/
+
+/**
+\struct Components::GlmModule
+\ingroup ecs
+\brief flecs module that registers reflection data for `glm::vec2`, `glm::vec3` and `glm::vec4`. Imported by ECS::Module().
+*/
+
+/**
+\class Components::ECSDebugFactory
+\ingroup ecs
+\brief Base of the Entity Debugger panel classes the component macros generate. Its `CreateComponentOnEntity` powers the debugger's *Add Component* button.
+*/
+
+/**
+\fn template<typename TElementType> void Components::ECSDebug_DrawElement(const char* ElementName, TElementType* Element)
+\ingroup ecs
+\brief Draws one component member in the Entity Debugger. Specialize it to support another member type; the default draws nothing.
+*/

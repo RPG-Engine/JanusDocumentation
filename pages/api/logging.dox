@@ -1,0 +1,430 @@
+/**
+\defgroup logging Log
+\brief Named, per-module loggers built on spdlog. Each module declares its own logger once, then logs with `std::format`-style messages to the console and to log files.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Log} (public headers) · \srcdir{src/Log} (implementation)</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Log/Module.hpp>`</td></tr>
+<tr><td><b>Namespace</b></td><td>`Log` (logging functions live in `Log::Generic` and in each `Log::<Name>` declared with #DECLARE_LOGGER)</td></tr>
+<tr><td><b>Initialized by</b></td><td>\srclink{src/Module.cpp,83,Engine::InitializePlugins()}. First in the init order, so every later module can log while it starts up.</td></tr>
+<tr><td><b>Built on</b></td><td>[spdlog](https://github.com/gabime/spdlog)</td></tr>
+<tr><td><b>Example</b></td><td>\ref ex_logging; every example declares a logger</td></tr>
+</table>
+
+## How to use
+
+This is all most code needs. Declare a logger once, at the top of a source file, and log through its namespace. Game code works the same way as engine code.
+
+<b>1. Declare the logger</b> with a name and a minimum level. The level is one of `err`, `warn`, `info`, `debug` or `trace`:
+
+\engexopen{src/Filesystem/Module.cpp,10,10,Filesystem module declares its logger}
+```cpp
+DECLARE_LOGGER(Filesystem, debug)
+```
+\endex
+
+<b>2. Log through `Log::<Name>`.</b> Each logger has `Error`, `Warning`, `Info`, `Debug` and `Verbose` (trace level). Arguments are substituted into `{}` placeholders, as in `std::format`:
+
+\engexopen{src/Filesystem/Module.cpp,28,28,Formatted message}
+```cpp
+Log::Filesystem::Info("Loading config files in {}...", configRoot.string());
+```
+\endex
+
+\engex{src/Filesystem/Module.cpp,59,59,Several arguments}
+```cpp
+Log::Filesystem::Info("Asset {} registered at path {}", assetPathStr, AssetData->AssetFilePathRaw.string());
+```
+\endex
+
+\engex{src/Filesystem/Module.cpp,74,74,Reporting an error}
+```cpp
+Log::Filesystem::Error("Could not find asset [{}]", AssetPath);
+```
+\endex
+
+<b>3. No logger of your own? Use the generic one.</b> `Log::Generic::Error(message)` and its siblings log to the built-in `LogGeneric` logger. This is handy in headers, where #DECLARE_LOGGER should not be used:
+
+\engex{include/Filesystem/Importers/Importer.hpp,25,25,Logging from a header}
+```cpp
+Log::Generic::Error(std::format("Could not find asset at path {}!", Path));
+```
+\endex
+
+The same steps in a game, with every level and the other ways to create a logger:
+
+\genexopen{modules/Logging.cpp,Declaring loggers and logging at every level}
+\snippet modules/Logging.cpp declare
+\snippet modules/Logging.cpp levels
+\endex
+
+## What it does
+
+Every engine module gets its own *named* logger. Messages are tagged with that name, so the output shows where each line came from. For example, the line written by \src{src/Filesystem/Module.cpp,28} looks like this (an illustration of the format set at \src{src/Log/Module.cpp,30}; your date, time and path will differ):
+
+```
+[11/22/26 15:10:02] [LogFilesystem] info: Loading config files in .../Config...
+```
+
+The Log module:
+
+1. **Creates loggers** when a module declares one with #DECLARE_LOGGER. Each logger is a Log::SLogger that registers itself with spdlog when it is constructed.
+2. **Routes output** to the console, to a log file under `<exe dir>/Logs/`, or both. Loggers that write to the same file share one file sink.
+3. **Filters by level**: each logger drops messages below its configured level (`trace` < `debug` < `info` < `warn` < `err`).
+4. **Flushes** every 3 seconds, and on shutdown copies each log file to a timestamped name (e.g. `JanusEngine-2026-11-22-h15m10.log`, with the time in UTC).
+
+## Where output goes
+
+| Logger created with | Console | File |
+| --- | --- | --- |
+| #DECLARE_LOGGER | Yes | `<exe dir>/Logs/JanusEngine.log`, shared by all modules |
+| #DECLARE_LOGGER_WITH_PARAMS | Chosen with Log::ELogOutputOptions | `<exe dir>/Logs/<LogFile>.log` |
+| The generic logger (`Log::Generic::*(message)`) | Yes | `<exe dir>/Logs/JanusEngine.log` |
+
+Every line uses the pattern `[date time] [LoggerName] level: message`, set at \src{src/Log/Module.cpp,30}.
+
+## Lifecycle
+
+| Step | Function | What happens |
+| --- | --- | --- |
+| Program start | Log::SLogger constructor | Every #DECLARE_LOGGER creates a static Log::SLogger, which registers itself with spdlog before `main` runs. |
+| Engine start | Log::Module() | Sets spdlog's default level and pattern, and flushes every 3 seconds. |
+| Any time | Log::Flush() | Forces every logger to write out its buffered messages. |
+| Engine shutdown | Log::TeardownModule() | Flushes, copies each log file to a timestamped name, then drops all loggers. |
+
+\engex{src/Module.cpp,83,83,Engine start}
+```cpp
+Log::Module();
+```
+\endex
+
+\engex{src/Module.cpp,103,103,Engine shutdown (last module torn down)}
+```cpp
+Log::TeardownModule();
+```
+\endex
+
+## Things to watch out for
+
+- **Declare loggers in source files, not headers.** #DECLARE_LOGGER defines `static` functions and a `static` logger. In a header, every file that includes it gets its own copy, and other modules can use what was meant to be a private logger.
+- **A logger's name is registered once.** If two files declare the same name (Filesystem does, in \src{src/Filesystem/Module.cpp,10} and \src{src/Filesystem/FilesystemTypes.cpp,12}), the second one reuses the spdlog logger the first one created (\src{src/Log/Module.cpp,81,84}). Its own output settings are ignored, but its level filter still applies.
+- **A default Log::SLoggerConfiguration has no outputs.** Its `LogOptions` is `LOG_NONE`, so a logger built from it discards every message. Set `LogOptions` explicitly when you build a configuration yourself.
+- **`Verbose` (trace) messages don't appear by default.** Log::Module() calls `spdlog::set_level(debug)` (\src{src/Log/Module.cpp,53}), which spdlog applies to every registered logger. Trace-level messages are dropped even for a logger declared with `trace`.
+- **Loggers are created during static initialization.** Log::RegisterLogger() reads the default pattern and log folder from `static std::string` variables in \src{src/Log/Module.cpp,27,30}. C++ does not define the order in which statics in different source files are initialized, so a logger declared in another file may be constructed before those strings are set.
+*/
+
+/**
+\struct Log::SLogger
+\ingroup logging
+\brief A named logger that registers itself with spdlog when it is constructed.
+
+Its outputs and minimum level come from its Log::SLoggerConfiguration. Declared in \src{include/Log/LogTypes.hpp,43,46}. Part of the \ref logging module.
+
+## How to use
+
+You rarely construct an `SLogger` yourself. #DECLARE_LOGGER creates one for you, together with the `Log::<Name>::Info(...)` family of functions that log through it:
+
+1. In a source file, write `DECLARE_LOGGER(MyModule, debug)`. This defines a static `SLogger` named `LogMyModule` inside `namespace Log::MyModule`.
+2. Call `Log::MyModule::Info("Loaded {} items", count)`, or `Error`, `Warning`, `Debug` and `Verbose`.
+
+Construct an `SLogger` directly only when you need a logger that is not tied to a namespace. Then pass it to the `Log::Generic` functions yourself, e.g. `Log::Generic::Info(myLogger, "...")`.
+
+\engex{src/Filesystem/Module.cpp,10,10,The usual way: let the macro create it}
+```cpp
+DECLARE_LOGGER(Filesystem, debug)
+```
+\endex
+
+\engex{src/Log/Log.cpp,13,17,Constructing one directly (the engine's generic logger)}
+```cpp
+static SLogger Logger = SLogger({ \
+        .LoggerNamespace = ("LogGeneric"), \
+        .LogLevel = LogLevel::debug, \
+        .LogFile = "JanusEngine", \
+        .LogOptions = ELogOutputOptions::LOG_ALL}); \
+```
+\endex
+
+\genex{modules/Logging.cpp,A console-only logger built by hand}
+\snippet modules/Logging.cpp manual
+\snippet modules/Logging.cpp other_loggers
+\endex
+
+## Lifecycle
+
+1. **Construction** copies the configuration and calls Log::RegisterLogger() (\src{src/Log/LogTypes.cpp,10,14}).
+2. **Registration** creates an spdlog logger named `Config.LoggerNamespace`. It gets a file sink if `LogOptions` includes `LOG_FILE` and a colored console sink if it includes `LOG_CONSOLE`. If a logger with that name already exists, it is reused instead (\src{src/Log/Module.cpp,78,97}).
+3. **Logging** looks the spdlog logger up by name on every call and writes the message only if its level is at least `Config.LogLevel` (\src{src/Log/Log.cpp,19,27}).
+4. **Shutdown:** Log::TeardownModule() drops all spdlog loggers. The `SLogger` objects themselves stay alive until the program exits.
+
+\engex{src/Log/Module.cpp,78,97,What registration does}
+```cpp
+void RegisterLogger(const SLogger* Logger) {
+    const SLoggerConfiguration& config = Logger->Config;
+
+    if (std::shared_ptr<spdlog::logger> existingLogger = spdlog::get(Logger->Config.LoggerNamespace); existingLogger != nullptr) {
+        spdlog::trace(std::format("Logger {} found - Using existing logger instead of redefining...", config.LoggerNamespace));
+        return;
+    }
+
+    spdlog::logger logger(config.LoggerNamespace);
+    if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_FILE)) {
+        logger.sinks().push_back(_Internal::GetSinkForFile(config));
+    }
+
+    if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_CONSOLE)) {
+        logger.sinks().push_back(std::move(CreateSink<LogSinks::stdout_color_sink_mt>(_Internal::DefaultLogPattern, config.LogLevel)));
+    }
+
+    logger.info("Logger initialized");
+    spdlog::register_logger(std::make_shared<spdlog::logger>(logger));
+}
+```
+\endex
+
+## Notes
+
+- `SLogger` has no destructor of its own and no way to unregister. Treat loggers as objects that live for the whole program, the way #DECLARE_LOGGER uses them.
+- If a message's logger name was never registered, or was dropped by Log::TeardownModule(), the message is replaced by an spdlog error `Could not find logger <name>!` (\src{src/Log/Log.cpp,26}).
+*/
+
+/**
+\fn Log::SLogger::SLogger(const SLoggerConfiguration& InConfig)
+\brief Creates the logger and registers it with spdlog.
+
+Copies `InConfig` into #Config, then calls Log::RegisterLogger() (\src{src/Log/LogTypes.cpp,10,14}).
+
+\param InConfig Name, minimum level, log file and outputs for the logger. See Log::SLoggerConfiguration.
+
+\engex{include/Log/Module.hpp,9,15,How DECLARE_LOGGER_WITH_PARAMS calls it}
+```cpp
+#define DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile) \
+    namespace Log::Namespace { \
+        static SLogger Logger = SLogger({ \
+            .LoggerNamespace = ("Log"#Namespace), \
+            .LogLevel = LogLevel::InLogLevel, \
+            .LogFile = InLogFile, \
+            .LogOptions = InLogOutputs}); \
+```
+\endex
+*/
+
+/**
+\var Log::SLogger::Config
+\brief The configuration this logger was created with.
+
+Every log call reads `Config.LoggerNamespace` to find the spdlog logger and `Config.LogLevel` to decide whether to write the message (\src{src/Log/Log.cpp,19,27}). Raising `LogLevel` after construction filters out more messages from the next call. Lowering it, or changing anything else, has no effect, because the sinks keep the settings they were created with at registration.
+*/
+
+/**
+\struct Log::SLoggerConfiguration
+\ingroup logging
+\brief Settings for a Log::SLogger: its name, minimum level, log file and outputs.
+
+Declared in \src{include/Log/LogTypes.hpp,36,41}. Usually filled in for you by #DECLARE_LOGGER or #DECLARE_LOGGER_WITH_PARAMS.
+
+\engex{src/Log/Log.cpp,13,17,Designated-initializer style used in the engine}
+```cpp
+static SLogger Logger = SLogger({ \
+        .LoggerNamespace = ("LogGeneric"), \
+        .LogLevel = LogLevel::debug, \
+        .LogFile = "JanusEngine", \
+        .LogOptions = ELogOutputOptions::LOG_ALL}); \
+```
+\endex
+
+\var Log::SLoggerConfiguration::LoggerNamespace
+\brief The logger's name, shown in every line it writes. #DECLARE_LOGGER uses `Log<Name>`, e.g. `LogFilesystem`. Default: `"DefaultLog"`.
+
+\var Log::SLoggerConfiguration::LogLevel
+\brief Minimum level that is written: `trace`, `debug`, `info`, `warn` or `err`. Default: `debug`.
+
+\var Log::SLoggerConfiguration::LogFile
+\brief Log file name without folder or extension. Output goes to `<exe dir>/Logs/<LogFile>.log`, and loggers with the same `LogFile` share one file. Only used when `LogOptions` includes `LOG_FILE`.
+
+\var Log::SLoggerConfiguration::LogOptions
+\brief Where output goes; see Log::ELogOutputOptions. Default: `LOG_NONE`, which writes nothing.
+*/
+
+/**
+\enum Log::ELogOutputOptions
+\ingroup logging
+\brief Where a logger writes. A bit flag: combine values with `|`, test them with Log::HasAnyOptions().
+
+Declared in \src{include/Log/LogTypes.hpp,24,30}.
+
+\var Log::ELogOutputOptions::LOG_FILE
+Write to `<exe dir>/Logs/<LogFile>.log`.
+\var Log::ELogOutputOptions::LOG_CONSOLE
+Write to the console, with colored levels.
+\var Log::ELogOutputOptions::LOG_ALL
+Write to both. Used by #DECLARE_LOGGER.
+\var Log::ELogOutputOptions::LOG_NONE
+Write nothing.
+*/
+
+/**
+\fn bool Log::HasAnyOptions(const ELogOutputOptions& LogOptions, const ELogOutputOptions& HasAny)
+\ingroup logging
+\brief Returns `true` if `LogOptions` contains at least one of the flags in `HasAny`.
+
+\engex{src/Log/Module.cpp,87,89,Checking for file output}
+```cpp
+if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_FILE)) {
+    logger.sinks().push_back(_Internal::GetSinkForFile(config));
+}
+```
+\endex
+*/
+
+/**
+\def DECLARE_LOGGER(Namespace, InLogLevel)
+\ingroup logging
+
+Same as #DECLARE_LOGGER_WITH_PARAMS with `LOG_ALL` outputs and the shared `JanusEngine` log file. Use it once per module, in a source file.
+
+\engexopen{src/Module.cpp,25,25,The engine core's logger}
+```cpp
+DECLARE_LOGGER(Engine, debug)
+```
+\endex
+
+\engex{src/Rendering/Vulkan_Renderer.cpp,79,79,Using a declared logger}
+```cpp
+Log::VulkanRenderer::Error("Could not determine shader type for shader [{}]", InAssetData->AssetPath.string());
+```
+\endex
+*/
+
+/**
+\def DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile)
+\ingroup logging
+\brief Declares a logger with chosen outputs and log file, plus the `Log::<Namespace>::Error/Warning/Info/Debug/Verbose` functions that log through it.
+
+\param Namespace Name of the logger and of the namespace its functions go in. The logger is called `Log<Namespace>`.
+\param InLogLevel Minimum level: `err`, `warn`, `info`, `debug` or `trace`, written without a prefix.
+\param InLogOutputs A Log::ELogOutputOptions value.
+\param InLogFile Log file name, without folder or extension.
+
+Defined at \src{include/Log/Module.hpp,9,27}. The engine itself only uses it through #DECLARE_LOGGER.
+
+\genex{modules/Logging.cpp,A logger that only writes to its own file}
+\snippet modules/Logging.cpp declare_params
+\snippet modules/Logging.cpp other_loggers
+\endex
+*/
+
+/**
+\fn void Log::Module()
+\ingroup logging
+\brief Starts the Log module: sets spdlog's default level (`debug`) and line pattern, and flushes all loggers every 3 seconds.
+
+Called first by \srclink{src/Module.cpp,83,Engine::InitializePlugins()}. Defined at \src{src/Log/Module.cpp,52,56}.
+*/
+
+/**
+\fn void Log::TeardownModule()
+\ingroup logging
+\brief Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logger.
+
+Called last by \srclink{src/Module.cpp,103,Engine::TeardownPlugins()}. Defined at \src{src/Log/Module.cpp,58,70}. Nothing can be logged after this.
+*/
+
+/**
+\fn void Log::Flush()
+\ingroup logging
+
+Defined at \src{src/Log/Module.cpp,72,76}. Log::TeardownModule() calls it before copying the log files.
+*/
+
+/**
+\fn void Log::RegisterLogger(const SLogger* Logger)
+\ingroup logging
+\brief Creates and registers the spdlog logger for a Log::SLogger. Called by the Log::SLogger constructor; you don't need to call it yourself.
+
+If a logger with the same name is already registered, it is reused and nothing new is created. Defined at \src{src/Log/Module.cpp,78,97}.
+*/
+
+/**
+\fn template<typename... TArgs> void Log::Generic::Error(const SLogger& Logger, const std::string& LogMessage, const TArgs&... Args)
+\ingroup logging
+\brief Logs an error through `Logger`, formatting `Args` into `LogMessage` like `std::format`.
+*/
+/**
+\fn void Log::Generic::Error(const SLogger& Logger, const std::string& LogMessage)
+\ingroup logging
+\brief Logs an error through `Logger`.
+*/
+/**
+\fn void Log::Generic::Error(const std::string& LogMessage)
+\ingroup logging
+\brief Logs an error through the built-in `LogGeneric` logger.
+
+\engex{include/Filesystem/Importers/Importer.hpp,25,25,Logging from a header}
+```cpp
+Log::Generic::Error(std::format("Could not find asset at path {}!", Path));
+```
+\endex
+*/
+/**
+\fn template<typename... TArgs> void Log::Generic::Warning(const SLogger& Logger, const std::string& LogMessage, const TArgs&... Args)
+\ingroup logging
+\brief Logs a warning through `Logger`, formatting `Args` into `LogMessage`.
+*/
+/**
+\fn void Log::Generic::Warning(const SLogger& Logger, const std::string& LogMessage)
+\ingroup logging
+\brief Logs a warning through `Logger`.
+*/
+/**
+\fn void Log::Generic::Warning(const std::string& LogMessage)
+\ingroup logging
+\brief Logs a warning through the built-in `LogGeneric` logger.
+*/
+/**
+\fn template<typename... TArgs> void Log::Generic::Info(const SLogger& Logger, const std::string& LogMessage, const TArgs&... Args)
+\ingroup logging
+\brief Logs an info message through `Logger`, formatting `Args` into `LogMessage`.
+
+This is what `Log::<Name>::Info(...)` calls for a logger declared with #DECLARE_LOGGER.
+*/
+/**
+\fn void Log::Generic::Info(const SLogger& Logger, const std::string& LogMessage)
+\ingroup logging
+\brief Logs an info message through `Logger`.
+*/
+/**
+\fn void Log::Generic::Info(const std::string& LogMessage)
+\ingroup logging
+\brief Logs an info message through the built-in `LogGeneric` logger.
+*/
+/**
+\fn template<typename... TArgs> void Log::Generic::Debug(const SLogger& Logger, const std::string& LogMessage, const TArgs&... Args)
+\ingroup logging
+\brief Logs a debug message through `Logger`, formatting `Args` into `LogMessage`.
+*/
+/**
+\fn void Log::Generic::Debug(const SLogger& Logger, const std::string& LogMessage)
+\ingroup logging
+\brief Logs a debug message through `Logger`.
+*/
+/**
+\fn void Log::Generic::Debug(const std::string& LogMessage)
+\ingroup logging
+\brief Logs a debug message through the built-in `LogGeneric` logger.
+*/
+/**
+\fn template<typename... TArgs> void Log::Generic::Verbose(const SLogger& Logger, const std::string& LogMessage, const TArgs&... Args)
+\ingroup logging
+\brief Logs a trace-level message through `Logger`, formatting `Args` into `LogMessage`.
+*/
+/**
+\fn void Log::Generic::Verbose(const SLogger& Logger, const std::string& LogMessage)
+\ingroup logging
+\brief Logs a trace-level message through `Logger`.
+*/
+/**
+\fn void Log::Generic::Verbose(const std::string& LogMessage)
+\ingroup logging
+\brief Logs a trace-level message through the built-in `LogGeneric` logger.
+*/

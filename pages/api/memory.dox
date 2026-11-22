@@ -1,0 +1,87 @@
+/**
+\defgroup memory Memory
+\brief `TObjectPtr<T>`, the reference-counted pointer most engine APIs use to pass objects around.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\src{include/Memory/Janitors.hpp} · \srcdir{src/Memory}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Memory/Module.hpp>` (or `<Memory/Janitors.hpp>`)</td></tr>
+<tr><td><b>Namespace</b></td><td>`TObjectPtr` and `CastTo` are global</td></tr>
+<tr><td><b>Started by</b></td><td>Nothing to start: `Memory::Module()` is empty and not called by the engine</td></tr>
+<tr><td><b>Example</b></td><td>\ref ex_assets</td></tr>
+</table>
+
+## How to use
+
+`TObjectPtr<T>` owns a heap-allocated `T` together with a use count. Copies share the object; when the last copy goes away, the object is deleted. In Debug builds each allocation is reported to the Tracy profiler's memory view.
+
+\genexopen{modules/AssetsAndMemory.cpp,TObjectPtr in practice}
+\snippet modules/AssetsAndMemory.cpp memory_types
+\snippet modules/AssetsAndMemory.cpp object_ptr
+\endex
+
+| You write | You get |
+| --- | --- |
+| `TObjectPtr<T> p;` | **A new `T`**, default-constructed. A default `TObjectPtr` is never empty. |
+| `TObjectPtr<T> p = nullptr;` | An empty pointer. `p.IsValid()` is `false`. |
+| `TObjectPtr<T> p(args...);` | A new `T` built from `args` (the constructor is `explicit`). |
+| `TObjectPtr<T> p = someT;` | A new `T` copied from `someT`. |
+| `TObjectPtr<T> q = p;` | A second reference to the same object. |
+| `TObjectPtr<Base> b = derivedPtr;` | A reference to the same object, as its base type. |
+| `CastTo<Derived>(basePtr)` | A reference to the same object, as a derived type. Unchecked, like `static_cast`. |
+| `p.Clear();` or `p = nullptr;` | Drops this reference; deletes the object if it was the last. |
+| `p->Member`, `p.Raw()` | Access the object. `Raw()` returns the plain pointer. |
+| `p == q` | `true` if both point to the same object. |
+
+The engine uses `TObjectPtr` for assets (`TObjectPtr<Graphics::STexture2D>`), registry entries (`TObjectPtr<Filesystem::SAssetData>`), editor tools and render layers.
+
+## Things to watch out for
+
+- **`TObjectPtr<T> x;` allocates.** Write `= nullptr` when you want an empty pointer, for example for a member that is filled in later.
+- **Assigning over a pointer that already holds an object does not release that object** (\src{include/Memory/Janitors.hpp,95,111}). The old object is never deleted. Call `Clear()` first if the pointer may already hold something you want released.
+- Constructing from a `T&&` copies the object instead of moving it (\src{include/Memory/Janitors.hpp,40}).
+- `CastTo` on an empty pointer crashes: it increments the use count without checking (\src{include/Memory/Janitors.hpp,124,132}).
+- `operator*` does not compile if you use it (\src{include/Memory/Janitors.hpp,120}). Use `->` or `Raw()`.
+- The use count is a plain `int`: don't share one `TObjectPtr` object between threads.
+*/
+
+/**
+\class TObjectPtr
+\ingroup memory
+\brief A reference-counted owning pointer. Copies share the object; the last copy deletes it.
+
+\tparam TObject The type of the object it owns.
+
+Declared at \src{include/Memory/Janitors.hpp,10,122}. See \ref memory for how to use it and what to watch out for.
+
+\genexopen{modules/AssetsAndMemory.cpp,Object ptr}
+\snippet modules/AssetsAndMemory.cpp object_ptr
+\endex
+*/
+
+/**
+\fn template<typename TCastType, typename TBaseType> TObjectPtr<TCastType> CastTo(const TObjectPtr<TBaseType>& Ptr)
+\ingroup memory
+\brief Returns a pointer of another type to the same object, sharing its use count. Unchecked: the object must really be a `TCastType`.
+
+Defined at \src{include/Memory/Janitors.hpp,124,132}. `Ptr` must not be empty.
+
+\engex{include/Filesystem/Importers/Importer.hpp,67,69,Returning a cached asset as the requested type}
+```cpp
+if (Asset->ObjectData.IsValid()) {
+    return CastTo<TAssetType>(Asset->ObjectData);
+}
+```
+\endex
+*/
+
+/**
+\fn void Memory::Module()
+\ingroup memory
+\brief Empty. The engine does not call it.
+*/
+
+/**
+\fn void Memory::TeardownModule()
+\ingroup memory
+\brief Empty. The engine does not call it.
+*/

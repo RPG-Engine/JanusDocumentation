@@ -1,0 +1,300 @@
+/**
+\defgroup rendering Renderer
+\brief Draws sprites in five layers on the GPU, follows a camera entity and lights the image with 2D lights. Sprites are entities with three components.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Rendering} · \srcdir{src/Rendering} · \srcdir{Resources/Shaders}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Rendering/Components/RenderingComponent.hpp>` (sprite components; includes `<Rendering/Module.hpp>`) · `#include <Rendering/RenderingBackend.hpp>` (layers, low-level calls)</td></tr>
+<tr><td><b>Namespace</b></td><td>`Renderer`; components in `Components`</td></tr>
+<tr><td><b>Started by</b></td><td>\srclink{src/Module.cpp,87,Engine::InitializePlugins()} calls Renderer::Module(), which opens the window</td></tr>
+<tr><td><b>Built on</b></td><td>[SDL3 GPU API](https://wiki.libsdl.org/SDL3/CategoryGPU) with the Vulkan backend, SDL_shadercross for shaders</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_rendering · \ref ex_hello · every game</td></tr>
+</table>
+
+## How to use
+
+1. **Set up the scene once** (see \ref essentials_minimum): a `CollisionTexture` asset before startup, a camera entity, at least one light, and a sprite on the `Background` layer.
+2. **Make a sprite**: give an entity an Components::FTransformComponent (where), an Components::FTexture2DComponent (which texture, how big, what colour) and an Components::FRenderingComponent (which layer).
+3. **Move it** by changing `FTransformComponent::Location` in a system. The renderer picks up the new position every frame.
+
+\genexopen{modules/HelloJanus.cpp,Camera\, light\, background and a sprite}
+\snippet modules/HelloJanus.cpp main
+\endex
+
+The renderer's own systems run in the `ECS::Phase::OnPreRender()` phase, after all game systems (\src{src/Rendering/Vulkan_Renderer.cpp,425,445}):
+
+| System | Reads | Does |
+| --- | --- | --- |
+| `Render transforms` | Transform, Texture2D, Rendering | Writes each sprite into its layer's batch for its texture |
+| `Render Camera` | Transform, Camera | Builds the view and projection |
+| `Render Lighting` | Transform, Light | Collects the lights for this frame |
+
+## Sprites
+
+Components::FTexture2DComponent says what to draw:
+
+| Member | Meaning |
+| --- | --- |
+| `Sprite.SpriteSheet` | The texture's asset path, e.g. `"Images\\Player"` (Windows separators; see \ref filesystem_paths). |
+| `Sprite.UVCoords`, `Sprite.WHCoords` | The part of the texture to draw: top-left corner and size, as fractions of the texture (0 to 1). Default: the whole texture. |
+| `TextureSize` | The sprite's size in world units (default 32 × 32). |
+| `Color` | Multiplied with the texture. White leaves it unchanged; alpha below 1 is see-through. |
+| `BoundingBox` | Not used when drawing (only by the legacy Renderer::RegisterEntity()). |
+
+To draw one cell of a sprite sheet, set `UVCoords` and `WHCoords`. A 64 × 64 texture with four 32 × 32 cells has cells at `(0,0)`, `(0.5,0)`, `(0,0.5)` and `(0.5,0.5)`, each `(0.5,0.5)` in size:
+
+\genexopen{modules/Rendering.cpp,Drawing sprite-sheet cells}
+\snippet modules/Rendering.cpp sprite_sheet
+\endex
+
+Tint, transparency and rotation:
+
+\genexopen{modules/Rendering.cpp,Colour\, alpha and rotation}
+\snippet modules/Rendering.cpp tint
+\snippet modules/Rendering.cpp rotation
+\endex
+
+Textures are uploaded to the GPU the first time a sprite uses them; that sprite appears one frame later (\src{src/Rendering/Vulkan_Renderer.cpp,589,593}). Upload earlier with Renderer::LoadTextureToVRam() if that matters.
+
+## Layers and draw order {#rendering_layers}
+
+Components::FRenderingComponent chooses the layer (Renderer::EInstanceLayer). Layers are drawn in this order, each on top of the previous:
+
+| Layer | Use for | Each frame |
+| --- | --- | --- |
+| `Background` | The backdrop; level tiles from Renderer::LoadLevel() | Drawing it clears the screen. Every texture group on this layer clears again, so use **one** texture here. |
+| `Entities` (default) | Everything that moves, appears or disappears | Emptied and rebuilt (\src{src/Rendering/Vulkan_Renderer.cpp,783}) |
+| `Foreground` | Static things in front of entities | Kept. Destroyed entities stay visible. |
+| `Debug` | Static debug markers | Kept |
+| `Overlay` | Static things on top of everything | Kept |
+
+\genexopen{modules/Rendering.cpp,One square per layer}
+\snippet modules/Rendering.cpp layers
+\endex
+
+Inside a layer, sprites are batched by texture. Batches are drawn in the order each texture was first used on that layer, and inside a batch sprites are sorted by `Location.y`, so lower sprites are drawn over higher ones (\src{src/Rendering/Vulkan_Renderer.cpp,553,555}). Sprites with different textures on one layer are therefore **not** sorted against each other.
+
+\genexopen{modules/Rendering.cpp,Y-sorting}
+\snippet modules/Rendering.cpp y_sort
+\endex
+
+## Camera {#rendering_camera}
+
+The entity with Components::FTransformComponent and Components::FCameraComponent is the camera (\src{src/Rendering/Vulkan_Renderer.cpp,293,315}). With several, the last one processed wins.
+
+| Member | Meaning |
+| --- | --- |
+| `CameraSize` | How many world units the view shows, e.g. `{320, 180}`. Keep the 16:9 shape of the 1920 × 1080 window. |
+| `CenterSize` | The size of the followed entity. The camera keeps the entity's top-left corner at `CameraSize / 2 - CenterSize / 2` from the view's corner, which centres an entity of that size. |
+| `Boundaries` | Limits for the view's top-left corner: `(minX, maxX, minY, maxY)`. `{0, 0, 0, 0}` fixes the camera at the origin. For a world `W × H` wide, use `{0, W - CameraSize.x, 0, H - CameraSize.y}` to stop at the edges. |
+
+Put the camera component on the player to follow it:
+
+\genexopen{ecs/Movement.cpp,A camera that follows the player and stops at the world's edges}
+\snippet ecs/Movement.cpp player
+\endex
+
+## Lights {#rendering_lights}
+
+After all layers are drawn, the image is lit: each pixel is its colour × 0.3 (a fixed ambient level, \src{src/Rendering/Vulkan_Renderer.cpp,680,683}), plus the contribution of every light. **With no light at all, the lit image is never drawn and the screen stays black** (\src{src/Rendering/Vulkan_Renderer.cpp,625,627}).
+
+| Member of Components::FLightComponent | Meaning |
+| --- | --- |
+| `Radius` | Reach of the light in **screen space**, not world units: about the fraction of the screen it covers. `0.35` lights roughly a third of the screen; `100` lights everything. |
+| `Intensity` | Brightness. A light covering everything with `Intensity = 2.4` brings the image to about full brightness. |
+| `RGB` | Light colour (`SDL_FColor`, alpha unused). |
+| `PositionOffset` | Offset from the entity's `Location`, in world units. |
+| `Falloff` | Not used by the shader at this commit. |
+
+\genexopen{modules/Rendering.cpp,A fill light and two coloured lights}
+\snippet modules/Rendering.cpp camera_and_lights
+\endex
+
+The lighting shader is \src{Resources/Shaders/Compiled/LightShader.frag.hlsl}.
+
+## Debug colliders
+
+While CoreTypes::bShouldDisplayDebugColliders is `true`, the renderer draws Renderer::CollisionInstances on top of the lit image, using the `CollisionTexture` asset (\src{src/Rendering/Vulkan_Renderer.cpp,748,754}). Fill that container yourself, one entry per collider, keyed by an ID:
+
+\genexopen{ecs/CollisionAndHover.cpp,Drawing collider outlines}
+\snippet ecs/CollisionAndHover.cpp debug_overlay
+\endex
+
+Entries stay until you remove them with `Renderer::CollisionInstances.RemoveEntity(id)`. Renderer::AddDebugCollision() does the same as the snippet but is deprecated and reads its rectangle as `(x, y, height, width)`.
+
+## Levels from LDtk
+
+`World::GenerateLevel()` (\ref coretypes) loads a level from an [LDtk](https://ldtk.io) project. Renderer::LoadLevel() then puts its tiles on the `Background` layer and returns a rectangle for every IntGrid cell with value 1, to use as collision (\src{src/Rendering/Module.cpp,74,152}). Layers whose name contains `Grass` or `Ground_Base` are drawn below the others.
+
+## Screen and world positions
+
+Renderer::ScreenPosToWorldPos() converts a window position (for example from `SDL_GetMouseState`) to world units. It assumes a 1920 × 1080 window (\src{src/Rendering/Vulkan_Renderer.cpp,795,798}).
+
+## Things to watch out for
+
+- The window and the render target are fixed at 1920 × 1080 (\src{src/Rendering/Vulkan_Renderer.cpp,58}). Resizing stretches the image.
+- If the *first* sprite in a batch has an invalid texture path, the whole batch is skipped that frame (\src{src/Rendering/Vulkan_Renderer.cpp,233,235}).
+- At most 50 000 sprites fit in a batch (\src{src/Rendering/Vulkan_Renderer.cpp,37}).
+- flecs prints `computed size (64) for 'SSprite' is larger than actual type (48)` at shutdown: the reflection data registered for Graphics::SSprite doesn't match the struct (\src{src/Rendering/Module.cpp,55,59}). Drawing is not affected, but editing or saving a sprite's fields in the Entity Debugger may be wrong.
+- More in \ref known_issues_rendering.
+*/
+
+/**
+\fn void Renderer::Module()
+\ingroup rendering
+\brief Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the render systems, and registers the sprite components. Called by Engine::InitializePlugins().
+
+Loads the `CollisionTexture` asset, so it must be registered before. Defined at \src{src/Rendering/Module.cpp,42,63}.
+*/
+
+/**
+\fn void Renderer::TeardownModule()
+\ingroup rendering
+\brief Shuts down ImGui's backends and destroys the window. Called by Engine::TeardownPlugins(). Defined at \src{src/Rendering/Module.cpp,65,68}.
+*/
+
+/**
+\fn glm::vec3 Renderer::ScreenPosToWorldPos(glm::vec3 ScreenPos)
+\ingroup rendering
+\brief Converts a window position in pixels to world units, using the current camera. Assumes a 1920 × 1080 window.
+
+Defined at \src{src/Rendering/Vulkan_Renderer.cpp,795,798}. GameplayFramework's mouse-hover system uses it.
+*/
+
+/**
+\fn void Renderer::LoadTextureToVRam(const TObjectPtr<Graphics::STexture2D> &Texture)
+\ingroup rendering
+\brief Uploads a loaded texture to the GPU and creates its sampler (nearest filtering). The renderer does this on first use; call it to avoid the one-frame delay.
+
+Expects 4 bytes per pixel in `Texture->Surface`. Defined at \src{src/Rendering/Vulkan_Renderer.cpp,83,142}.
+*/
+
+/**
+\fn std::vector<SDL_FRect> Renderer::LoadLevel(const TObjectPtr<World::SLevel>& Level)
+\ingroup rendering
+\brief Puts a level's tiles on the Background layer and returns the rectangles of its collision cells (IntGrid value 1). Also sets Renderer::Level.
+
+Defined at \src{src/Rendering/Module.cpp,74,152}.
+*/
+
+/**
+\var Renderer::Level
+\ingroup rendering
+\brief The level last passed to Renderer::LoadLevel(), or empty.
+*/
+
+/**
+\var Renderer::CollisionInstances
+\ingroup rendering
+\brief The debug-collider overlay: drawn with the `CollisionTexture` asset while CoreTypes::bShouldDisplayDebugColliders is `true`.
+
+Add entries with `AddEntity(id)` and fill `Instances[id]` (`x`, `y`, `w`, `h` in world units; `tex_w = tex_h = 1`; colour). Remove them with `RemoveEntity(id)`. See \ref ex_collision.
+*/
+
+/**
+\fn void Renderer::AddDebugCollision(const glm::vec4& Collider, uint32_t ID)
+\ingroup rendering
+\brief Deprecated. Adds a debug-collider rectangle. Reads `Collider` as `(x, y, height, width)`.
+
+Defined at \src{include/Rendering/Module.hpp,81,96}. Write to Renderer::CollisionInstances instead.
+*/
+
+/**
+\enum Renderer::EInstanceLayer
+\ingroup rendering
+\brief The render layers, drawn in this order. See \ref rendering_layers.
+
+Declared at \src{include/Rendering/SpriteInstanceContainer.hpp,16,22}.
+*/
+
+/**
+\struct Components::FTexture2DComponent
+\ingroup rendering
+\brief What a sprite draws: `Graphics::SSprite Sprite` (texture path and cell), `glm::vec2 TextureSize` (32 × 32), `SDL_FColor Color` (white), `glm::vec4 BoundingBox` (unused when drawing).
+
+Needs Components::FTransformComponent and Components::FRenderingComponent on the same entity. Defined at \src{include/Rendering/Components/RenderingComponent.hpp,14,19}. See \ref rendering.
+*/
+
+/**
+\struct Components::FRenderingComponent
+\ingroup rendering
+\brief Which layer a sprite is drawn on: `Renderer::EInstanceLayer RenderLayer` (default `Entities`).
+
+Defined at \src{include/Rendering/Components/RenderingComponent.hpp,10,12}.
+*/
+
+/**
+\fn TObjectPtr<Renderer::RenderLayer> Renderer::GetRenderLayer(EInstanceLayer Layer)
+\ingroup rendering
+\brief Returns a render layer, with one Renderer::SpriteInstanceContainer per texture used on it. Defined at \src{src/Rendering/RenderingBackend.cpp,52,54}.
+*/
+
+/**
+\fn std::vector< TObjectPtr< Renderer::RenderLayer > > Renderer::GetRenderLayers()
+\ingroup rendering
+\brief Returns all render layers, in drawing order. Defined at \src{src/Rendering/RenderingBackend.cpp,56,60}.
+*/
+
+/**
+\fn bool Renderer::RegisterEntity(uint32_t EntityId)
+\ingroup rendering
+\brief Legacy: writes one entity's sprite into its layer immediately, using `FTexture2DComponent::BoundingBox` as texture coordinates. The render system does this every frame; you don't need it.
+
+Defined at \src{src/Rendering/RenderingBackend.cpp,77,110}.
+*/
+
+/**
+\fn bool Renderer::CleanupEntity(uint64_t EntityId)
+\ingroup rendering
+\brief Removes an entity's sprite from its layer's batch. Useful for entities on the `Foreground`, `Debug` or `Overlay` layers before destroying them.
+
+Defined at \src{src/Rendering/RenderingBackend.cpp,62,75}. It has no return statement on success, so don't use its result.
+*/
+
+/**
+\fn bool Renderer::Initialize()
+\ingroup rendering
+\brief Creates the render layers and the GPU renderer. Called by Renderer::Module(); don't call it yourself.
+*/
+
+/**
+\fn bool Renderer::StartRenderFrame()
+\ingroup rendering
+\brief Starts a new ImGui frame for the SDL backends. Called by Engine::Run() every frame.
+*/
+
+/**
+\fn bool Renderer::RenderFrame()
+\ingroup rendering
+\brief Draws all layers, lighting, debug colliders and ImGui, and presents the frame. Called by Engine::Run() every frame. Defined at \src{src/Rendering/Vulkan_Renderer.cpp,705,785}.
+*/
+
+/**
+\fn glm::mat4x4 Renderer::GetCameraView()
+\ingroup rendering
+\brief The current camera's view matrix. Used by the editor's transform gizmo.
+*/
+
+/**
+\fn glm::mat4x4 Renderer::GetCameraProjectionMatrix()
+\ingroup rendering
+\brief The current camera's orthographic projection (`0..CameraSize`, Y down).
+*/
+
+/**
+\struct Renderer::SpriteInstance
+\ingroup rendering
+\brief One sprite as the GPU sees it: position, size, rotation, flip, texture rectangle and colour. Declared at \src{include/Rendering/SpriteInstanceContainer.hpp,39,46}.
+*/
+
+/**
+\struct Renderer::SpriteInstanceContainer
+\ingroup rendering
+\brief A batch of sprites that share one texture, keyed by entity ID. Drawn with one draw call. Declared at \src{include/Rendering/SpriteInstanceContainer.hpp,48,70}.
+*/
+
+/**
+\struct Renderer::RenderLayer
+\ingroup rendering
+\brief One render layer: a list of Renderer::SpriteInstanceContainer, one per texture. Declared at \src{include/Rendering/SpriteInstanceContainer.hpp,72,117}.
+*/

@@ -1,0 +1,95 @@
+/**
+\defgroup imguiwrapper ImGuiWrapper
+\brief Owns the single Dear ImGui context the engine and your game share, and a registry of named "debug factories" that draw editor panels for data.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Editor/ImGuiWrapper} · \srcdir{src/Editor/ImGuiWrapper}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Editor/ImGuiWrapper/Module.hpp>` (also includes `imgui.h`, `imgui_stdlib.h` and the SDL3 / SDL_GPU backends)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`ImGuiWrapper`; note that ImGUIWrapper::IEditorTool uses a different spelling, `ImGUIWrapper`</td></tr>
+<tr><td><b>Started by</b></td><td>\srclink{src/Module.cpp,85,Engine::InitializePlugins()}, third, before ECS</td></tr>
+<tr><td><b>Built on</b></td><td>[Dear ImGui](https://github.com/ocornut/imgui) (docking branch) and [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo)</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_editor · every game's HUD</td></tr>
+</table>
+
+## How to use
+
+Most game code only needs two things from this module:
+
+1. **Draw ImGui from an editor tool.** ImGui calls are valid between `ImGui::NewFrame()` and `ImGui::Render()`. In Janus that is inside an editor tool's `Draw_Internal()`, not inside ECS systems, which run before the ImGui frame starts. See \ref editor.
+2. **Use the shared context** if you call ImGui from code that may have its own ImGui globals (a separate DLL, for example): call `ImGui::SetCurrentContext(ImGuiWrapper::GetCurrentContext())` first. Code linked into the same executable as the engine shares the context automatically.
+
+On start, the module turns on ImGui docking and multi-viewport (\src{src/Editor/ImGuiWrapper/Module.cpp,49,52}). With multi-viewport, window positions are in screen coordinates, and a window moved outside the game window becomes its own OS window. Place windows relative to `ImGui::GetMainViewport()->Pos`:
+
+\genexopen{games/Dodge.cpp,A HUD window anchored to the top-right of the game window}
+\snippet games/Dodge.cpp hud
+\endex
+
+## Debug factories
+
+A *debug factory* is an object with a `DrawDebug(void*)` function, registered under a name with ImGuiWrapper::RegisterFactory(). ImGuiWrapper::DrawFactory_Container(name, pointer) then draws the data at `pointer` with the factory registered under `name`.
+
+The Entity Debugger uses this to draw components: for each component on the selected entity, it calls `DrawFactory_Container` with the component's name. The component macros register a factory per component for you (#REGISTER_COMPONENT_DEBUGGER):
+
+\engex{include/Gameplay/ECS/Components.hpp,21,22,How a component's panel is registered}
+```cpp
+#define REGISTER_COMPONENT_DEBUGGER(ComponentClass) \
+    ImGuiWrapper::RegisterFactory(#ComponentClass, TObjectPtr<Components::ComponentClass##Debug>())
+```
+\endex
+
+To draw a component a completely different way, register your own factory under the component's name after #ECS_REGISTER_COMPONENT: a later registration replaces the earlier one.
+
+## Things to watch out for
+
+- ImGui calls from ECS systems or from `main()` crash or assert: there is no ImGui frame open. Use an editor tool.
+- `ImGuiWrapper::TeardownModule()` is never called; the ImGui context is destroyed by Renderer::TeardownModule().
+- The engine does not check `ImGui::GetIO().WantCaptureKeyboard`, so typing in an ImGui text field also triggers game input.
+*/
+
+/**
+\fn ImGuiContext* ImGuiWrapper::GetCurrentContext()
+\ingroup imguiwrapper
+\brief Returns the engine's ImGui context, creating it on first use. Defined at \src{src/Editor/ImGuiWrapper/Module.cpp,18,24}.
+*/
+
+/**
+\fn void ImGuiWrapper::RegisterFactory(const std::string& Name, const TObjectPtr<ImGuiWrapper::DebugFactoryBase> &DebugFactory)
+\ingroup imguiwrapper
+\brief Registers (or replaces) the debug factory used to draw data named `Name`. Defined at \src{src/Editor/ImGuiWrapper/Module.cpp,26,28}.
+*/
+
+/**
+\fn void ImGuiWrapper::DrawFactory_Container(const std::string& Name, void* ContainerPtr)
+\ingroup imguiwrapper
+\brief Draws the data at `ContainerPtr` with the factory registered as `Name`. Does nothing if there is none or the pointer is null. Defined at \src{src/Editor/ImGuiWrapper/Module.cpp,30,38}.
+*/
+
+/**
+\fn TObjectPtr<DebugFactoryBase> ImGuiWrapper::GetFactory(const std::string& Name)
+\ingroup imguiwrapper
+\brief Returns the factory registered as `Name`, or an empty pointer.
+*/
+
+/**
+\fn std::vector<std::string> ImGuiWrapper::GetFactoryNames()
+\ingroup imguiwrapper
+\brief Returns the names of all registered factories. The Entity Debugger lists them under *New Component*.
+*/
+
+/**
+\fn void ImGuiWrapper::Module()
+\ingroup imguiwrapper
+\brief Creates the ImGui context and enables docking and multi-viewport. Called by Engine::InitializePlugins().
+*/
+
+/**
+\fn void ImGuiWrapper::TeardownModule()
+\ingroup imguiwrapper
+\brief Empty, and not called by the engine.
+*/
+
+/**
+\class ImGuiWrapper::DebugFactoryBase
+\ingroup imguiwrapper
+\brief Base for debug factories: override `DrawDebug(void* Container)` to draw the data `Container` points to. Declared at \src{include/Editor/ImGuiWrapper/DebugFactory.hpp,10,16}.
+*/

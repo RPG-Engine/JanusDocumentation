@@ -1,0 +1,227 @@
+/**
+\page ex_movement Moving entities
+
+<p class="lede">Move a player with the keyboard through a world larger than the screen, among wanderers that bounce off the edges. The camera and a light follow the player.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{ecs/Movement.cpp}</span><span><b>Executable</b> <code>EcsMovement</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys</span></div>
+
+\image html ecs-movement.png "The player (cyan) carries the camera and a light; wanderers bounce around a 640 × 360 world"
+
+<b>Shows:</b> a 2D input action, splitting movement into small systems (input → velocity → position → bounds), component markers that select which entities a system affects, a following camera (\ref rendering_camera) and a moving light (\ref rendering_lights).
+
+## Components
+
+`FVelocity` is shared by everything that moves. `FPlayer` and `FBounceInWorld` are markers that decide which systems affect an entity:
+
+\genexopen{ecs/Movement.cpp,Components}
+\snippet ecs/Movement.cpp components
+\endex
+
+## Input
+
+Every held binding adds its value, so diagonals come for free:
+
+\genexopen{ecs/Movement.cpp,A 2D action}
+\snippet ecs/Movement.cpp action
+\snippet ecs/Movement.cpp bindings
+\endex
+
+## The player
+
+The player entity carries the camera and a light. `Boundaries` stops the camera at the world's edges:
+
+\genexopen{ecs/Movement.cpp,Player\, camera and light}
+\snippet ecs/Movement.cpp player
+\endex
+
+## Systems
+
+Three systems, each doing one thing. The first only matches the player; the second moves everything with a velocity; the third, in `PostUpdate`, keeps everything inside the world:
+
+\genexopen{ecs/Movement.cpp,Input\, velocity and bounds}
+\snippet ecs/Movement.cpp systems
+\endex
+
+## Full source
+
+\genex{ecs/Movement.cpp,Movement.cpp}
+\include ecs/Movement.cpp
+\endex
+*/
+
+/**
+\page ex_spawning Spawning and destroying
+
+<p class="lede">A fountain of sparks: spawn entities on a timer or in bursts, fade them out, and destroy them when their time is up.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{ecs/Spawning.cpp}</span><span><b>Executable</b> <code>EcsSpawning</code></span><span><b>Controls</b> <kbd>Space</kbd> for a burst of 100, hold <kbd>E</kbd> to spray</span></div>
+
+\image html ecs-spawning.png "Sparks fading out as their lifetime runs down; the HUD counts live sparks"
+
+<b>Shows:</b> a spawner component, a flecs prefab, a lifetime component that fades and destroys entities, and counting entities with a query.
+
+## Components
+
+\genexopen{ecs/Spawning.cpp,Spawner\, lifetime and velocity}
+\snippet ecs/Spawning.cpp components
+\endex
+
+## A prefab for sparks
+
+Every spark starts with the same sprite, layer and lifetime, so those live on a prefab. `is_a(prefab)` gives each new spark its own copy, which it can then change:
+
+\genexopen{ecs/Spawning.cpp,Prefab and spawn function}
+\snippet ecs/Spawning.cpp prefab
+\snippet ecs/Spawning.cpp spawn
+\endex
+
+## Spawning
+
+The spawner turns elapsed time into whole sparks, so the rate stays correct at any frame rate:
+
+\genexopen{ecs/Spawning.cpp,The spawner system}
+\snippet ecs/Spawning.cpp spawner_system
+\endex
+
+## Lifetime
+
+\genexopen{ecs/Spawning.cpp,Fading out and destroying}
+\snippet ecs/Spawning.cpp lifetime_system
+\endex
+
+Destroyed sparks disappear from the screen at once because they are on the `Entities` layer, which is rebuilt every frame (\ref rendering_layers).
+
+## Counting
+
+\genexopen{ecs/Spawning.cpp,Counting live sparks}
+\snippet ecs/Spawning.cpp count
+\endex
+
+## Full source
+
+\genex{ecs/Spawning.cpp,Spawning.cpp}
+\include ecs/Spawning.cpp
+\endex
+*/
+
+/**
+\page ex_queries Components, queries and observers
+
+<p class="lede">Thirty units on two teams wander around. Keys move units between teams and damage the blue team; observers recolour units and report defeats.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{ecs/ComponentsAndQueries.cpp}</span><span><b>Executable</b> <code>EcsQueries</code></span><span><b>Controls</b> <kbd>1</kbd> red → blue, <kbd>2</kbd> blue → red, <kbd>H</kbd> hurt every blue unit</span></div>
+
+\image html ecs-queries.png "Red and blue units; the HUD shows the team counts from two queries"
+
+<b>Shows:</b> the three `DEFINE_COMPONENT` variants, plain flecs tags, queries that filter on tags, observers, a custom pipeline phase, settings on the global entity, and selecting an entity for the Entity Debugger. See \ref ecs.
+
+## Components and tags
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Defining components and tags}
+\snippet ecs/ComponentsAndQueries.cpp components
+\endex
+
+`FUnit` uses `DEFINE_COMPONENT_OVERRIDE_DEBUG`, so its Entity Debugger panel gets extra content. Select a unit in *Entity Debugger → Entity Outliner* to see it:
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Custom panel functions}
+\snippet ecs/ComponentsAndQueries.cpp debug_draw
+\endex
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Registering}
+\snippet ecs/ComponentsAndQueries.cpp register
+\endex
+
+## Global settings
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Settings on the global entity}
+\snippet ecs/ComponentsAndQueries.cpp global_entity
+\endex
+
+Open *Entity Debugger → Global Entity* and change `RedColor` or `DamagePerHit` while the example runs.
+
+## Queries
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Queries that filter on tags}
+\snippet ecs/ComponentsAndQueries.cpp queries
+\snippet ecs/ComponentsAndQueries.cpp build_queries
+\endex
+
+## Observers
+
+Units get their colour when a team tag is added, not every frame. The third observer fires when a unit's health component is removed, which also happens when the unit is destroyed:
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Observers}
+\snippet ecs/ComponentsAndQueries.cpp observers
+\endex
+
+## Systems and a custom phase
+
+\genexopen{ecs/ComponentsAndQueries.cpp,A custom phase}
+\snippet ecs/ComponentsAndQueries.cpp phase
+\endex
+
+\genexopen{ecs/ComponentsAndQueries.cpp,Systems}
+\snippet ecs/ComponentsAndQueries.cpp systems
+\endex
+
+## Full source
+
+\genex{ecs/ComponentsAndQueries.cpp,ComponentsAndQueries.cpp}
+\include ecs/ComponentsAndQueries.cpp
+\endex
+*/
+
+/**
+\page ex_collision Collision and mouse hover
+
+<p class="lede">Walk around a walled room with pillars. The player slides along walls, <kbd>F1</kbd> shows the colliders, and blocks light up under the mouse.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{ecs/CollisionAndHover.cpp}</span><span><b>Executable</b> <code>EcsCollision</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> to move, <kbd>F1</kbd> collider overlay, click a hovered block to select it</span></div>
+
+\image html ecs-collision.png "The collider overlay is on (red outlines); the mouse is over the highlighted pillar; the player is stopped by the top wall"
+
+<b>Shows:</b> GameplayFramework (\ref gameplay): colliders, the engine's `Move2D` and `ToggleDebugColliders` actions, mouse hover; plus the renderer's debug-collider overlay (\ref rendering).
+
+## Setup
+
+\genexopen{ecs/CollisionAndHover.cpp,Starting GameplayFramework and binding keys}
+\snippet ecs/CollisionAndHover.cpp gameplay_module
+\snippet ecs/CollisionAndHover.cpp bindings
+\endex
+
+The overlay draws colliders with the `CollisionTexture` asset, so this example generates an outline for it:
+
+\genexopen{ecs/CollisionAndHover.cpp,An outline texture}
+\snippet ecs/CollisionAndHover.cpp outline_texture
+\endex
+
+## Colliders and blocking
+
+\genexopen{ecs/CollisionAndHover.cpp,Solid blocks}
+\snippet ecs/CollisionAndHover.cpp solid_block
+\endex
+
+Moving one axis at a time and undoing only the blocked axis lets the player slide along walls instead of sticking to them:
+
+\genexopen{ecs/CollisionAndHover.cpp,Movement that stops at colliders}
+\snippet ecs/CollisionAndHover.cpp blocking_movement
+\endex
+
+## The collider overlay
+
+\genexopen{ecs/CollisionAndHover.cpp,Filling the debug-collider container}
+\snippet ecs/CollisionAndHover.cpp debug_overlay
+\endex
+
+## Mouse hover
+
+\genexopen{ecs/CollisionAndHover.cpp,Highlighting and selecting}
+\snippet ecs/CollisionAndHover.cpp hover
+\endex
+
+## Full source
+
+\genex{ecs/CollisionAndHover.cpp,CollisionAndHover.cpp}
+\include ecs/CollisionAndHover.cpp
+\endex
+*/

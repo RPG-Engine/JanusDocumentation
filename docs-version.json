@@ -1,0 +1,42 @@
+{
+  "description": "Which engine commit these docs describe. build.ps1 pins every GitHub source link to engineCommit. tools/docs-delta.ps1 lists what changed in the engine since then and which pages need a look. After updating the docs for newer code, run tools/docs-delta.ps1 -Pin to move engineCommit forward.",
+  "engineRepository": "https://github.com/RPG-Engine/RPG-Engine-Core",
+  "engineCommit": "824ee2043e545a75c0510187f5c7ca53b5aa21c4",
+  "documentedOn": "2026-11-22",
+  "examplesRef": "main",
+  "examplesVerified": {
+    "commit": "824ee2043e545a75c0510187f5c7ca53b5aa21c4",
+    "note": "All examples were compiled (MSVC 14.51, C++26, Release) and run. 824ee20 needs include/Module.hpp to use ENGINE_EXPORT instead of ENGINE_ENGINE_EXPORT to compile."
+  },
+  "coverage": {
+    "CMakeLists.txt":               ["pages/using-janus/getting-started.md", "pages/engine-organization.md"],
+    "cmake_modules/":               ["pages/using-janus/getting-started.md"],
+    "vcpkg.json":                   ["pages/using-janus/getting-started.md"],
+    "Config/":                      ["pages/api/filesystem.dox", "pages/using-janus/getting-started.md"],
+    "Resources/":                   ["pages/api/rendering.dox", "pages/using-janus/essentials.md"],
+    "include/Module.hpp":           ["pages/api/engine.dox", "pages/engine-organization.md"],
+    "src/Module.cpp":               ["pages/api/engine.dox", "pages/engine-organization.md"],
+    "include/Log/":                 ["pages/api/logging.dox"],
+    "src/Log/":                     ["pages/api/logging.dox"],
+    "include/Filesystem/":          ["pages/api/filesystem.dox"],
+    "src/Filesystem/":              ["pages/api/filesystem.dox"],
+    "include/Memory/":              ["pages/api/memory.dox"],
+    "src/Memory/":                  ["pages/api/memory.dox"],
+    "include/Types/":               ["pages/api/coretypes.dox"],
+    "src/Types/":                   ["pages/api/coretypes.dox"],
+    "include/Gameplay/ECS/":        ["pages/api/ecs.dox"],
+    "src/Gameplay/ECS/":            ["pages/api/ecs.dox"],
+    "include/Gameplay/Module.hpp":  ["pages/api/gameplay.dox"],
+    "include/Gameplay/Components.hpp": ["pages/api/gameplay.dox"],
+    "src/Gameplay/Module.cpp":      ["pages/api/gameplay.dox"],
+    "include/Rendering/":           ["pages/api/rendering.dox"],
+    "src/Rendering/":               ["pages/api/rendering.dox"],
+    "include/Input/":               ["pages/api/input.dox"],
+    "src/Input/":                   ["pages/api/input.dox"],
+    "include/Editor/ImGuiWrapper/": ["pages/api/imgui.dox"],
+    "src/Editor/ImGuiWrapper/":     ["pages/api/imgui.dox"],
+    "include/Editor/":              ["pages/api/editor.dox"],
+    "src/Editor/":                  ["pages/api/editor.dox"],
+    "*":                            ["pages/modules.md", "pages/using-janus/essentials.md", "pages/about/known-issues.md", "examples/"]
+  }
+}

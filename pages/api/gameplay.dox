@@ -1,0 +1,80 @@
+/**
+\defgroup gameplay GameplayFramework
+\brief Gameplay building blocks: a collider component, a mouse-hover system and a 2D movement action.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\src{include/Gameplay/Module.hpp} · \src{include/Gameplay/Components.hpp} · \src{src/Gameplay/Module.cpp}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Gameplay/Module.hpp>` · `#include <Gameplay/Components.hpp>` (for Components::FMouseState)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`GameplayFramework`; components in `Components`</td></tr>
+<tr><td><b>Started by</b></td><td><b>Not started by the engine.</b> Call GameplayFramework::Module() yourself after Engine::InitializePlugins().</td></tr>
+<tr><td><b>Example</b></td><td>\ref ex_collision</td></tr>
+</table>
+
+## How to use
+
+<b>1. Start the module</b> after Engine::InitializePlugins(). It registers Components::FColliderComponent and Components::FMouseState, so they get reflection data and Entity Debugger panels:
+
+\genexopen{ecs/CollisionAndHover.cpp,Starting GameplayFramework}
+\snippet ecs/CollisionAndHover.cpp gameplay_module
+\endex
+
+<b>2. Give entities colliders.</b> Components::FColliderComponent holds one rectangle, `ColliderShape`, relative to the entity's position. The engine stores it but does no collision checks itself, so you decide what the four numbers mean and test overlaps in your own systems. The example uses `(x offset, y offset, width, height)`:
+
+\genexopen{ecs/CollisionAndHover.cpp,Blocks with colliders\, and movement that stops at them}
+\snippet ecs/CollisionAndHover.cpp solid_block
+\snippet ecs/CollisionAndHover.cpp blocking_movement
+\endex
+
+<b>3. Use mouse hover.</b> GameplayFramework::ActivateMouseStateSystem() adds an Components::FMouseState to ECS::GetGlobalSystemsEntity() and a system that, every frame, stores the mouse position in world units and the entity under the cursor. It checks entities with Components::FTransformComponent and Components::FBoundingBoxComponent:
+
+\genexopen{ecs/CollisionAndHover.cpp,Highlighting the hovered block}
+\snippet ecs/CollisionAndHover.cpp hover
+\endex
+
+<b>4. Move with Move2D.</b> `Input::Actions::Move2D` is a `glm::vec2` action declared by this module (\src{include/Gameplay/Module.hpp,12}). Bind keys to it as with any action (\ref input).
+
+## Things to watch out for
+
+- `HoveredEntityId` keeps the last hovered entity when the cursor moves off it (\src{src/Gameplay/Module.cpp,62,65}). Check `MousePosition` against the entity's box yourself, as the example does.
+- The hover system runs in `ECS::Phase::OnPreRender()`, so systems in earlier phases see the previous frame's result.
+- The mouse position assumes a 1920 × 1080 window (see Renderer::ScreenPosToWorldPos()).
+- The module links box2d, but the physics code is commented out (\src{src/Gameplay/Module.cpp,18,27}). `Components::FPhysicsComponent` is empty.
+*/
+
+/**
+\fn void GameplayFramework::Module()
+\ingroup gameplay
+\brief Registers Components::FColliderComponent and Components::FMouseState with the ECS world. Not called by the engine: call it after Engine::InitializePlugins().
+
+Defined at \src{src/Gameplay/Module.cpp,18,23}.
+*/
+
+/**
+\fn void GameplayFramework::TeardownModule()
+\ingroup gameplay
+\brief Empty at this commit.
+*/
+
+/**
+\fn void GameplayFramework::ActivateMouseStateSystem()
+\ingroup gameplay
+\brief Adds Components::FMouseState to ECS::GetGlobalSystemsEntity() and starts a system that tracks the mouse and the entity under it. Call once.
+
+Defined at \src{src/Gameplay/Module.cpp,72,78}; the system itself is \src{src/Gameplay/Module.cpp,29,70}.
+*/
+
+/**
+\struct Components::FColliderComponent
+\ingroup gameplay
+\brief One collision rectangle, `glm::vec4 ColliderShape`, relative to the entity's position. The engine does not interpret it; your systems do.
+
+Defined at \src{include/Gameplay/Module.hpp,29,31}.
+*/
+
+/**
+\struct Components::FMouseState
+\ingroup gameplay
+\brief The mouse position in world units (`MousePosition`) and the last entity under the cursor (`HoveredEntityId`, 0 if none yet).
+
+Lives on ECS::GetGlobalSystemsEntity() once GameplayFramework::ActivateMouseStateSystem() has run. Read it with `ECS::GetGlobalSystemsEntity().get<Components::FMouseState>()`. Defined at \src{include/Gameplay/Components.hpp,15,18}.
+*/

@@ -1,0 +1,262 @@
+/**
+\defgroup input Input
+\brief Named input actions. You declare an action, bind keys to it (on press, while held, or on release), and read its value from your systems.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Input} · \srcdir{src/Input}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Input/Module.hpp>`</td></tr>
+<tr><td><b>Namespaces</b></td><td>`Input`; your actions live in `Input::Actions`</td></tr>
+<tr><td><b>Started by</b></td><td>Nothing to start: `Input::Module()` is empty. Engine::Run() calls Input::UpdateInputs() every frame.</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_input · \ref ex_movement · every game</td></tr>
+</table>
+
+## How to use
+
+<b>1. Declare an action</b> at global scope with #DEFINE_INPUT_ACTION: a name and the type of value it produces. It becomes `Input::Actions::<Name>`.
+
+\genexopen{modules/Input.cpp,Declaring actions}
+\snippet modules/Input.cpp actions
+\endex
+
+<b>2. Bind keys</b> with `AddInputBindings_Press`, `AddInputBindings_Hold` or `AddInputBindings_Release`. Each binding is a key (an `SDL_Scancode`) and the value it contributes:
+
+\genexopen{modules/Input.cpp,Binding keys}
+\snippet modules/Input.cpp bindings
+\endex
+
+<b>3. Read the action</b> in a system. Input is read at the start of each frame, before systems run:
+
+| Call | Returns |
+| --- | --- |
+| `Input::IsActionTriggered(Input::Actions::Jump)` | `true` if any of its bindings triggered this frame |
+| `Input::GetValue(Input::Actions::Move)` | The combined value of the bindings that triggered (see *Values and operators*) |
+
+\genexopen{modules/Input.cpp,Polling actions in a system}
+\snippet modules/Input.cpp polling
+\endex
+
+<b>Or register a callback</b> that runs when the action triggers:
+
+\genexopen{modules/Input.cpp,A callback}
+\snippet modules/Input.cpp callback
+\endex
+
+## When a binding triggers
+
+| Binding type | Triggers on | Typical use |
+| --- | --- | --- |
+| `PRESS` | The frame the key goes down, **and** every keyboard auto-repeat while it is held | Jump, confirm, toggle |
+| `HOLD` | Every frame the key is down | Movement, charging |
+| `RELEASE` | The frame the key comes up | Release a charged attack |
+
+Keys are SDL scancodes: physical key positions, named after a US keyboard. `SDL_SCANCODE_W` is the key in W's position on any layout. The full list is in [SDL_scancode.h](https://wiki.libsdl.org/SDL3/SDL_Scancode).
+
+A binding can list several keys. For a `HOLD` binding all of them must be down, which makes key combinations:
+
+```cpp
+Input::AddInputBindings_Hold(&Input::Actions::Save, {
+    Input::SInputBinding<bool>({SDL_SCANCODE_LCTRL, SDL_SCANCODE_S}, true),
+});
+```
+
+For `PRESS` and `RELEASE` bindings, multi-key combinations never trigger (\src{src/Input/Module.cpp,65,98}). Use one key per binding.
+
+## Values and operators
+
+`GetValue` starts from a zero value (`TValueType{}`) and applies the value of every triggered binding, in the order they were added, using the action's operator (\src{include/Input/Module.hpp,71,81}):
+
+| Operator | Result | Declare with |
+| --- | --- | --- |
+| `ADD` (default) | Sum of the triggered bindings' values. Arrow keys `(0,-1)` + `(1,0)` give `(1,-1)`. | `DEFINE_INPUT_ACTION(Name, Type)` |
+| `OVERRIDE` | The value of the last triggered binding. Zero if none. | `DEFINE_INPUT_ACTION_WITH_PARAMS(Name, Type, OVERRIDE)` |
+| `SUBTRACT` | Zero minus each triggered value | `..._WITH_PARAMS(Name, Type, SUBTRACT)` |
+| `MULTIPLY`, `DIVIDE` | Always zero, because they start from zero | — |
+
+Any type that supports `+=` and can be zero-initialized works: `bool`, `float`, `int`, `glm::vec2`, ... For `bool` actions use Input::IsActionTriggered(); `GetValue` on a `bool` action works but makes MSVC warn (C4804).
+
+## Actions the engine declares
+
+| Action | Type | Declared in | Used by |
+| --- | --- | --- | --- |
+| `Input::Actions::Move2D` | `glm::vec2` | \src{include/Gameplay/Module.hpp,12} | Nothing in the engine; ProtoRPG and \ref ex_collision use it for movement |
+| `Input::Actions::ToggleDebugColliders` | `bool` | \src{include/Types/Module.hpp,6} | Meant to toggle CoreTypes::bShouldDisplayDebugColliders; your game does the toggling |
+
+The engine binds no keys to them.
+
+## Quitting
+
+Input::UpdateInputs() sets the quit flag when SDL reports a quit event (closing the window), and Engine::Run() then stops. To quit from your own code, push that event:
+
+\genexopen{modules/Input.cpp,Quit on Escape}
+\snippet modules/Input.cpp quit
+\endex
+
+## Things to watch out for
+
+- **Keyboard only.** Gamepad buttons can be added to bindings, but they are never checked (\src{src/Input/Module.cpp,100,122}).
+- **Typing in an ImGui text field also triggers game actions.** The engine passes events to ImGui but does not check whether ImGui wants the keyboard (\src{src/Input/Module.cpp,44}).
+- **Register one callback per action.** Each callback runs once for every callback registered on the same action: with two callbacks, both run twice (\src{include/Input/Module.hpp,96,107}).
+- Callbacks are checked every frame for every registered callback, triggered or not.
+- `PRESS` repeats while the key is held (operating-system key repeat). Track the previous state yourself if you need exactly one trigger per press.
+*/
+
+/**
+\def DEFINE_INPUT_ACTION(InActionName, ValueType)
+\ingroup input
+\brief Declares `Input::Actions::InActionName`, an Input::SAction<ValueType> whose bindings' values are added up (`ADD`).
+
+Use at global scope, in one source file or in a header shared by several. Defined at \src{include/Input/InputTypes.hpp,103}.
+
+\genexopen{modules/Input.cpp,Actions}
+\snippet modules/Input.cpp actions
+\endex
+*/
+
+/**
+\def DEFINE_INPUT_ACTION_WITH_PARAMS(InActionName, ValueType, Operator)
+\ingroup input
+\brief Like #DEFINE_INPUT_ACTION, with a chosen Input::EInputModifierOperation (`OVERRIDE`, `ADD`, `SUBTRACT`, ...).
+
+Defined at \src{include/Input/InputTypes.hpp,98,101}.
+*/
+
+/**
+\fn template<typename TValueType> void Input::AddInputBindings_Press(SAction<TValueType>* Action, std::initializer_list<SInputBinding<TValueType>> InputBindings)
+\ingroup input
+\brief Adds bindings that trigger on the frame their key goes down (and on key repeat).
+
+\param Action The action, e.g. `&Input::Actions::Jump`.
+\param InputBindings `{ {SDL_SCANCODE_SPACE, value}, ... }`.
+
+Defined at \src{include/Input/Module.hpp,34,37}.
+*/
+
+/**
+\fn template<typename TValueType> void Input::AddInputBindings_Hold(SAction<TValueType>* Action, std::initializer_list<SInputBinding<TValueType>> InputBindings)
+\ingroup input
+\brief Adds bindings that trigger every frame their key (or all their keys) are held down. Defined at \src{include/Input/Module.hpp,44,47}.
+*/
+
+/**
+\fn template<typename TValueType> void Input::AddInputBindings_Release(SAction<TValueType>* Action, std::initializer_list<SInputBinding<TValueType>> InputBindings)
+\ingroup input
+\brief Adds bindings that trigger on the frame their key comes up. Defined at \src{include/Input/Module.hpp,39,42}.
+*/
+
+/**
+\fn template<typename TValueType> void Input::AddInputBindings(SAction<TValueType>* Action, const EInputType& InputType, std::initializer_list<SInputBinding<TValueType>> InputBindings)
+\ingroup input
+\brief Adds bindings of the given Input::EInputType. The `_Press`, `_Hold` and `_Release` versions call this. Defined at \src{include/Input/Module.hpp,23,32}.
+*/
+
+/**
+\fn template<typename TActionValue> TActionValue Input::GetValue(const SAction<TActionValue>& Action)
+\ingroup input
+\brief Returns the action's value this frame: its triggered bindings' values combined with its operator, starting from zero.
+
+Defined at \src{include/Input/Module.hpp,71,81}.
+*/
+
+/**
+\fn template<typename TValueType> bool Input::IsActionTriggered(const SAction<TValueType>& Action)
+\ingroup input
+\brief Returns `true` if any of the action's bindings triggered this frame. Defined at \src{include/Input/Module.hpp,83,92}.
+*/
+
+/**
+\fn template<typename TValueType> void Input::RegisterActionCallback(SAction<TValueType>* Action, const std::function<void(const TValueType&)>& Function)
+\ingroup input
+\brief Calls `Function` with the action's value on every frame the action triggers, during Input::UpdateInputs().
+
+Register at most one callback per action (see \ref input). Defined at \src{include/Input/Module.hpp,96,107}.
+*/
+
+/**
+\fn void Input::UpdateInputs()
+\ingroup input
+\brief Reads this frame's SDL events, records pressed and released keys, passes events to ImGui and runs action callbacks. Engine::Run() calls it every frame.
+
+Defined at \src{src/Input/Module.cpp,35,63}.
+*/
+
+/**
+\fn bool Input::ShouldQuit()
+\ingroup input
+\brief `true` once SDL has reported a quit event. Engine::Run() stops when it is. Defined at \src{src/Input/Module.cpp,31,33}.
+*/
+
+/**
+\fn bool Input::IsBindingTriggered(const SInputBindingBase& Binding)
+\ingroup input
+\brief Returns `true` if one binding triggered this frame. Used by Input::GetValue() and Input::IsActionTriggered(). Defined at \src{src/Input/Module.cpp,100,122}.
+*/
+
+/**
+\fn void Input::DispatchTriggeredActions()
+\ingroup input
+\brief Runs the callbacks registered with Input::RegisterActionCallback(). Called by Input::UpdateInputs().
+*/
+
+/**
+\fn void Input::AddInputBoundFunction(const std::function<void()>& Func)
+\ingroup input
+\brief Adds a function that Input::DispatchTriggeredActions() calls every frame. Used by Input::RegisterActionCallback().
+*/
+
+/**
+\fn template<typename TActionValue> void Input::ApplyBindingOperation(TActionValue* CurrentValue, const TActionValue& NewValue, const EInputModifierOperation& Operation)
+\ingroup input
+\brief Combines one binding's value into the running value. Used by Input::GetValue().
+*/
+
+/**
+\fn void Input::Module()
+\ingroup input
+\brief Empty. The engine does not call it.
+*/
+
+/**
+\fn void Input::TeardownModule()
+\ingroup input
+\brief Empty. The engine does not call it.
+*/
+
+/**
+\struct Input::SAction
+\ingroup input
+\brief An input action: a name, its bindings, its callbacks and the operator that combines binding values. Create them with #DEFINE_INPUT_ACTION.
+
+Declared at \src{include/Input/InputTypes.hpp,76,89}.
+*/
+
+/**
+\struct Input::SInputBinding
+\ingroup input
+\brief One binding: the key(s) that trigger it, when (Input::EInputType) and the value it contributes.
+
+Usually written as `{SDL_SCANCODE_W, value}` inside the list passed to `AddInputBindings_*`. For `bool` actions the value can be left out: `SInputBinding<bool>(SDL_SCANCODE_SPACE)`. Declared at \src{include/Input/InputTypes.hpp,47,74}.
+*/
+
+/**
+\struct Input::SInputBindingBase
+\ingroup input
+\brief The part of a binding that does not depend on the value type: binding type, keyboard keys and (unused) gamepad buttons.
+*/
+
+/**
+\enum Input::EInputType
+\ingroup input
+\brief When a binding triggers: `PRESS`, `HOLD` or `RELEASE`. `NONE` never triggers. Declared at \src{include/Input/InputTypes.hpp,19,24}.
+*/
+
+/**
+\enum Input::EInputModifierOperation
+\ingroup input
+\brief How an action combines its triggered bindings' values. See \ref input. Declared at \src{include/Input/InputTypes.hpp,26,32}.
+*/
+
+/**
+\typedef Input::ActionNameID
+\ingroup input
+\brief An action's name (`std::string`).
+*/

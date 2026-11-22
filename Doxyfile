@@ -1,0 +1,195 @@
+# Doxyfile for the Janus Engine documentation (Doxygen 1.18)
+#
+# Build with build.ps1, not by running doxygen directly: build.ps1 reads
+# docs-version.json and sets the $(JANUS_DOCS_*) variables used below.
+
+#---------------------------------------------------------------------
+# Project
+#---------------------------------------------------------------------
+PROJECT_NAME           = "Janus Engine"
+PROJECT_NUMBER         = $(JANUS_DOCS_COMMIT_SHORT)
+PROJECT_BRIEF          = "C++26 2D game engine"
+OUTPUT_DIRECTORY       = build
+CREATE_SUBDIRS         = NO
+STRIP_FROM_PATH        = ..
+STRIP_FROM_INC_PATH    = ../include
+FULL_PATH_NAMES        = YES
+JAVADOC_AUTOBRIEF      = YES
+REPEAT_BRIEF           = NO
+MARKDOWN_SUPPORT       = YES
+AUTOLINK_SUPPORT       = YES
+TOC_INCLUDE_HEADINGS   = 3
+BUILTIN_STL_SUPPORT    = YES
+DISTRIBUTE_GROUP_DOC   = YES
+INLINE_SIMPLE_STRUCTS  = NO
+SORT_MEMBER_DOCS       = NO
+SHOW_USED_FILES        = NO
+SHOW_FILES             = NO
+SHOW_INCLUDE_FILES     = YES
+
+#---------------------------------------------------------------------
+# Warnings
+#---------------------------------------------------------------------
+WARN_IF_UNDOCUMENTED   = NO
+WARN_LOGFILE           = build/warnings.log
+
+#---------------------------------------------------------------------
+# Input
+#
+# pages/      guides, module pages (.dox) and example pages
+# ../include  the engine's public headers
+# examples/   compiled example programs, shown with \snippet / \include
+# images/     screenshots of the examples
+#---------------------------------------------------------------------
+INPUT                  = pages \
+                         ../include
+FILE_PATTERNS          = *.hpp *.h *.md *.dox
+RECURSIVE              = YES
+EXCLUDE                = ../include/Filesystem/Importers/Ldtk/LdtkTypes.hpp \
+                         ../include/Gameplay/ECS/MapInc.hpp
+EXCLUDE_PATTERNS       = */cmake-build-*/* \
+                         */Build/*
+USE_MDFILE_AS_MAINPAGE = pages/index.md
+EXAMPLE_PATH           = examples
+EXAMPLE_PATTERNS       = *.cpp
+IMAGE_PATH             = images
+
+#---------------------------------------------------------------------
+# What to extract
+#---------------------------------------------------------------------
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = NO
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = NO
+HIDE_UNDOC_RELATIONS   = YES
+SOURCE_BROWSER         = NO
+VERBATIM_HEADERS       = NO
+
+#---------------------------------------------------------------------
+# Preprocessor
+#
+# The component macros are expanded to plain structs so each component gets
+# its own page. Their members are listed in the module pages instead.
+#---------------------------------------------------------------------
+ENABLE_PREPROCESSING   = YES
+MACRO_EXPANSION        = YES
+EXPAND_ONLY_PREDEF     = YES
+SEARCH_INCLUDES        = NO
+PREDEFINED             = ENGINE_EXPORT= \
+                         ENGINE_NO_EXPORT= \
+                         ENGINE_ENGINE_EXPORT= \
+                         ENGINE_DEPRECATED= \
+                         "NLOHMANN_DEFINE_TYPE_NON_INTRUSIVE(...)=" \
+                         "NLOHMANN_DEFINE_TYPE_INTRUSIVE(...)=" \
+                         "NLOHMANN_JSON_SERIALIZE_ENUM(...)=" \
+                         "DEFINE_COMPONENT(Name,...)=struct Name {};" \
+                         "DEFINE_COMPONENT_NO_DEBUG(Name,...)=struct Name {};" \
+                         "DEFINE_COMPONENT_OVERRIDE_DEBUG(Name,Pre,Post,...)=struct Name {};" \
+                         "DEFINE_COMPONENT_DEBUGGER(Name,Pre,Post)=" \
+                         "DEFINE_NEW_ECS_PHASE(Name,After)=" \
+                         "DEFINE_INPUT_ACTION(Name,Type)=" \
+                         "DEFINE_INPUT_ACTION_WITH_PARAMS(Name,Type,Op)=" \
+                         "DEFINE_ASSET_LOADER(Type,Export)="
+
+# Implementation details that sit in public headers but are not meant for users
+EXCLUDE_SYMBOLS        = Log::Generic::LogInternal \
+                         Log::CIsLogSinkType \
+                         __* \
+                         Components::ECSDebug_DrawTypeBase \
+                         Components::ECSDebug_DrawFloat \
+                         Components::RegisteredDrawTypes \
+                         Components::AddDrawType \
+                         Components::options \
+                         Components::ECSDebugFactory::DrawEntityProperties \
+                         PositionTextureVertex \
+                         Matrix4x4 \
+                         CreateOrthographicOffCenter \
+                         LightData \
+                         SceneData \
+                         FRenderingStepInfo \
+                         ECSDebug_DrawFloat \
+                         ECSDebug_DrawTypeBase \
+                         RegisteredDrawTypes \
+                         AddDrawType \
+                         DrawEntityProperties \
+                         Filesystem::Importers::Ldtk \
+                         Components::FInputComponent \
+                         Components::FPhysicsComponent \
+                         GameplayFramework::Collision \
+                         Graphics::Internal \
+                         Input::Internal \
+                         Log::_Internal
+
+#---------------------------------------------------------------------
+# Aliases
+#
+# Source links point at one pinned commit (docs-version.json > engineCommit)
+# so line numbers always match. tools/docs-delta.ps1 lists what changed.
+#
+#   \src{path}                 link to a file
+#   \src{path,line}            link to a line
+#   \src{path,from,to}         link to a line range
+#   \srcdir{path}              link to a folder
+#   \srclink{path,from,text}   link to a line with custom text
+#   \exsrc{file}               link to an example program on GitHub (examples/<file>)
+#   \docscommit                the documented commit, short form, linked
+#
+#   \engex{path,from,to,title} ... \endex        real engine example (collapsed)
+#   \engexopen{path,from,to,title} ... \endex    real engine example (expanded)
+#   \genex{file,title} ... \endex                generated example from examples/<file> (collapsed)
+#   \genexopen{file,title} ... \endex            generated example from examples/<file> (expanded)
+#---------------------------------------------------------------------
+ALIASES += "src{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\">\1</a>"
+ALIASES += "src{2}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\#L\2\">\1:\2</a>"
+ALIASES += "src{3}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\#L\2-L\3\">\1:\2</a>"
+ALIASES += "srcdir{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/tree/$(JANUS_DOCS_COMMIT)/\1\">\1/</a>"
+ALIASES += "srclink{3}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\#L\2\">\3</a>"
+ALIASES += "exsrc{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\">examples/\1</a>"
+ALIASES += "docscommit=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/commit/$(JANUS_DOCS_COMMIT)\"><code>$(JANUS_DOCS_COMMIT_SHORT)</code></a>"
+ALIASES += "docsdate=$(JANUS_DOCS_DATE)"
+ALIASES += "engex{4}=\htmlonly<details class=\"jd-example jd-engine\"><summary><span class=\"jd-label\">Engine example</span><span class=\"jd-title\">\4</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1#L\2-L\3\" target=\"_blank\">\1:\2</a></summary>\endhtmlonly"
+ALIASES += "engexopen{4}=\htmlonly<details class=\"jd-example jd-engine\" open><summary><span class=\"jd-label\">Engine example</span><span class=\"jd-title\">\4</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1#L\2-L\3\" target=\"_blank\">\1:\2</a></summary>\endhtmlonly"
+ALIASES += "genex{2}=\htmlonly<details class=\"jd-example jd-generated\"><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
+ALIASES += "genexopen{2}=\htmlonly<details class=\"jd-example jd-generated\" open><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
+ALIASES += "endex=\htmlonly</details>\endhtmlonly"
+
+#---------------------------------------------------------------------
+# HTML output
+#---------------------------------------------------------------------
+GENERATE_HTML          = YES
+GENERATE_LATEX         = NO
+HTML_OUTPUT            = html
+HTML_HEADER            = doxygen/header.html
+HTML_FOOTER            = doxygen/footer.html
+HTML_EXTRA_STYLESHEET  = doxygen/theme.css
+HTML_EXTRA_FILES       = doxygen/janus-nav.js \
+                         doxygen/janus-docs.js \
+                         doxygen/janus-code.js
+LAYOUT_FILE            = doxygen/DoxygenLayout.xml
+HTML_COLORSTYLE        = LIGHT
+HTML_COPY_CLIPBOARD    = YES
+HTML_CODE_FOLDING      = NO
+HTML_DYNAMIC_SECTIONS  = NO
+GENERATE_TREEVIEW      = NO
+DISABLE_INDEX          = YES
+SEARCHENGINE           = YES
+SERVER_BASED_SEARCH    = NO
+ALPHABETICAL_INDEX     = YES
+
+#---------------------------------------------------------------------
+# Diagrams
+#---------------------------------------------------------------------
+HAVE_DOT               = YES
+DOT_IMAGE_FORMAT       = svg
+INTERACTIVE_SVG        = NO
+DOT_TRANSPARENT        = YES
+CLASS_GRAPH            = NO
+COLLABORATION_GRAPH    = NO
+GROUP_GRAPHS           = NO
+INCLUDE_GRAPH          = NO
+INCLUDED_BY_GRAPH      = NO
+CALL_GRAPH             = NO
+CALLER_GRAPH           = NO
+DIRECTORY_GRAPH        = NO
+DOT_COMMON_ATTR        = "fontname=Helvetica,fontsize=10"
+DOT_EDGE_ATTR          = "labelfontname=Helvetica,labelfontsize=10"

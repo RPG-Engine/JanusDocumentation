@@ -1,0 +1,175 @@
+/**
+\page ex_dodge Dodge
+
+<p class="lede">Move left and right to avoid falling blocks. The longer you survive, the faster they come.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{games/Dodge.cpp}</span><span><b>Executable</b> <code>DodgeGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>R</kbd> to restart</span></div>
+
+\image html dodge.png "Dodge: the player (cyan) dodges falling blocks; the HUD is in the top-right corner"
+
+<b>Shows:</b> input actions (\ref input), custom components and systems (\ref ecs), spawning and destroying entities, a cached query for collision, and a HUD made with an editor tool (\ref editor).
+
+## Actions and components
+
+Two input actions: a `float` for left/right, whose bindings add up, and a `bool` for restarting. Three components: a marker for the player, a speed for falling blocks, and a timer for the spawner.
+
+\genexopen{games/Dodge.cpp,Actions and components}
+\snippet games/Dodge.cpp actions
+\snippet games/Dodge.cpp components
+\endex
+
+## Setting up
+
+Textures first, then the engine, then registration, key bindings and the starting entities. The spawner is an entity too: its timer is a component, so a system can update it.
+
+\genexopen{games/Dodge.cpp,main(): setup}
+\snippet games/Dodge.cpp setup
+\endex
+
+## Systems
+
+The player system moves the player with the `MoveX` action, then checks every falling block for an overlap. It uses a query built once in `main()`:
+
+\genexopen{games/Dodge.cpp,Query and player system}
+\snippet games/Dodge.cpp query
+\snippet games/Dodge.cpp player_system
+\endex
+
+Falling blocks move down and destroy themselves below the screen. `destruct()` inside a system is deferred until the system has finished, so it is safe while iterating:
+
+\genexopen{games/Dodge.cpp,Falling}
+\snippet games/Dodge.cpp fall_system
+\endex
+
+The spawner counts down and creates a block when it reaches zero. The interval shrinks as the round goes on. After a hit, it waits for <kbd>R</kbd> and clears the board:
+
+\genexopen{games/Dodge.cpp,Spawning and restarting}
+\snippet games/Dodge.cpp spawn_system
+\endex
+
+## HUD
+
+Game UI is an editor tool. It also collapses the Dear ImGui demo window, which the engine always shows:
+
+\genexopen{games/Dodge.cpp,The HUD}
+\snippet games/Dodge.cpp hud
+\endex
+
+## Full source
+
+\genex{games/Dodge.cpp,Dodge.cpp}
+\include games/Dodge.cpp
+\endex
+*/
+
+/**
+\page ex_snake Snake
+
+<p class="lede">Steer the snake to the red food. Each bite makes it longer and faster; walls and your own tail end the round.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{games/Snake.cpp}</span><span><b>Executable</b> <code>SnakeGame</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys to turn, <kbd>R</kbd> to restart</span></div>
+
+\image html snake.png "Snake: the head is bright green, the food red"
+
+<b>Shows:</b> press bindings with the `OVERRIDE` operator (\ref input), game logic on a fixed time step, keeping game data (grid cells) separate from presentation (transforms), reusing entities instead of destroying them, and changing a sprite's colour at runtime.
+
+## Actions
+
+Four press bindings share one `glm::vec2` action. With `OVERRIDE`, the action's value is the last binding that triggered this frame, so the result is always one of the four directions (or zero):
+
+\genexopen{games/Snake.cpp,Turning with OVERRIDE}
+\snippet games/Snake.cpp actions
+\snippet games/Snake.cpp bindings
+\endex
+
+## Data and presentation
+
+Each body segment has an `FGridCell` (a cell on a 32 × 18 grid). The snake's state is a component on one entity; the order of the body segments is kept in a `std::deque`:
+
+\genexopen{games/Snake.cpp,Components and game state}
+\snippet games/Snake.cpp components
+\snippet games/Snake.cpp state
+\snippet games/Snake.cpp spawn_cell
+\endex
+
+A separate system turns grid cells into world positions. It runs in `PostUpdate`, after the game logic:
+
+\genexopen{games/Snake.cpp,Grid to transform}
+\snippet games/Snake.cpp snap
+\endex
+
+## The step
+
+The snake system reads turns every frame, but only moves when its timer runs out. Moving reuses the tail entity as the new head; growing creates a new head. Components set inside a system are applied after it finishes, which is why `IsOnSnake` uses `try_get`:
+
+\genexopen{games/Snake.cpp,One step of the snake}
+\snippet games/Snake.cpp step
+\endex
+
+\genexopen{games/Snake.cpp,Starting a round}
+\snippet games/Snake.cpp start_round
+\endex
+
+## Full source
+
+\genex{games/Snake.cpp,Snake.cpp}
+\include games/Snake.cpp
+\endex
+*/
+
+/**
+\page ex_breakout Breakout
+
+<p class="lede">Bounce the ball off your paddle to clear all fifty bricks. You have three balls.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{games/Breakout.cpp}</span><span><b>Executable</b> <code>BreakoutGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>Space</kbd> to launch, <kbd>R</kbd> to restart</span></div>
+
+\image html breakout.png "Breakout: one brick gone, the ball back on the paddle after a miss"
+
+<b>Shows:</b> velocity-based movement, bouncing off walls and rectangles, destroying entities on hit, counting entities with a query to detect a win, and several input actions.
+
+## Components and bricks
+
+\genexopen{games/Breakout.cpp,Actions and components}
+\snippet games/Breakout.cpp components
+\endex
+
+Bricks are ordinary sprites with an `FBrick` component holding their score:
+
+\genexopen{games/Breakout.cpp,Building the wall of bricks}
+\snippet games/Breakout.cpp brick_wall
+\snippet games/Breakout.cpp scene
+\endex
+
+## Paddle
+
+\genexopen{games/Breakout.cpp,The paddle}
+\snippet games/Breakout.cpp paddle
+\endex
+
+## Ball
+
+The ball waits on the paddle until <kbd>Space</kbd>:
+
+\genexopen{games/Breakout.cpp,Launching}
+\snippet games/Breakout.cpp ball_launch
+\endex
+
+It moves by its velocity, bounces off three walls, and is lost below the screen. Hitting the paddle sends it back up at an angle that depends on where it hit:
+
+\genexopen{games/Breakout.cpp,Walls and paddle}
+\snippet games/Breakout.cpp ball_walls
+\endex
+
+For bricks, the overlap tells which side was hit: a narrow horizontal overlap means a side hit. The brick is destroyed, and when the query counts only the brick being destroyed, the board is clear:
+
+\genexopen{games/Breakout.cpp,Bricks}
+\snippet games/Breakout.cpp ball_bricks
+\endex
+
+## Full source
+
+\genex{games/Breakout.cpp,Breakout.cpp}
+\include games/Breakout.cpp
+\endex
+*/

@@ -1,0 +1,98 @@
+/**
+\defgroup engine_core Engine core
+\brief Starts the engine, runs the game loop and shuts the engine down. Three functions in `namespace Engine`.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\src{include/Module.hpp} · \src{src/Module.cpp}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Module.hpp>` (also brings in the transform components and the renderer backend)</td></tr>
+<tr><td><b>Namespace</b></td><td>`Engine`</td></tr>
+<tr><td><b>Examples</b></td><td>Every example; \ref ex_hello is the shortest</td></tr>
+</table>
+
+## How to use
+
+Call the three functions in this order from `main()`:
+
+1. **Before** `Engine::InitializePlugins()`: register anything the engine needs while it starts. At this commit that is a texture asset called `CollisionTexture` (see \ref essentials_minimum).
+2. `Engine::InitializePlugins()` starts SDL and the engine modules and opens the window.
+3. Set up your game: register components, bind input, create entities and systems, open editor tools.
+4. `Engine::Run()` runs the game loop. It returns when the window is closed (or an `SDL_EVENT_QUIT` is pushed).
+5. `Engine::TeardownPlugins()` shuts the modules down.
+
+\genexopen{modules/HelloJanus.cpp,The shape of every Janus program}
+\snippet modules/HelloJanus.cpp main
+\endex
+
+\warning Returning from `main()` after `Engine::TeardownPlugins()` crashes in static destructors at this commit. End `main()` with `std::quick_exit(0)` as the examples do. See \ref known_issues_shutdown.
+
+## What each call does
+
+| Call | Does | Source |
+| --- | --- | --- |
+| Engine::InitializePlugins() | `SDL_Init(VIDEO \| AUDIO)`, then `Log::Module()`, `Filesystem::InitializeAllResources()`, `ImGuiWrapper::Module()`, `ECS::Module()`, `Renderer::Module()` (creates the window and GPU device), `CoreEditor::ModuleStartup()` | \src{src/Module.cpp,73,93} |
+| Engine::Run() | Every frame: report frame time, `Input::UpdateInputs()`, stop if `Input::ShouldQuit()`, `ECS::UpdateEntities(dt)`, start the render frame, draw editor tools, render, wait to cap at 500 FPS | \src{src/Module.cpp,30,71} |
+| Engine::TeardownPlugins() | `CoreEditor::ModuleTeardown()`, `Renderer::TeardownModule()`, `ECS::TeardownModule()`, `Filesystem::TeardownModule()`, `Log::TeardownModule()`, `SDL_Quit()` | \src{src/Module.cpp,95,105} |
+
+The diagrams in \ref engine_organization show the same thing visually.
+
+## Things to watch out for
+
+- Four modules are not started by `InitializePlugins()`: Memory, CoreTypes and Input have nothing to start, but **GameplayFramework** registers components, so call `GameplayFramework::Module()` yourself if you use colliders or mouse hover.
+- If `SDL_Init` fails, `InitializePlugins()` logs the SDL error and calls `throw;` with no active exception, which terminates the program (\src{src/Module.cpp,76,79}).
+- `Run()` keeps no state you can reset: call it once.
+- The frame time reported for frame *N* is the time frame *N − 1* took, including the wait. Read it with Engine::Globals::GetDeltaTime() (\ref coretypes).
+*/
+
+/**
+\fn void Engine::InitializePlugins()
+\ingroup engine_core
+\brief Starts SDL and every engine module that needs starting, in dependency order, and opens the game window.
+
+Call it once, at the start of `main()`, after registering any assets the renderer needs at startup. After it returns, `ECS::GetWorld()` is ready, the window is open, and every file under `Resources/` is registered.
+
+\engex{src/Module.cpp,73,93,Engine::InitializePlugins()}
+```cpp
+void InitializePlugins() {
+    ZoneScoped;
+
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) == false) {
+        Log::Engine::Error(SDL_GetError());
+        throw;
+    }
+
+    Log::Engine::Info("========= Janus Engine Initializing =========");
+
+    Log::Module();
+    Filesystem::InitializeAllResources();
+    ImGuiWrapper::Module();
+    ECS::Module();
+    Renderer::Module();
+
+    CoreEditor::ModuleStartup();
+
+
+    Log::Engine::Info("Engine initialization complete!");
+}
+```
+\endex
+*/
+
+/**
+\fn void Engine::Run()
+\ingroup engine_core
+\brief Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.
+
+Each frame calls `Input::UpdateInputs()`, then `ECS::UpdateEntities()` with the last frame's duration in seconds, then renders. The loop is capped at 500 frames per second. To quit from code, push an `SDL_EVENT_QUIT` event (see \ref ex_input).
+
+Defined at \src{src/Module.cpp,30,71}. The loop body is shown in \ref engine_organization.
+*/
+
+/**
+\fn void Engine::TeardownPlugins()
+\ingroup engine_core
+\brief Shuts the engine modules down in reverse order and calls `SDL_Quit()`.
+
+Call it after Engine::Run() returns. Defined at \src{src/Module.cpp,95,105}. Log::TeardownModule() runs last, so modules can still log while shutting down.
+
+\warning Returning from `main()` afterwards crashes at this commit. See \ref known_issues_shutdown.
+*/

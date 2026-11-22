@@ -1,0 +1,145 @@
+/**
+\defgroup editor CoreEditor
+\brief In-game editor tools drawn with Dear ImGui: the Entity Debugger, the FPS Counter, a sprite-sheet viewer, and any tool windows you write, including game UI.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Editor} · \srcdir{src/Editor}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Editor/Module.hpp>` (tools, `Open`) · `#include <Editor/DebugStatsEditor.hpp>`, `<Editor/EntityEditorTool.hpp>`, `<Editor/SpriteSheetEditor.hpp>` (built-in tools)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`CoreEditor`; the tool base class is ImGUIWrapper::IEditorTool</td></tr>
+<tr><td><b>Started by</b></td><td>\srclink{src/Module.cpp,89,Engine::InitializePlugins()}, last</td></tr>
+<tr><td><b>Examples</b></td><td>\ref ex_editor · the HUD in every game</td></tr>
+</table>
+
+## How to use
+
+An **editor tool** is a class derived from ImGUIWrapper::IEditorTool with a `Draw_Internal()` function full of ImGui calls. Every frame, between `ImGui::NewFrame()` and rendering, the engine calls `Draw_Internal()` on each open tool (\src{src/Editor/Module.cpp,41,51}). That makes tools the place for debug windows **and** for game UI such as a score display.
+
+<b>1. Write the tool:</b>
+
+\genexopen{modules/EditorTools.cpp,A tool with buttons\, sliders and a colour picker}
+\snippet modules/EditorTools.cpp tool
+\endex
+
+<b>2. Open it</b> once, after Engine::InitializePlugins(). CoreEditor::Open<T>() creates the tool the first time and returns the same instance on later calls:
+
+\genexopen{modules/EditorTools.cpp,Open}
+\snippet modules/EditorTools.cpp open
+\endex
+
+<b>3. Close and reopen it</b> from game code with `Close()` and `Open()`; a closed tool keeps its state. Passing `&bOpen` to `ImGui::Begin` gives the window a close button that does the same:
+
+\genexopen{modules/EditorTools.cpp,Toggling a tool with a key}
+\snippet modules/EditorTools.cpp toggle
+\endex
+
+Override `OnOpenStateChanged(bool)` to react when a tool opens or closes.
+
+## Built-in tools
+
+| Tool | Opens | Shows |
+| --- | --- | --- |
+| **Entity Debugger** (CoreEditor::EntityEditorTool) | At startup | Create entities; *Entity Outliner* lists entities that have an `FTransformComponent`, click one to select it; the selected entity's components with editable fields; *Add Component* for any registered component; *Save Entity* writes it as a flecs script to `Resources/Output/ECS/<name>`; *Global Entity* shows ECS::GetGlobalSystemsEntity() (\src{src/Editor/EntityEditorTool.cpp,223,243}) |
+| **FPS Counter** (CoreEditor::DebugStatsEditor) | At startup | Frame rate and frame time (\src{src/Editor/DebugStatsEditor.cpp,11,19}) |
+| **Sprite Sheet** (CoreEditor::SpriteSheetEditor) | From a sprite's *Open Sprite Sheet* button | A zoomable view of the sprite's texture with a grid |
+| **Dear ImGui Demo** | Always (\src{src/Editor/Module.cpp,44}) | ImGui's own demo; collapse it with ▼ |
+
+Component panels in the Entity Debugger:
+
+- `FTransformComponent` has a move gizmo drawn over the game: drag it to move the entity (\src{src/Editor/EntityEditorTool.cpp,61,80}).
+- `FTexture2DComponent` has a texture drop-down, its UV fields, *Open Sprite Sheet*, and *Update* (\src{src/Editor/EntityEditorTool.cpp,82,107}).
+- Your own components get a panel from the `DEFINE_COMPONENT` macros (\ref ecs_components).
+
+Reopen a built-in tool you closed with `CoreEditor::Open<CoreEditor::DebugStatsEditor>()` (or `EntityEditorTool`).
+
+## Game UI with tools
+
+The examples' HUDs are tools that draw a small window with no title bar and no input, anchored to a corner of the game window. They also collapse the ImGui demo window once:
+
+\genexopen{games/Dodge.cpp,The Dodge HUD}
+\snippet games/Dodge.cpp hud
+\endex
+
+## Things to watch out for
+
+- Tools are drawn outside the ECS update, so entity changes made in `Draw_Internal()` happen immediately. Wrap loops that create or destroy entities in `ECS::GetWorld().defer(...)`.
+- `CoreEditor::Open<T>()` keeps one instance per tool type; you cannot open two windows of the same tool class.
+- Tools are never destroyed or unregistered; closing only hides them.
+- With multi-viewport on, place windows relative to `ImGui::GetMainViewport()->Pos`; see \ref imguiwrapper.
+- The Entity Debugger's component headers cannot be collapsed (\src{include/Gameplay/ECS/Components.hpp,43}).
+*/
+
+/**
+\fn template <typename TEditorTool> TObjectPtr<TEditorTool> CoreEditor::Open()
+\ingroup editor
+\brief Opens the tool of type `TEditorTool`, creating and registering it the first time. Returns the tool instance.
+
+Defined at \src{include/Editor/Module.hpp,24,38}.
+
+\genexopen{modules/EditorTools.cpp,Open}
+\snippet modules/EditorTools.cpp open
+\endex
+*/
+
+/**
+\fn void CoreEditor::ModuleStartup()
+\ingroup editor
+\brief Registers the panels for `FTransformComponent` and `FTexture2DComponent` and opens the Entity Debugger and FPS Counter. Called by Engine::InitializePlugins().
+
+Defined at \src{src/Editor/Module.cpp,22,31}.
+*/
+
+/**
+\fn void CoreEditor::ModuleTeardown()
+\ingroup editor
+\brief Empty at this commit. Called by Engine::TeardownPlugins().
+*/
+
+/**
+\fn void CoreEditor::AddEditorTool(const TObjectPtr<ImGUIWrapper::IEditorTool>& ToolInst)
+\ingroup editor
+\brief Adds a tool to the list drawn every frame. CoreEditor::Open() calls it; use `Open` instead.
+*/
+
+/**
+\fn void CoreEditor::BeginRender()
+\ingroup editor
+\brief Starts the ImGui frame and draws every open tool. Engine::Run() calls it every frame, before the renderer.
+
+Defined at \src{src/Editor/Module.cpp,41,51}.
+*/
+
+/**
+\fn void CoreEditor::EndRender()
+\ingroup editor
+\brief Updates ImGui's extra OS windows (multi-viewport). Engine::Run() calls it every frame, after the renderer.
+*/
+
+/**
+\struct ImGUIWrapper::IEditorTool
+\ingroup editor
+\brief Base class of editor tools. Override `Draw_Internal()`; optionally override `OnOpenStateChanged(bool)`. `bOpen` says whether the tool is drawn.
+
+Declared at \src{include/Editor/ImGuiWrapper/EditorTool.hpp,10,23}. Open tools with CoreEditor::Open().
+
+\genexopen{modules/EditorTools.cpp,Tool}
+\snippet modules/EditorTools.cpp tool
+\endex
+*/
+
+/**
+\class CoreEditor::EntityEditorTool
+\ingroup editor
+\brief The *Entity Debugger* window: create, browse, inspect and edit entities and their components. Opened at startup.
+*/
+
+/**
+\class CoreEditor::DebugStatsEditor
+\ingroup editor
+\brief The *FPS Counter* window. Opened at startup.
+*/
+
+/**
+\class CoreEditor::SpriteSheetEditor
+\ingroup editor
+\brief The *Sprite Sheet* window: a zoomable view of a texture with a grid. Opened from a sprite's *Open Sprite Sheet* button.
+*/

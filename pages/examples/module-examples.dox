@@ -1,0 +1,279 @@
+/**
+\page ex_hello Hello Janus
+
+<p class="lede">The smallest program that puts something on screen: a camera, a light, a background and one sprite.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/HelloJanus.cpp}</span><span><b>Executable</b> <code>HelloJanus</code></span><span><b>Module</b> \ref engine_core</span></div>
+
+\image html hello-janus.png "The orange square, with the engine's FPS Counter, Entity Debugger and Dear ImGui Demo windows"
+
+This is the program walked through in \ref first_game. It shows the four things every Janus game needs before anything is visible (\ref essentials_minimum) and the order of the engine calls (\ref engine_core).
+
+## Textures without files
+
+\genexopen{modules/HelloJanus.cpp,Registering a texture made in code}
+\snippet modules/HelloJanus.cpp solid_texture
+\endex
+
+## main()
+
+\genexopen{modules/HelloJanus.cpp,main()}
+\snippet modules/HelloJanus.cpp main
+\endex
+
+The program ends with `std::quick_exit(0)` instead of returning, to avoid the crash after shutdown described in \ref known_issues_shutdown.
+*/
+
+/**
+\page ex_logging Logging
+
+<p class="lede">A console program that declares loggers in three different ways and writes messages at each level. It opens no window and starts only the Log module.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/Logging.cpp}</span><span><b>Executable</b> <code>LoggingExample</code></span><span><b>Module</b> \ref logging</span></div>
+
+## Declaring loggers
+
+\genexopen{modules/Logging.cpp,Three ways to get a logger}
+\snippet modules/Logging.cpp declare
+\snippet modules/Logging.cpp declare_params
+\snippet modules/Logging.cpp manual
+\endex
+
+## Logging
+
+\genexopen{modules/Logging.cpp,Starting the module and logging at every level}
+\snippet modules/Logging.cpp module
+\snippet modules/Logging.cpp levels
+\snippet modules/Logging.cpp other_loggers
+\snippet modules/Logging.cpp teardown
+\endex
+
+## Output
+
+The console shows (times will differ):
+
+```
+[11/22/26 16:30:57] [LogInventory] error: Item 42 is missing from the database
+[11/22/26 16:30:57] [LogInventory] warning: Inventory is 90% full
+[11/22/26 16:30:57] [LogInventory] info: Picked up 3 x apple
+[11/22/26 16:30:57] [LogInventory] debug: Slots used: 7/20
+[11/22/26 16:30:57] [LogGeneric] info: The generic logger needs no declaration
+[11/22/26 16:30:57] [LogAudio] warning: Sound jump.wav is missing
+```
+
+- The `Verbose` message is missing: trace messages are below the global level the Log module sets.
+- `LogNetwork` writes nothing to the console. Its message is in `Logs/Network.log` next to the executable.
+- The `LogAudio` info message is missing: that logger only writes warnings and errors.
+- After `Log::TeardownModule()`, the `Logs` folder also holds timestamped copies such as `JanusEngine-2026-11-22-h21m30.log` (the time in the name is UTC).
+
+## Full source
+
+\genex{modules/Logging.cpp,Logging.cpp}
+\include modules/Logging.cpp
+\endex
+*/
+
+/**
+\page ex_input Input
+
+<p class="lede">Every kind of input binding in one place: a square you move with the arrow keys, three lights for Space's press, hold and release bindings, a key combination, a callback and quitting with Escape.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/Input.cpp}</span><span><b>Executable</b> <code>InputExample</code></span><span><b>Module</b> \ref input</span></div>
+
+\image html input.png "The release light (right) glows just after Space was let go; the HUD shows the action values"
+
+| Key | Action | Binding |
+| --- | --- | --- |
+| Arrow keys | `Move` (`glm::vec2`, `ADD`) | Hold |
+| <kbd>Shift</kbd> | `SpeedBoost` (`float`, `OVERRIDE`) | Hold |
+| <kbd>Space</kbd> | `SpacePressed`, `SpaceHeld`, `SpaceReleased` | Press, hold, release |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd> | `Save` | Hold, two keys |
+| <kbd>Enter</kbd> | `Confirm`, with a callback | Press |
+| <kbd>Esc</kbd> | `Quit` | Press |
+
+## Declaring and binding
+
+\genexopen{modules/Input.cpp,Actions}
+\snippet modules/Input.cpp actions
+\endex
+
+\genexopen{modules/Input.cpp,Bindings}
+\snippet modules/Input.cpp bindings
+\endex
+
+## Reading actions
+
+\genexopen{modules/Input.cpp,Polling in a system}
+\snippet modules/Input.cpp polling
+\endex
+
+\genexopen{modules/Input.cpp,A callback}
+\snippet modules/Input.cpp callback
+\endex
+
+## Quitting from code
+
+\genexopen{modules/Input.cpp,Escape pushes a quit event}
+\snippet modules/Input.cpp quit
+\endex
+
+## Full source
+
+\genex{modules/Input.cpp,Input.cpp}
+\include modules/Input.cpp
+\endex
+*/
+
+/**
+\page ex_assets Assets and memory
+
+<p class="lede">What the Filesystem module finds, how to load and cache assets, how to add your own asset type, how to make a texture in code, and how TObjectPtr behaves.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/AssetsAndMemory.cpp}</span><span><b>Executable</b> <code>AssetsExample</code></span><span><b>Modules</b> \ref filesystem, \ref memory</span></div>
+
+\image html assets.png "The Asset Browser tool lists every registered asset; the checkerboard is a texture generated at runtime"
+
+Most of this example writes to the log. Its output looks like this (paths shortened):
+
+```
+[LogAssets] info: 13 assets registered
+[LogAssets] info: Shader asset: Shaders\Compiled\LightShader.vert
+...
+[LogAssets] info: Name: PullSpriteBatch.vert  Extension: .dxil  File: ...\Resources\Shaders\Compiled\PullSpriteBatch.vert.dxil
+[LogAssets] info: FragmentShaderSrc.frag is 294 characters long. First line: Texture2D<float4> Texture : register(t0, space2);
+[LogAssets] info: Cached: true
+[LogAssets] info: VertexShaderSrc.vert has 79 lines
+[LogAssets] info: Generated\Checker valid: true
+[LogAssets] info: Items: 3 (both pointers see 3)
+[LogAssets] info: empty.IsValid() = false
+[LogAssets] info: After Clear: inventory valid = true, sameInventory valid = false
+[LogAssets] info: CastTo round trip: hello
+```
+
+## Finding assets
+
+\genexopen{modules/AssetsAndMemory.cpp,Listing and looking up}
+\snippet modules/AssetsAndMemory.cpp listing
+\snippet modules/AssetsAndMemory.cpp asset_data
+\endex
+
+Note `Extension: .dxil`: the shader has three files with the same name, and only the first one found is registered (\ref filesystem_paths).
+
+## Loading
+
+\genexopen{modules/AssetsAndMemory.cpp,Loading text\, and the cache}
+\snippet modules/AssetsAndMemory.cpp load_text
+\endex
+
+\genexopen{modules/AssetsAndMemory.cpp,A custom asset type}
+\snippet modules/AssetsAndMemory.cpp custom_asset
+\snippet modules/AssetsAndMemory.cpp load_custom
+\endex
+
+## Generated assets
+
+\genexopen{modules/AssetsAndMemory.cpp,A checkerboard texture}
+\snippet modules/AssetsAndMemory.cpp generated_texture
+\snippet modules/AssetsAndMemory.cpp register_runtime
+\endex
+
+## TObjectPtr
+
+\genexopen{modules/AssetsAndMemory.cpp,Sharing\, clearing and casting}
+\snippet modules/AssetsAndMemory.cpp memory_types
+\snippet modules/AssetsAndMemory.cpp object_ptr
+\endex
+
+## An asset browser tool
+
+\genexopen{modules/AssetsAndMemory.cpp,Listing assets in an ImGui window}
+\snippet modules/AssetsAndMemory.cpp asset_browser
+\endex
+
+## Full source
+
+\genex{modules/AssetsAndMemory.cpp,AssetsAndMemory.cpp}
+\include modules/AssetsAndMemory.cpp
+\endex
+*/
+
+/**
+\page ex_rendering Rendering
+
+<p class="lede">A tour of the renderer: sprite-sheet cells, the five layers, tint and transparency, rotation, Y-sorting and coloured lights.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/Rendering.cpp}</span><span><b>Executable</b> <code>RenderingExample</code></span><span><b>Module</b> \ref rendering</span></div>
+
+\image html rendering.png "Top left: four cells of one texture. Top right: one square per layer. Bottom: alpha steps, a rotating sprite, and two sprites sorted by Y. A red and a blue light orbit the middle."
+
+## A sprite sheet made in code
+
+\genexopen{modules/Rendering.cpp,A 2 × 2 atlas}
+\snippet modules/Rendering.cpp atlas
+\endex
+
+\genexopen{modules/Rendering.cpp,Drawing each cell}
+\snippet modules/Rendering.cpp sprite_sheet
+\endex
+
+## Layers
+
+\genexopen{modules/Rendering.cpp,One square per layer}
+\snippet modules/Rendering.cpp layers
+\endex
+
+## Tint, alpha, rotation and sorting
+
+\genexopen{modules/Rendering.cpp,Tint and alpha}
+\snippet modules/Rendering.cpp tint
+\endex
+
+\genexopen{modules/Rendering.cpp,Rotation}
+\snippet modules/Rendering.cpp rotation
+\endex
+
+\genexopen{modules/Rendering.cpp,Y-sorting}
+\snippet modules/Rendering.cpp y_sort
+\endex
+
+## Camera and lights
+
+\genexopen{modules/Rendering.cpp,A fill light and two coloured lights}
+\snippet modules/Rendering.cpp camera_and_lights
+\endex
+
+## Full source
+
+\genex{modules/Rendering.cpp,Rendering.cpp}
+\include modules/Rendering.cpp
+\endex
+*/
+
+/**
+\page ex_editor Editor tools
+
+<p class="lede">Write your own ImGui tool window that spawns entities, open and close it from code, and reopen the engine's built-in tools.</p>
+
+<div class="jd-meta"><span><b>Source</b> \exsrc{modules/EditorTools.cpp}</span><span><b>Executable</b> <code>EditorExample</code></span><span><b>Controls</b> <kbd>F2</kbd> shows or hides the Spawner tool</span><span><b>Modules</b> \ref editor, \ref imguiwrapper, \ref coretypes</span></div>
+
+\image html editor.png "The Spawner tool after pressing Spawn once"
+
+## The tool
+
+\genexopen{modules/EditorTools.cpp,SpawnerTool}
+\snippet modules/EditorTools.cpp tool
+\endex
+
+## Opening and toggling
+
+\genexopen{modules/EditorTools.cpp,Open once\, toggle with F2}
+\snippet modules/EditorTools.cpp open
+\snippet modules/EditorTools.cpp toggle
+\endex
+
+## Full source
+
+\genex{modules/EditorTools.cpp,EditorTools.cpp}
+\include modules/EditorTools.cpp
+\endex
+*/

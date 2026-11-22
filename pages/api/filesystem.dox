@@ -1,0 +1,379 @@
+/**
+\defgroup filesystem Filesystem
+\brief Finds every file under `Resources/`, gives each one an asset path, and loads files into typed asset objects on demand.
+
+<table class="markdownTable">
+<tr><td><b>Source</b></td><td>\srcdir{include/Filesystem} · \srcdir{src/Filesystem} · \src{Config/filesystem.json}</td></tr>
+<tr><td><b>Include</b></td><td>`#include <Filesystem/Module.hpp>` (registry) · `#include <Filesystem/Importers/Importer.hpp>` (loading)</td></tr>
+<tr><td><b>Namespaces</b></td><td>`Filesystem`, `Filesystem::Importers`; the base asset types `SAsset`, `STextFileAsset` and `SRawFileAsset` are global</td></tr>
+<tr><td><b>Started by</b></td><td>\srclink{src/Module.cpp,84,Engine::InitializePlugins()} calls Filesystem::InitializeAllResources(), second after Log</td></tr>
+<tr><td><b>Example</b></td><td>\ref ex_assets</td></tr>
+</table>
+
+## How to use
+
+1. **Put files under `Resources/`** in your game folder. After a build they are copied next to the executable, and at startup every file is registered.
+2. **Refer to a file by its asset path**: its path under `Resources/`, without the extension, with the platform's separators. `Resources/Images/Player.png` is `Images\Player`, written `"Images\\Player"` in C++.
+3. **Look it up** with Filesystem::GetAssetData() to get its Filesystem::SAssetData: the real file path, name, extension and type.
+4. **Load it** with `Filesystem::Importers::LoadFile<T>(path)`. `T` is the asset type you want: `STextFileAsset`, `SRawFileAsset`, `Graphics::STexture2D`, or your own. The result is cached, so loading again is cheap.
+5. **Store references** in components as a Filesystem::SSoftAssetPath (just the path string), not as loaded objects.
+
+\genexopen{modules/AssetsAndMemory.cpp,Listing assets and reading one}
+\snippet modules/AssetsAndMemory.cpp listing
+\snippet modules/AssetsAndMemory.cpp asset_data
+\endex
+
+\genexopen{modules/AssetsAndMemory.cpp,Loading a text file}
+\snippet modules/AssetsAndMemory.cpp load_text
+\endex
+
+Sprites use asset paths directly. The renderer loads and uploads the texture the first time it draws it:
+
+```cpp
+.set<Components::FTexture2DComponent>({ .Sprite = { .SpriteSheet = {"Images\\Player"} }, .TextureSize = {32, 32} })
+```
+
+## Asset paths {#filesystem_paths}
+
+| File on disk | Asset path | Asset name |
+| --- | --- | --- |
+| `Resources/CollisionTexture.png` | `CollisionTexture` | `CollisionTexture` |
+| `Resources/Images/Player.png` | `Images\Player` | `Player` |
+| `Resources/Shaders/Compiled/PullSpriteBatch.vert.spv` | `Shaders\Compiled\PullSpriteBatch.vert` | `PullSpriteBatch.vert` |
+| `Resources/Config/filesystem.json` | `Config\filesystem` | `filesystem` |
+
+The asset path is computed by Filesystem::FilePathToAssetPath() (\src{src/Filesystem/FilesystemTypes.cpp,49,53}): the path relative to `Resources/`, with the last extension removed.
+
+- Filesystem::GetAssetData() converts `/` to `\` before looking up (\src{src/Filesystem/Module.cpp,67,76}), so `"Images/Player"` works there.
+- Filesystem::IsValid() does **not** convert (\src{src/Filesystem/Module.cpp,119,129}), and the renderer uses it to decide whether to draw a sprite. **Always use `\\` in paths you store in components.** For paths built at runtime, `std::filesystem::path(p).make_preferred().string()` gives the right form.
+- Two files that differ only in their extension get the same asset path. Only the first one found is registered. That is why the three compiled forms of each shader (`.dxil`, `.msl`, `.spv`) share one asset: the renderer picks the right file itself.
+
+## Asset types
+
+`Resources/Config/filesystem.json` maps file extensions to Filesystem::EAssetType values. Each file's type is set when it is registered (\src{src/Filesystem/FilesystemTypes.cpp,24,43}):
+
+\engex{Config/filesystem.json,1,9,The engine's extension table}
+```cpp
+{
+  "AssetTypes" : {
+    "TEXTURE": [".png", ".jpg"],
+    "SHADER": [".dxil", ".spv", ".msl"],
+    "FONT": [".ttf", ".otf"],
+    "PREFAB": [".prefab"],
+    "LEVEL": [".level"]
+  }
+}
+```
+\endex
+
+The type is only a label. `LoadFile<T>` decides how to read a file from `T`, not from the asset type. The type is used by Filesystem::GetAllAssetPaths(EAssetType) and by editor drop-downs that list, for example, only textures.
+
+\note The engine copies its own `Config/` folder to `<output>/Config/Resources`, not to `<output>/Resources/Config` (\src{cmake_modules/MoveConfigFiles.cmake,9,16}). Copy `filesystem.json` into your game's `Resources/Config/` yourself, as described in \ref first_game.
+
+## Loading and caching
+
+`LoadFile<T>(path)` finds the asset's Filesystem::SAssetData and returns `SAssetData::ObjectData` if it is already loaded. Otherwise it calls the loader for `T`, stores the result in `ObjectData`, sets the asset's `AssetPath` and name, and returns it (\src{include/Filesystem/Importers/Importer.hpp,63,76}).
+
+| Loader for | Reads the file as | Defined in |
+| --- | --- | --- |
+| `STextFileAsset` | Text, in `Data` (`std::string`) | \src{src/Filesystem/Importers/Importer.cpp,40,50} |
+| `SRawFileAsset` | Bytes, in `Data` (`std::vector<uint8_t>`) | \src{src/Filesystem/Importers/Importer.cpp,27,38} |
+| `Graphics::STexture2D` | An image (SDL_image), converted to RGBA | \src{src/Types/Graphics.cpp,51,73} |
+| `Graphics::SSpriteSheet` | Same as a texture | \src{src/Types/Graphics.cpp,75,98} |
+| LDtk project and level types | JSON, via nlohmann | \src{src/Filesystem/Importers/Importer.cpp,9,25} |
+
+\warning An asset is cached once, for the first type it is loaded as. Loading the same path again as a *different* type returns the cached object cast to the new type, which is wrong. Load each file as one type only.
+
+### Your own asset types
+
+Derive from `SAsset`, then specialize Filesystem::Importers::LoadAsset for your type. #DEFINE_ASSET_LOADER declares the specialization:
+
+\genexopen{modules/AssetsAndMemory.cpp,A custom asset type and its loader}
+\snippet modules/AssetsAndMemory.cpp custom_asset
+\snippet modules/AssetsAndMemory.cpp load_custom
+\endex
+
+### Assets made in code
+
+Register a Filesystem::SAssetData whose `ObjectData` is already set. `LoadFile` then returns that object without touching the disk, and the renderer can draw it like any image. This is how every example creates its textures:
+
+\genexopen{modules/AssetsAndMemory.cpp,Registering a texture generated at runtime}
+\snippet modules/AssetsAndMemory.cpp generated_texture
+\snippet modules/AssetsAndMemory.cpp register_runtime
+\endex
+
+Assets can be registered before `Engine::InitializePlugins()` (needed for `CollisionTexture`) or at any time after. A file found by the startup scan with the same asset path is skipped.
+
+## Config files
+
+Filesystem::SConfig is a small helper for JSON settings files under `Resources/Config/`. A config type derives from `SConfig<Self>`, says where its file is, and lists its fields for nlohmann/json. The engine's own Filesystem::SFilesystemConfig reads `filesystem.json`:
+
+\engex{include/Filesystem/Config.hpp,57,65,SFilesystemConfig}
+```cpp
+struct SFilesystemConfig : SConfig<SFilesystemConfig> {
+    std::map<std::string, std::vector<std::string>> AssetTypes;
+
+    std::filesystem::path GetConfigPath() override {
+        return std::filesystem::path("Config") / "filesystem";
+    }
+
+    NLOHMANN_DEFINE_TYPE_INTRUSIVE(SFilesystemConfig, AssetTypes)
+};
+```
+\endex
+
+\engex{src/Filesystem/FilesystemTypes.cpp,29,31,Reading it}
+```cpp
+TObjectPtr<SFilesystemConfig> config = SFilesystemConfig::Get();
+
+for (const auto& assetType: config->AssetTypes) {
+```
+\endex
+
+Only `Get()` works at this commit: it parses the file on every call. `Read()` and `Save()` fail to compile if you call them. See \ref known_issues_filesystem.
+
+## Things to watch out for
+
+- `Resources/Config` must exist in the working directory, or Filesystem::InitializeAllResources() throws (\src{src/Filesystem/Module.cpp,27,29}).
+- At startup the log shows `Could not find asset [Config\filesystem]` once, even when the file is there: the file's own type is looked up before it is registered. It is harmless.
+- `LoadFile(path)` throws `AssetCouldNotLoadException` when the path is unknown. `TryLoadFile(path)` throws `nullptr` instead; it does not return an empty pointer. Check with `AssetExists<T>(path)` or Filesystem::IsValid() first.
+- Filesystem::Module() is declared but not defined. Don't call it; the engine calls Filesystem::InitializeAllResources().
+- More in \ref known_issues_filesystem.
+*/
+
+/**
+\fn void Filesystem::InitializeAllResources()
+\ingroup filesystem
+\brief Scans `Resources/Config`, then all of `Resources/`, and registers every file as an asset. Called by Engine::InitializePlugins().
+
+Files are not read yet: only an Filesystem::SAssetData is created for each. A file whose asset path is already registered is skipped. Defined at \src{src/Filesystem/Module.cpp,24,50}.
+*/
+
+/**
+\fn void Filesystem::RegisterAssetData(const TObjectPtr<SAssetData> &AssetData)
+\ingroup filesystem
+\brief Adds an asset to the registry under `AssetData->AssetPath`. Use it for assets made in code.
+
+If `AssetData->ObjectData` is set, `LoadFile` returns that object instead of reading a file. Registering a path that already exists keeps the existing entry. Defined at \src{src/Filesystem/Module.cpp,52,65}.
+
+\genexopen{modules/AssetsAndMemory.cpp,Generated texture}
+\snippet modules/AssetsAndMemory.cpp generated_texture
+\endex
+*/
+
+/**
+\fn TObjectPtr<SAssetData> Filesystem::GetAssetData(const std::string& AssetPath)
+\ingroup filesystem
+\brief Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if there is none.
+
+Accepts `/` or `\` separators. Defined at \src{src/Filesystem/Module.cpp,67,76}.
+*/
+
+/**
+\fn TObjectPtr<SAssetData> Filesystem::GetAssetData(const TObjectPtr<SAsset>& Asset)
+\ingroup filesystem
+\brief Returns the registered asset for a loaded asset object.
+
+Looks the asset up by its *name* (`Asset->GetName()`), not its path (\src{src/Filesystem/Module.cpp,78,81}), so it only finds assets stored directly under `Resources/`. Prefer `Asset->GetAssetData()`, which uses the path.
+*/
+
+/**
+\fn std::vector<std::string> Filesystem::GetAllAssetPaths(const std::string &RelativePath)
+\ingroup filesystem
+\brief Returns the asset paths of every registered asset, or of those inside the folder `RelativePath` (for example `"Images"`).
+
+Defined at \src{src/Filesystem/Module.cpp,83,105}.
+*/
+
+/**
+\fn std::vector<SSoftAssetPath> Filesystem::GetAllAssetPaths(EAssetType AssetType)
+\ingroup filesystem
+\brief Returns every registered asset of one type, for example all `Filesystem::TEXTURE` assets.
+
+Defined at \src{src/Filesystem/Module.cpp,107,109}.
+*/
+
+/**
+\fn std::filesystem::path Filesystem::GetResourcesDirectory()
+\ingroup filesystem
+\brief `<current working directory>/Resources`. Defined at \src{src/Filesystem/Module.cpp,111,113}.
+*/
+
+/**
+\fn std::filesystem::path Filesystem::GetConfigDirectory()
+\ingroup filesystem
+\brief `<current working directory>/Resources/Config`. Defined at \src{src/Filesystem/Module.cpp,115,117}.
+*/
+
+/**
+\fn bool Filesystem::IsValid(const SSoftAssetPath& Path)
+\ingroup filesystem
+\brief Returns `true` if `Path` is a registered asset path. The comparison is exact: use the platform's separators.
+
+Defined at \src{src/Filesystem/Module.cpp,119,129}. The renderer skips sprites whose texture path is not valid.
+*/
+
+/**
+\fn void Filesystem::Module()
+\ingroup filesystem
+\brief Declared but not defined at this commit. The engine starts the module with Filesystem::InitializeAllResources().
+*/
+
+/**
+\fn void Filesystem::TeardownModule()
+\ingroup filesystem
+\brief Forgets every registered asset. Called by Engine::TeardownPlugins(). Defined at \src{src/Filesystem/Module.cpp,20,22}.
+*/
+
+/**
+\fn EAssetType Filesystem::GetFileType(const std::filesystem::path &FilePath)
+\ingroup filesystem
+\brief Returns the asset type of a file from its extension, using `Resources/Config/filesystem.json`. Defined at \src{src/Filesystem/FilesystemTypes.cpp,24,43}.
+*/
+
+/**
+\fn std::string Filesystem::FilePathToAssetPath(std::filesystem::path FilePath)
+\ingroup filesystem
+\brief Converts a full file path into an asset path: relative to `Resources/`, without the extension. Defined at \src{src/Filesystem/FilesystemTypes.cpp,49,53}.
+*/
+
+/**
+\enum Filesystem::EAssetType
+\ingroup filesystem
+\brief The kind of file an asset is, set from its extension by `filesystem.json`. `UNDEFINED` when the extension is not listed.
+
+Declared at \src{include/Filesystem/FilesystemTypes.hpp,18,26}. `CONFIG` is never assigned at this commit; config files get their type from their extension like any other file.
+*/
+
+/**
+\var Filesystem::StringToType
+\ingroup filesystem
+\brief Maps the type names used in `filesystem.json` (`"TEXTURE"`, ...) to Filesystem::EAssetType values.
+*/
+
+/**
+\struct Filesystem::SAssetData
+\ingroup filesystem
+\brief Everything the registry knows about one file: where it is, its asset path, name, extension, type and, once loaded, the loaded object.
+
+Created for every file at startup. Declared at \src{include/Filesystem/FilesystemTypes.hpp,79,114}.
+
+## How to use
+
+Get one with Filesystem::GetAssetData(), read its fields, and pass it to `Filesystem::Importers::LoadFile<T>()` to load it. To add an asset made in code, create one with the default constructor, fill in `AssetPath`, `AssetName`, `AssetType` and `ObjectData`, and pass it to Filesystem::RegisterAssetData().
+
+\genexopen{modules/AssetsAndMemory.cpp,Asset data}
+\snippet modules/AssetsAndMemory.cpp asset_data
+\endex
+*/
+
+/**
+\var Filesystem::SAssetData::AssetFilePathRaw
+\brief Full path of the file on disk. Empty for assets made in code.
+\var Filesystem::SAssetData::AssetPath
+\brief The asset path: relative to `Resources/`, without the extension, e.g. `Images\Player`. This is the registry key.
+\var Filesystem::SAssetData::AssetName
+\brief The file name without folder or extension, e.g. `Player`.
+\var Filesystem::SAssetData::AssetExtension
+\brief The file's extension including the dot, e.g. `.png`.
+\var Filesystem::SAssetData::AssetType
+\brief The asset type from `filesystem.json`.
+\var Filesystem::SAssetData::ObjectData
+\brief The loaded object, or empty until the asset is first loaded with `LoadFile`.
+*/
+
+/**
+\struct Filesystem::SSoftAssetPath
+\ingroup filesystem
+\brief A reference to an asset by its path. Cheap to copy and store in components; nothing is loaded until you ask.
+
+Converts implicitly from a string, a loaded asset, or an Filesystem::SAssetData, and back to `std::string`. `GetAssetData()` looks the path up in the registry. Declared at \src{include/Filesystem/FilesystemTypes.hpp,116,145}. Registered with flecs, so the Entity Debugger shows it as a drop-down of every asset.
+
+\genexopen{modules/AssetsAndMemory.cpp,Register runtime}
+\snippet modules/AssetsAndMemory.cpp register_runtime
+\endex
+*/
+
+/**
+\struct Filesystem::STypedSoftAssetPath
+\ingroup filesystem
+\brief An Filesystem::SSoftAssetPath that also states which asset type it points to.
+
+The Entity Debugger uses the type to list only matching assets. Graphics::SSprite stores its texture this way. Constructing one from an Filesystem::SAssetData of a different type terminates the program (\src{include/Filesystem/FilesystemTypes.hpp,153,159}). Declared at \src{include/Filesystem/FilesystemTypes.hpp,147,166}.
+*/
+
+/**
+\struct SAsset
+\ingroup filesystem
+\brief Base type of everything the Filesystem module can load. Derive from it to make your own asset types.
+
+`AssetPath` and the name are filled in by `LoadFile`. Declared at \src{include/Filesystem/FilesystemTypes.hpp,51,65}.
+
+\genexopen{modules/AssetsAndMemory.cpp,Custom asset}
+\snippet modules/AssetsAndMemory.cpp custom_asset
+\endex
+*/
+
+/**
+\struct STextFileAsset
+\ingroup filesystem
+\brief A file loaded as text. The contents are in `Data`.
+*/
+
+/**
+\struct SRawFileAsset
+\ingroup filesystem
+\brief A file loaded as bytes. The contents are in `Data`.
+*/
+
+/**
+\def DEFINE_ASSET_LOADER(AssetType, Export)
+\ingroup filesystem
+\brief Declares the `Filesystem::Importers::LoadAsset<AssetType>` specialization for a custom asset type. Pass nothing for `Export` in game code.
+
+You still have to define the specialization in one source file. See \ref ex_assets.
+*/
+
+/**
+\fn template<CIs_Asset TAssetType> TObjectPtr<TAssetType> Filesystem::Importers::LoadFile(const std::string& AssetPath)
+\ingroup filesystem
+\brief Loads the asset at `AssetPath` as a `TAssetType`, or returns the cached object if it was loaded before.
+
+Throws Filesystem::Importers::Exceptions::AssetCouldNotLoadException if the path is not registered. Defined at \src{include/Filesystem/Importers/Importer.hpp,89,98}.
+*/
+
+/**
+\fn template<CIs_Asset TAssetType> TObjectPtr<TAssetType> Filesystem::Importers::LoadFile(const TObjectPtr<SAssetData>& Asset)
+\ingroup filesystem
+\brief Loads an asset you already looked up, or returns its cached object. Defined at \src{include/Filesystem/Importers/Importer.hpp,63,76}.
+*/
+
+/**
+\fn template<CIs_Asset TAssetType> TObjectPtr<TAssetType> Filesystem::Importers::TryLoadFile(const std::string& AssetPath)
+\ingroup filesystem
+\brief Like `LoadFile`, but throws `nullptr` (not an exception object) when the path is not registered. Defined at \src{include/Filesystem/Importers/Importer.hpp,101,110}.
+*/
+
+/**
+\fn template<CIs_Asset TAssetType> bool Filesystem::Importers::AssetExists(const std::string& AssetPath)
+\ingroup filesystem
+\brief Returns `true` if `AssetPath` is registered. `TAssetType` is not checked. Defined at \src{include/Filesystem/Importers/Importer.hpp,78,86}.
+*/
+
+/**
+\fn template<typename TAssetType> TObjectPtr<TAssetType> Filesystem::Importers::LoadAsset(const TObjectPtr<SAssetData>& InAssetData)
+\ingroup filesystem
+\brief Reads a file into a new `TAssetType`. Specialize it for your own asset types; call `LoadFile` instead of calling it directly.
+*/
+
+/**
+\struct Filesystem::SConfig
+\ingroup filesystem
+\brief Base for JSON settings files in `Resources/Config`. Only `Get()` is usable at this commit. Declared at \src{include/Filesystem/Config.hpp,16,55}.
+*/
+
+/**
+\struct Filesystem::SFilesystemConfig
+\ingroup filesystem
+\brief The asset-type table read from `Resources/Config/filesystem.json`. Declared at \src{include/Filesystem/Config.hpp,57,65}.
+*/

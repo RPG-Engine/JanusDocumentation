@@ -1,0 +1,243 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Things to know | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Things to know </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2using-janus_2essentials"></a></p>
+<p class="lede"></p>
+<p>The rules every Janus game follows. Each one was checked by running the engine; the source links show where the behaviour comes from.</p>
+<h1 class="doxsection"><a class="anchor" id="essentials_minimum"></a>
+The minimum for a visible game</h1>
+<p>The renderer draws nothing useful until four things exist. Every example sets them up the same way (<a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> shows the shortest version):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">You need  </th><th class="markdownTableHeadNone">Because  </th><th class="markdownTableHeadNone">Without it  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">A texture asset named <span class="tt">CollisionTexture</span>, before <span class="tt"><a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a></span>  </td><td class="markdownTableBodyNone">The renderer loads it at startup for the debug-collider overlay (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L427-L429" class="src-link">src/Rendering/Vulkan_Renderer.cpp:427</a>).  </td><td class="markdownTableBodyNone">Startup throws <span class="tt">AssetCouldNotLoadException</span>.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">An entity with <span class="tt">FTransformComponent</span> + <span class="tt">FCameraComponent</span>  </td><td class="markdownTableBodyNone">The camera system builds the view and projection from it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L293-L315" class="src-link">src/Rendering/Vulkan_Renderer.cpp:293</a>).  </td><td class="markdownTableBodyNone">Nothing is visible.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">At least one entity with <span class="tt">FTransformComponent</span> + <span class="tt">FLightComponent</span>  </td><td class="markdownTableBodyNone">The lit scene is copied to the window only when there is a light (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L625-L627" class="src-link">src/Rendering/Vulkan_Renderer.cpp:625</a>).  </td><td class="markdownTableBodyNone">The window stays black (ImGui still shows).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">A sprite on the <span class="tt">Background</span> layer that covers the view  </td><td class="markdownTableBodyNone">Drawing the Background layer is what clears the screen each frame (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L726-L739" class="src-link">src/Rendering/Vulkan_Renderer.cpp:726</a>).  </td><td class="markdownTableBodyNone">Moving sprites smear across the screen.  </td></tr>
+</table>
+<p><span class="tt">CollisionTexture</span> can be a file (<span class="tt">Resources/CollisionTexture.png</span>, as in ProtoRPG) or a texture registered in code, as the examples do:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Solid texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Creates a square, solid-white texture in memory and registers it with the</span></div>
+<div class="line"><span class="comment">// Filesystem module under AssetPath, as if it were an image file in Resources/.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;   <span class="comment">// already &quot;loaded&quot;: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>A light with a very large radius lights the whole screen evenly. <span class="tt">Radius = 100, Intensity = 2.4</span> gives roughly full brightness; see <a class="el" href="group__rendering.html#rendering_lights" title="Lights">Lights</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md139"></a>
+Startup, the loop and shutdown</h1>
+<div class="fragment"><div class="line">main()</div>
+<div class="line"> ├─ register CollisionTexture (and anything else needed during startup)</div>
+<div class="line"> ├─ Engine::InitializePlugins()   SDL, Log, Filesystem, ImGui, ECS, Renderer (opens the window), Editor</div>
+<div class="line"> ├─ create entities, systems, input bindings, editor tools</div>
+<div class="line"> ├─ Engine::Run()                  every frame: input → ECS systems → render, until the window closes</div>
+<div class="line"> └─ Engine::TeardownPlugins()</div>
+</div><!-- fragment --><ul>
+<li><span class="tt"><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a></span> caps the loop at 500 frames per second (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L34" class="src-link">src/Module.cpp:34</a>).</li>
+<li>The time since the last frame is passed to flecs, so <span class="tt">it.delta_time()</span> in a system is in <b>seconds</b>.</li>
+<li>The engine never calls <span class="tt"><a class="el" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a" title="Registers Components::FColliderComponent and Components::FMouseState with the ECS world.">GameplayFramework::Module()</a></span>. Call it yourself before using <span class="tt">FColliderComponent</span> or <span class="tt">FMouseState</span> (<a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>).</li>
+<li>Returning from <span class="tt">main()</span> after <span class="tt"><a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a></span> currently crashes. The examples end with <span class="tt">std::quick_exit(0)</span>; see <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>.</li>
+</ul>
+<p><a class="el" href="engine_organization.html" title="How the engine is organized">How the engine is organized</a> has the full picture.</p>
+<h1 class="doxsection"><a class="anchor" id="essentials_resources"></a>
+Files and the working directory</h1>
+<ul>
+<li>The engine reads assets from <b><span class="tt">&lt;current working directory&gt;/Resources</span></b>, not from the executable's folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L111-L113" class="src-link">src/Filesystem/Module.cpp:111</a>). Start your game from its output folder, or set the working directory in your IDE.</li>
+<li>At startup it scans <span class="tt">Resources/Config</span> first, then all of <span class="tt">Resources/</span>, and registers every file (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L24-L50" class="src-link">src/Filesystem/Module.cpp:24</a>). <b><span class="tt">Resources/Config</span> must exist</b>, or startup throws a <span class="tt">std::filesystem::filesystem_error</span>.</li>
+<li>Put <span class="tt">filesystem.json</span> (from <span class="tt">Engine/Config</span>) in <span class="tt">Resources/Config</span>. It maps file extensions to asset types. Without it every asset's type is <span class="tt">UNDEFINED</span>. Loading by path still works, but editor drop-downs that filter by type stay empty.</li>
+<li>An asset is found by its <em>asset path</em>: the file's path under <span class="tt">Resources/</span> without the extension, with the platform's separators. <span class="tt">Resources/Images/Player.png</span> is <span class="tt">"Images\\Player"</span> on Windows. Use <span class="tt">\\</span> in component values: <span class="tt"><a class="el" href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a></span> and the renderer compare paths exactly (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>).</li>
+<li><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> files go to <span class="tt">&lt;executable folder&gt;/Logs</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L35" class="src-link">src/Log/Module.cpp:35</a>).</li>
+</ul>
+<p><a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a> explains asset paths, loading and registering assets made in code.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md140"></a>
+World coordinates</h1>
+<ul>
+<li>Positions are in <b>world units</b>. The camera's <span class="tt">CameraSize</span> says how many units fit on screen: <span class="tt">{320, 180}</span> shows a 320 × 180 area.</li>
+<li><b>X grows to the right, Y grows down</b>; <span class="tt">(0, 0)</span> is the top-left of the view for a camera that does not move.</li>
+<li>A sprite's <span class="tt">FTransformComponent::Location</span> is its <b>top-left corner</b>; <span class="tt">FTexture2DComponent::TextureSize</span> is its size in world units.</li>
+<li><span class="tt">Rotation.x</span> rotates a sprite around its centre, in radians. <span class="tt">Scale</span> is not used by the renderer.</li>
+<li>The window is 1920 × 1080 and the image is rendered at that size (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L58" class="src-link">src/Rendering/Vulkan_Renderer.cpp:58</a>). Resizing the window stretches it, and <span class="tt"><a class="el" href="group__rendering.html#gaa6a288406f43c706dbe7378a282dafa8" title="Converts a window position in pixels to world units, using the current camera.">Renderer::ScreenPosToWorldPos</a></span> assumes 1920 × 1080.</li>
+</ul>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md141"></a>
+Layers and draw order</h1>
+<p>Sprites are drawn per layer, in this order: <span class="tt">Background</span>, <span class="tt">Entities</span>, <span class="tt">Foreground</span>, <span class="tt">Debug</span>, <span class="tt">Overlay</span>. Inside a layer, sprites are grouped by texture, and each texture's sprites are sorted by Y so lower sprites cover higher ones.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Layer  </th><th class="markdownTableHeadNone">Use it for  </th><th class="markdownTableHeadNone">Note  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Background</span>  </td><td class="markdownTableBodyNone">The backdrop and static scenery  </td><td class="markdownTableBodyNone">Clears the screen. Use <b>one</b> texture on this layer: each texture group on it clears again.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Entities</span>  </td><td class="markdownTableBodyNone">Anything that moves or gets destroyed  </td><td class="markdownTableBodyNone">Emptied and rebuilt every frame (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L783" class="src-link">src/Rendering/Vulkan_Renderer.cpp:783</a>).  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Foreground</span>, <span class="tt">Debug</span>, <span class="tt">Overlay</span>  </td><td class="markdownTableBodyNone">Static things drawn on top  </td><td class="markdownTableBodyNone"><b>Not</b> emptied each frame: a destroyed entity stays visible here.  </td></tr>
+</table>
+<p>Details and examples: <a class="el" href="group__rendering.html" title="Renderer">Renderer</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md142"></a>
+Systems and phases</h1>
+<ul>
+<li>Systems you add with <span class="tt"><a class="el" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6" title="Returns the engine&#39;s flecs world.">ECS::GetWorld()</a>.system&lt;...&gt;()</span> run in flecs' <span class="tt">OnUpdate</span> phase unless you choose another with <span class="tt">.kind(...)</span>.</li>
+<li>flecs runs its phases in order: <span class="tt">OnLoad</span>, <span class="tt">PostLoad</span>, <span class="tt">PreUpdate</span>, <span class="tt">OnUpdate</span>, <span class="tt">OnValidate</span>, <span class="tt">PostUpdate</span>, <span class="tt">PreStore</span>, <span class="tt">OnStore</span>. The engine adds <span class="tt">ECS::Phase::OnInput()</span> and <span class="tt"><a class="el" href="group__ecs.html#ga232b6d5bc6e9914cc08c5397a6fd2fa0" title="A pipeline phase that runs after flecs::PostUpdate, meant for collision checks.">ECS::Phase::OnCollision</a></span>, which run after <span class="tt">PostUpdate</span>, and <span class="tt">ECS::Phase::OnPreRender()</span>, which runs after <span class="tt">OnStore</span>. The renderer collects sprites, lights and the camera in <span class="tt">OnPreRender</span>, so anything that changes them should run before it.</li>
+<li><a class="el" href="namespace_input.html">Input</a> has already been read when systems run, so systems can poll actions directly.</li>
+<li>Creating or destroying entities inside a system is deferred until the system finishes, which makes it safe while iterating.</li>
+</ul>
+<p>See <a class="el" href="group__ecs.html" title="ECS">ECS</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md143"></a>
+Input</h1>
+<ul>
+<li>Only the <b>keyboard</b> is read. Gamepad buttons can be bound but never trigger (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>).</li>
+<li>Press bindings also fire on keyboard auto-repeat while a key is held.</li>
+<li>Bind keys to <em>actions</em> you declare with <span class="tt"><a class="el" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d" title="Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...">DEFINE_INPUT_ACTION</a></span>, then poll them in systems with <span class="tt"><a class="el" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44" title="Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...">Input::GetValue</a></span> or <span class="tt"><a class="el" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec" title="Returns true if any of the action&#39;s bindings triggered this frame.">Input::IsActionTriggered</a></span>.</li>
+<li>Game input is read even while you type in an ImGui text field.</li>
+</ul>
+<p>See <a class="el" href="group__input.html" title="Input">Input</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md144"></a>
+The editor windows</h1>
+<p><span class="tt"><a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a></span> opens three Dear ImGui windows: <b>Entity Debugger</b> (browse entities, edit components), <b>FPS Counter</b>, and the <b>Dear ImGui Demo</b>, which the engine always shows (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L44" class="src-link">src/Editor/Module.cpp:44</a>). Collapse the demo with the ▼ in its title bar. ImGui saves window positions in <span class="tt">imgui.ini</span> next to the executable. The examples collapse it from code:</p>
+<div class="fragment"><div class="line">ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+</div><!-- fragment --><p>Multi-viewport is on: an ImGui window dragged outside the game window becomes its own OS window. Game UI (score, menus) is made with editor tools too: see <a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>.</p>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md145"></a>
+Build configurations</h1>
+<p>Debug builds enable the Tracy profiler (and may trigger a Windows Firewall prompt the first time). Use Release builds to judge performance. See <a class="el" href="getting_started.html" title="Installing and building">Installing and building</a>. </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

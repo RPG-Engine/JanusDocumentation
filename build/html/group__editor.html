@@ -1,0 +1,463 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CoreEditor | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">CoreEditor </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>In-game editor tools drawn with Dear ImGui: the Entity Debugger, the FPS Counter, a sprite-sheet viewer, and any tool windows you write, including game UI.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor" class="src-link">include/Editor/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor" class="src-link">src/Editor/</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Editor/Module.hpp&gt;</span> (tools, <span class="tt">Open</span>) · <span class="tt">#include &lt;Editor/DebugStatsEditor.hpp&gt;</span>, <span class="tt">&lt;Editor/EntityEditorTool.hpp&gt;</span>, <span class="tt">&lt;Editor/SpriteSheetEditor.hpp&gt;</span> (built-in tools)</td></tr>
+<tr>
+<td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_core_editor.html" title="Put all your includes here that you want to be accessible through a single header include.">CoreEditor</a></span>; the tool base class is <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a></td></tr>
+<tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L89" class="src-link">Engine::InitializePlugins()</a>, last</td></tr>
+<tr>
+<td><b>Examples</b></td><td><a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a> · the HUD in every game</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
+How to use</h2>
+<p>An <b>editor tool</b> is a class derived from <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a> with a <span class="tt">Draw_Internal()</span> function full of ImGui calls. Every frame, between <span class="tt">ImGui::NewFrame()</span> and rendering, the engine calls <span class="tt">Draw_Internal()</span> on each open tool (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>). That makes tools the place for debug windows <b>and</b> for game UI such as a score display.</p>
+<p><b>1. Write the tool:</b></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A tool with buttons, sliders and a colour picker</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
+<div class="line"><span class="comment">// every frame while the tool is open, between ImGui::NewFrame() and rendering,</span></div>
+<div class="line"><span class="comment">// so any ImGui call works here.</span></div>
+<div class="line"><span class="keyword">class </span>SpawnerTool : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">int</span> SpawnedCount = 0;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Positions are in screen coordinates (multi-viewport is on),</span></div>
+<div class="line">        <span class="comment">// so place it relative to the main window.</span></div>
+<div class="line">        <span class="comment">// A window dragged outside the main window becomes a separate OS window.</span></div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 position {viewport-&gt;Pos.x + 40.f, viewport-&gt;Pos.y + 260.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(position, ImGuiCond_FirstUseEver);</div>
+<div class="line">        ImGui::SetNextWindowSize({330.f, 0.f}, ImGuiCond_FirstUseEver);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Passing &amp;bOpen gives the window a close button that closes the tool.</span></div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Spawner&quot;</span>, &amp;bOpen);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">double</span> fps = <a class="code hl_function" href="group__coretypes.html#ga147fa8f4fd507487dd9bd4e8419b8531">Engine::Globals::GetFPS</a>();</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">double</span> frameMs = <a class="code hl_function" href="group__coretypes.html#ga945d13c62e7daa61e5bb6c277aaf2bcd">Engine::Globals::GetDeltaTime</a>() * 1000.0;</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;%.0f FPS (%.2f ms)&quot;</span>, fps, frameMs);</div>
+<div class="line">        ImGui::Separator();</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">float</span> color[4] = {0.4f, 0.8f, 1.f, 1.f};</div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">float</span> size = 12.f;</div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">int</span> count = 5;</div>
+<div class="line">        ImGui::ColorEdit4(<span class="stringliteral">&quot;Colour&quot;</span>, color);</div>
+<div class="line">        ImGui::SliderFloat(<span class="stringliteral">&quot;Size&quot;</span>, &amp;size, 4.f, 40.f);</div>
+<div class="line">        ImGui::SliderInt(<span class="stringliteral">&quot;Count&quot;</span>, &amp;count, 1, 50);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Spawn&quot;</span>)) {</div>
+<div class="line">            <span class="keyword">static</span> std::mt19937 rng {1};</div>
+<div class="line">            std::uniform_real_distribution&lt;float&gt; x(0.f, ScreenW - size);</div>
+<div class="line">            std::uniform_real_distribution&lt;float&gt; y(0.f, ScreenH - size);</div>
+<div class="line">            <span class="keyword">const</span> SDL_FColor tint {color[0], color[1], color[2], color[3]};</div>
+<div class="line">            flecs::entity last;</div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; count; ++i) {</div>
+<div class="line">                <span class="keyword">const</span> std::string name = <span class="stringliteral">&quot;Spawned &quot;</span> + std::to_string(SpawnedCount++);</div>
+<div class="line">                last = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>().entity(name.c_str())</div>
+<div class="line">                    .set&lt;FTransformComponent&gt;({ .Location = {x(rng), y(rng), 0.f} })</div>
+<div class="line">                    .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                        .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">                        .TextureSize = {size, size},</div>
+<div class="line">                        .Color = tint,</div>
+<div class="line">                    })</div>
+<div class="line">                    .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">            }</div>
+<div class="line">            <a class="code hl_function" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a>(last);   <span class="comment">// show the newest one in the Entity Debugger</span></div>
+<div class="line">            Log::EditorDemo::Info(<span class="stringliteral">&quot;Spawned {} entities&quot;</span>, count);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::SameLine();</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Clear&quot;</span>)) {</div>
+<div class="line">            <span class="comment">// Tools run outside the ECS update, so changes are applied immediately.</span></div>
+<div class="line">            <span class="comment">// Defer them while iterating, so destroying entities doesn&#39;t disturb</span></div>
+<div class="line">            <span class="comment">// the iteration.</span></div>
+<div class="line">            flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line">            world.defer([&amp;world] {</div>
+<div class="line">                world.each([](flecs::entity entity, <span class="keyword">const</span> FTexture2DComponent&amp;) {</div>
+<div class="line">                    <span class="keyword">const</span> std::string name = entity.name().c_str();</div>
+<div class="line">                    <span class="keywordflow">if</span> (name.starts_with(<span class="stringliteral">&quot;Spawned&quot;</span>)) {</div>
+<div class="line">                        entity.destruct();</div>
+<div class="line">                    }</div>
+<div class="line">                });</div>
+<div class="line">            });</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        ImGui::Separator();</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Built-in tools&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Show FPS Counter&quot;</span>)) {</div>
+<div class="line">            <span class="comment">// Reopens the existing instance</span></div>
+<div class="line">            <a class="code hl_function" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;CoreEditor::DebugStatsEditor&gt;</a>();</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> OnOpenStateChanged(<span class="keywordtype">bool</span> bIsOpen)<span class="keyword"> override </span>{</div>
+<div class="line">        Log::EditorDemo::Info(<span class="stringliteral">&quot;Spawner tool {}&quot;</span>, bIsOpen ? <span class="stringliteral">&quot;opened&quot;</span> : <span class="stringliteral">&quot;closed&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>2. Open it</b> once, after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>. <a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open&lt;T&gt;()</a> creates the tool the first time and returns the same instance on later calls:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
+<div class="line">    <span class="comment">// and returns the same instance afterwards.</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SpawnerTool&gt;</a> spawner = <a class="code hl_function" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SpawnerTool&gt;</a>();</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>3. Close and reopen it</b> from game code with <span class="tt">Close()</span> and <span class="tt">Open()</span>; a closed tool keeps its state. Passing <span class="tt">&amp;bOpen</span> to <span class="tt">ImGui::Begin</span> gives the window a close button that does the same:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Toggling a tool with a key</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Tools can be closed and reopened from game code. A closed tool keeps its state.</span></div>
+<div class="line">    world.system(<span class="stringliteral">&quot;ToggleSpawner&quot;</span>).run([spawner](flecs::iter&amp; it) {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToggleSpawner)) {</div>
+<div class="line">            <span class="keywordflow">if</span> (spawner-&gt;bOpen) {</div>
+<div class="line">                spawner-&gt;Close();</div>
+<div class="line">            } <span class="keywordflow">else</span> {</div>
+<div class="line">                spawner-&gt;Open();</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">while</span> (it.next()) {}</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Override <span class="tt">OnOpenStateChanged(bool)</span> to react when a tool opens or closes.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md20"></a>
+Built-in tools</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Tool  </th><th class="markdownTableHeadNone">Opens  </th><th class="markdownTableHeadNone">Shows  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Entity Debugger</b> (<a class="el" href="class_core_editor_1_1_entity_editor_tool.html" title="The Entity Debugger window: create, browse, inspect and edit entities and their components.">CoreEditor::EntityEditorTool</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Create entities; <em>Entity Outliner</em> lists entities that have an <span class="tt">FTransformComponent</span>, click one to select it; the selected entity's components with editable fields; <em>Add Component</em> for any registered component; <em>Save Entity</em> writes it as a flecs script to <span class="tt">Resources/Output/ECS/&lt;name&gt;</span>; <em>Global Entity</em> shows <a class="el" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150" title="Returns an entity for game-wide components, created on first use.">ECS::GetGlobalSystemsEntity()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L223-L243" class="src-link">src/Editor/EntityEditorTool.cpp:223</a>)  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>FPS Counter</b> (<a class="el" href="class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window.">CoreEditor::DebugStatsEditor</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Frame rate and frame time (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/DebugStatsEditor.cpp\#L11-L19" class="src-link">src/Editor/DebugStatsEditor.cpp:11</a>)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><b>Sprite Sheet</b> (<a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html" title="The Sprite Sheet window: a zoomable view of a texture with a grid.">CoreEditor::SpriteSheetEditor</a>)  </td><td class="markdownTableBodyNone">From a sprite's <em>Open Sprite Sheet</em> button  </td><td class="markdownTableBodyNone">A zoomable view of the sprite's texture with a grid  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><b>Dear ImGui Demo</b>  </td><td class="markdownTableBodyNone">Always (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L44" class="src-link">src/Editor/Module.cpp:44</a>)  </td><td class="markdownTableBodyNone">ImGui's own demo; collapse it with ▼  </td></tr>
+</table>
+<p>Component panels in the Entity Debugger:</p>
+<ul>
+<li><span class="tt">FTransformComponent</span> has a move gizmo drawn over the game: drag it to move the entity (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L61-L80" class="src-link">src/Editor/EntityEditorTool.cpp:61</a>).</li>
+<li><span class="tt">FTexture2DComponent</span> has a texture drop-down, its UV fields, <em>Open Sprite Sheet</em>, and <em>Update</em> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L82-L107" class="src-link">src/Editor/EntityEditorTool.cpp:82</a>).</li>
+<li>Your own components get a panel from the <span class="tt"><a class="el" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros (<a class="el" href="group__ecs.html#ecs_components" title="Defining components">Defining components</a>).</li>
+</ul>
+<p>Reopen a built-in tool you closed with <span class="tt"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open</a>&lt;<a class="el" href="class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window.">CoreEditor::DebugStatsEditor</a>&gt;()</span> (or <span class="tt">EntityEditorTool</span>).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
+Game UI with tools</h2>
+<p>The examples' HUDs are tools that draw a small window with no title bar and no input, anchored to a corner of the game window. They also collapse the ImGui demo window once:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The Dodge HUD</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
+<div class="line"><span class="comment">// Editor tools are drawn every frame between ImGui::NewFrame() and the render, so</span></div>
+<div class="line"><span class="comment">// they are the place for game UI too. Open it once with CoreEditor::Open&lt;DodgeHud&gt;().</span></div>
+<div class="line"><span class="keyword">class </span>DodgeHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        <span class="comment">// The engine always shows the Dear ImGui demo window.</span></div>
+<div class="line">        <span class="comment">// Collapse it once so it doesn&#39;t cover the game.</span></div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Dodge&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Time %5.1f s    Best %5.1f s&quot;</span>, Game.Survived, Game.Best);</div>
+<div class="line">        <span class="keywordflow">if</span> (Game.bGameOver) {</div>
+<div class="line">            ImGui::TextColored({1.f, 0.4f, 0.4f, 1.f}, <span class="stringliteral">&quot;Hit! Press R to restart.&quot;</span>);</div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            ImGui::TextDisabled(<span class="stringliteral">&quot;A / D or arrow keys to move&quot;</span>);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md22"></a>
+Things to watch out for</h2>
+<ul>
+<li>Tools are drawn outside the <a class="el" href="namespace_e_c_s.html">ECS</a> update, so entity changes made in <span class="tt">Draw_Internal()</span> happen immediately. Wrap loops that create or destroy entities in <span class="tt"><a class="el" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6" title="Returns the engine&#39;s flecs world.">ECS::GetWorld()</a>.defer(...)</span>.</li>
+<li><span class="tt"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open</a>&lt;T&gt;()</span> keeps one instance per tool type; you cannot open two windows of the same tool class.</li>
+<li>Tools are never destroyed or unregistered; closing only hides them.</li>
+<li>With multi-viewport on, place windows relative to <span class="tt">ImGui::GetMainViewport()-&gt;Pos</span>; see <a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>.</li>
+<li>The Entity Debugger's component headers cannot be collapsed (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L43" class="src-link">include/Gameplay/ECS/Components.hpp:43</a>). </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ImGUIWrapper_3A_3AIEditorTool" id="r_ImGUIWrapper_3A_3AIEditorTool"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base class of editor tools.  <a href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#details">More...</a><br /></td></tr>
+<tr class="memitem:CoreEditor_3A_3AEntityEditorTool" id="r_CoreEditor_3A_3AEntityEditorTool"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_core_editor_1_1_entity_editor_tool.html">CoreEditor::EntityEditorTool</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <em>Entity Debugger</em> window: create, browse, inspect and edit entities and their components.  <a href="class_core_editor_1_1_entity_editor_tool.html#details">More...</a><br /></td></tr>
+<tr class="memitem:CoreEditor_3A_3ADebugStatsEditor" id="r_CoreEditor_3A_3ADebugStatsEditor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_core_editor_1_1_debug_stats_editor.html">CoreEditor::DebugStatsEditor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <em>FPS Counter</em> window.  <a href="class_core_editor_1_1_debug_stats_editor.html#details">More...</a><br /></td></tr>
+<tr class="memitem:CoreEditor_3A_3ASpriteSheetEditor" id="r_CoreEditor_3A_3ASpriteSheetEditor"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html">CoreEditor::SpriteSheetEditor</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The <em>Sprite Sheet</em> window: a zoomable view of a texture with a grid.  <a href="class_core_editor_1_1_sprite_sheet_editor.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga0558e9b9ebed0d54bbd32eb0c4b93ffe" id="r_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><td class="memTemplParams" colspan="2">template&lt;typename TEditorTool&gt; </td></tr>
+<tr class="memitem:ga0558e9b9ebed0d54bbd32eb0c4b93ffe template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TEditorTool &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a> ()</td></tr>
+<tr class="memdesc:ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Opens the tool of type <span class="tt">TEditorTool</span>, creating and registering it the first time.  <br /></td></tr>
+<tr class="memitem:gaa0ee68d5de18fb9b1cd0b3c96135b4ea" id="r_gaa0ee68d5de18fb9b1cd0b3c96135b4ea"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaa0ee68d5de18fb9b1cd0b3c96135b4ea">CoreEditor::ModuleStartup</a> ()</td></tr>
+<tr class="memdesc:gaa0ee68d5de18fb9b1cd0b3c96135b4ea"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the panels for <span class="tt">FTransformComponent</span> and <span class="tt">FTexture2DComponent</span> and opens the Entity Debugger and FPS Counter.  <br /></td></tr>
+<tr class="memitem:ga6fc0bb96d0335ac712d738d90f0beb29" id="r_ga6fc0bb96d0335ac712d738d90f0beb29"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga6fc0bb96d0335ac712d738d90f0beb29">CoreEditor::ModuleTeardown</a> ()</td></tr>
+<tr class="memdesc:ga6fc0bb96d0335ac712d738d90f0beb29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty at this commit.  <br /></td></tr>
+<tr class="memitem:gaeb46f69fcfcbe226ad5144ed4497d9a0" id="r_gaeb46f69fcfcbe226ad5144ed4497d9a0"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaeb46f69fcfcbe226ad5144ed4497d9a0">CoreEditor::AddEditorTool</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> &gt; &amp;ToolInst)</td></tr>
+<tr class="memdesc:gaeb46f69fcfcbe226ad5144ed4497d9a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a tool to the list drawn every frame.  <br /></td></tr>
+<tr class="memitem:ga751cd21ab3507407a5ecc01b4901960d" id="r_ga751cd21ab3507407a5ecc01b4901960d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga751cd21ab3507407a5ecc01b4901960d">CoreEditor::BeginRender</a> ()</td></tr>
+<tr class="memdesc:ga751cd21ab3507407a5ecc01b4901960d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Must be called BEFORE calling the renderer in your tick This is what draws all your registered tools.  <br /></td></tr>
+<tr class="memitem:gaca358e2c39c012ee60c3250455e3fba9" id="r_gaca358e2c39c012ee60c3250455e3fba9"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaca358e2c39c012ee60c3250455e3fba9">CoreEditor::EndRender</a> ()</td></tr>
+<tr class="memdesc:gaca358e2c39c012ee60c3250455e3fba9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Must be called AFTER calling your renderer in your tick Handles sending updates to the platform.  <br /></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga0558e9b9ebed0d54bbd32eb0c4b93ffe" name="ga0558e9b9ebed0d54bbd32eb0c4b93ffe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">&#9670;&#160;</a></span>Open()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TEditorTool&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TEditorTool &gt; CoreEditor::Open </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Returns the tool instance.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor/Module.hpp\#L24-L38" class="src-link">include/Editor/Module.hpp:24</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
+<div class="line">    <span class="comment">// and returns the same instance afterwards.</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SpawnerTool&gt;</a> spawner = <a class="code hl_function" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SpawnerTool&gt;</a>();</div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="gaa0ee68d5de18fb9b1cd0b3c96135b4ea" name="gaa0ee68d5de18fb9b1cd0b3c96135b4ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa0ee68d5de18fb9b1cd0b3c96135b4ea">&#9670;&#160;</a></span>ModuleStartup()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreEditor::ModuleStartup </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L22-L31" class="src-link">src/Editor/Module.cpp:22</a>. </p>
+
+</div>
+</div>
+<a id="ga6fc0bb96d0335ac712d738d90f0beb29" name="ga6fc0bb96d0335ac712d738d90f0beb29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6fc0bb96d0335ac712d738d90f0beb29">&#9670;&#160;</a></span>ModuleTeardown()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreEditor::ModuleTeardown </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. </p>
+
+</div>
+</div>
+<a id="gaeb46f69fcfcbe226ad5144ed4497d9a0" name="gaeb46f69fcfcbe226ad5144ed4497d9a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaeb46f69fcfcbe226ad5144ed4497d9a0">&#9670;&#160;</a></span>AddEditorTool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreEditor::AddEditorTool </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>ToolInst</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open()</a> calls it; use <span class="tt"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">Open</a></span> instead. </p>
+
+</div>
+</div>
+<a id="ga751cd21ab3507407a5ecc01b4901960d" name="ga751cd21ab3507407a5ecc01b4901960d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga751cd21ab3507407a5ecc01b4901960d">&#9670;&#160;</a></span>BeginRender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreEditor::BeginRender </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts the ImGui frame and draws every open tool.</p>
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame, before the renderer.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>. </p>
+
+</div>
+</div>
+<a id="gaca358e2c39c012ee60c3250455e3fba9" name="gaca358e2c39c012ee60c3250455e3fba9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaca358e2c39c012ee60c3250455e3fba9">&#9670;&#160;</a></span>EndRender()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreEditor::EndRender </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Updates ImGui's extra OS windows (multi-viewport).</p>
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame, after the renderer. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

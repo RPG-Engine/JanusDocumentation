@@ -1,0 +1,288 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Log::SLogger Struct Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespace_log.html">Log</a></li><li class="navelem"><a href="struct_log_1_1_s_logger.html">SLogger</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_log_1_1_s_logger-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Log::SLogger Struct Reference<div class="ingroups"><a class="el" href="group__logging.html">Log</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A named logger that registers itself with spdlog when it is constructed.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;Log/LogTypes.hpp&gt;</code></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Its outputs and minimum level come from its <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a>. Declared in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/LogTypes.hpp\#L43-L46" class="src-link">include/Log/LogTypes.hpp:43</a>. Part of the <a class="el" href="group__logging.html" title="Log">Log</a> module.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
+How to use</h2>
+<p>You rarely construct an <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> yourself. <a class="el" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> creates one for you, together with the <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Name&gt;::Info(...)</span> family of functions that log through it:</p>
+<ol type="1">
+<li>In a source file, write <span class="tt"><a class="el" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER(MyModule, debug)</a></span>. This defines a static <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> named <span class="tt">LogMyModule</span> inside <span class="tt">namespace Log::MyModule</span>.</li>
+<li>Call <span class="tt">Log::MyModule::Info("Loaded {} items", count)</span>, or <span class="tt">Error</span>, <span class="tt">Warning</span>, <span class="tt">Debug</span> and <span class="tt">Verbose</span>.</li>
+</ol>
+<p>Construct an <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> directly only when you need a logger that is not tied to a namespace. Then pass it to the <span class="tt"><a class="el" href="namespace_log_1_1_generic.html">Log::Generic</a></span> functions yourself, e.g. <span class="tt"><a class="el" href="group__logging.html#ga92120bdeaa9bca10136598f29b04a86c" title="Logs an info message through Logger, formatting Args into LogMessage.">Log::Generic::Info</a>(myLogger, "...")</span>.</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The usual way: let the macro create it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_filesystem_html"><div class="ttname"><a href="namespace_filesystem.html">Filesystem</a></div><div class="ttdef"><b>Definition</b> Config.hpp:14</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Constructing one directly (the engine's generic logger)</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp#L13-L17" target="_blank">src/Log/Log.cpp:13</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a> Logger = <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>({ \</div>
+<div class="line">        .LoggerNamespace = (<span class="stringliteral">&quot;LogGeneric&quot;</span>), \</div>
+<div class="line">        .LogLevel = LogLevel::debug, \</div>
+<div class="line">        .LogFile = <span class="stringliteral">&quot;JanusEngine&quot;</span>, \</div>
+<div class="line">        .LogOptions = <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">ELogOutputOptions::LOG_ALL</a>}); \</div>
+<div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656"><div class="ttname"><a href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">Log::ELogOutputOptions::LOG_ALL</a></div><div class="ttdeci">@ LOG_ALL</div><div class="ttdoc">Write to both.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:28</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_html_a03724948a232b56bea0cc08b119cb272"><div class="ttname"><a href="#a03724948a232b56bea0cc08b119cb272">Log::SLogger::SLogger</a></div><div class="ttdeci">SLogger(const SLoggerConfiguration &amp;InConfig)</div><div class="ttdoc">Creates the logger and registers it with spdlog.</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">A console-only logger built by hand</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A logger that is not tied to a namespace.</span></div>
+<div class="line"><span class="comment">// Log through it with the Log::Generic functions.</span></div>
+<div class="line">static <a class="code hl_namespace" href="namespace_log.html">Log</a>::SLogger AudioLogger({</div>
+<div class="line">    .LoggerNamespace = <span class="stringliteral">&quot;LogAudio&quot;</span>,</div>
+<div class="line">    .LogLevel = Log::LogLevel::warn,</div>
+<div class="line">    .LogFile = <span class="stringliteral">&quot;&quot;</span>,                                  <span class="comment">// unused: no file output</span></div>
+<div class="line">    .LogOptions = <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">Log::ELogOutputOptions::LOG_CONSOLE</a> });</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    Log::Network::Info(<span class="stringliteral">&quot;Connected to {}:{}&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, 7777);   <span class="comment">// file only</span></div>
+<div class="line">    Log::Network::Debug(<span class="stringliteral">&quot;Not written: below this logger&#39;s info level&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__logging.html#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(<span class="stringliteral">&quot;The generic logger needs no declaration&quot;</span>);</div>
+<div class="line">    <a class="code hl_function" href="group__logging.html#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a>(AudioLogger, <span class="stringliteral">&quot;Sound {} is missing&quot;</span>, <span class="stringliteral">&quot;jump.wav&quot;</span>);</div>
+<div class="line">    <a class="code hl_function" href="group__logging.html#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(AudioLogger, <span class="stringliteral">&quot;Not shown: below this logger&#39;s warn level&quot;</span>);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
+Lifecycle</h2>
+<ol type="1">
+<li><b>Construction</b> copies the configuration and calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</li>
+<li><b>Registration</b> creates an spdlog logger named <span class="tt">Config.LoggerNamespace</span>. It gets a file sink if <span class="tt">LogOptions</span> includes <span class="tt">LOG_FILE</span> and a colored console sink if it includes <span class="tt">LOG_CONSOLE</span>. If a logger with that name already exists, it is reused instead (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L78-L97" class="src-link">src/Log/Module.cpp:78</a>).</li>
+<li><b>Logging</b> looks the spdlog logger up by name on every call and writes the message only if its level is at least <span class="tt">Config.LogLevel</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>).</li>
+<li><b>Shutdown:</b> <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a> drops all spdlog loggers. The <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> objects themselves stay alive until the program exits.</li>
+</ol>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">What registration does</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp#L78-L97" target="_blank">src/Log/Module.cpp:78</a></summary> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">RegisterLogger</a>(<span class="keyword">const</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>* Logger) {</div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a>&amp; config = Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (std::shared_ptr&lt;spdlog::logger&gt; existingLogger = spdlog::get(Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>); existingLogger != <span class="keyword">nullptr</span>) {</div>
+<div class="line">        spdlog::trace(std::format(<span class="stringliteral">&quot;Logger {} found - Using existing logger instead of redefining...&quot;</span>, config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>));</div>
+<div class="line">        <span class="keywordflow">return</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    spdlog::logger logger(config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>);</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">HasAnyOptions</a>(config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a069b9c55b71232e6cf9fc71ada1afe7c">LogOptions</a>, <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">ELogOutputOptions::LOG_FILE</a>)) {</div>
+<div class="line">        logger.sinks().push_back(_Internal::GetSinkForFile(config));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">HasAnyOptions</a>(config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a069b9c55b71232e6cf9fc71ada1afe7c">LogOptions</a>, <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">ELogOutputOptions::LOG_CONSOLE</a>)) {</div>
+<div class="line">        logger.sinks().push_back(std::move(CreateSink&lt;LogSinks::stdout_color_sink_mt&gt;(_Internal::DefaultLogPattern, config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a2640b5ef36dbdc65abefb72ab531f145">LogLevel</a>)));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    logger.info(<span class="stringliteral">&quot;Logger initialized&quot;</span>);</div>
+<div class="line">    spdlog::register_logger(std::make_shared&lt;spdlog::logger&gt;(logger));</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__logging_html_ga734988495e6f6d27d4e48c73a5838050"><div class="ttname"><a href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">Log::HasAnyOptions</a></div><div class="ttdeci">bool HasAnyOptions(const ELogOutputOptions &amp;LogOptions, const ELogOutputOptions &amp;HasAny)</div><div class="ttdoc">Returns true if LogOptions contains at least one of the flags in HasAny.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:32</div></div>
+<div class="ttc" id="agroup__logging_html_gafe258f10926be3404488ecc7ca4dd6b6"><div class="ttname"><a href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">Log::RegisterLogger</a></div><div class="ttdeci">void RegisterLogger(const SLogger *Logger)</div><div class="ttdoc">Creates and registers the spdlog logger for a Log::SLogger.</div></div>
+<div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5"><div class="ttname"><a href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">Log::ELogOutputOptions::LOG_CONSOLE</a></div><div class="ttdeci">@ LOG_CONSOLE</div><div class="ttdoc">Write to the console, with colored levels.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:26</div></div>
+<div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6"><div class="ttname"><a href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">Log::ELogOutputOptions::LOG_FILE</a></div><div class="ttdeci">@ LOG_FILE</div><div class="ttdoc">Write to &lt;exe dir&gt;/Logs/&lt;LogFile&gt;.log.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:25</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_configuration_html"><div class="ttname"><a href="struct_log_1_1_s_logger_configuration.html">Log::SLoggerConfiguration</a></div><div class="ttdoc">Settings for a Log::SLogger: its name, minimum level, log file and outputs.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:36</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_configuration_html_a069b9c55b71232e6cf9fc71ada1afe7c"><div class="ttname"><a href="struct_log_1_1_s_logger_configuration.html#a069b9c55b71232e6cf9fc71ada1afe7c">Log::SLoggerConfiguration::LogOptions</a></div><div class="ttdeci">ELogOutputOptions LogOptions</div><div class="ttdoc">Where output goes; see Log::ELogOutputOptions.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:40</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_configuration_html_a2640b5ef36dbdc65abefb72ab531f145"><div class="ttname"><a href="struct_log_1_1_s_logger_configuration.html#a2640b5ef36dbdc65abefb72ab531f145">Log::SLoggerConfiguration::LogLevel</a></div><div class="ttdeci">LogLevel::level_enum LogLevel</div><div class="ttdoc">Minimum level that is written: trace, debug, info, warn or err.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:38</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_configuration_html_afab3f2ea849408830230aa98ecffacc0"><div class="ttname"><a href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">Log::SLoggerConfiguration::LoggerNamespace</a></div><div class="ttdeci">std::string LoggerNamespace</div><div class="ttdoc">The logger&#39;s name, shown in every line it writes.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:37</div></div>
+<div class="ttc" id="astruct_log_1_1_s_logger_html_a677abd5f9985a2fac3c2e9d799df9e8a"><div class="ttname"><a href="#a677abd5f9985a2fac3c2e9d799df9e8a">Log::SLogger::Config</a></div><div class="ttdeci">SLoggerConfiguration Config</div><div class="ttdoc">The configuration this logger was created with.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:45</div></div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md52"></a>
+Notes</h2>
+<ul>
+<li><span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> has no destructor of its own and no way to unregister. Treat loggers as objects that live for the whole program, the way <a class="el" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> uses them.</li>
+<li>If a message's logger name was never registered, or was dropped by <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a>, the message is replaced by an spdlog error <span class="tt">Could not find logger &lt;name&gt;!</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L26" class="src-link">src/Log/Log.cpp:26</a>). </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a03724948a232b56bea0cc08b119cb272" id="r_a03724948a232b56bea0cc08b119cb272"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a> (const <a class="el" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a> &amp;InConfig)</td></tr>
+<tr class="memdesc:a03724948a232b56bea0cc08b119cb272"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the logger and registers it with spdlog.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a677abd5f9985a2fac3c2e9d799df9e8a" id="r_a677abd5f9985a2fac3c2e9d799df9e8a"><td class="memItemLeft"><a class="el" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a>&#160;</td><td class="memItemRight"><a class="el" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a></td></tr>
+<tr class="memdesc:a677abd5f9985a2fac3c2e9d799df9e8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The configuration this logger was created with.  <br /></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a03724948a232b56bea0cc08b119cb272" name="a03724948a232b56bea0cc08b119cb272"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03724948a232b56bea0cc08b119cb272">&#9670;&#160;</a></span>SLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Log::SLogger::SLogger </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>InConfig</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Copies <span class="tt">InConfig</span> into <a class="el" href="#a677abd5f9985a2fac3c2e9d799df9e8a" title="The configuration this logger was created with.">Config</a>, then calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">InConfig</td><td>Name, minimum level, log file and outputs for the logger. See <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">How DECLARE_LOGGER_WITH_PARAMS calls it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/Module.hpp#L9-L15" target="_blank">include/Log/Module.hpp:9</a></summary> </p><div class="fragment"><div class="line"><span class="preprocessor">#define DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile) \</span></div>
+<div class="line"><span class="preprocessor">    namespace Log::Namespace { \</span></div>
+<div class="line"><span class="preprocessor">        static SLogger Logger = SLogger({ \</span></div>
+<div class="line"><span class="preprocessor">            .LoggerNamespace = (&quot;Log&quot;#Namespace), \</span></div>
+<div class="line"><span class="preprocessor">            .LogLevel = LogLevel::InLogLevel, \</span></div>
+<div class="line"><span class="preprocessor">            .LogFile = InLogFile, \</span></div>
+<div class="line"><span class="preprocessor">            .LogOptions = InLogOutputs}); \</span></div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a677abd5f9985a2fac3c2e9d799df9e8a" name="a677abd5f9985a2fac3c2e9d799df9e8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a677abd5f9985a2fac3c2e9d799df9e8a">&#9670;&#160;</a></span>Config</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a> Log::SLogger::Config</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Every log call reads <span class="tt">Config.LoggerNamespace</span> to find the spdlog logger and <span class="tt">Config.LogLevel</span> to decide whether to write the message (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>). Raising <span class="tt">LogLevel</span> after construction filters out more messages from the next call. Lowering it, or changing anything else, has no effect, because the sinks keep the settings they were created with at registration. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

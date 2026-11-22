@@ -1,0 +1,868 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Input | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Input </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Named input actions.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>You declare an action, bind keys to it (on press, while held, or on release), and read its value from your systems.</p>
+<table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input" class="src-link">include/Input/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input" class="src-link">src/Input/</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Input/Module.hpp&gt;</span></td></tr>
+<tr>
+<td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_input.html">Input</a></span>; your actions live in <span class="tt">Input::Actions</span></td></tr>
+<tr>
+<td><b>Started by</b></td><td>Nothing to start: <span class="tt"><a class="el" href="#gab1c5a9029113d605361596db0c7420ae" title="Empty.">Input::Module()</a></span> is empty. <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls <a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a> every frame.</td></tr>
+<tr>
+<td><b>Examples</b></td><td><a class="el" href="ex_input.html" title="Input">Input</a> · <a class="el" href="ex_movement.html" title="Moving entities">Moving entities</a> · every game</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
+How to use</h2>
+<p><b>1. Declare an action</b> at global scope with <a class="el" href="#ga02d3523d67343616c2ed3db12b4cd48d" title="Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...">DEFINE_INPUT_ACTION</a>: a name and the type of value it produces. It becomes <span class="tt">Input::Actions::&lt;Name&gt;</span>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Declaring actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
+<div class="line"><span class="comment">// Its bindings&#39; values are added up (ADD).</span></div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpacePressed, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpaceHeld, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpaceReleased, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Save, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Confirm, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Quit, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// With OVERRIDE the value is the last triggered binding&#39;s value, not a sum.</span></div>
+<div class="line"><span class="comment">// Untriggered: 0.</span></div>
+<div class="line"><a class="code hl_define" href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(SpeedBoost, <span class="keywordtype">float</span>, OVERRIDE)</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>2. Bind keys</b> with <span class="tt">AddInputBindings_Press</span>, <span class="tt">AddInputBindings_Hold</span> or <span class="tt">AddInputBindings_Release</span>. Each binding is a key (an <span class="tt">SDL_Scancode</span>) and the value it contributes:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Hold: active every frame the key is down.</span></div>
+<div class="line">    <a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move, {</div>
+<div class="line">        {SDL_SCANCODE_UP, {0, -1}}, {SDL_SCANCODE_DOWN, {0, 1}},</div>
+<div class="line">        {SDL_SCANCODE_LEFT, {-1, 0}}, {SDL_SCANCODE_RIGHT, {1, 0}},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::SpeedBoost, {</div>
+<div class="line">        {SDL_SCANCODE_LSHIFT, 2.5f}, {SDL_SCANCODE_RSHIFT, 2.5f},</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// The same key can drive several actions.</span></div>
+<div class="line">    <span class="comment">// Press: the frame it goes down. Release: the frame it comes up.</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_Scancode space = SDL_SCANCODE_SPACE;</div>
+<div class="line">    <a class="code hl_function" href="#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::SpacePressed, {{space, <span class="keyword">true</span>}});</div>
+<div class="line">    <a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::SpaceHeld, {{space, <span class="keyword">true</span>}});</div>
+<div class="line">    <a class="code hl_function" href="#ga692e8eb3078fece0e078948082b67626">Input::AddInputBindings_Release</a>(&amp;Input::Actions::SpaceReleased, {{space, <span class="keyword">true</span>}});</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A combo: one binding with several keys.</span></div>
+<div class="line">    <span class="comment">// For hold bindings, all of them must be down.</span></div>
+<div class="line">    <a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Save, {</div>
+<div class="line">        <a class="code hl_struct" href="struct_input_1_1_s_input_binding.html">Input::SInputBinding&lt;bool&gt;</a>({SDL_SCANCODE_LCTRL, SDL_SCANCODE_S}, <span class="keyword">true</span>),</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Confirm, {</div>
+<div class="line">        {SDL_SCANCODE_RETURN, <span class="keyword">true</span>},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Quit, {</div>
+<div class="line">        {SDL_SCANCODE_ESCAPE, <span class="keyword">true</span>},</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>3. Read the action</b> in a system. <a class="el" href="namespace_input.html">Input</a> is read at the start of each frame, before systems run:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Call  </th><th class="markdownTableHeadNone">Returns  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Input::IsActionTriggered(Input::Actions::Jump)</span>  </td><td class="markdownTableBodyNone"><span class="tt">true</span> if any of its bindings triggered this frame  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Input::GetValue(Input::Actions::Move)</span>  </td><td class="markdownTableBodyNone">The combined value of the bindings that triggered (see <em>Values and operators</em>)  </td></tr>
+</table>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Polling actions in a system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Most game code polls actions from a system.</span></div>
+<div class="line">    <span class="comment">// Input is read before the systems run each frame.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PollInput&quot;</span>)</div>
+<div class="line">        .each([](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> dt = entity.world().delta_time();</div>
+<div class="line">            <span class="keyword">const</span> std::string name = entity.name().c_str();</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;Player&quot;</span>) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> boost = <a class="code hl_function" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::SpeedBoost);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 direction = <a class="code hl_function" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Move);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 move = direction * 60.f * std::max(1.f, boost) * dt;</div>
+<div class="line">                glm::vec3&amp; location = transform.Location;</div>
+<div class="line">                location.x = std::clamp(location.x + move.x, 0.f, ScreenW - 16.f);</div>
+<div class="line">                location.y = std::clamp(location.y + move.y, 0.f, ScreenH - 16.f);</div>
+<div class="line"> </div>
+<div class="line">                bSaving = <a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Save);</div>
+<div class="line">                <span class="keyword">const</span> SDL_FColor savingColor {0.5f, 1.f, 0.5f, 1.f};</div>
+<div class="line">                <span class="keyword">const</span> SDL_FColor normalColor {0.4f, 0.9f, 1.f, 1.f};</div>
+<div class="line">                sprite.Color = bSaving ? savingColor : normalColor;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;PressLight&quot;</span>) {</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::SpacePressed)) {</div>
+<div class="line">                    PressedGlow = 1.f;</div>
+<div class="line">                }</div>
+<div class="line">                PressedGlow = std::max(0.f, PressedGlow - dt * 2.f);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> glow = PressedGlow;</div>
+<div class="line">                sprite.Color = {0.2f + glow * 0.8f, 0.2f + glow * 0.6f, 0.2f, 1.f};</div>
+<div class="line">            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;HoldLight&quot;</span>) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">bool</span> bHeld = <a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::SpaceHeld);</div>
+<div class="line">                HeldGlow = bHeld ? 1.f : 0.f;</div>
+<div class="line">                sprite.Color = {0.2f, 0.2f + HeldGlow * 0.8f, 0.2f, 1.f};</div>
+<div class="line">            } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (name == <span class="stringliteral">&quot;ReleaseLight&quot;</span>) {</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::SpaceReleased)) {</div>
+<div class="line">                    ReleasedGlow = 1.f;</div>
+<div class="line">                }</div>
+<div class="line">                ReleasedGlow = std::max(0.f, ReleasedGlow - dt * 2.f);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> glow = ReleasedGlow;</div>
+<div class="line">                sprite.Color = {0.2f, 0.2f + glow * 0.5f, 0.2f + glow * 0.8f, 1.f};</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>Or register a callback</b> that runs when the action triggers:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A callback</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A callback runs during Input::UpdateInputs() on every frame the action triggers.</span></div>
+<div class="line">    <span class="comment">// Register one callback per action: each extra one makes all of them run again.</span></div>
+<div class="line">    <a class="code hl_function" href="#ga8372a1f4b0896466885d360d25891c8b">Input::RegisterActionCallback&lt;bool&gt;</a>(&amp;Input::Actions::Confirm, [](<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp;) {</div>
+<div class="line">        ++ConfirmCount;</div>
+<div class="line">        Log::InputDemo::Info(<span class="stringliteral">&quot;Confirm pressed ({} times)&quot;</span>, ConfirmCount);</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md40"></a>
+When a binding triggers</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Binding type  </th><th class="markdownTableHeadNone">Triggers on  </th><th class="markdownTableHeadNone">Typical use  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">PRESS</span>  </td><td class="markdownTableBodyNone">The frame the key goes down, <b>and</b> every keyboard auto-repeat while it is held  </td><td class="markdownTableBodyNone">Jump, confirm, toggle  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">HOLD</span>  </td><td class="markdownTableBodyNone">Every frame the key is down  </td><td class="markdownTableBodyNone">Movement, charging  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">RELEASE</span>  </td><td class="markdownTableBodyNone">The frame the key comes up  </td><td class="markdownTableBodyNone">Release a charged attack  </td></tr>
+</table>
+<p>Keys are SDL scancodes: physical key positions, named after a US keyboard. <span class="tt">SDL_SCANCODE_W</span> is the key in W's position on any layout. The full list is in <a href="https://wiki.libsdl.org/SDL3/SDL_Scancode">SDL_scancode.h</a>.</p>
+<p>A binding can list several keys. For a <span class="tt">HOLD</span> binding all of them must be down, which makes key combinations:</p>
+<div class="fragment"><div class="line"><a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Save, {</div>
+<div class="line">    <a class="code hl_struct" href="struct_input_1_1_s_input_binding.html">Input::SInputBinding&lt;bool&gt;</a>({SDL_SCANCODE_LCTRL, SDL_SCANCODE_S}, <span class="keyword">true</span>),</div>
+<div class="line">});</div>
+<div class="ttc" id="agroup__input_html_ga2563a145ce13e323f5e0eeb75008e001"><div class="ttname"><a href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a></div><div class="ttdeci">void AddInputBindings_Hold(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger every frame their key (or all their keys) are held down.</div><div class="ttdef"><b>Definition</b> Module.hpp:45</div></div>
+<div class="ttc" id="astruct_input_1_1_s_input_binding_html"><div class="ttname"><a href="struct_input_1_1_s_input_binding.html">Input::SInputBinding</a></div><div class="ttdoc">One binding: the key(s) that trigger it, when (Input::EInputType) and the value it contributes.</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:48</div></div>
+</div><!-- fragment --><p>For <span class="tt">PRESS</span> and <span class="tt">RELEASE</span> bindings, multi-key combinations never trigger (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L65-L98" class="src-link">src/Input/Module.cpp:65</a>). Use one key per binding.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
+Values and operators</h2>
+<p><span class="tt">GetValue</span> starts from a zero value (<span class="tt">TValueType{}</span>) and applies the value of every triggered binding, in the order they were added, using the action's operator (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Operator  </th><th class="markdownTableHeadNone">Result  </th><th class="markdownTableHeadNone">Declare with  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">ADD</span> (default)  </td><td class="markdownTableBodyNone">Sum of the triggered bindings' values. Arrow keys <span class="tt">(0,-1)</span> + <span class="tt">(1,0)</span> give <span class="tt">(1,-1)</span>.  </td><td class="markdownTableBodyNone"><span class="tt"><a class="el" href="#ga02d3523d67343616c2ed3db12b4cd48d" title="Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...">DEFINE_INPUT_ACTION(Name, Type)</a></span>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">OVERRIDE</span>  </td><td class="markdownTableBodyNone">The value of the last triggered binding. Zero if none.  </td><td class="markdownTableBodyNone"><span class="tt"><a class="el" href="#ga10f99da27a43c73d2fc8ec238b1db84e" title="Like DEFINE_INPUT_ACTION, with a chosen Input::EInputModifierOperation (OVERRIDE, ADD,...">DEFINE_INPUT_ACTION_WITH_PARAMS(Name, Type, OVERRIDE)</a></span>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">SUBTRACT</span>  </td><td class="markdownTableBodyNone">Zero minus each triggered value  </td><td class="markdownTableBodyNone"><span class="tt">..._WITH_PARAMS(Name, Type, SUBTRACT)</span>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">MULTIPLY</span>, <span class="tt">DIVIDE</span>  </td><td class="markdownTableBodyNone">Always zero, because they start from zero  </td><td class="markdownTableBodyNone">—  </td></tr>
+</table>
+<p>Any type that supports <span class="tt">+=</span> and can be zero-initialized works: <span class="tt">bool</span>, <span class="tt">float</span>, <span class="tt">int</span>, <span class="tt">glm::vec2</span>, ... For <span class="tt">bool</span> actions use <a class="el" href="#ga96cd377a209587f7494f3357edd5fcec" title="Returns true if any of the action&#39;s bindings triggered this frame.">Input::IsActionTriggered()</a>; <span class="tt">GetValue</span> on a <span class="tt">bool</span> action works but makes MSVC warn (C4804).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md42"></a>
+Actions the engine declares</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Action  </th><th class="markdownTableHeadNone">Type  </th><th class="markdownTableHeadNone">Declared in  </th><th class="markdownTableHeadNone">Used by  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Input::Actions::Move2D</span>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec2</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/Module.hpp\#L12" class="src-link">include/Gameplay/Module.hpp:12</a>  </td><td class="markdownTableBodyNone">Nothing in the engine; ProtoRPG and <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> use it for movement  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Input::Actions::ToggleDebugColliders</span>  </td><td class="markdownTableBodyNone"><span class="tt">bool</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Types/Module.hpp\#L6" class="src-link">include/Types/Module.hpp:6</a>  </td><td class="markdownTableBodyNone">Meant to toggle <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a>; your game does the toggling  </td></tr>
+</table>
+<p>The engine binds no keys to them.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
+Quitting</h2>
+<p><a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a> sets the quit flag when SDL reports a quit event (closing the window), and <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> then stops. To quit from your own code, push that event:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Quit on Escape</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input::ShouldQuit() becomes true when SDL sees a quit event (closing the window).</span></div>
+<div class="line">    <span class="comment">// To quit from code, push one yourself; Engine::Run() returns on the next frame.</span></div>
+<div class="line">    world.system(<span class="stringliteral">&quot;QuitOnEscape&quot;</span>).run([](flecs::iter&amp; it) {</div>
+<div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Quit)) {</div>
+<div class="line">            SDL_Event quit {};</div>
+<div class="line">            quit.type = SDL_EVENT_QUIT;</div>
+<div class="line">            SDL_PushEvent(&amp;quit);</div>
+<div class="line">        }</div>
+<div class="line">        <span class="keywordflow">while</span> (it.next()) {}</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
+Things to watch out for</h2>
+<ul>
+<li><b>Keyboard only.</b> Gamepad buttons can be added to bindings, but they are never checked (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>).</li>
+<li><b>Typing in an ImGui text field also triggers game actions.</b> The engine passes events to ImGui but does not check whether ImGui wants the keyboard (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L44" class="src-link">src/Input/Module.cpp:44</a>).</li>
+<li><b>Register one callback per action.</b> Each callback runs once for every callback registered on the same action: with two callbacks, both run twice (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>).</li>
+<li>Callbacks are checked every frame for every registered callback, triggered or not.</li>
+<li><span class="tt">PRESS</span> repeats while the key is held (operating-system key repeat). Track the previous state yourself if you need exactly one trigger per press. </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Input_3A_3ASAction_3C_20TValueType_20_3E" id="r_Input_3A_3ASAction_3C_20TValueType_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_input_1_1_s_action.html">Input::SAction&lt; TValueType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An input action: a name, its bindings, its callbacks and the operator that combines binding values.  <a href="struct_input_1_1_s_action.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Input_3A_3ASInputBinding_3C_20TValueType_20_3E" id="r_Input_3A_3ASInputBinding_3C_20TValueType_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_input_1_1_s_input_binding.html">Input::SInputBinding&lt; TValueType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One binding: the key(s) that trigger it, when (<a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db" title="When a binding triggers: PRESS, HOLD or RELEASE.">Input::EInputType</a>) and the value it contributes.  <a href="struct_input_1_1_s_input_binding.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Input_3A_3ASInputBindingBase" id="r_Input_3A_3ASInputBindingBase"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_input_1_1_s_input_binding_base.html">Input::SInputBindingBase</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The part of a binding that does not depend on the value type: binding type, keyboard keys and (unused) gamepad buttons.  <a href="struct_input_1_1_s_input_binding_base.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:ga02d3523d67343616c2ed3db12b4cd48d" id="r_ga02d3523d67343616c2ed3db12b4cd48d"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(InActionName,  ValueType)</td></tr>
+<tr class="memdesc:ga02d3523d67343616c2ed3db12b4cd48d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares <span class="tt">Input::Actions::InActionName</span>, an <a class="el" href="struct_input_1_1_s_action.html" title="An input action: a name, its bindings, its callbacks and the operator that combines binding values.">Input::SAction&lt;ValueType&gt;</a> whose bindings' values are added up (<span class="tt">ADD</span>).  <br /></td></tr>
+<tr class="memitem:ga10f99da27a43c73d2fc8ec238b1db84e" id="r_ga10f99da27a43c73d2fc8ec238b1db84e"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(InActionName,  ValueType,  Operator)</td></tr>
+<tr class="memdesc:ga10f99da27a43c73d2fc8ec238b1db84e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Like <a class="el" href="#ga02d3523d67343616c2ed3db12b4cd48d" title="Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...">DEFINE_INPUT_ACTION</a>, with a chosen <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86fa" title="How an action combines its triggered bindings&#39; values.">Input::EInputModifierOperation</a> (<span class="tt">OVERRIDE</span>, <span class="tt">ADD</span>, <span class="tt">SUBTRACT</span>, ...).  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-typedef-members" class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga61cfe00a6b352f29eb08aa929058153f" id="r_ga61cfe00a6b352f29eb08aa929058153f"><td class="memItemLeft">typedef std::string&#160;</td><td class="memItemRight"><a class="el" href="#ga61cfe00a6b352f29eb08aa929058153f">Input::ActionNameID</a></td></tr>
+<tr class="memdesc:ga61cfe00a6b352f29eb08aa929058153f"><td class="mdescLeft">&#160;</td><td class="mdescRight">An action's name (<span class="tt">std::string</span>).  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gad9b92b4f2accebfd99f0ffb8442a13db" id="r_gad9b92b4f2accebfd99f0ffb8442a13db"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db">Input::EInputType</a> { <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d">Input::NONE</a>
+, <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350">Input::HOLD</a>
+, <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13dbaaad8076c7a6ee5a8d90293cd082fd1ea">Input::PRESS</a>
+, <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13dbac3d1f3660410cc7e6c00e4fcd432fc85">Input::RELEASE</a>
+ }</td></tr>
+<tr class="memdesc:gad9b92b4f2accebfd99f0ffb8442a13db"><td class="mdescLeft">&#160;</td><td class="mdescRight">When a binding triggers: <span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbaaad8076c7a6ee5a8d90293cd082fd1ea">PRESS</a></span>, <span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350">HOLD</a></span> or <span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbac3d1f3660410cc7e6c00e4fcd432fc85">RELEASE</a></span>.  <a href="#gad9b92b4f2accebfd99f0ffb8442a13db">More...</a><br /></td></tr>
+<tr class="memitem:gabcb03adbefc2817cf6a5329c0c4f86fa" id="r_gabcb03adbefc2817cf6a5329c0c4f86fa"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86fa">Input::EInputModifierOperation</a> { <br />
+&#160;&#160;<a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86faa380a0b0b2f8b04e2adff632e79a0acb5">Input::OVERRIDE</a>
+, <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86faae156e9d19819ae6c1d474b151f3d905f">Input::ADD</a>
+, <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86faac7b86f484e93a9c375704854be216291">Input::SUBTRACT</a>
+, <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86faac7dfa4400340ed929394dafeba2599d5">Input::MULTIPLY</a>
+, <br />
+&#160;&#160;<a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86faaac7fc229e5664ee162a5023100562696">Input::DIVIDE</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:gabcb03adbefc2817cf6a5329c0c4f86fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">How an action combines its triggered bindings' values.  <a href="#gabcb03adbefc2817cf6a5329c0c4f86fa">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga73ab4a055d9eee1429fa07130693ae29" id="r_ga73ab4a055d9eee1429fa07130693ae29"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:ga73ab4a055d9eee1429fa07130693ae29 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a> (<a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *Action, std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt; InputBindings)</td></tr>
+<tr class="memdesc:ga73ab4a055d9eee1429fa07130693ae29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds bindings that trigger on the frame their key goes down (and on key repeat).  <br /></td></tr>
+<tr class="memitem:ga2563a145ce13e323f5e0eeb75008e001" id="r_ga2563a145ce13e323f5e0eeb75008e001"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:ga2563a145ce13e323f5e0eeb75008e001 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a> (<a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *Action, std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt; InputBindings)</td></tr>
+<tr class="memdesc:ga2563a145ce13e323f5e0eeb75008e001"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds bindings that trigger every frame their key (or all their keys) are held down.  <br /></td></tr>
+<tr class="memitem:ga692e8eb3078fece0e078948082b67626" id="r_ga692e8eb3078fece0e078948082b67626"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:ga692e8eb3078fece0e078948082b67626 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga692e8eb3078fece0e078948082b67626">Input::AddInputBindings_Release</a> (<a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *Action, std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt; InputBindings)</td></tr>
+<tr class="memdesc:ga692e8eb3078fece0e078948082b67626"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds bindings that trigger on the frame their key comes up.  <br /></td></tr>
+<tr class="memitem:gade3db88ae33a507ded4195d0457949b0" id="r_gade3db88ae33a507ded4195d0457949b0"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:gade3db88ae33a507ded4195d0457949b0 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gade3db88ae33a507ded4195d0457949b0">Input::AddInputBindings</a> (<a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *Action, const <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db">EInputType</a> &amp;InputType, std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt; InputBindings)</td></tr>
+<tr class="memdesc:gade3db88ae33a507ded4195d0457949b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds bindings of the given <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db" title="When a binding triggers: PRESS, HOLD or RELEASE.">Input::EInputType</a>.  <br /></td></tr>
+<tr class="memitem:ga61a6a4c192b6c90c1f7c15b2841c7d44" id="r_ga61a6a4c192b6c90c1f7c15b2841c7d44"><td class="memTemplParams" colspan="2">template&lt;typename TActionValue&gt; </td></tr>
+<tr class="memitem:ga61a6a4c192b6c90c1f7c15b2841c7d44 template"><td class="memItemLeft">TActionValue&#160;</td><td class="memItemRight"><a class="el" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a> (const <a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TActionValue &gt; &amp;Action)</td></tr>
+<tr class="memdesc:ga61a6a4c192b6c90c1f7c15b2841c7d44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the action's value this frame: its triggered bindings' values combined with its operator, starting from zero.  <br /></td></tr>
+<tr class="memitem:ga96cd377a209587f7494f3357edd5fcec" id="r_ga96cd377a209587f7494f3357edd5fcec"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:ga96cd377a209587f7494f3357edd5fcec template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a> (const <a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; &amp;Action)</td></tr>
+<tr class="memdesc:ga96cd377a209587f7494f3357edd5fcec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if any of the action's bindings triggered this frame.  <br /></td></tr>
+<tr class="memitem:ga8372a1f4b0896466885d360d25891c8b" id="r_ga8372a1f4b0896466885d360d25891c8b"><td class="memTemplParams" colspan="2">template&lt;typename TValueType&gt; </td></tr>
+<tr class="memitem:ga8372a1f4b0896466885d360d25891c8b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8372a1f4b0896466885d360d25891c8b">Input::RegisterActionCallback</a> (<a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *Action, const std::function&lt; void(const TValueType &amp;)&gt; &amp;Function)</td></tr>
+<tr class="memdesc:ga8372a1f4b0896466885d360d25891c8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls <span class="tt">Function</span> with the action's value on every frame the action triggers, during <a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a>.  <br /></td></tr>
+<tr class="memitem:ga146ca4dedb07368ad44fe3509ef47bfa" id="r_ga146ca4dedb07368ad44fe3509ef47bfa"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa">Input::UpdateInputs</a> ()</td></tr>
+<tr class="memdesc:ga146ca4dedb07368ad44fe3509ef47bfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reads this frame's SDL events, records pressed and released keys, passes events to ImGui and runs action callbacks.  <br /></td></tr>
+<tr class="memitem:ga432f86a22f8805741eb37ed36fcd6bc9" id="r_ga432f86a22f8805741eb37ed36fcd6bc9"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga432f86a22f8805741eb37ed36fcd6bc9">Input::ShouldQuit</a> ()</td></tr>
+<tr class="memdesc:ga432f86a22f8805741eb37ed36fcd6bc9"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">true</span> once SDL has reported a quit event.  <br /></td></tr>
+<tr class="memitem:ga0ee2bc0b166d7981bc5137d45daff07e" id="r_ga0ee2bc0b166d7981bc5137d45daff07e"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga0ee2bc0b166d7981bc5137d45daff07e">Input::IsBindingTriggered</a> (const <a class="el" href="struct_input_1_1_s_input_binding_base.html">SInputBindingBase</a> &amp;Binding)</td></tr>
+<tr class="memdesc:ga0ee2bc0b166d7981bc5137d45daff07e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if one binding triggered this frame.  <br /></td></tr>
+<tr class="memitem:ga1df2961db497af975681828f55a7787d" id="r_ga1df2961db497af975681828f55a7787d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga1df2961db497af975681828f55a7787d">Input::DispatchTriggeredActions</a> ()</td></tr>
+<tr class="memdesc:ga1df2961db497af975681828f55a7787d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the callbacks registered with <a class="el" href="#ga8372a1f4b0896466885d360d25891c8b" title="Calls Function with the action&#39;s value on every frame the action triggers, during Input::UpdateInputs...">Input::RegisterActionCallback()</a>.  <br /></td></tr>
+<tr class="memitem:gac915fff078332d3f3e3e887fd6fc3d81" id="r_gac915fff078332d3f3e3e887fd6fc3d81"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac915fff078332d3f3e3e887fd6fc3d81">Input::AddInputBoundFunction</a> (const std::function&lt; void()&gt; &amp;Func)</td></tr>
+<tr class="memdesc:gac915fff078332d3f3e3e887fd6fc3d81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds a function that <a class="el" href="#ga1df2961db497af975681828f55a7787d" title="Runs the callbacks registered with Input::RegisterActionCallback().">Input::DispatchTriggeredActions()</a> calls every frame.  <br /></td></tr>
+<tr class="memitem:ga09e1e8497ec26eef83815dc73d35dbbf" id="r_ga09e1e8497ec26eef83815dc73d35dbbf"><td class="memTemplParams" colspan="2">template&lt;typename TActionValue&gt; </td></tr>
+<tr class="memitem:ga09e1e8497ec26eef83815dc73d35dbbf template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga09e1e8497ec26eef83815dc73d35dbbf">Input::ApplyBindingOperation</a> (TActionValue *CurrentValue, const TActionValue &amp;NewValue, const <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86fa">EInputModifierOperation</a> &amp;Operation)</td></tr>
+<tr class="memdesc:ga09e1e8497ec26eef83815dc73d35dbbf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines one binding's value into the running value.  <br /></td></tr>
+<tr class="memitem:gab1c5a9029113d605361596db0c7420ae" id="r_gab1c5a9029113d605361596db0c7420ae"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gab1c5a9029113d605361596db0c7420ae">Input::Module</a> ()</td></tr>
+<tr class="memdesc:gab1c5a9029113d605361596db0c7420ae"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty.  <br /></td></tr>
+<tr class="memitem:ga49072c2a5aa86e4fc2d7abbfc4bfeab1" id="r_ga49072c2a5aa86e4fc2d7abbfc4bfeab1"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga49072c2a5aa86e4fc2d7abbfc4bfeab1">Input::TeardownModule</a> ()</td></tr>
+<tr class="memdesc:ga49072c2a5aa86e4fc2d7abbfc4bfeab1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="ga02d3523d67343616c2ed3db12b4cd48d" name="ga02d3523d67343616c2ed3db12b4cd48d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga02d3523d67343616c2ed3db12b4cd48d">&#9670;&#160;</a></span>DEFINE_INPUT_ACTION</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFINE_INPUT_ACTION</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InActionName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>ValueType</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(InActionName, ValueType, ADD)</div>
+<div class="ttc" id="agroup__input_html_ga10f99da27a43c73d2fc8ec238b1db84e"><div class="ttname"><a href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION_WITH_PARAMS(InActionName, ValueType, Operator)</div><div class="ttdoc">Like DEFINE_INPUT_ACTION, with a chosen Input::EInputModifierOperation (OVERRIDE, ADD,...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:98</div></div>
+</div><!-- fragment --><p>Use at global scope, in one source file or in a header shared by several. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L103" class="src-link">include/Input/InputTypes.hpp:103</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
+<div class="line"><span class="comment">// Its bindings&#39; values are added up (ADD).</span></div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpacePressed, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpaceHeld, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpaceReleased, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Save, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Confirm, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Quit, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// With OVERRIDE the value is the last triggered binding&#39;s value, not a sum.</span></div>
+<div class="line"><span class="comment">// Untriggered: 0.</span></div>
+<div class="line"><a class="code hl_define" href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(SpeedBoost, <span class="keywordtype">float</span>, OVERRIDE)</div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="ga10f99da27a43c73d2fc8ec238b1db84e" name="ga10f99da27a43c73d2fc8ec238b1db84e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga10f99da27a43c73d2fc8ec238b1db84e">&#9670;&#160;</a></span>DEFINE_INPUT_ACTION_WITH_PARAMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFINE_INPUT_ACTION_WITH_PARAMS</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InActionName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>ValueType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>Operator</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span>Input::Actions { \</div>
+<div class="line">    <span class="keyword">inline</span> <a class="code hl_struct" href="struct_input_1_1_s_action.html">Input::SAction&lt;ValueType&gt;</a> InActionName { #InActionName, EInputModifierOperation::Operator }; \</div>
+<div class="line">};</div>
+<div class="ttc" id="astruct_input_1_1_s_action_html"><div class="ttname"><a href="struct_input_1_1_s_action.html">Input::SAction</a></div><div class="ttdoc">An input action: a name, its bindings, its callbacks and the operator that combines binding values.</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:77</div></div>
+</div><!-- fragment --><p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L98-L101" class="src-link">include/Input/InputTypes.hpp:98</a>. </p>
+
+</div>
+</div>
+<a name="doc-typedef-members" id="doc-typedef-members"></a><h2 id="header-doc-typedef-members" class="groupheader">Typedef Documentation</h2>
+<a id="ga61cfe00a6b352f29eb08aa929058153f" name="ga61cfe00a6b352f29eb08aa929058153f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga61cfe00a6b352f29eb08aa929058153f">&#9670;&#160;</a></span>ActionNameID</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef std::string <a class="el" href="#ga61cfe00a6b352f29eb08aa929058153f">Input::ActionNameID</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="gad9b92b4f2accebfd99f0ffb8442a13db" name="gad9b92b4f2accebfd99f0ffb8442a13db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad9b92b4f2accebfd99f0ffb8442a13db">&#9670;&#160;</a></span>EInputType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db">Input::EInputType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d">NONE</a></span> never triggers. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L19-L24" class="src-link">include/Input/InputTypes.hpp:19</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d" name="gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d"></a>NONE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350" name="gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350"></a>HOLD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dbaaad8076c7a6ee5a8d90293cd082fd1ea" name="gad9b92b4f2accebfd99f0ffb8442a13dbaaad8076c7a6ee5a8d90293cd082fd1ea"></a>PRESS&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dbac3d1f3660410cc7e6c00e4fcd432fc85" name="gad9b92b4f2accebfd99f0ffb8442a13dbac3d1f3660410cc7e6c00e4fcd432fc85"></a>RELEASE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a id="gabcb03adbefc2817cf6a5329c0c4f86fa" name="gabcb03adbefc2817cf6a5329c0c4f86fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabcb03adbefc2817cf6a5329c0c4f86fa">&#9670;&#160;</a></span>EInputModifierOperation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86fa">Input::EInputModifierOperation</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>See <a class="el" href="group__input.html" title="Input">Input</a>. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L26-L32" class="src-link">include/Input/InputTypes.hpp:26</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faa380a0b0b2f8b04e2adff632e79a0acb5" name="gabcb03adbefc2817cf6a5329c0c4f86faa380a0b0b2f8b04e2adff632e79a0acb5"></a>OVERRIDE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faae156e9d19819ae6c1d474b151f3d905f" name="gabcb03adbefc2817cf6a5329c0c4f86faae156e9d19819ae6c1d474b151f3d905f"></a>ADD&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faac7b86f484e93a9c375704854be216291" name="gabcb03adbefc2817cf6a5329c0c4f86faac7b86f484e93a9c375704854be216291"></a>SUBTRACT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faac7dfa4400340ed929394dafeba2599d5" name="gabcb03adbefc2817cf6a5329c0c4f86faac7dfa4400340ed929394dafeba2599d5"></a>MULTIPLY&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faaac7fc229e5664ee162a5023100562696" name="gabcb03adbefc2817cf6a5329c0c4f86faaac7fc229e5664ee162a5023100562696"></a>DIVIDE&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga73ab4a055d9eee1429fa07130693ae29" name="ga73ab4a055d9eee1429fa07130693ae29"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga73ab4a055d9eee1429fa07130693ae29">&#9670;&#160;</a></span>AddInputBindings_Press()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::AddInputBindings_Press </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>InputBindings</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Action</td><td>The action, e.g. <span class="tt">&amp;Input::Actions::Jump</span>. </td></tr>
+    <tr><td class="paramname">InputBindings</td><td><span class="tt">{ {SDL_SCANCODE_SPACE, value}, ... }</span>.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L34-L37" class="src-link">include/Input/Module.hpp:34</a>. </p>
+
+</div>
+</div>
+<a id="ga2563a145ce13e323f5e0eeb75008e001" name="ga2563a145ce13e323f5e0eeb75008e001"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2563a145ce13e323f5e0eeb75008e001">&#9670;&#160;</a></span>AddInputBindings_Hold()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::AddInputBindings_Hold </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>InputBindings</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L44-L47" class="src-link">include/Input/Module.hpp:44</a>. </p>
+
+</div>
+</div>
+<a id="ga692e8eb3078fece0e078948082b67626" name="ga692e8eb3078fece0e078948082b67626"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga692e8eb3078fece0e078948082b67626">&#9670;&#160;</a></span>AddInputBindings_Release()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::AddInputBindings_Release </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>InputBindings</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L39-L42" class="src-link">include/Input/Module.hpp:39</a>. </p>
+
+</div>
+</div>
+<a id="gade3db88ae33a507ded4195d0457949b0" name="gade3db88ae33a507ded4195d0457949b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade3db88ae33a507ded4195d0457949b0">&#9670;&#160;</a></span>AddInputBindings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::AddInputBindings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gad9b92b4f2accebfd99f0ffb8442a13db">EInputType</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>InputType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::initializer_list&lt; <a class="el" href="struct_input_1_1_s_input_binding.html">SInputBinding</a>&lt; TValueType &gt; &gt;</td>          <td class="paramname"><span class="paramname"><em>InputBindings</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The <span class="tt">_Press</span>, <span class="tt">_Hold</span> and <span class="tt">_Release</span> versions call this. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L23-L32" class="src-link">include/Input/Module.hpp:23</a>. </p>
+
+</div>
+</div>
+<a id="ga61a6a4c192b6c90c1f7c15b2841c7d44" name="ga61a6a4c192b6c90c1f7c15b2841c7d44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga61a6a4c192b6c90c1f7c15b2841c7d44">&#9670;&#160;</a></span>GetValue()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TActionValue&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">TActionValue Input::GetValue </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TActionValue &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Action</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>. </p>
+
+</div>
+</div>
+<a id="ga96cd377a209587f7494f3357edd5fcec" name="ga96cd377a209587f7494f3357edd5fcec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga96cd377a209587f7494f3357edd5fcec">&#9670;&#160;</a></span>IsActionTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Input::IsActionTriggered </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Action</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L83-L92" class="src-link">include/Input/Module.hpp:83</a>. </p>
+
+</div>
+</div>
+<a id="ga8372a1f4b0896466885d360d25891c8b" name="ga8372a1f4b0896466885d360d25891c8b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8372a1f4b0896466885d360d25891c8b">&#9670;&#160;</a></span>RegisterActionCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TValueType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::RegisterActionCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_input_1_1_s_action.html">SAction</a>&lt; TValueType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Action</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::function&lt; void(const TValueType &amp;)&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Function</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Register at most one callback per action (see <a class="el" href="group__input.html" title="Input">Input</a>). Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>. </p>
+
+</div>
+</div>
+<a id="ga146ca4dedb07368ad44fe3509ef47bfa" name="ga146ca4dedb07368ad44fe3509ef47bfa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga146ca4dedb07368ad44fe3509ef47bfa">&#9670;&#160;</a></span>UpdateInputs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::UpdateInputs </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L35-L63" class="src-link">src/Input/Module.cpp:35</a>. </p>
+
+</div>
+</div>
+<a id="ga432f86a22f8805741eb37ed36fcd6bc9" name="ga432f86a22f8805741eb37ed36fcd6bc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga432f86a22f8805741eb37ed36fcd6bc9">&#9670;&#160;</a></span>ShouldQuit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Input::ShouldQuit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> stops when it is. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L31-L33" class="src-link">src/Input/Module.cpp:31</a>. </p>
+
+</div>
+</div>
+<a id="ga0ee2bc0b166d7981bc5137d45daff07e" name="ga0ee2bc0b166d7981bc5137d45daff07e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga0ee2bc0b166d7981bc5137d45daff07e">&#9670;&#160;</a></span>IsBindingTriggered()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Input::IsBindingTriggered </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_input_1_1_s_input_binding_base.html">SInputBindingBase</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Binding</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used by <a class="el" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44" title="Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...">Input::GetValue()</a> and <a class="el" href="#ga96cd377a209587f7494f3357edd5fcec" title="Returns true if any of the action&#39;s bindings triggered this frame.">Input::IsActionTriggered()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>. </p>
+
+</div>
+</div>
+<a id="ga1df2961db497af975681828f55a7787d" name="ga1df2961db497af975681828f55a7787d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1df2961db497af975681828f55a7787d">&#9670;&#160;</a></span>DispatchTriggeredActions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::DispatchTriggeredActions </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a>. </p>
+
+</div>
+</div>
+<a id="gac915fff078332d3f3e3e887fd6fc3d81" name="gac915fff078332d3f3e3e887fd6fc3d81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac915fff078332d3f3e3e887fd6fc3d81">&#9670;&#160;</a></span>AddInputBoundFunction()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::AddInputBoundFunction </td>
+          <td>(</td>
+          <td class="paramtype">const std::function&lt; void()&gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Func</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used by <a class="el" href="#ga8372a1f4b0896466885d360d25891c8b" title="Calls Function with the action&#39;s value on every frame the action triggers, during Input::UpdateInputs...">Input::RegisterActionCallback()</a>. </p>
+
+</div>
+</div>
+<a id="ga09e1e8497ec26eef83815dc73d35dbbf" name="ga09e1e8497ec26eef83815dc73d35dbbf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga09e1e8497ec26eef83815dc73d35dbbf">&#9670;&#160;</a></span>ApplyBindingOperation()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TActionValue&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::ApplyBindingOperation </td>
+          <td>(</td>
+          <td class="paramtype">TActionValue *</td>          <td class="paramname"><span class="paramname"><em>CurrentValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TActionValue &amp;</td>          <td class="paramname"><span class="paramname"><em>NewValue</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#gabcb03adbefc2817cf6a5329c0c4f86fa">EInputModifierOperation</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Operation</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used by <a class="el" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44" title="Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...">Input::GetValue()</a>. </p>
+
+</div>
+</div>
+<a id="gab1c5a9029113d605361596db0c7420ae" name="gab1c5a9029113d605361596db0c7420ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab1c5a9029113d605361596db0c7420ae">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The engine does not call it. </p>
+
+</div>
+</div>
+<a id="ga49072c2a5aa86e4fc2d7abbfc4bfeab1" name="ga49072c2a5aa86e4fc2d7abbfc4bfeab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga49072c2a5aa86e4fc2d7abbfc4bfeab1">&#9670;&#160;</a></span>TeardownModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Input::TeardownModule </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The engine does not call it. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

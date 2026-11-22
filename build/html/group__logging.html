@@ -1,0 +1,895 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Log | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Log </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Named, per-module loggers built on spdlog.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Each module declares its own logger once, then logs with <span class="tt">std::format</span>-style messages to the console and to log files.</p>
+<table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log" class="src-link">include/Log/</a> (public headers) · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log" class="src-link">src/Log/</a> (implementation)</td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Log/Module.hpp&gt;</span></td></tr>
+<tr>
+<td><b>Namespace</b></td><td><span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a></span> (logging functions live in <span class="tt"><a class="el" href="namespace_log_1_1_generic.html">Log::Generic</a></span> and in each <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Name&gt;</span> declared with <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>)</td></tr>
+<tr>
+<td><b>Initialized by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L83" class="src-link">Engine::InitializePlugins()</a>. First in the init order, so every later module can log while it starts up.</td></tr>
+<tr>
+<td><b>Built on</b></td><td><a href="https://github.com/gabime/spdlog">spdlog</a></td></tr>
+<tr>
+<td><b>Example</b></td><td><a class="el" href="ex_logging.html" title="Logging">Logging</a>; every example declares a logger</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md45"></a>
+How to use</h2>
+<p>This is all most code needs. Declare a logger once, at the top of a source file, and log through its namespace. Game code works the same way as engine code.</p>
+<p><b>1. Declare the logger</b> with a name and a minimum level. The level is one of <span class="tt">err</span>, <span class="tt">warn</span>, <span class="tt">info</span>, <span class="tt">debug</span> or <span class="tt">trace</span>:</p>
+<p> <details class="jd-example jd-engine" open><summary><span class="jd-label">Engine example</span><span class="jd-title">Filesystem module declares its logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_filesystem_html"><div class="ttname"><a href="namespace_filesystem.html">Filesystem</a></div><div class="ttdef"><b>Definition</b> Config.hpp:14</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>2. <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> through <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Name&gt;</span>.</b> Each logger has <span class="tt">Error</span>, <span class="tt">Warning</span>, <span class="tt">Info</span>, <span class="tt">Debug</span> and <span class="tt">Verbose</span> (trace level). Arguments are substituted into <span class="tt">{}</span> placeholders, as in <span class="tt">std::format</span>:</p>
+<p> <details class="jd-example jd-engine" open><summary><span class="jd-label">Engine example</span><span class="jd-title">Formatted message</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L28-L28" target="_blank">src/Filesystem/Module.cpp:28</a></summary> </p><div class="fragment"><div class="line">Log::Filesystem::Info(<span class="stringliteral">&quot;Loading config files in {}...&quot;</span>, configRoot.string());</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Several arguments</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L59-L59" target="_blank">src/Filesystem/Module.cpp:59</a></summary> </p><div class="fragment"><div class="line">Log::Filesystem::Info(<span class="stringliteral">&quot;Asset {} registered at path {}&quot;</span>, assetPathStr, AssetData-&gt;AssetFilePathRaw.string());</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Reporting an error</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L74-L74" target="_blank">src/Filesystem/Module.cpp:74</a></summary> </p><div class="fragment"><div class="line">Log::Filesystem::Error(<span class="stringliteral">&quot;Could not find asset [{}]&quot;</span>, AssetPath);</div>
+</div><!-- fragment --><p>  </details></p>
+<p><b>3. No logger of your own? Use the generic one.</b> <span class="tt">Log::Generic::Error(message)</span> and its siblings log to the built-in <span class="tt">LogGeneric</span> logger. This is handy in headers, where <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> should not be used:</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Logging from a header</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp#L25-L25" target="_blank">include/Filesystem/Importers/Importer.hpp:25</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_function" href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a>(std::format(<span class="stringliteral">&quot;Could not find asset at path {}!&quot;</span>, Path));</div>
+<div class="ttc" id="agroup__logging_html_ga8fb18c7737cd0a756c51218239da4f8e"><div class="ttname"><a href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a></div><div class="ttdeci">void Error(const SLogger &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</div><div class="ttdoc">Logs an error through Logger, formatting Args into LogMessage like std::format.</div><div class="ttdef"><b>Definition</b> Log.hpp:17</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p>The same steps in a game, with every level and the other ways to create a logger:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Declaring loggers and logging at every level</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// One logger per source file (or per module). Messages below &quot;debug&quot; are dropped.</span></div>
+<div class="line"><a class="code hl_define" href="#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Inventory, debug)</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    Log::Inventory::Error(<span class="stringliteral">&quot;Item {} is missing from the database&quot;</span>, 42);</div>
+<div class="line">    Log::Inventory::Warning(<span class="stringliteral">&quot;Inventory is {}% full&quot;</span>, 90);</div>
+<div class="line">    Log::Inventory::Info(<span class="stringliteral">&quot;Picked up {} x {}&quot;</span>, 3, <span class="stringliteral">&quot;apple&quot;</span>);</div>
+<div class="line">    Log::Inventory::Debug(<span class="stringliteral">&quot;Slots used: {}/{}&quot;</span>, 7, 20);</div>
+<div class="line">    Log::Inventory::Verbose(<span class="stringliteral">&quot;Not shown: below the global debug level&quot;</span>);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md46"></a>
+What it does</h2>
+<p>Every engine module gets its own <em>named</em> logger. Messages are tagged with that name, so the output shows where each line came from. For example, the line written by <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L28" class="src-link">src/Filesystem/Module.cpp:28</a> looks like this (an illustration of the format set at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L30" class="src-link">src/Log/Module.cpp:30</a>; your date, time and path will differ):</p>
+<div class="fragment"><div class="line">[11/22/26 15:10:02] [LogFilesystem] info: Loading config files in .../Config...</div>
+</div><!-- fragment --><p>The <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> module:</p>
+<ol type="1">
+<li><b>Creates loggers</b> when a module declares one with <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>. Each logger is a <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a> that registers itself with spdlog when it is constructed.</li>
+<li><b>Routes output</b> to the console, to a log file under <span class="tt">&lt;exe dir&gt;/Logs/</span>, or both. Loggers that write to the same file share one file sink.</li>
+<li><b>Filters by level</b>: each logger drops messages below its configured level (<span class="tt">trace</span> &lt; <span class="tt">debug</span> &lt; <span class="tt">info</span> &lt; <span class="tt">warn</span> &lt; <span class="tt">err</span>).</li>
+<li><b>Flushes</b> every 3 seconds, and on shutdown copies each log file to a timestamped name (e.g. <span class="tt">JanusEngine-2026-11-22-h15m10.log</span>, with the time in UTC).</li>
+</ol>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md47"></a>
+Where output goes</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Logger created with  </th><th class="markdownTableHeadNone">Console  </th><th class="markdownTableHeadNone">File  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>  </td><td class="markdownTableBodyNone">Yes  </td><td class="markdownTableBodyNone"><span class="tt">&lt;exe dir&gt;/Logs/JanusEngine.log</span>, shared by all modules  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#ga57bbe107f43fc70a8c0087bd5619a4ac" title="Declares a logger with chosen outputs and log file, plus the Log::&lt;Namespace&gt;::Error/Warning/Info/Deb...">DECLARE_LOGGER_WITH_PARAMS</a>  </td><td class="markdownTableBodyNone">Chosen with <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774" title="Where a logger writes.">Log::ELogOutputOptions</a>  </td><td class="markdownTableBodyNone"><span class="tt">&lt;exe dir&gt;/Logs/&lt;LogFile&gt;.log</span>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">The generic logger (<span class="tt"><a class="el" href="namespace_log_1_1_generic.html">Log::Generic</a>::*(message)</span>)  </td><td class="markdownTableBodyNone">Yes  </td><td class="markdownTableBodyNone"><span class="tt">&lt;exe dir&gt;/Logs/JanusEngine.log</span>  </td></tr>
+</table>
+<p>Every line uses the pattern <span class="tt">[date time] [LoggerName] level: message</span>, set at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L30" class="src-link">src/Log/Module.cpp:30</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md48"></a>
+Lifecycle</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Step  </th><th class="markdownTableHeadNone">Function  </th><th class="markdownTableHeadNone">What happens  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Program start  </td><td class="markdownTableBodyNone"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a> constructor  </td><td class="markdownTableBodyNone">Every <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> creates a static <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a>, which registers itself with spdlog before <span class="tt">main</span> runs.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="namespace_engine.html">Engine</a> start  </td><td class="markdownTableBodyNone"><a class="el" href="#ga6e5199d4346a2b55762b647155b4fba7" title="Starts the Log module: sets spdlog&#39;s default level (debug) and line pattern, and flushes all loggers ...">Log::Module()</a>  </td><td class="markdownTableBodyNone">Sets spdlog's default level and pattern, and flushes every 3 seconds.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Any time  </td><td class="markdownTableBodyNone"><a class="el" href="#gafb04394b40af57b572c2f2a0eb3aa47b" title="Flush all loggers, forcing them to dump their logs to whatever sinks they have (Generally File sinks)...">Log::Flush()</a>  </td><td class="markdownTableBodyNone">Forces every logger to write out its buffered messages.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="namespace_engine.html">Engine</a> shutdown  </td><td class="markdownTableBodyNone"><a class="el" href="#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a>  </td><td class="markdownTableBodyNone">Flushes, copies each log file to a timestamped name, then drops all loggers.  </td></tr>
+</table>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Engine start</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp#L83-L83" target="_blank">src/Module.cpp:83</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_function" href="#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a>();</div>
+<div class="ttc" id="agroup__logging_html_ga6e5199d4346a2b55762b647155b4fba7"><div class="ttname"><a href="#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Starts the Log module: sets spdlog&#39;s default level (debug) and line pattern, and flushes all loggers ...</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Engine shutdown (last module torn down)</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp#L103-L103" target="_blank">src/Module.cpp:103</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_function" href="#ga928d2b3a4c91332fa154b8cff8ee5938">Log::TeardownModule</a>();</div>
+<div class="ttc" id="agroup__logging_html_ga928d2b3a4c91332fa154b8cff8ee5938"><div class="ttname"><a href="#ga928d2b3a4c91332fa154b8cff8ee5938">Log::TeardownModule</a></div><div class="ttdeci">void TeardownModule()</div><div class="ttdoc">Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...</div></div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md49"></a>
+Things to watch out for</h2>
+<ul>
+<li><b>Declare loggers in source files, not headers.</b> <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> defines <span class="tt">static</span> functions and a <span class="tt">static</span> logger. In a header, every file that includes it gets its own copy, and other modules can use what was meant to be a private logger.</li>
+<li><b>A logger's name is registered once.</b> If two files declare the same name (<a class="el" href="namespace_filesystem.html">Filesystem</a> does, in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L10" class="src-link">src/Filesystem/Module.cpp:10</a> and <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L12" class="src-link">src/Filesystem/FilesystemTypes.cpp:12</a>), the second one reuses the spdlog logger the first one created (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L81-L84" class="src-link">src/Log/Module.cpp:81</a>). Its own output settings are ignored, but its level filter still applies.</li>
+<li><b>A default <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a> has no outputs.</b> Its <span class="tt">LogOptions</span> is <span class="tt">LOG_NONE</span>, so a logger built from it discards every message. Set <span class="tt">LogOptions</span> explicitly when you build a configuration yourself.</li>
+<li><b><span class="tt">Verbose</span> (trace) messages don't appear by default.</b> <a class="el" href="#ga6e5199d4346a2b55762b647155b4fba7" title="Starts the Log module: sets spdlog&#39;s default level (debug) and line pattern, and flushes all loggers ...">Log::Module()</a> calls <span class="tt">spdlog::set_level(debug)</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L53" class="src-link">src/Log/Module.cpp:53</a>), which spdlog applies to every registered logger. Trace-level messages are dropped even for a logger declared with <span class="tt">trace</span>.</li>
+<li><b>Loggers are created during static initialization.</b> <a class="el" href="#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> reads the default pattern and log folder from <span class="tt">static std::string</span> variables in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L27-L30" class="src-link">src/Log/Module.cpp:27</a>. C++ does not define the order in which statics in different source files are initialized, so a logger declared in another file may be constructed before those strings are set. </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Log_3A_3ASLogger" id="r_Log_3A_3ASLogger"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_log_1_1_s_logger.html">Log::SLogger</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A named logger that registers itself with spdlog when it is constructed.  <a href="struct_log_1_1_s_logger.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Log_3A_3ASLoggerConfiguration" id="r_Log_3A_3ASLoggerConfiguration"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_log_1_1_s_logger_configuration.html">Log::SLoggerConfiguration</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Settings for a <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a>: its name, minimum level, log file and outputs.  <a href="struct_log_1_1_s_logger_configuration.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gac99e4e609df089a34d2fa7adf696343f" id="r_gac99e4e609df089a34d2fa7adf696343f"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Namespace,  InLogLevel)</td></tr>
+<tr class="memdesc:gac99e4e609df089a34d2fa7adf696343f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Same as <a class="el" href="#ga57bbe107f43fc70a8c0087bd5619a4ac" title="Declares a logger with chosen outputs and log file, plus the Log::&lt;Namespace&gt;::Error/Warning/Info/Deb...">DECLARE_LOGGER_WITH_PARAMS</a> with <span class="tt">LOG_ALL</span> outputs and the shared <span class="tt">JanusEngine</span> log file.  <br /></td></tr>
+<tr class="memitem:ga57bbe107f43fc70a8c0087bd5619a4ac" id="r_ga57bbe107f43fc70a8c0087bd5619a4ac"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#ga57bbe107f43fc70a8c0087bd5619a4ac">DECLARE_LOGGER_WITH_PARAMS</a>(Namespace,  InLogLevel,  InLogOutputs,  InLogFile)</td></tr>
+<tr class="memdesc:ga57bbe107f43fc70a8c0087bd5619a4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares a logger with chosen outputs and log file, plus the <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Namespace&gt;::Error/Warning/Info/Debug/Verbose</span> functions that log through it.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga9a7e2125af8d9667acef4e58e1277774" id="r_ga9a7e2125af8d9667acef4e58e1277774"><td class="memItemLeft">enum class &#160;</td><td class="memItemRight"><a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">Log::ELogOutputOptions</a> : uint8_t { <a class="el" href="#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">Log::ELogOutputOptions::LOG_FILE</a> = 1 &lt;&lt; 0
+, <a class="el" href="#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">Log::ELogOutputOptions::LOG_CONSOLE</a> = 1 &lt;&lt; 1
+, <a class="el" href="#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">Log::ELogOutputOptions::LOG_ALL</a> = LOG_FILE | LOG_CONSOLE
+, <a class="el" href="#gga9a7e2125af8d9667acef4e58e1277774a89f092c65d10b4bab739610dc9acfefe">Log::ELogOutputOptions::LOG_NONE</a> = 0
+ }</td></tr>
+<tr class="memdesc:ga9a7e2125af8d9667acef4e58e1277774"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where a logger writes.  <a href="#ga9a7e2125af8d9667acef4e58e1277774">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga734988495e6f6d27d4e48c73a5838050" id="r_ga734988495e6f6d27d4e48c73a5838050"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga734988495e6f6d27d4e48c73a5838050">Log::HasAnyOptions</a> (const <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">ELogOutputOptions</a> &amp;LogOptions, const <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">ELogOutputOptions</a> &amp;HasAny)</td></tr>
+<tr class="memdesc:ga734988495e6f6d27d4e48c73a5838050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if <span class="tt">LogOptions</span> contains at least one of the flags in <span class="tt">HasAny</span>.  <br /></td></tr>
+<tr class="memitem:ga6e5199d4346a2b55762b647155b4fba7" id="r_ga6e5199d4346a2b55762b647155b4fba7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a> ()</td></tr>
+<tr class="memdesc:ga6e5199d4346a2b55762b647155b4fba7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> module: sets spdlog's default level (<span class="tt">debug</span>) and line pattern, and flushes all loggers every 3 seconds.  <br /></td></tr>
+<tr class="memitem:ga928d2b3a4c91332fa154b8cff8ee5938" id="r_ga928d2b3a4c91332fa154b8cff8ee5938"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga928d2b3a4c91332fa154b8cff8ee5938">Log::TeardownModule</a> ()</td></tr>
+<tr class="memdesc:ga928d2b3a4c91332fa154b8cff8ee5938"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts the <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> module down: flushes, copies each log file to a timestamped name, then drops every logger.  <br /></td></tr>
+<tr class="memitem:gafb04394b40af57b572c2f2a0eb3aa47b" id="r_gafb04394b40af57b572c2f2a0eb3aa47b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gafb04394b40af57b572c2f2a0eb3aa47b">Log::Flush</a> ()</td></tr>
+<tr class="memdesc:gafb04394b40af57b572c2f2a0eb3aa47b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flush all loggers, forcing them to dump their logs to whatever sinks they have (Generally File sinks).  <br /></td></tr>
+<tr class="memitem:gafe258f10926be3404488ecc7ca4dd6b6" id="r_gafe258f10926be3404488ecc7ca4dd6b6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gafe258f10926be3404488ecc7ca4dd6b6">Log::RegisterLogger</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> *Logger)</td></tr>
+<tr class="memdesc:gafe258f10926be3404488ecc7ca4dd6b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates and registers the spdlog logger for a <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a>.  <br /></td></tr>
+<tr class="memitem:ga8fb18c7737cd0a756c51218239da4f8e" id="r_ga8fb18c7737cd0a756c51218239da4f8e"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:ga8fb18c7737cd0a756c51218239da4f8e template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</td></tr>
+<tr class="memdesc:ga8fb18c7737cd0a756c51218239da4f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an error through <span class="tt">Logger</span>, formatting <span class="tt">Args</span> into <span class="tt">LogMessage</span> like <span class="tt">std::format</span>.  <br /></td></tr>
+<tr class="memitem:ga1ca32f0cae040a84d8d7d6edb80397da" id="r_ga1ca32f0cae040a84d8d7d6edb80397da"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga1ca32f0cae040a84d8d7d6edb80397da">Log::Generic::Error</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga1ca32f0cae040a84d8d7d6edb80397da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an error through <span class="tt">Logger</span>.  <br /></td></tr>
+<tr class="memitem:ga7bc579365bede83a8fd127a19e64e686" id="r_ga7bc579365bede83a8fd127a19e64e686"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga7bc579365bede83a8fd127a19e64e686">Log::Generic::Error</a> (const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga7bc579365bede83a8fd127a19e64e686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an error through the built-in <span class="tt">LogGeneric</span> logger.  <br /></td></tr>
+<tr class="memitem:ga2cef5edae08581db6f8244f9a5e2625d" id="r_ga2cef5edae08581db6f8244f9a5e2625d"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:ga2cef5edae08581db6f8244f9a5e2625d template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</td></tr>
+<tr class="memdesc:ga2cef5edae08581db6f8244f9a5e2625d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a warning through <span class="tt">Logger</span>, formatting <span class="tt">Args</span> into <span class="tt">LogMessage</span>.  <br /></td></tr>
+<tr class="memitem:ga2c3bd136f5ab7ed8b09e2b62250fd123" id="r_ga2c3bd136f5ab7ed8b09e2b62250fd123"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga2c3bd136f5ab7ed8b09e2b62250fd123">Log::Generic::Warning</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga2c3bd136f5ab7ed8b09e2b62250fd123"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a warning through <span class="tt">Logger</span>.  <br /></td></tr>
+<tr class="memitem:gad31514e3cb0e292084fcf46725314941" id="r_gad31514e3cb0e292084fcf46725314941"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gad31514e3cb0e292084fcf46725314941">Log::Generic::Warning</a> (const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:gad31514e3cb0e292084fcf46725314941"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a warning through the built-in <span class="tt">LogGeneric</span> logger.  <br /></td></tr>
+<tr class="memitem:ga92120bdeaa9bca10136598f29b04a86c" id="r_ga92120bdeaa9bca10136598f29b04a86c"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:ga92120bdeaa9bca10136598f29b04a86c template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</td></tr>
+<tr class="memdesc:ga92120bdeaa9bca10136598f29b04a86c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an info message through <span class="tt">Logger</span>, formatting <span class="tt">Args</span> into <span class="tt">LogMessage</span>.  <br /></td></tr>
+<tr class="memitem:ga252e7ff4c515421a092f5d122dc685c8" id="r_ga252e7ff4c515421a092f5d122dc685c8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga252e7ff4c515421a092f5d122dc685c8">Log::Generic::Info</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga252e7ff4c515421a092f5d122dc685c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an info message through <span class="tt">Logger</span>.  <br /></td></tr>
+<tr class="memitem:ga32008649022edfd43dd6e1891b2359b7" id="r_ga32008649022edfd43dd6e1891b2359b7"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga32008649022edfd43dd6e1891b2359b7">Log::Generic::Info</a> (const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga32008649022edfd43dd6e1891b2359b7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs an info message through the built-in <span class="tt">LogGeneric</span> logger.  <br /></td></tr>
+<tr class="memitem:ga8fb609eb8974957365a6a0cecca00d41" id="r_ga8fb609eb8974957365a6a0cecca00d41"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:ga8fb609eb8974957365a6a0cecca00d41 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga8fb609eb8974957365a6a0cecca00d41">Log::Generic::Debug</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</td></tr>
+<tr class="memdesc:ga8fb609eb8974957365a6a0cecca00d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a debug message through <span class="tt">Logger</span>, formatting <span class="tt">Args</span> into <span class="tt">LogMessage</span>.  <br /></td></tr>
+<tr class="memitem:gaf4cac3d6e1175914cc0b65561f15d581" id="r_gaf4cac3d6e1175914cc0b65561f15d581"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaf4cac3d6e1175914cc0b65561f15d581">Log::Generic::Debug</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:gaf4cac3d6e1175914cc0b65561f15d581"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a debug message through <span class="tt">Logger</span>.  <br /></td></tr>
+<tr class="memitem:gabed876d8159ee4ebacc65ced8c93649b" id="r_gabed876d8159ee4ebacc65ced8c93649b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gabed876d8159ee4ebacc65ced8c93649b">Log::Generic::Debug</a> (const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:gabed876d8159ee4ebacc65ced8c93649b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a debug message through the built-in <span class="tt">LogGeneric</span> logger.  <br /></td></tr>
+<tr class="memitem:gad90e4b88cce62a4da8b9ae480c7b8acb" id="r_gad90e4b88cce62a4da8b9ae480c7b8acb"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:gad90e4b88cce62a4da8b9ae480c7b8acb template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Log::Generic::Verbose</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</td></tr>
+<tr class="memdesc:gad90e4b88cce62a4da8b9ae480c7b8acb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a trace-level message through <span class="tt">Logger</span>, formatting <span class="tt">Args</span> into <span class="tt">LogMessage</span>.  <br /></td></tr>
+<tr class="memitem:gad064606aab87e3fb49b794199d858fef" id="r_gad064606aab87e3fb49b794199d858fef"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gad064606aab87e3fb49b794199d858fef">Log::Generic::Verbose</a> (const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;Logger, const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:gad064606aab87e3fb49b794199d858fef"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a trace-level message through <span class="tt">Logger</span>.  <br /></td></tr>
+<tr class="memitem:ga2429aee7095d1dd2f24719e1fc29011b" id="r_ga2429aee7095d1dd2f24719e1fc29011b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga2429aee7095d1dd2f24719e1fc29011b">Log::Generic::Verbose</a> (const std::string &amp;LogMessage)</td></tr>
+<tr class="memdesc:ga2429aee7095d1dd2f24719e1fc29011b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Logs a trace-level message through the built-in <span class="tt">LogGeneric</span> logger.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="gac99e4e609df089a34d2fa7adf696343f" name="gac99e4e609df089a34d2fa7adf696343f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac99e4e609df089a34d2fa7adf696343f">&#9670;&#160;</a></span>DECLARE_LOGGER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECLARE_LOGGER</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>Namespace</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InLogLevel</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_define" href="#ga57bbe107f43fc70a8c0087bd5619a4ac">DECLARE_LOGGER_WITH_PARAMS</a>(Namespace, InLogLevel, <a class="code hl_enumvalue" href="#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">Log::ELogOutputOptions::LOG_ALL</a>, <span class="stringliteral">&quot;JanusEngine&quot;</span>)</div>
+<div class="ttc" id="agroup__logging_html_ga57bbe107f43fc70a8c0087bd5619a4ac"><div class="ttname"><a href="#ga57bbe107f43fc70a8c0087bd5619a4ac">DECLARE_LOGGER_WITH_PARAMS</a></div><div class="ttdeci">#define DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile)</div><div class="ttdoc">Declares a logger with chosen outputs and log file, plus the Log::&lt;Namespace&gt;::Error/Warning/Info/Deb...</div><div class="ttdef"><b>Definition</b> Module.hpp:9</div></div>
+<div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656"><div class="ttname"><a href="#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">Log::ELogOutputOptions::LOG_ALL</a></div><div class="ttdeci">@ LOG_ALL</div><div class="ttdoc">Write to both.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:28</div></div>
+</div><!-- fragment --><p>Defines and configures a logger for the module This should preferably only be used in source files to prevent other modules from gaining access to private loggers Usage: <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER(Engine, debug)</a>.</p>
+<p>Use it once per module, in a source file.</p>
+<p> <details class="jd-example jd-engine" open><summary><span class="jd-label">Engine example</span><span class="jd-title">The engine core's logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp#L25-L25" target="_blank">src/Module.cpp:25</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_engine.html">Engine</a>, debug)</div>
+<div class="ttc" id="anamespace_engine_html"><div class="ttname"><a href="namespace_engine.html">Engine</a></div><div class="ttdef"><b>Definition</b> Module.hpp:14</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Using a declared logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp#L79-L79" target="_blank">src/Rendering/Vulkan_Renderer.cpp:79</a></summary> </p><div class="fragment"><div class="line">Log::VulkanRenderer::Error(<span class="stringliteral">&quot;Could not determine shader type for shader [{}]&quot;</span>, InAssetData-&gt;AssetPath.string());</div>
+</div><!-- fragment --><p>  </details></p>
+<p>LogLevels:</p><ul>
+<li>err</li>
+<li>warn</li>
+<li>info</li>
+<li>debug</li>
+<li>trace </li>
+</ul>
+
+</div>
+</div>
+<a id="ga57bbe107f43fc70a8c0087bd5619a4ac" name="ga57bbe107f43fc70a8c0087bd5619a4ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga57bbe107f43fc70a8c0087bd5619a4ac">&#9670;&#160;</a></span>DECLARE_LOGGER_WITH_PARAMS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DECLARE_LOGGER_WITH_PARAMS</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>Namespace</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InLogLevel</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InLogOutputs</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>InLogFile</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span>Log::Namespace { \</div>
+<div class="line">    <span class="keyword">static</span> SLogger Logger = SLogger({ \</div>
+<div class="line">        .LoggerNamespace = (<span class="stringliteral">&quot;Log&quot;</span>#Namespace), \</div>
+<div class="line">        .LogLevel = LogLevel::InLogLevel, \</div>
+<div class="line">        .LogFile = InLogFile, \</div>
+<div class="line">        .LogOptions = InLogOutputs}); \</div>
+<div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... TArgs&gt; <span class="keywordtype">void</span> Error(<span class="keyword">const</span> std::string&amp; LogMsg, <span class="keyword">const</span> TArgs&amp;... Args) { <a class="code hl_function" href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a>(Logger, LogMsg, Args...); } \</div>
+<div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... TArgs&gt; <span class="keywordtype">void</span> <a class="code hl_function" href="#ga2cef5edae08581db6f8244f9a5e2625d">Warning</a>(<span class="keyword">const</span> std::string&amp; LogMsg, <span class="keyword">const</span> TArgs&amp;... Args) { <a class="code hl_function" href="#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a>(Logger, LogMsg, Args...); } \</div>
+<div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... TArgs&gt; <span class="keywordtype">void</span> <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Info</a>(<span class="keyword">const</span> std::string&amp; LogMsg, <span class="keyword">const</span> TArgs&amp;... Args) { <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(Logger, LogMsg, Args...); } \</div>
+<div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... TArgs&gt; <span class="keywordtype">void</span> <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Debug</a>(<span class="keyword">const</span> std::string&amp; LogMsg, <span class="keyword">const</span> TArgs&amp;... Args) { <a class="code hl_function" href="#ga8fb609eb8974957365a6a0cecca00d41">Log::Generic::Debug</a>(Logger, LogMsg, Args...); } \</div>
+<div class="line">    <span class="keyword">template</span>&lt;<span class="keyword">typename</span>... TArgs&gt; <span class="keywordtype">void</span> <a class="code hl_function" href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Verbose</a>(<span class="keyword">const</span> std::string&amp; LogMsg, <span class="keyword">const</span> TArgs&amp;... Args) { <a class="code hl_function" href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Log::Generic::Verbose</a>(Logger, LogMsg, Args...); } \</div>
+<div class="line">    \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="#ga8fb18c7737cd0a756c51218239da4f8e">Error</a>(<span class="keyword">const</span> std::string&amp; LogMsg) { <a class="code hl_function" href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a>(Logger, LogMsg); } \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="#ga2cef5edae08581db6f8244f9a5e2625d">Warning</a>(<span class="keyword">const</span> std::string&amp; LogMsg) { <a class="code hl_function" href="#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a>(Logger, LogMsg); } \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Info</a>(<span class="keyword">const</span> std::string&amp; LogMsg) { <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(Logger, LogMsg); } \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Debug</a>(<span class="keyword">const</span> std::string&amp; LogMsg) { <a class="code hl_function" href="#ga8fb609eb8974957365a6a0cecca00d41">Log::Generic::Debug</a>(Logger, LogMsg); } \</div>
+<div class="line">    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Verbose</a>(<span class="keyword">const</span> std::string&amp; LogMsg) { <a class="code hl_function" href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Log::Generic::Verbose</a>(Logger, LogMsg); } \</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__logging_html_ga2cef5edae08581db6f8244f9a5e2625d"><div class="ttname"><a href="#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a></div><div class="ttdeci">void Warning(const SLogger &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</div><div class="ttdoc">Logs a warning through Logger, formatting Args into LogMessage.</div><div class="ttdef"><b>Definition</b> Log.hpp:24</div></div>
+<div class="ttc" id="agroup__logging_html_ga8fb609eb8974957365a6a0cecca00d41"><div class="ttname"><a href="#ga8fb609eb8974957365a6a0cecca00d41">Log::Generic::Debug</a></div><div class="ttdeci">void Debug(const SLogger &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</div><div class="ttdoc">Logs a debug message through Logger, formatting Args into LogMessage.</div><div class="ttdef"><b>Definition</b> Log.hpp:38</div></div>
+<div class="ttc" id="agroup__logging_html_ga92120bdeaa9bca10136598f29b04a86c"><div class="ttname"><a href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a></div><div class="ttdeci">void Info(const SLogger &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</div><div class="ttdoc">Logs an info message through Logger, formatting Args into LogMessage.</div><div class="ttdef"><b>Definition</b> Log.hpp:31</div></div>
+<div class="ttc" id="agroup__logging_html_gad90e4b88cce62a4da8b9ae480c7b8acb"><div class="ttname"><a href="#gad90e4b88cce62a4da8b9ae480c7b8acb">Log::Generic::Verbose</a></div><div class="ttdeci">void Verbose(const SLogger &amp;Logger, const std::string &amp;LogMessage, const TArgs &amp;... Args)</div><div class="ttdoc">Logs a trace-level message through Logger, formatting Args into LogMessage.</div><div class="ttdef"><b>Definition</b> Log.hpp:45</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a></div><div class="ttdeci">@ Debug</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:20</div></div>
+</div><!-- fragment --><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">Namespace</td><td>Name of the logger and of the namespace its functions go in. The logger is called <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>&lt;Namespace&gt;</span>. </td></tr>
+    <tr><td class="paramname">InLogLevel</td><td>Minimum level: <span class="tt">err</span>, <span class="tt">warn</span>, <span class="tt">info</span>, <span class="tt">debug</span> or <span class="tt">trace</span>, written without a prefix. </td></tr>
+    <tr><td class="paramname">InLogOutputs</td><td>A <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774" title="Where a logger writes.">Log::ELogOutputOptions</a> value. </td></tr>
+    <tr><td class="paramname">InLogFile</td><td><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> file name, without folder or extension.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/Module.hpp\#L9-L27" class="src-link">include/Log/Module.hpp:9</a>. The engine itself only uses it through <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>.</p>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">A logger that only writes to its own file</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// File only, info and above, written to &lt;exe dir&gt;/Logs/Network.log.</span></div>
+<div class="line"><a class="code hl_define" href="#ga57bbe107f43fc70a8c0087bd5619a4ac">DECLARE_LOGGER_WITH_PARAMS</a>(Network, info, <a class="code hl_enumvalue" href="#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">Log::ELogOutputOptions::LOG_FILE</a>, <span class="stringliteral">&quot;Network&quot;</span>)</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    Log::Network::Info(<span class="stringliteral">&quot;Connected to {}:{}&quot;</span>, <span class="stringliteral">&quot;127.0.0.1&quot;</span>, 7777);   <span class="comment">// file only</span></div>
+<div class="line">    Log::Network::Debug(<span class="stringliteral">&quot;Not written: below this logger&#39;s info level&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(<span class="stringliteral">&quot;The generic logger needs no declaration&quot;</span>);</div>
+<div class="line">    <a class="code hl_function" href="#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic::Warning</a>(AudioLogger, <span class="stringliteral">&quot;Sound {} is missing&quot;</span>, <span class="stringliteral">&quot;jump.wav&quot;</span>);</div>
+<div class="line">    <a class="code hl_function" href="#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic::Info</a>(AudioLogger, <span class="stringliteral">&quot;Not shown: below this logger&#39;s warn level&quot;</span>);</div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga9a7e2125af8d9667acef4e58e1277774" name="ga9a7e2125af8d9667acef4e58e1277774"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9a7e2125af8d9667acef4e58e1277774">&#9670;&#160;</a></span>ELogOutputOptions</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">Log::ELogOutputOptions</a> : uint8_t</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel strong">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>A bit flag: combine values with <span class="tt">|</span>, test them with <a class="el" href="#ga734988495e6f6d27d4e48c73a5838050" title="Returns true if LogOptions contains at least one of the flags in HasAny.">Log::HasAnyOptions()</a>.</p>
+<p>Declared in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/LogTypes.hpp\#L24-L30" class="src-link">include/Log/LogTypes.hpp:24</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6" name="gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6"></a>LOG_FILE&#160;</td><td class="fielddoc"><p>Write to <span class="tt">&lt;exe dir&gt;/Logs/&lt;LogFile&gt;.log</span>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5" name="gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5"></a>LOG_CONSOLE&#160;</td><td class="fielddoc"><p>Write to the console, with colored levels. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656" name="gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656"></a>LOG_ALL&#160;</td><td class="fielddoc"><p>Write to both. </p>
+<p>Used by <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga9a7e2125af8d9667acef4e58e1277774a89f092c65d10b4bab739610dc9acfefe" name="gga9a7e2125af8d9667acef4e58e1277774a89f092c65d10b4bab739610dc9acfefe"></a>LOG_NONE&#160;</td><td class="fielddoc"><p>Write nothing. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga734988495e6f6d27d4e48c73a5838050" name="ga734988495e6f6d27d4e48c73a5838050"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga734988495e6f6d27d4e48c73a5838050">&#9670;&#160;</a></span>HasAnyOptions()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Log::HasAnyOptions </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">ELogOutputOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>LogOptions</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="#ga9a7e2125af8d9667acef4e58e1277774">ELogOutputOptions</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>HasAny</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Checking for file output</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp#L87-L89" target="_blank">src/Log/Module.cpp:87</a></summary> </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (<a class="code hl_function" href="#ga734988495e6f6d27d4e48c73a5838050">HasAnyOptions</a>(config.LogOptions, <a class="code hl_enumvalue" href="#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">ELogOutputOptions::LOG_FILE</a>)) {</div>
+<div class="line">    logger.sinks().push_back(_Internal::GetSinkForFile(config));</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__logging_html_ga734988495e6f6d27d4e48c73a5838050"><div class="ttname"><a href="#ga734988495e6f6d27d4e48c73a5838050">Log::HasAnyOptions</a></div><div class="ttdeci">bool HasAnyOptions(const ELogOutputOptions &amp;LogOptions, const ELogOutputOptions &amp;HasAny)</div><div class="ttdoc">Returns true if LogOptions contains at least one of the flags in HasAny.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:32</div></div>
+<div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6"><div class="ttname"><a href="#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">Log::ELogOutputOptions::LOG_FILE</a></div><div class="ttdeci">@ LOG_FILE</div><div class="ttdoc">Write to &lt;exe dir&gt;/Logs/&lt;LogFile&gt;.log.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:25</div></div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="ga6e5199d4346a2b55762b647155b4fba7" name="ga6e5199d4346a2b55762b647155b4fba7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6e5199d4346a2b55762b647155b4fba7">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called first by <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L83" class="src-link">Engine::InitializePlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L52-L56" class="src-link">src/Log/Module.cpp:52</a>. </p>
+
+</div>
+</div>
+<a id="ga928d2b3a4c91332fa154b8cff8ee5938" name="ga928d2b3a4c91332fa154b8cff8ee5938"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga928d2b3a4c91332fa154b8cff8ee5938">&#9670;&#160;</a></span>TeardownModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::TeardownModule </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called last by <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L103" class="src-link">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L58-L70" class="src-link">src/Log/Module.cpp:58</a>. Nothing can be logged after this. </p>
+
+</div>
+</div>
+<a id="gafb04394b40af57b572c2f2a0eb3aa47b" name="gafb04394b40af57b572c2f2a0eb3aa47b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafb04394b40af57b572c2f2a0eb3aa47b">&#9670;&#160;</a></span>Flush()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Flush </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L72-L76" class="src-link">src/Log/Module.cpp:72</a>.</p>
+<p><a class="el" href="#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a> calls it before copying the log files. </p>
+
+</div>
+</div>
+<a id="gafe258f10926be3404488ecc7ca4dd6b6" name="gafe258f10926be3404488ecc7ca4dd6b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafe258f10926be3404488ecc7ca4dd6b6">&#9670;&#160;</a></span>RegisterLogger()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::RegisterLogger </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> *</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by the <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a> constructor; you don't need to call it yourself.</p>
+<p>If a logger with the same name is already registered, it is reused and nothing new is created. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L78-L97" class="src-link">src/Log/Module.cpp:78</a>. </p>
+
+</div>
+</div>
+<a id="ga8fb18c7737cd0a756c51218239da4f8e" name="ga8fb18c7737cd0a756c51218239da4f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fb18c7737cd0a756c51218239da4f8e">&#9670;&#160;</a></span>Error() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Error </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArgs &amp;...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga1ca32f0cae040a84d8d7d6edb80397da" name="ga1ca32f0cae040a84d8d7d6edb80397da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1ca32f0cae040a84d8d7d6edb80397da">&#9670;&#160;</a></span>Error() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Error </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga7bc579365bede83a8fd127a19e64e686" name="ga7bc579365bede83a8fd127a19e64e686"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7bc579365bede83a8fd127a19e64e686">&#9670;&#160;</a></span>Error() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Error </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Logging from a header</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp#L25-L25" target="_blank">include/Filesystem/Importers/Importer.hpp:25</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_function" href="#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic::Error</a>(std::format(<span class="stringliteral">&quot;Could not find asset at path {}!&quot;</span>, Path));</div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="ga2cef5edae08581db6f8244f9a5e2625d" name="ga2cef5edae08581db6f8244f9a5e2625d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2cef5edae08581db6f8244f9a5e2625d">&#9670;&#160;</a></span>Warning() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Warning </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArgs &amp;...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga2c3bd136f5ab7ed8b09e2b62250fd123" name="ga2c3bd136f5ab7ed8b09e2b62250fd123"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2c3bd136f5ab7ed8b09e2b62250fd123">&#9670;&#160;</a></span>Warning() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Warning </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gad31514e3cb0e292084fcf46725314941" name="gad31514e3cb0e292084fcf46725314941"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad31514e3cb0e292084fcf46725314941">&#9670;&#160;</a></span>Warning() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Warning </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga92120bdeaa9bca10136598f29b04a86c" name="ga92120bdeaa9bca10136598f29b04a86c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga92120bdeaa9bca10136598f29b04a86c">&#9670;&#160;</a></span>Info() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Info </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArgs &amp;...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is what <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Name&gt;::Info(...)</span> calls for a logger declared with <a class="el" href="#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a>. </p>
+
+</div>
+</div>
+<a id="ga252e7ff4c515421a092f5d122dc685c8" name="ga252e7ff4c515421a092f5d122dc685c8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga252e7ff4c515421a092f5d122dc685c8">&#9670;&#160;</a></span>Info() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Info </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga32008649022edfd43dd6e1891b2359b7" name="ga32008649022edfd43dd6e1891b2359b7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga32008649022edfd43dd6e1891b2359b7">&#9670;&#160;</a></span>Info() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Info </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga8fb609eb8974957365a6a0cecca00d41" name="ga8fb609eb8974957365a6a0cecca00d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8fb609eb8974957365a6a0cecca00d41">&#9670;&#160;</a></span>Debug() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Debug </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArgs &amp;...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaf4cac3d6e1175914cc0b65561f15d581" name="gaf4cac3d6e1175914cc0b65561f15d581"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4cac3d6e1175914cc0b65561f15d581">&#9670;&#160;</a></span>Debug() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Debug </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gabed876d8159ee4ebacc65ced8c93649b" name="gabed876d8159ee4ebacc65ced8c93649b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabed876d8159ee4ebacc65ced8c93649b">&#9670;&#160;</a></span>Debug() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Debug </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gad90e4b88cce62a4da8b9ae480c7b8acb" name="gad90e4b88cce62a4da8b9ae480c7b8acb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad90e4b88cce62a4da8b9ae480c7b8acb">&#9670;&#160;</a></span>Verbose() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Verbose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const TArgs &amp;...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gad064606aab87e3fb49b794199d858fef" name="gad064606aab87e3fb49b794199d858fef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad064606aab87e3fb49b794199d858fef">&#9670;&#160;</a></span>Verbose() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Verbose </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_log_1_1_s_logger.html">SLogger</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Logger</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ga2429aee7095d1dd2f24719e1fc29011b" name="ga2429aee7095d1dd2f24719e1fc29011b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2429aee7095d1dd2f24719e1fc29011b">&#9670;&#160;</a></span>Verbose() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Log::Generic::Verbose </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LogMessage</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

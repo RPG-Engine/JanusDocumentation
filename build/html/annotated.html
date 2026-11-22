@@ -1,0 +1,191 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Class List | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">Class List</div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock">Here are the classes, structs, unions and interfaces with brief descriptions:</div><div class="directory">
+<table class="directory">
+<tr id="row_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_components.html" target="_self">Components</a></td><td class="desc">GLM Includes </td></tr>
+<tr id="row_0_0_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_components_1_1_e_c_s_debug_factory.html" target="_self">ECSDebugFactory</a></td><td class="desc">Base of the Entity Debugger panel classes the component macros generate </td></tr>
+<tr id="row_0_1_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_bounding_box_component.html" target="_self">FBoundingBoxComponent</a></td><td class="desc">Component representing a generic bounding box for the entity </td></tr>
+<tr id="row_0_2_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_camera_component.html" target="_self">FCameraComponent</a></td><td class="desc">Makes its entity the camera </td></tr>
+<tr id="row_0_3_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_collider_component.html" target="_self">FColliderComponent</a></td><td class="desc">One collision rectangle, <span class="tt">glm::vec4 ColliderShape</span>, relative to the entity's position </td></tr>
+<tr id="row_0_4_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_light_component.html" target="_self">FLightComponent</a></td><td class="desc">A 2D light at the entity's position plus <span class="tt">PositionOffset</span> </td></tr>
+<tr id="row_0_5_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_mouse_state.html" target="_self">FMouseState</a></td><td class="desc">The mouse position in world units (<span class="tt">MousePosition</span>) and the last entity under the cursor (<span class="tt">HoveredEntityId</span>, 0 if none yet) </td></tr>
+<tr id="row_0_6_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_rendering_component.html" target="_self">FRenderingComponent</a></td><td class="desc">Which layer a sprite is drawn on: <span class="tt"><a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a> RenderLayer</span> (default <span class="tt">Entities</span>) </td></tr>
+<tr id="row_0_7_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_texture2_d_component.html" target="_self">FTexture2DComponent</a></td><td class="desc">What a sprite draws: <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> Sprite</span> (texture path and cell), <span class="tt">glm::vec2 TextureSize</span> (32 × 32), <span class="tt">SDL_FColor Color</span> (white), <span class="tt">glm::vec4 BoundingBox</span> (unused when drawing) </td></tr>
+<tr id="row_0_8_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_f_transform_component.html" target="_self">FTransformComponent</a></td><td class="desc">Where an entity is: <span class="tt">glm::vec3 Location</span>, <span class="tt">glm::vec3 Rotation</span>, <span class="tt">glm::vec3 Scale</span> </td></tr>
+<tr id="row_0_9_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_glm_module.html" target="_self">GlmModule</a></td><td class="desc">Flecs module that registers reflection data for <span class="tt">glm::vec2</span>, <span class="tt">glm::vec3</span> and <span class="tt">glm::vec4</span> </td></tr>
+<tr id="row_0_10_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_graphics_module.html" target="_self">GraphicsModule</a></td><td class="desc">Flecs module that registers <span class="tt">SDL_FColor</span>, <a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a> and <a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a> </td></tr>
+<tr id="row_0_11_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_components_1_1_transform_module.html" target="_self">TransformModule</a></td><td class="desc">Flecs module that registers <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_bounding_box_component.html" title="Component representing a generic bounding box for the entity.">Components::FBoundingBoxComponent</a> </td></tr>
+<tr id="row_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_core_editor.html" target="_self">CoreEditor</a></td><td class="desc">Put all your includes here that you want to be accessible through a single header include </td></tr>
+<tr id="row_1_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_core_editor_1_1_debug_stats_editor.html" target="_self">DebugStatsEditor</a></td><td class="desc">The <em>FPS Counter</em> window </td></tr>
+<tr id="row_1_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_core_editor_1_1_entity_editor_tool.html" target="_self">EntityEditorTool</a></td><td class="desc">The <em>Entity Debugger</em> window: create, browse, inspect and edit entities and their components </td></tr>
+<tr id="row_1_2_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html" target="_self">SpriteSheetEditor</a></td><td class="desc">The <em>Sprite Sheet</em> window: a zoomable view of a texture with a grid </td></tr>
+<tr id="row_2_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_filesystem.html" target="_self">Filesystem</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_filesystem_1_1_importers.html" target="_self">Importers</a></td><td class="desc"><a class="el" href="namespace_graphics.html">Graphics</a> importers </td></tr>
+<tr id="row_2_0_0_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_filesystem_1_1_importers_1_1_exceptions.html" target="_self">Exceptions</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_0_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_not_found_exception.html" target="_self">AssetNotFoundException</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_0_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_could_not_load_exception.html" target="_self">AssetCouldNotLoadException</a></td><td class="desc"></td></tr>
+<tr id="row_2_0_0_2_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_no_importer_found_exception.html" target="_self">AssetNoImporterFoundException</a></td><td class="desc"></td></tr>
+<tr id="row_2_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_filesystem_1_1_s_asset_data.html" target="_self">SAssetData</a></td><td class="desc">Everything the registry knows about one file: where it is, its asset path, name, extension, type and, once loaded, the loaded object </td></tr>
+<tr id="row_2_2_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_filesystem_1_1_s_config.html" target="_self">SConfig</a></td><td class="desc">Base for JSON settings files in <span class="tt">Resources/Config</span> </td></tr>
+<tr id="row_2_3_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_filesystem_1_1_s_filesystem_config.html" target="_self">SFilesystemConfig</a></td><td class="desc">The asset-type table read from <span class="tt">Resources/Config/filesystem.json</span> </td></tr>
+<tr id="row_2_4_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" target="_self">SSoftAssetPath</a></td><td class="desc">A reference to an asset by its path </td></tr>
+<tr id="row_2_5_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html" target="_self">STypedSoftAssetPath</a></td><td class="desc">An <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> that also states which asset type it points to </td></tr>
+<tr id="row_3_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_graphics.html" target="_self">Graphics</a></td><td class="desc"></td></tr>
+<tr id="row_3_0_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_texture2_d.html" target="_self">STexture2D</a></td><td class="desc">ASSETS </td></tr>
+<tr id="row_3_1_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_graphics_shader.html" target="_self">SGraphicsShader</a></td><td class="desc">The loading of this type is managed by the <a class="el" href="namespace_renderer.html">Renderer</a> as it requires runtime </td></tr>
+<tr id="row_3_2_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_sprite_sheet.html" target="_self">SSpriteSheet</a></td><td class="desc">END ASSETS </td></tr>
+<tr id="row_3_3_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_sprite.html" target="_self">SSprite</a></td><td class="desc">Which texture a sprite uses (<span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#ad753ba4514113e86f0fd89b789102cf0">SpriteSheet</a></span>, an asset path) and which part of it: <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#a7c83a6f8d51184b90f685926277a748f">UVCoords</a></span> (top-left) and <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#a89e0617ece3ee814f34cf480986fd887">WHCoords</a></span> (size), as fractions of the texture </td></tr>
+<tr id="row_3_4_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_sprite_animation.html" target="_self">SSpriteAnimation</a></td><td class="desc">A list of sprites with a frame rate and a loop flag </td></tr>
+<tr id="row_3_5_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_graphics_1_1_s_tilemap.html" target="_self">STilemap</a></td><td class="desc">A tileset: a texture plus its tile size (<span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a72283f1d343b6abdb118d5262d1653dc">GridX</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a4d6c81a21c7c23768a0b1567de16df1a">GridY</a></span>) and tile count (<span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a5f525ff3af50c9c82314aacebeebbaaa">Columns</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a4ce3e5c87db306a6957f000128b228c5">Rows</a></span>) </td></tr>
+<tr id="row_4_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_im_g_u_i_wrapper.html" target="_self">ImGUIWrapper</a></td><td class="desc"></td></tr>
+<tr id="row_4_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" target="_self">IEditorTool</a></td><td class="desc">Base class of editor tools </td></tr>
+<tr id="row_5_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_im_gui_wrapper.html" target="_self">ImGuiWrapper</a></td><td class="desc"></td></tr>
+<tr id="row_5_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_im_gui_wrapper_1_1_debug_factory_base.html" target="_self">DebugFactoryBase</a></td><td class="desc">Base for debug factories: override <span class="tt">DrawDebug(void* Container)</span> to draw the data <span class="tt">Container</span> points to </td></tr>
+<tr id="row_6_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_input.html" target="_self">Input</a></td><td class="desc"></td></tr>
+<tr id="row_6_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_input_1_1_s_input_binding_base.html" target="_self">SInputBindingBase</a></td><td class="desc">The part of a binding that does not depend on the value type: binding type, keyboard keys and (unused) gamepad buttons </td></tr>
+<tr id="row_6_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_input_1_1_s_input_binding.html" target="_self">SInputBinding</a></td><td class="desc">One binding: the key(s) that trigger it, when (<a class="el" href="group__input.html#gad9b92b4f2accebfd99f0ffb8442a13db" title="When a binding triggers: PRESS, HOLD or RELEASE.">Input::EInputType</a>) and the value it contributes </td></tr>
+<tr id="row_6_2_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_input_1_1_s_action.html" target="_self">SAction</a></td><td class="desc">An input action: a name, its bindings, its callbacks and the operator that combines binding values </td></tr>
+<tr id="row_7_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_log.html" target="_self">Log</a></td><td class="desc">This is a core library type declaration file You should never include other headers from this library in here, as this may lead to a circular dependency </td></tr>
+<tr id="row_7_0_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_log_1_1_s_logger_configuration.html" target="_self">SLoggerConfiguration</a></td><td class="desc">Settings for a <a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">Log::SLogger</a>: its name, minimum level, log file and outputs </td></tr>
+<tr id="row_7_1_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_log_1_1_s_logger.html" target="_self">SLogger</a></td><td class="desc">A named logger that registers itself with spdlog when it is constructed </td></tr>
+<tr id="row_8_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_renderer.html" target="_self">Renderer</a></td><td class="desc"></td></tr>
+<tr id="row_8_0_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_renderer_1_1_render_layer.html" target="_self">RenderLayer</a></td><td class="desc">One render layer: a list of <a class="el" href="struct_renderer_1_1_sprite_instance_container.html" title="A batch of sprites that share one texture, keyed by entity ID.">Renderer::SpriteInstanceContainer</a>, one per texture </td></tr>
+<tr id="row_8_1_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_renderer_1_1_sprite_instance.html" target="_self">SpriteInstance</a></td><td class="desc">One sprite as the GPU sees it: position, size, rotation, flip, texture rectangle and colour </td></tr>
+<tr id="row_8_2_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_renderer_1_1_sprite_instance_container.html" target="_self">SpriteInstanceContainer</a></td><td class="desc">A batch of sprites that share one texture, keyed by entity ID </td></tr>
+<tr id="row_9_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">N</span></span><a class="el" href="namespace_world.html" target="_self">World</a></td><td class="desc"></td></tr>
+<tr id="row_9_0_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_world_1_1_s_tile.html" target="_self">STile</a></td><td class="desc">One tile: where it goes in the world, where it comes from in the tileset, its flip and opacity </td></tr>
+<tr id="row_9_1_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_world_1_1_s_grid_tile.html" target="_self">SGridTile</a></td><td class="desc">One IntGrid cell: its value (<span class="tt"><a class="el" href="struct_world_1_1_s_grid_tile.html#ac2ebf316decebff0a2f889ce896ac4d1">GridType</a></span>) and its rectangle in world units </td></tr>
+<tr id="row_9_2_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_world_1_1_s_level_object.html" target="_self">SLevelObject</a></td><td class="desc">Empty at this commit </td></tr>
+<tr id="row_9_3_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_world_1_1_s_level_layer.html" target="_self">SLevelLayer</a></td><td class="desc">One level layer: its tiles, IntGrid cells, tileset, grid size, offset and opacity </td></tr>
+<tr id="row_9_4_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_world_1_1_s_level.html" target="_self">SLevel</a></td><td class="desc">A loaded level: its layers (back to front), the <span class="tt"><a class="el" href="struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787">PlayerStart</a></span> position and its name </td></tr>
+<tr id="row_10_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_s_asset.html" target="_self">SAsset</a></td><td class="desc">Base type of everything the <a class="el" href="namespace_filesystem.html">Filesystem</a> module can load </td></tr>
+<tr id="row_11_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_s_raw_file_asset.html" target="_self">SRawFileAsset</a></td><td class="desc">A file loaded as bytes </td></tr>
+<tr id="row_12_" class="even"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="struct_s_text_file_asset.html" target="_self">STextFileAsset</a></td><td class="desc">A file loaded as text </td></tr>
+<tr id="row_13_" class="odd"><td class="entry"><span class="spacer">&#160;</span><span class="icona"><span class="icon">C</span></span><a class="el" href="class_t_object_ptr.html" target="_self">TObjectPtr</a></td><td class="desc">A reference-counted owning pointer </td></tr>
+</table>
+</div><!-- directory -->
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

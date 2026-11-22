@@ -1,0 +1,471 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Spawning and destroying | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Spawning and destroying </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>A fountain of sparks: spawn entities on a timer or in bursts, fade them out, and destroy them when their time is up.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" class="src-link">examples/ecs/Spawning.cpp</a></span><span><b>Executable</b> <code>EcsSpawning</code></span><span><b>Controls</b> <kbd>Space</kbd> for a burst of 100, hold <kbd>E</kbd> to spray</span></div><div class="image">
+<img src="ecs-spawning.png" alt=""/>
+<div class="caption">
+Sparks fading out as their lifetime runs down; the HUD counts live sparks</div></div>
+<p><b>Shows:</b> a spawner component, a flecs prefab, a lifetime component that fades and destroys entities, and counting entities with a query.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md77"></a>
+Components</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Spawner, lifetime and velocity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Creates Rate entities per second while Active is above zero.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FSpawner,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Rate, 60.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Active, 0.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Accumulator, 0.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Seconds left to live, and the starting value (used to fade out).</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FLifetime,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Remaining, 1.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Total, 1.f))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Value, glm::vec2(0, 0)))</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
+A prefab for sparks</h2>
+<p>Every spark starts with the same sprite, layer and lifetime, so those live on a prefab. <span class="tt">is_a(prefab)</span> gives each new spark its own copy, which it can then change:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Prefab and spawn function</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
+<div class="line">    <span class="comment">// is_a(prefab) get their own copy of each one, so they can be changed per spark.</span></div>
+<div class="line">    flecs::entity sparkPrefab = world.prefab(<span class="stringliteral">&quot;Spark&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {3.f, 3.f},</div>
+<div class="line">            .Color = {1.f, 0.8f, 0.3f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">        .set&lt;FLifetime&gt;({});</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Creates one spark at Origin, flying in a random direction.</span></div>
+<div class="line">    <span class="keyword">auto</span> spawnSpark = [sparkPrefab](<span class="keyword">const</span> flecs::world&amp; World, glm::vec2 Origin) {</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> angle = RandomRange(0.f, 6.2831853f);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> speed = RandomRange(20.f, 90.f);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> life = RandomRange(0.6f, 1.8f);</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 velocity {std::cos(angle) * speed, std::sin(angle) * speed};</div>
+<div class="line">        World.entity()</div>
+<div class="line">            .is_a(sparkPrefab)</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Origin.x, Origin.y, 0.f} })</div>
+<div class="line">            .set&lt;FVelocity&gt;({ .Value = velocity })</div>
+<div class="line">            .set&lt;FLifetime&gt;({ .Remaining = life, .Total = life });</div>
+<div class="line">    };</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
+Spawning</h2>
+<p>The spawner turns elapsed time into whole sparks, so the rate stays correct at any frame rate:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The spawner system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The spawner system: turns elapsed time into a whole number of new sparks.</span></div>
+<div class="line">    world.system&lt;FSpawner&gt;(<span class="stringliteral">&quot;Spawn&quot;</span>)</div>
+<div class="line">        .each([spawnSpark](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSpawner&amp; spawner) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 origin {ScreenW / 2.f, ScreenH / 2.f};</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Burst)) {</div>
+<div class="line">                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
+<div class="line">                    spawnSpark(it.world(), origin);</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bSpraying = <a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Spray);</div>
+<div class="line">            spawner.Active = bSpraying ? 1.f : 0.f;</div>
+<div class="line">            <span class="keywordflow">if</span> (spawner.Active &lt;= 0.f) {</div>
+<div class="line">                spawner.Accumulator = 0.f;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            spawner.Accumulator += spawner.Rate * it.delta_time();</div>
+<div class="line">            <span class="keywordflow">while</span> (spawner.Accumulator &gt;= 1.f) {</div>
+<div class="line">                spawnSpark(it.world(), origin);</div>
+<div class="line">                spawner.Accumulator -= 1.f;</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
+Lifetime</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Fading out and destroying</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count down, fade out, and destroy when the time is up.</span></div>
+<div class="line">    world.system&lt;FLifetime, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;Lifetime&quot;</span>)</div>
+<div class="line">        .each([](flecs::entity entity, FLifetime&amp; lifetime,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            lifetime.Remaining -= entity.world().delta_time();</div>
+<div class="line">            <span class="keywordflow">if</span> (lifetime.Remaining &lt;= 0.f) {</div>
+<div class="line">                entity.destruct();   <span class="comment">// deferred: applied after the system finishes</span></div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            sprite.Color.a = lifetime.Remaining / lifetime.Total;</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Destroyed sparks disappear from the screen at once because they are on the <span class="tt">Entities</span> layer, which is rebuilt every frame (<a class="el" href="group__rendering.html#rendering_layers" title="Layers and draw order">Layers and draw order</a>).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
+Counting</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Counting live sparks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count live sparks for the HUD. A query matches instances, not the prefab itself.</span></div>
+<div class="line">    flecs::query&lt;const FLifetime&gt; sparks = world.query&lt;<span class="keyword">const</span> FLifetime&gt;();</div>
+<div class="line">    world.system(<span class="stringliteral">&quot;CountSparks&quot;</span>)</div>
+<div class="line">        .kind(flecs::PostUpdate)</div>
+<div class="line">        .run([sparks](flecs::iter&amp; it) {</div>
+<div class="line">            LiveSparks = sparks.count();</div>
+<div class="line">            <span class="keywordflow">while</span> (it.next()) {}</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Spawning.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: spawning and destroying entities.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Controls: Space for a burst of 100 sparks. Hold E to spray sparks continuously.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows:</span></div>
+<div class="line"><span class="comment">//   - a spawner component that creates entities on a timer</span></div>
+<div class="line"><span class="comment">//   - a flecs prefab that holds the components every spark shares</span></div>
+<div class="line"><span class="comment">//   - a lifetime component, and a system that fades entities out and destroys them</span></div>
+<div class="line"><span class="comment">//   - counting live entities with a query, shown in a HUD</span></div>
+<div class="line"><span class="comment">// Uses no files.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Input/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Spawning, debug)</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Burst, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Spray, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// Creates Rate entities per second while Active is above zero.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FSpawner,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Rate, 60.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Active, 0.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Accumulator, 0.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Seconds left to live, and the starting value (used to fade out).</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FLifetime,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Remaining, 1.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Total, 1.f))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Value, glm::vec2(0, 0)))</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">constexpr <span class="keywordtype">float</span> ScreenW = 320.f, ScreenH = 180.f;</div>
+<div class="line">static std::mt19937 Rng { std::random_device{}() };</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">int</span> LiveSparks = 0;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">float</span> RandomRange(<span class="keywordtype">float</span> Min, <span class="keywordtype">float</span> Max) {</div>
+<div class="line">    <span class="keywordflow">return</span> std::uniform_real_distribution&lt;float&gt;(Min, Max)(Rng);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Scene helpers (the same in every example) -------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; World, SDL_FColor Color) {</div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>SparkHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Sparks&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Live sparks: %d&quot;</span>, LiveSparks);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Space: burst    Hold E: spray&quot;</span>);</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FSpawner, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FLifetime, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FVelocity, world);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Burst, {{SDL_SCANCODE_SPACE, <span class="keyword">true</span>}});</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Spray, {{SDL_SCANCODE_E, <span class="keyword">true</span>}});</div>
+<div class="line"> </div>
+<div class="line">    CreateCameraAndBackground(world, {0.06f, 0.05f, 0.09f, 1.f});</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
+<div class="line">    <span class="comment">// is_a(prefab) get their own copy of each one, so they can be changed per spark.</span></div>
+<div class="line">    flecs::entity sparkPrefab = world.prefab(<span class="stringliteral">&quot;Spark&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {3.f, 3.f},</div>
+<div class="line">            .Color = {1.f, 0.8f, 0.3f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">        .set&lt;FLifetime&gt;({});</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Creates one spark at Origin, flying in a random direction.</span></div>
+<div class="line">    <span class="keyword">auto</span> spawnSpark = [sparkPrefab](<span class="keyword">const</span> flecs::world&amp; World, glm::vec2 Origin) {</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> angle = RandomRange(0.f, 6.2831853f);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> speed = RandomRange(20.f, 90.f);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">float</span> life = RandomRange(0.6f, 1.8f);</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 velocity {std::cos(angle) * speed, std::sin(angle) * speed};</div>
+<div class="line">        World.entity()</div>
+<div class="line">            .is_a(sparkPrefab)</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Origin.x, Origin.y, 0.f} })</div>
+<div class="line">            .set&lt;FVelocity&gt;({ .Value = velocity })</div>
+<div class="line">            .set&lt;FLifetime&gt;({ .Remaining = life, .Total = life });</div>
+<div class="line">    };</div>
+<div class="line"> </div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Fountain&quot;</span>).set&lt;FSpawner&gt;({ .Rate = 120.f });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// The spawner system: turns elapsed time into a whole number of new sparks.</span></div>
+<div class="line">    world.system&lt;FSpawner&gt;(<span class="stringliteral">&quot;Spawn&quot;</span>)</div>
+<div class="line">        .each([spawnSpark](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSpawner&amp; spawner) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 origin {ScreenW / 2.f, ScreenH / 2.f};</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Burst)) {</div>
+<div class="line">                <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 100; ++i) {</div>
+<div class="line">                    spawnSpark(it.world(), origin);</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bSpraying = <a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Spray);</div>
+<div class="line">            spawner.Active = bSpraying ? 1.f : 0.f;</div>
+<div class="line">            <span class="keywordflow">if</span> (spawner.Active &lt;= 0.f) {</div>
+<div class="line">                spawner.Accumulator = 0.f;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            spawner.Accumulator += spawner.Rate * it.delta_time();</div>
+<div class="line">            <span class="keywordflow">while</span> (spawner.Accumulator &gt;= 1.f) {</div>
+<div class="line">                spawnSpark(it.world(), origin);</div>
+<div class="line">                spawner.Accumulator -= 1.f;</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, FVelocity&gt;(<span class="stringliteral">&quot;Move&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 FVelocity&amp; velocity) {</div>
+<div class="line">            velocity.Value.y += 40.f * it.delta_time();   <span class="comment">// a little gravity</span></div>
+<div class="line">            transform.Location.x += velocity.Value.x * it.delta_time();</div>
+<div class="line">            transform.Location.y += velocity.Value.y * it.delta_time();</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Count down, fade out, and destroy when the time is up.</span></div>
+<div class="line">    world.system&lt;FLifetime, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;Lifetime&quot;</span>)</div>
+<div class="line">        .each([](flecs::entity entity, FLifetime&amp; lifetime,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            lifetime.Remaining -= entity.world().delta_time();</div>
+<div class="line">            <span class="keywordflow">if</span> (lifetime.Remaining &lt;= 0.f) {</div>
+<div class="line">                entity.destruct();   <span class="comment">// deferred: applied after the system finishes</span></div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            sprite.Color.a = lifetime.Remaining / lifetime.Total;</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Count live sparks for the HUD. A query matches instances, not the prefab itself.</span></div>
+<div class="line">    flecs::query&lt;const FLifetime&gt; sparks = world.query&lt;<span class="keyword">const</span> FLifetime&gt;();</div>
+<div class="line">    world.system(<span class="stringliteral">&quot;CountSparks&quot;</span>)</div>
+<div class="line">        .kind(flecs::PostUpdate)</div>
+<div class="line">        .run([sparks](flecs::iter&amp; it) {</div>
+<div class="line">            LiveSparks = sparks.count();</div>
+<div class="line">            <span class="keywordflow">while</span> (it.next()) {}</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SparkHud&gt;</a>();</div>
+<div class="line">    Log::Spawning::Info(<span class="stringliteral">&quot;Press Space or hold E. Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+<div class="ttc" id="agroup__ecs_html_gaaa910f10b526ad0b951fd8f6e70cf66d"><div class="ttname"><a href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a></div><div class="ttdeci">#define ECS_MEMBER(MemberType, MemberName, DefaultValue)</div><div class="ttdoc">One field of a component: its type, name and default value.</div><div class="ttdef"><b>Definition</b> Components.hpp:61</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__input_html_ga02d3523d67343616c2ed3db12b4cd48d"><div class="ttname"><a href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION(InActionName, ValueType)</div><div class="ttdoc">Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:103</div></div>
+<div class="ttc" id="agroup__input_html_ga2563a145ce13e323f5e0eeb75008e001"><div class="ttname"><a href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a></div><div class="ttdeci">void AddInputBindings_Hold(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger every frame their key (or all their keys) are held down.</div><div class="ttdef"><b>Definition</b> Module.hpp:45</div></div>
+<div class="ttc" id="agroup__input_html_ga73ab4a055d9eee1429fa07130693ae29"><div class="ttname"><a href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a></div><div class="ttdeci">void AddInputBindings_Press(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger on the frame their key goes down (and on key repeat).</div><div class="ttdef"><b>Definition</b> Module.hpp:35</div></div>
+<div class="ttc" id="agroup__input_html_ga96cd377a209587f7494f3357edd5fcec"><div class="ttname"><a href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a></div><div class="ttdeci">bool IsActionTriggered(const SAction&lt; TValueType &gt; &amp;Action)</div><div class="ttdoc">Returns true if any of the action&#39;s bindings triggered this frame.</div><div class="ttdef"><b>Definition</b> Module.hpp:84</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

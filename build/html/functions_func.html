@@ -1,0 +1,231 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Class Members - Functions | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all functions with links to the classes they belong to:</div><br/>
+<div class="qindex"><a class="qindex" href="#index_a">A</a><div class="alphasepar"></div><a class="qindex" href="#index_c">C</a><div class="alphasepar"></div><a class="qindex" href="#index_d">D</a><div class="alphasepar"></div><a class="qindex" href="#index_f">F</a><div class="alphasepar"></div><a class="qindex" href="#index_g">G</a><div class="alphasepar"></div><a class="qindex" href="#index_i">I</a><div class="alphasepar"></div><a class="qindex" href="#index_o">O</a><div class="alphasepar"></div><a class="qindex" href="#index_r">R</a><div class="alphasepar"></div><a class="qindex" href="#index_s">S</a><div class="alphasepar"></div><a class="qindex" href="#index_t">T</a><div class="alphasepar"></div><a class="qindex" href="#index_u">U</a><div class="alphasepar"></div><a class="qindex" href="#index_~">~</a></div>
+
+
+<h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>AddEntity()&#160;:&#160;<a class="el" href="struct_renderer_1_1_sprite_instance_container.html#a0abd85883dd0597896a1678340292ccf">Renderer::SpriteInstanceContainer</a></li>
+<li>AssetCouldNotLoadException()&#160;:&#160;<a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_could_not_load_exception.html#a9aad8167957f730c1cb5c2888676d6fb">Filesystem::Importers::Exceptions::AssetCouldNotLoadException</a></li>
+<li>AssetNoImporterFoundException()&#160;:&#160;<a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_no_importer_found_exception.html#ae009b1290901a265bf0ae61fa422371a">Filesystem::Importers::Exceptions::AssetNoImporterFoundException</a></li>
+<li>AssetNotFoundException()&#160;:&#160;<a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_not_found_exception.html#a7d2e334f716b70246c4433c531cf8d21">Filesystem::Importers::Exceptions::AssetNotFoundException</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>Clear()&#160;:&#160;<a class="el" href="struct_renderer_1_1_sprite_instance_container.html#a1226fc8a1a83fa1e9711fa5114f7f223">Renderer::SpriteInstanceContainer</a>, <a class="el" href="class_t_object_ptr.html#a8e01a838a6bb12d5596807ff14b40278">TObjectPtr&lt; TObject &gt;</a></li>
+<li>ClearContainers()&#160;:&#160;<a class="el" href="struct_renderer_1_1_render_layer.html#a5f3eba5a6be2364ae91c48b1778dd3db">Renderer::RenderLayer</a></li>
+<li>Close()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#aac1b7e74a2571aea14e9d20dbb3f2af6">ImGUIWrapper::IEditorTool</a></li>
+<li>CreateComponentOnEntity()&#160;:&#160;<a class="el" href="class_components_1_1_e_c_s_debug_factory.html#a22b784d1cc429da0dd6355386e596cad">Components::ECSDebugFactory</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>DebugFactoryBase()&#160;:&#160;<a class="el" href="class_im_gui_wrapper_1_1_debug_factory_base.html#a99aeb538ec6ff8bd9c7a3b1549214566">ImGuiWrapper::DebugFactoryBase</a></li>
+<li>Draw()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#affb4ae89eff3c9da87845897f2440b3b">ImGUIWrapper::IEditorTool</a></li>
+<li>Draw_Internal()&#160;:&#160;<a class="el" href="class_core_editor_1_1_debug_stats_editor.html#acdb258097f46272973a715fdab7e01e5">CoreEditor::DebugStatsEditor</a>, <a class="el" href="class_core_editor_1_1_entity_editor_tool.html#a500fe36cb9cebf24901ad434df4f38f0">CoreEditor::EntityEditorTool</a>, <a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html#a85bdc977f251358f74d3d681afe01ff0">CoreEditor::SpriteSheetEditor</a>, <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#a0aa7296fca6b29aa414d6424195cb4b9">ImGUIWrapper::IEditorTool</a></li>
+<li>DrawDebug()&#160;:&#160;<a class="el" href="class_im_gui_wrapper_1_1_debug_factory_base.html#a6bb363d8d6fc025e5dbca97f878dd2ed">ImGuiWrapper::DebugFactoryBase</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_f" name="index_f"></a>- f -</h3><ul>
+<li>FindOrAddContainerForTexture()&#160;:&#160;<a class="el" href="struct_renderer_1_1_render_layer.html#a3b0a2c17833089bbf4134f7f796aa38d">Renderer::RenderLayer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>Get()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_config.html#a1edb85e295b796a4a0a47ee5a5179d77">Filesystem::SConfig&lt; TConfig &gt;</a></li>
+<li>GetAssetData()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html#a8830fddfcaebb5719251fc7e250671c8">Filesystem::SSoftAssetPath</a>, <a class="el" href="struct_s_asset.html#a7ac1452bba18e8b38c8e794b26033d8f">SAsset</a></li>
+<li>GetAssetType()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html#a97147e0589896955de07e34c945f1f76">Filesystem::STypedSoftAssetPath&lt; TType &gt;</a>, <a class="el" href="struct_graphics_1_1_s_graphics_shader.html#a484951f87fdccda55ca40374c89dc107">Graphics::SGraphicsShader</a>, <a class="el" href="struct_graphics_1_1_s_texture2_d.html#ad8a9153ba5a832e04683feae54ff5438">Graphics::STexture2D</a>, <a class="el" href="struct_s_asset.html#a53cbf6b0a4ced6097947e0c38925d681">SAsset</a></li>
+<li>GetConfigPath()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_config.html#a5e2eef8b5f8aa94fc961ff974f430eae">Filesystem::SConfig&lt; TConfig &gt;</a>, <a class="el" href="struct_filesystem_1_1_s_filesystem_config.html#a5d21f39935383962593ea6a8a832b39b">Filesystem::SFilesystemConfig</a></li>
+<li>GetContainerForTexture()&#160;:&#160;<a class="el" href="struct_renderer_1_1_render_layer.html#ac0d909ef5b171c7976448d354498f2f2">Renderer::RenderLayer</a></li>
+<li>GetName()&#160;:&#160;<a class="el" href="struct_s_asset.html#a683029cabc425849ca3cba36af4ecbb5">SAsset</a></li>
+<li>GlmModule()&#160;:&#160;<a class="el" href="struct_components_1_1_glm_module.html#a9326fd1f4886b9a77c4a96a7f373bfcb">Components::GlmModule</a></li>
+<li>GraphicsModule()&#160;:&#160;<a class="el" href="struct_components_1_1_graphics_module.html#a11bbbdd14e2840c39ddd38da8377a69f">Components::GraphicsModule</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>IEditorTool()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#a852df44cf93f96287320ec33df29cdc7">ImGUIWrapper::IEditorTool</a></li>
+<li>IsEmpty()&#160;:&#160;<a class="el" href="struct_renderer_1_1_sprite_instance_container.html#a266532aa225507646716d0baca520c07">Renderer::SpriteInstanceContainer</a></li>
+<li>IsValid()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">TObjectPtr&lt; TObject &gt;</a></li>
+<li>Iterate()&#160;:&#160;<a class="el" href="struct_renderer_1_1_render_layer.html#abd52dbb1e02093a80675e4d60bb9e040">Renderer::RenderLayer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_o" name="index_o"></a>- o -</h3><ul>
+<li>OnOpenStateChanged()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#a23723cc89e0067627e91cac9ca8aea24">ImGUIWrapper::IEditorTool</a></li>
+<li>Open()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#a96fe99f9d2eed1b3dd671511bb5b9200">ImGUIWrapper::IEditorTool</a></li>
+<li>operator ActionNameID()&#160;:&#160;<a class="el" href="struct_input_1_1_s_action.html#ad31aea6891046e4c296e26477ea4f45c">Input::SAction&lt; TValueType &gt;</a></li>
+<li>operator std::string()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html#a28d29ca27acda9ed2a5e1876d1f4e6b4">Filesystem::SSoftAssetPath</a></li>
+<li>operator*()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#af7921bd2c49f6fb439801ac501b012e3">TObjectPtr&lt; TObject &gt;</a></li>
+<li>operator-&gt;()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#a29d8d7959142a355c691f506206f7068">TObjectPtr&lt; TObject &gt;</a></li>
+<li>operator=()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#a9930eb6d644c134121c739413bf83420">TObjectPtr&lt; TObject &gt;</a></li>
+<li>operator==()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html#a48894520e373abb51eba9716497c841e">Filesystem::SSoftAssetPath</a>, <a class="el" href="class_t_object_ptr.html#ac4ba56d10564ef85972e1fe318c02db4">TObjectPtr&lt; TObject &gt;</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>Raw()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#a885b75619072fe24d11c48fd52d42353">TObjectPtr&lt; TObject &gt;</a></li>
+<li>Read()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_config.html#acc0486cc1c51d1726b16c2a601d3d473">Filesystem::SConfig&lt; TConfig &gt;</a></li>
+<li>RemoveEntity()&#160;:&#160;<a class="el" href="struct_renderer_1_1_sprite_instance_container.html#a07c175a566fd87642d88e04f81d436de">Renderer::SpriteInstanceContainer</a></li>
+<li>Rename()&#160;:&#160;<a class="el" href="struct_s_asset.html#a0b5dea9b1566e3bf1f4c5b53289a2694">SAsset</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>SAction()&#160;:&#160;<a class="el" href="struct_input_1_1_s_action.html#a3934a2797362ad777387359b72116dc4">Input::SAction&lt; TValueType &gt;</a></li>
+<li>SAsset()&#160;:&#160;<a class="el" href="struct_s_asset.html#a1ba0086799b54e9be5ad9e5054e9d703">SAsset</a></li>
+<li>SAssetData()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_asset_data.html#afe2f9eb547ce4791574787034dc3231c">Filesystem::SAssetData</a></li>
+<li>Save()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_config.html#a4f4deaf6d604f5d066a740dbb0e37fe3">Filesystem::SConfig&lt; TConfig &gt;</a></li>
+<li>SetSpriteSheet()&#160;:&#160;<a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html#ad876bcc23b00a30e1b460dc250e1623b">CoreEditor::SpriteSheetEditor</a></li>
+<li>SInputBinding()&#160;:&#160;<a class="el" href="struct_input_1_1_s_input_binding.html#aa6d3d6189b1918af3e694823fbe14f28">Input::SInputBinding&lt; TValueType &gt;</a></li>
+<li>SInputBindingBase()&#160;:&#160;<a class="el" href="struct_input_1_1_s_input_binding.html#ad305c649b9c242d05837b018d3447f38">Input::SInputBinding&lt; TValueType &gt;</a>, <a class="el" href="struct_input_1_1_s_input_binding_base.html#ad305c649b9c242d05837b018d3447f38">Input::SInputBindingBase</a></li>
+<li>SLogger()&#160;:&#160;<a class="el" href="struct_log_1_1_s_logger.html#a03724948a232b56bea0cc08b119cb272">Log::SLogger</a></li>
+<li>SSoftAssetPath()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html#a33c5fd76ef23cd86cd8b01ab4eb5c55b">Filesystem::SSoftAssetPath</a></li>
+<li>STypedSoftAssetPath()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html#afe1ea64b2ea9f4dd5380cfefe8332eb2">Filesystem::STypedSoftAssetPath&lt; TType &gt;</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>TObjectPtr()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#a073ac7736113f06eff6a168eac7bad25">TObjectPtr&lt; TObject &gt;</a></li>
+<li>TransformModule()&#160;:&#160;<a class="el" href="struct_components_1_1_transform_module.html#af1215ed3cfa7607d1b00e18f1545d0de">Components::TransformModule</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>UpdateEntities()&#160;:&#160;<a class="el" href="struct_renderer_1_1_render_layer.html#a99c3832b796b64cb0bc1e06d046a288b">Renderer::RenderLayer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index__7E" name="index__7E"></a>- ~ -</h3><ul>
+<li>~DebugFactoryBase()&#160;:&#160;<a class="el" href="class_im_gui_wrapper_1_1_debug_factory_base.html#ade87de97a66f11efb29edb68f4cfbe53">ImGuiWrapper::DebugFactoryBase</a></li>
+<li>~IEditorTool()&#160;:&#160;<a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html#ad5598f648e79f7f0edb7618b0a9d35d9">ImGUIWrapper::IEditorTool</a></li>
+<li>~SAction()&#160;:&#160;<a class="el" href="struct_input_1_1_s_action.html#a2ea7c99fb3c16d4e1c5782da64a6c331">Input::SAction&lt; TValueType &gt;</a></li>
+<li>~SAsset()&#160;:&#160;<a class="el" href="struct_s_asset.html#a4ebb43eb80c0b0a756e6a60af2b38bc6">SAsset</a></li>
+<li>~SInputBindingBase()&#160;:&#160;<a class="el" href="struct_input_1_1_s_input_binding_base.html#a5ebff99d8b07d3a54d08f0d9d365f631">Input::SInputBindingBase</a></li>
+<li>~STypedSoftAssetPath()&#160;:&#160;<a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html#a60edc223fd6124757883833549dbcf0e">Filesystem::STypedSoftAssetPath&lt; TType &gt;</a></li>
+<li>~TObjectPtr()&#160;:&#160;<a class="el" href="class_t_object_ptr.html#a8668f762c30210034da98ef418f15183">TObjectPtr&lt; TObject &gt;</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

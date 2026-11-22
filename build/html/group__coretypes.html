@@ -1,0 +1,554 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>CoreTypes | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">CoreTypes </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Data types several modules share: textures and sprites, LDtk levels, frame timing, and the debug-collider switch.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Types" class="src-link">include/Types/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types" class="src-link">src/Types/</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Types/Graphics.hpp&gt;</span> (textures, sprites) · <span class="tt">&lt;Types/World.hpp&gt;</span> (levels) · <span class="tt">&lt;Types/EngineGlobals.hpp&gt;</span> (frame timing) · <span class="tt">&lt;Types/Module.hpp&gt;</span> (debug-collider switch)</td></tr>
+<tr>
+<td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_graphics.html">Graphics</a></span>, <span class="tt"><a class="el" href="namespace_world.html">World</a></span>, <span class="tt"><a class="el" href="namespace_engine_1_1_globals.html">Engine::Globals</a></span>, <span class="tt"><a class="el" href="namespace_core_types.html">CoreTypes</a></span></td></tr>
+<tr>
+<td><b>Started by</b></td><td>Nothing to start: <span class="tt"><a class="el" href="#ga6b7817a2f7792e6a3f27cb9c70d25fa5" title="Empty.">CoreTypes::Module()</a></span> is empty and not called by the engine</td></tr>
+<tr>
+<td><b>Examples</b></td><td><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a> (textures) · <a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a> (frame timing) · <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> (debug colliders)</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md8"></a>
+How to use</h2>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
+Frame timing</h3>
+<p><a class="el" href="#ga945d13c62e7daa61e5bb6c277aaf2bcd" title="Get the most recently reported DeltaTime for this tick.">Engine::Globals::GetDeltaTime()</a> returns how long the last frame took, in seconds, and <a class="el" href="#ga147fa8f4fd507487dd9bd4e8419b8531" title="Get the most recently reported framerate for this tick.">Engine::Globals::GetFPS()</a> the matching frame rate. Inside a flecs system, <span class="tt">it.delta_time()</span> gives the same value.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Showing the frame rate in a tool window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
+<div class="line"><span class="comment">// every frame while the tool is open, between ImGui::NewFrame() and rendering,</span></div>
+<div class="line"><span class="comment">// so any ImGui call works here.</span></div>
+<div class="line"><span class="keyword">class </span>SpawnerTool : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">int</span> SpawnedCount = 0;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Positions are in screen coordinates (multi-viewport is on),</span></div>
+<div class="line">        <span class="comment">// so place it relative to the main window.</span></div>
+<div class="line">        <span class="comment">// A window dragged outside the main window becomes a separate OS window.</span></div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 position {viewport-&gt;Pos.x + 40.f, viewport-&gt;Pos.y + 260.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(position, ImGuiCond_FirstUseEver);</div>
+<div class="line">        ImGui::SetNextWindowSize({330.f, 0.f}, ImGuiCond_FirstUseEver);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Passing &amp;bOpen gives the window a close button that closes the tool.</span></div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Spawner&quot;</span>, &amp;bOpen);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">double</span> fps = <a class="code hl_function" href="#ga147fa8f4fd507487dd9bd4e8419b8531">Engine::Globals::GetFPS</a>();</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">double</span> frameMs = <a class="code hl_function" href="#ga945d13c62e7daa61e5bb6c277aaf2bcd">Engine::Globals::GetDeltaTime</a>() * 1000.0;</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;%.0f FPS (%.2f ms)&quot;</span>, fps, frameMs);</div>
+<div class="line">        ImGui::Separator();</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">float</span> color[4] = {0.4f, 0.8f, 1.f, 1.f};</div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">float</span> size = 12.f;</div>
+<div class="line">        <span class="keyword">static</span> <span class="keywordtype">int</span> count = 5;</div>
+<div class="line">        ImGui::ColorEdit4(<span class="stringliteral">&quot;Colour&quot;</span>, color);</div>
+<div class="line">        ImGui::SliderFloat(<span class="stringliteral">&quot;Size&quot;</span>, &amp;size, 4.f, 40.f);</div>
+<div class="line">        ImGui::SliderInt(<span class="stringliteral">&quot;Count&quot;</span>, &amp;count, 1, 50);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Spawn&quot;</span>)) {</div>
+<div class="line">            <span class="keyword">static</span> std::mt19937 rng {1};</div>
+<div class="line">            std::uniform_real_distribution&lt;float&gt; x(0.f, ScreenW - size);</div>
+<div class="line">            std::uniform_real_distribution&lt;float&gt; y(0.f, ScreenH - size);</div>
+<div class="line">            <span class="keyword">const</span> SDL_FColor tint {color[0], color[1], color[2], color[3]};</div>
+<div class="line">            flecs::entity last;</div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; count; ++i) {</div>
+<div class="line">                <span class="keyword">const</span> std::string name = <span class="stringliteral">&quot;Spawned &quot;</span> + std::to_string(SpawnedCount++);</div>
+<div class="line">                last = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>().entity(name.c_str())</div>
+<div class="line">                    .set&lt;FTransformComponent&gt;({ .Location = {x(rng), y(rng), 0.f} })</div>
+<div class="line">                    .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                        .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">                        .TextureSize = {size, size},</div>
+<div class="line">                        .Color = tint,</div>
+<div class="line">                    })</div>
+<div class="line">                    .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">            }</div>
+<div class="line">            <a class="code hl_function" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a>(last);   <span class="comment">// show the newest one in the Entity Debugger</span></div>
+<div class="line">            Log::EditorDemo::Info(<span class="stringliteral">&quot;Spawned {} entities&quot;</span>, count);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::SameLine();</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Clear&quot;</span>)) {</div>
+<div class="line">            <span class="comment">// Tools run outside the ECS update, so changes are applied immediately.</span></div>
+<div class="line">            <span class="comment">// Defer them while iterating, so destroying entities doesn&#39;t disturb</span></div>
+<div class="line">            <span class="comment">// the iteration.</span></div>
+<div class="line">            flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line">            world.defer([&amp;world] {</div>
+<div class="line">                world.each([](flecs::entity entity, <span class="keyword">const</span> FTexture2DComponent&amp;) {</div>
+<div class="line">                    <span class="keyword">const</span> std::string name = entity.name().c_str();</div>
+<div class="line">                    <span class="keywordflow">if</span> (name.starts_with(<span class="stringliteral">&quot;Spawned&quot;</span>)) {</div>
+<div class="line">                        entity.destruct();</div>
+<div class="line">                    }</div>
+<div class="line">                });</div>
+<div class="line">            });</div>
+<div class="line">        }</div>
+<div class="line"> </div>
+<div class="line">        ImGui::Separator();</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Built-in tools&quot;</span>);</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Show FPS Counter&quot;</span>)) {</div>
+<div class="line">            <span class="comment">// Reopens the existing instance</span></div>
+<div class="line">            <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;CoreEditor::DebugStatsEditor&gt;</a>();</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordtype">void</span> OnOpenStateChanged(<span class="keywordtype">bool</span> bIsOpen)<span class="keyword"> override </span>{</div>
+<div class="line">        Log::EditorDemo::Info(<span class="stringliteral">&quot;Spawner tool {}&quot;</span>, bIsOpen ? <span class="stringliteral">&quot;opened&quot;</span> : <span class="stringliteral">&quot;closed&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>  </details></p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
+Textures</h3>
+<p>A <a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a> holds an image in memory (<span class="tt">Surface</span>, an <span class="tt">SDL_Surface</span> in RGBA byte order) and, once uploaded, on the GPU (<span class="tt">LoadedGPUTexture</span>). Get one by loading an image file, or build one in code:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A texture generated in code</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
+<div class="line"><span class="comment">// the same format image files are converted to.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
+<div class="line">                                   <span class="keywordtype">int</span> Squares) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 light = SDL_MapSurfaceRGBA(surface, 235, 235, 240, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 dark = SDL_MapSurfaceRGBA(surface, 70, 80, 110, 255);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> cell = Size / Squares;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; Squares; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; Squares; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bLight = (x + y) % 2 == 0;</div>
+<div class="line">            <span class="keyword">const</span> SDL_Rect rect {x * cell, y * cell, cell, cell};</div>
+<div class="line">            SDL_FillSurfaceRect(surface, &amp;rect, bLight ? light : dark);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;   <span class="comment">// TObjectPtr&lt;T&gt;() creates a new T</span></div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;           <span class="comment">// the key GetAssetData() looks up</span></div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;            <span class="comment">// already loaded: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Sprites refer to textures through a <a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> inside <a class="el" href="struct_components_1_1_f_texture2_d_component.html" title="What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...">Components::FTexture2DComponent</a>: the texture's asset path plus the part of it to draw (see <a class="el" href="group__rendering.html" title="Renderer">Renderer</a>).</p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md11"></a>
+Levels</h3>
+<p><span class="tt">World::GenerateLevel(projectPath, levelName)</span> builds a <a class="el" href="struct_world_1_1_s_level.html" title="A loaded level: its layers (back to front), the PlayerStart position and its name.">World::SLevel</a> from an <a href="https://ldtk.io">LDtk</a> project saved with <em>separate level files</em>:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Argument  </th><th class="markdownTableHeadNone">Example  </th><th class="markdownTableHeadNone">File it loads  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">projectPath</span>  </td><td class="markdownTableBodyNone"><span class="tt">"Levels/MyWorld/MyWorld"</span>  </td><td class="markdownTableBodyNone"><span class="tt">Resources/Levels/MyWorld/MyWorld.ldtk</span>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">levelName</span>  </td><td class="markdownTableBodyNone"><span class="tt">"Level_0"</span>  </td><td class="markdownTableBodyNone"><span class="tt">Resources/Levels/MyWorld/MyWorld/Level_0.ldtkl</span>  </td></tr>
+</table>
+<p>For each LDtk layer it records the tiles (auto-layer and grid tiles), loads the layer's tileset image as a <a class="el" href="struct_graphics_1_1_s_tilemap.html" title="A tileset: a texture plus its tile size (GridX, GridY) and tile count (Columns, Rows).">Graphics::STilemap</a>, and turns IntGrid values into <a class="el" href="struct_world_1_1_s_grid_tile.html" title="One IntGrid cell: its value (GridType) and its rectangle in world units.">World::SGridTile</a> cells. An entity named <span class="tt">PlayerStart</span> sets <a class="el" href="struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787">World::SLevel::PlayerStart</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>).</p>
+<p>Then draw it and get its collision rectangles with <a class="el" href="group__rendering.html#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a>, and remember it with <a class="el" href="#gaf97bd596d71b13b29efc8cfff8fd896e" title="Remembers a level as the current one.">World::SetCurrentLevel()</a>. ProtoRPG loads its level this way:</p>
+<div class="fragment"><div class="line"><span class="keyword">auto</span> level = <a class="code hl_function" href="#ga43481861a4cbba431c3fcf866f9a28dd">World::GenerateLevel</a>(<span class="stringliteral">&quot;Levels/PoutineDetective/PoutineDetectiveWorld&quot;</span>, <span class="stringliteral">&quot;Diner&quot;</span>);</div>
+<div class="line">Collisions = <a class="code hl_function" href="group__rendering.html#ga8b458a67cb24d0cd348afcb0a1dc5685">Renderer::LoadLevel</a>(level);</div>
+<div class="line"><a class="code hl_function" href="#gaf97bd596d71b13b29efc8cfff8fd896e">World::SetCurrentLevel</a>(level);</div>
+<div class="ttc" id="agroup__coretypes_html_ga43481861a4cbba431c3fcf866f9a28dd"><div class="ttname"><a href="#ga43481861a4cbba431c3fcf866f9a28dd">World::GenerateLevel</a></div><div class="ttdeci">TObjectPtr&lt; SLevel &gt; GenerateLevel(const std::string &amp;LevelAssetName, const std::string &amp;LevelName)</div><div class="ttdoc">Builds a World::SLevel from an LDtk project (LevelAssetName, an asset path) and one of its separately...</div></div>
+<div class="ttc" id="agroup__coretypes_html_gaf97bd596d71b13b29efc8cfff8fd896e"><div class="ttname"><a href="#gaf97bd596d71b13b29efc8cfff8fd896e">World::SetCurrentLevel</a></div><div class="ttdeci">void SetCurrentLevel(const TObjectPtr&lt; SLevel &gt; &amp;NewLevel)</div><div class="ttdoc">Remembers a level as the current one.</div></div>
+<div class="ttc" id="agroup__rendering_html_ga8b458a67cb24d0cd348afcb0a1dc5685"><div class="ttname"><a href="group__rendering.html#ga8b458a67cb24d0cd348afcb0a1dc5685">Renderer::LoadLevel</a></div><div class="ttdeci">std::vector&lt; SDL_FRect &gt; LoadLevel(const TObjectPtr&lt; World::SLevel &gt; &amp;Level)</div><div class="ttdoc">Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...</div></div>
+</div><!-- fragment --><h3 class="doxsection"><a class="anchor" id="autotoc_md12"></a>
+Debug colliders</h3>
+<p><a class="el" href="#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a> switches the renderer's debug-collider overlay on and off. The engine declares an input action for it, <span class="tt">Input::Actions::ToggleDebugColliders</span>, but binds no key and does not toggle the flag itself. See <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md13"></a>
+Things to watch out for</h2>
+<ul>
+<li><a class="el" href="struct_graphics_1_1_s_sprite_animation.html" title="A list of sprites with a frame rate and a loop flag.">Graphics::SSpriteAnimation</a> and <a class="el" href="struct_graphics_1_1_s_graphics_shader.html" title="The loading of this type is managed by the Renderer as it requires runtime.">Graphics::SGraphicsShader</a> are data only: nothing in the engine plays animations or loads shaders through them at this commit.</li>
+<li><span class="tt"><a class="el" href="#ga43481861a4cbba431c3fcf866f9a28dd" title="Builds a World::SLevel from an LDtk project (LevelAssetName, an asset path) and one of its separately...">World::GenerateLevel</a></span> skips IntGrid collision for a layer named <span class="tt">TerrainInt</span> and gives a layer named <span class="tt">Wall_Top</span> a higher <span class="tt">ZDepth</span>, which the renderer does not use. These names come from ProtoRPG's levels.</li>
+<li><span class="tt"><a class="el" href="namespace_graphics.html#a96595529403fef9d6fd37a61434619b0" title="Free functions for graphics management.">Graphics::GetTile</a></span> uses <span class="tt">Row</span> and <span class="tt">Col</span> directly as the rectangle's position; they are not multiplied by the tile size. </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Graphics_3A_3ASTexture2D" id="r_Graphics_3A_3ASTexture2D"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_texture2_d.html">Graphics::STexture2D</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">ASSETS.  <a href="struct_graphics_1_1_s_texture2_d.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Graphics_3A_3ASSprite" id="r_Graphics_3A_3ASSprite"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_sprite.html">Graphics::SSprite</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which texture a sprite uses (<span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#ad753ba4514113e86f0fd89b789102cf0">SpriteSheet</a></span>, an asset path) and which part of it: <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#a7c83a6f8d51184b90f685926277a748f">UVCoords</a></span> (top-left) and <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html#a89e0617ece3ee814f34cf480986fd887">WHCoords</a></span> (size), as fractions of the texture.  <a href="struct_graphics_1_1_s_sprite.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Graphics_3A_3ASSpriteSheet" id="r_Graphics_3A_3ASSpriteSheet"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_sprite_sheet.html">Graphics::SSpriteSheet</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">END ASSETS.  <a href="struct_graphics_1_1_s_sprite_sheet.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Graphics_3A_3ASSpriteAnimation" id="r_Graphics_3A_3ASSpriteAnimation"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_sprite_animation.html">Graphics::SSpriteAnimation</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A list of sprites with a frame rate and a loop flag.  <a href="struct_graphics_1_1_s_sprite_animation.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Graphics_3A_3ASGraphicsShader" id="r_Graphics_3A_3ASGraphicsShader"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_graphics_shader.html">Graphics::SGraphicsShader</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The loading of this type is managed by the <a class="el" href="namespace_renderer.html">Renderer</a> as it requires runtime.  <a href="struct_graphics_1_1_s_graphics_shader.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Graphics_3A_3ASTilemap" id="r_Graphics_3A_3ASTilemap"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_graphics_1_1_s_tilemap.html">Graphics::STilemap</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A tileset: a texture plus its tile size (<span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a72283f1d343b6abdb118d5262d1653dc">GridX</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a4d6c81a21c7c23768a0b1567de16df1a">GridY</a></span>) and tile count (<span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a5f525ff3af50c9c82314aacebeebbaaa">Columns</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_tilemap.html#a4ce3e5c87db306a6957f000128b228c5">Rows</a></span>).  <a href="struct_graphics_1_1_s_tilemap.html#details">More...</a><br /></td></tr>
+<tr class="memitem:World_3A_3ASLevel" id="r_World_3A_3ASLevel"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_world_1_1_s_level.html">World::SLevel</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A loaded level: its layers (back to front), the <span class="tt"><a class="el" href="struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787">PlayerStart</a></span> position and its name.  <a href="struct_world_1_1_s_level.html#details">More...</a><br /></td></tr>
+<tr class="memitem:World_3A_3ASLevelLayer" id="r_World_3A_3ASLevelLayer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_world_1_1_s_level_layer.html">World::SLevelLayer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One level layer: its tiles, IntGrid cells, tileset, grid size, offset and opacity.  <a href="struct_world_1_1_s_level_layer.html#details">More...</a><br /></td></tr>
+<tr class="memitem:World_3A_3ASTile" id="r_World_3A_3ASTile"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_world_1_1_s_tile.html">World::STile</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One tile: where it goes in the world, where it comes from in the tileset, its flip and opacity.  <a href="struct_world_1_1_s_tile.html#details">More...</a><br /></td></tr>
+<tr class="memitem:World_3A_3ASGridTile" id="r_World_3A_3ASGridTile"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_world_1_1_s_grid_tile.html">World::SGridTile</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One IntGrid cell: its value (<span class="tt"><a class="el" href="struct_world_1_1_s_grid_tile.html#ac2ebf316decebff0a2f889ce896ac4d1">GridType</a></span>) and its rectangle in world units.  <a href="struct_world_1_1_s_grid_tile.html#details">More...</a><br /></td></tr>
+<tr class="memitem:World_3A_3ASLevelObject" id="r_World_3A_3ASLevelObject"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_world_1_1_s_level_object.html">World::SLevelObject</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty at this commit.  <a href="struct_world_1_1_s_level_object.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga147fa8f4fd507487dd9bd4e8419b8531" id="r_ga147fa8f4fd507487dd9bd4e8419b8531"><td class="memItemLeft">double&#160;</td><td class="memItemRight"><a class="el" href="#ga147fa8f4fd507487dd9bd4e8419b8531">Engine::Globals::GetFPS</a> ()</td></tr>
+<tr class="memdesc:ga147fa8f4fd507487dd9bd4e8419b8531"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the most recently reported framerate for this tick.  <br /></td></tr>
+<tr class="memitem:ga945d13c62e7daa61e5bb6c277aaf2bcd" id="r_ga945d13c62e7daa61e5bb6c277aaf2bcd"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ga945d13c62e7daa61e5bb6c277aaf2bcd">Engine::Globals::GetDeltaTime</a> ()</td></tr>
+<tr class="memdesc:ga945d13c62e7daa61e5bb6c277aaf2bcd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the most recently reported DeltaTime for this tick.  <br /></td></tr>
+<tr class="memitem:ga07bb19854e5ee185a3eabe9ad17851bc" id="r_ga07bb19854e5ee185a3eabe9ad17851bc"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga07bb19854e5ee185a3eabe9ad17851bc">Engine::Globals::ReportRenderTime_NS</a> (uint64_t InRenderTimeNS)</td></tr>
+<tr class="memdesc:ga07bb19854e5ee185a3eabe9ad17851bc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provide the time in nanoseconds since the last frame was rendered This should only be called once per tick and will trigger a recalculation of the FPS and DeltaTime.  <br /></td></tr>
+<tr class="memitem:ga6b7817a2f7792e6a3f27cb9c70d25fa5" id="r_ga6b7817a2f7792e6a3f27cb9c70d25fa5"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga6b7817a2f7792e6a3f27cb9c70d25fa5">CoreTypes::Module</a> ()</td></tr>
+<tr class="memdesc:ga6b7817a2f7792e6a3f27cb9c70d25fa5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty.  <br /></td></tr>
+<tr class="memitem:gab162a598645b4a969870dc5ffc797cd4" id="r_gab162a598645b4a969870dc5ffc797cd4"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gab162a598645b4a969870dc5ffc797cd4">CoreTypes::TeardownModule</a> ()</td></tr>
+<tr class="memdesc:gab162a598645b4a969870dc5ffc797cd4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Empty.  <br /></td></tr>
+<tr class="memitem:ga062310a9df8c614447b686dc6672cfdc" id="r_ga062310a9df8c614447b686dc6672cfdc"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_graphics_1_1_s_tilemap.html">STilemap</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga062310a9df8c614447b686dc6672cfdc">Graphics::LoadTilemap</a> (const std::string &amp;AssetPath, uint16_t GridX, int16_t GridY)</td></tr>
+<tr class="memdesc:ga062310a9df8c614447b686dc6672cfdc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads a texture and wraps it as a tileset with the given tile size.  <br /></td></tr>
+<tr class="memitem:ga43481861a4cbba431c3fcf866f9a28dd" id="r_ga43481861a4cbba431c3fcf866f9a28dd"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga43481861a4cbba431c3fcf866f9a28dd">World::GenerateLevel</a> (const std::string &amp;LevelAssetName, const std::string &amp;LevelName)</td></tr>
+<tr class="memdesc:ga43481861a4cbba431c3fcf866f9a28dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds a <a class="el" href="struct_world_1_1_s_level.html" title="A loaded level: its layers (back to front), the PlayerStart position and its name.">World::SLevel</a> from an LDtk project (<span class="tt">LevelAssetName</span>, an asset path) and one of its separately saved levels (<span class="tt">LevelName</span>).  <br /></td></tr>
+<tr class="memitem:gaf97bd596d71b13b29efc8cfff8fd896e" id="r_gaf97bd596d71b13b29efc8cfff8fd896e"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaf97bd596d71b13b29efc8cfff8fd896e">World::SetCurrentLevel</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt; &amp;NewLevel)</td></tr>
+<tr class="memdesc:gaf97bd596d71b13b29efc8cfff8fd896e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Remembers a level as the current one.  <br /></td></tr>
+<tr class="memitem:ga2cf6140a8c905cb4d841981e32349a3c" id="r_ga2cf6140a8c905cb4d841981e32349a3c"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga2cf6140a8c905cb4d841981e32349a3c">World::GetCurrentLevel</a> ()</td></tr>
+<tr class="memdesc:ga2cf6140a8c905cb4d841981e32349a3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">The level last passed to <a class="el" href="#gaf97bd596d71b13b29efc8cfff8fd896e" title="Remembers a level as the current one.">World::SetCurrentLevel()</a>, or empty.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga11979497e152d7aef17df0d06e8755c2" id="r_ga11979497e152d7aef17df0d06e8755c2"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga11979497e152d7aef17df0d06e8755c2">CoreTypes::bShouldDisplayDebugColliders</a></td></tr>
+<tr class="memdesc:ga11979497e152d7aef17df0d06e8755c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">When <span class="tt">true</span>, the renderer draws <a class="el" href="group__rendering.html#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> on top of the scene.  <br /></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga147fa8f4fd507487dd9bd4e8419b8531" name="ga147fa8f4fd507487dd9bd4e8419b8531"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga147fa8f4fd507487dd9bd4e8419b8531">&#9670;&#160;</a></span>GetFPS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">double Engine::Globals::GetFPS </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Frames per second, from the last frame's duration.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/EngineGlobals.cpp\#L17" class="src-link">src/Types/EngineGlobals.cpp:17</a>. </p>
+
+</div>
+</div>
+<a id="ga945d13c62e7daa61e5bb6c277aaf2bcd" name="ga945d13c62e7daa61e5bb6c277aaf2bcd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga945d13c62e7daa61e5bb6c277aaf2bcd">&#9670;&#160;</a></span>GetDeltaTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Engine::Globals::GetDeltaTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The last frame's duration in seconds (0 on the first frame).</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/EngineGlobals.cpp\#L18" class="src-link">src/Types/EngineGlobals.cpp:18</a>. </p>
+
+</div>
+</div>
+<a id="ga07bb19854e5ee185a3eabe9ad17851bc" name="ga07bb19854e5ee185a3eabe9ad17851bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga07bb19854e5ee185a3eabe9ad17851bc">&#9670;&#160;</a></span>ReportRenderTime_NS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Globals::ReportRenderTime_NS </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>InRenderTimeNS</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Sets the frame duration in nanoseconds and recalculates FPS and delta time.</p>
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it once per frame; don't call it yourself. </p>
+
+</div>
+</div>
+<a id="ga6b7817a2f7792e6a3f27cb9c70d25fa5" name="ga6b7817a2f7792e6a3f27cb9c70d25fa5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6b7817a2f7792e6a3f27cb9c70d25fa5">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreTypes::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The engine does not call it. </p>
+
+</div>
+</div>
+<a id="gab162a598645b4a969870dc5ffc797cd4" name="gab162a598645b4a969870dc5ffc797cd4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab162a598645b4a969870dc5ffc797cd4">&#9670;&#160;</a></span>TeardownModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void CoreTypes::TeardownModule </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The engine does not call it. </p>
+
+</div>
+</div>
+<a id="ga062310a9df8c614447b686dc6672cfdc" name="ga062310a9df8c614447b686dc6672cfdc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga062310a9df8c614447b686dc6672cfdc">&#9670;&#160;</a></span>LoadTilemap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_graphics_1_1_s_tilemap.html">STilemap</a> &gt; Graphics::LoadTilemap </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetPath</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>GridX</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int16_t</td>          <td class="paramname"><span class="paramname"><em>GridY</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L34-L46" class="src-link">src/Types/Graphics.cpp:34</a>. </p>
+
+</div>
+</div>
+<a id="ga43481861a4cbba431c3fcf866f9a28dd" name="ga43481861a4cbba431c3fcf866f9a28dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga43481861a4cbba431c3fcf866f9a28dd">&#9670;&#160;</a></span>GenerateLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt; World::GenerateLevel </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LevelAssetName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>LevelName</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>. See <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a> for the file layout it expects. </p>
+
+</div>
+</div>
+<a id="gaf97bd596d71b13b29efc8cfff8fd896e" name="gaf97bd596d71b13b29efc8cfff8fd896e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf97bd596d71b13b29efc8cfff8fd896e">&#9670;&#160;</a></span>SetCurrentLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void World::SetCurrentLevel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>NewLevel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nothing else in the engine reads it; it is for your game code. </p>
+
+</div>
+</div>
+<a id="ga2cf6140a8c905cb4d841981e32349a3c" name="ga2cf6140a8c905cb4d841981e32349a3c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2cf6140a8c905cb4d841981e32349a3c">&#9670;&#160;</a></span>GetCurrentLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">SLevel</a> &gt; World::GetCurrentLevel </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ga11979497e152d7aef17df0d06e8755c2" name="ga11979497e152d7aef17df0d06e8755c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga11979497e152d7aef17df0d06e8755c2">&#9670;&#160;</a></span>bShouldDisplayDebugColliders</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool CoreTypes::bShouldDisplayDebugColliders</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Default <span class="tt">false</span>. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

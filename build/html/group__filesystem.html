@@ -1,0 +1,909 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Filesystem | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Filesystem </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Finds every file under <span class="tt">Resources/</span>, gives each one an asset path, and loads files into typed asset objects on demand.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem" class="src-link">include/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem" class="src-link">src/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Config/filesystem.json" class="src-link">Config/filesystem.json</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Filesystem/Module.hpp&gt;</span> (registry) · <span class="tt">#include &lt;Filesystem/Importers/Importer.hpp&gt;</span> (loading)</td></tr>
+<tr>
+<td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_filesystem.html">Filesystem</a></span>, <span class="tt"><a class="el" href="namespace_filesystem_1_1_importers.html" title="Graphics importers.">Filesystem::Importers</a></span>; the base asset types <span class="tt"><a class="el" href="struct_s_asset.html" title="Base type of everything the Filesystem module can load.">SAsset</a></span>, <span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span> and <span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span> are global</td></tr>
+<tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L84" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>, second after <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a></td></tr>
+<tr>
+<td><b>Example</b></td><td><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a></td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md26"></a>
+How to use</h2>
+<ol type="1">
+<li><b>Put files under <span class="tt">Resources/</span></b> in your game folder. After a build they are copied next to the executable, and at startup every file is registered.</li>
+<li><b>Refer to a file by its asset path</b>: its path under <span class="tt">Resources/</span>, without the extension, with the platform's separators. <span class="tt">Resources/Images/Player.png</span> is <span class="tt">Images\Player</span>, written <span class="tt">"Images\\Player"</span> in C++.</li>
+<li><b>Look it up</b> with <a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">Filesystem::GetAssetData()</a> to get its <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a>: the real file path, name, extension and type.</li>
+<li><b>Load it</b> with <span class="tt"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">Filesystem::Importers::LoadFile</a>&lt;T&gt;(path)</span>. <span class="tt">T</span> is the asset type you want: <span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span>, <span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a></span>, or your own. The result is cached, so loading again is cheap.</li>
+<li><b>Store references</b> in components as a <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> (just the path string), not as loaded objects.</li>
+</ol>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets and reading one</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
+<div class="line">    <span class="comment">// its path relative to Resources/, without the extension.</span></div>
+<div class="line">    <span class="keyword">const</span> std::vector&lt;std::string&gt; allPaths = <a class="code hl_function" href="#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>();</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} assets registered&quot;</span>, allPaths.size());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Asset types come from Resources/Config/filesystem.json (file extension -&gt; type).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; shader : <a class="code hl_function" href="#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>(<a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a>)) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Shader asset: {}&quot;</span>, shader.AssetPath);</div>
+<div class="line">    }</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// GetAssetData accepts &#39;/&#39; or &#39;\&#39; separators.</span></div>
+<div class="line">    <span class="comment">// It logs an error and returns null if nothing matches.</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> data =</div>
+<div class="line">        <a class="code hl_function" href="#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(<span class="stringliteral">&quot;Shaders/Compiled/PullSpriteBatch.vert&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> (data.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>()) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Name: {}  Extension: {}  File: {}&quot;</span>,</div>
+<div class="line">                          data-&gt;AssetName, data-&gt;AssetExtension,</div>
+<div class="line">                          data-&gt;AssetFilePathRaw.string());</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading a text file</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
+<div class="line">    <span class="comment">// The file is Resources/Shaders/FragmentShaderSrc.frag.hlsl</span></div>
+<div class="line">    <span class="keyword">const</span> std::string shaderPath = <span class="stringliteral">&quot;Shaders/FragmentShaderSrc.frag&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists&lt;STextFileAsset&gt;</a>(shaderPath)) {</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> source =</div>
+<div class="line">            <a class="code hl_function" href="#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        std::istringstream lines(source-&gt;Data);</div>
+<div class="line">        std::string firstLine;</div>
+<div class="line">        std::getline(lines, firstLine);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;{} is {} characters long. First line: {}&quot;</span>,</div>
+<div class="line">                          source-&gt;GetName(), source-&gt;Data.size(), firstLine);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Loading again returns the same object from the cache.</span></div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> again =</div>
+<div class="line">            <a class="code hl_function" href="#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Cached: {}&quot;</span>, again == source);</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Sprites use asset paths directly. The renderer loads and uploads the texture the first time it draws it:</p>
+<div class="fragment"><div class="line">.set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a>&gt;({ .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;Images\\Player&quot;</span>} }, .TextureSize = {32, 32} })</div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="filesystem_paths"></a>
+Asset paths</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">File on disk  </th><th class="markdownTableHeadNone">Asset path  </th><th class="markdownTableHeadNone">Asset name  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Resources/CollisionTexture.png</span>  </td><td class="markdownTableBodyNone"><span class="tt">CollisionTexture</span>  </td><td class="markdownTableBodyNone"><span class="tt">CollisionTexture</span>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Resources/Images/Player.png</span>  </td><td class="markdownTableBodyNone"><span class="tt">Images\Player</span>  </td><td class="markdownTableBodyNone"><span class="tt">Player</span>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Resources/Shaders/Compiled/PullSpriteBatch.vert.spv</span>  </td><td class="markdownTableBodyNone"><span class="tt">Shaders\Compiled\PullSpriteBatch.vert</span>  </td><td class="markdownTableBodyNone"><span class="tt">PullSpriteBatch.vert</span>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Resources/Config/filesystem.json</span>  </td><td class="markdownTableBodyNone"><span class="tt">Config\<a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a></span>  </td><td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a></span>  </td></tr>
+</table>
+<p>The asset path is computed by <a class="el" href="#ga4c0added2427c1f414db14dc89a83f56" title="Converts a full file path into an asset path: relative to Resources/, without the extension.">Filesystem::FilePathToAssetPath()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>): the path relative to <span class="tt">Resources/</span>, with the last extension removed.</p>
+<ul>
+<li><a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">Filesystem::GetAssetData()</a> converts <span class="tt">/</span> to <span class="tt">\\endiskip</span> before looking up (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>), so <span class="tt">"Images/Player"</span> works there.</li>
+<li><a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a> does <b>not</b> convert (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>), and the renderer uses it to decide whether to draw a sprite. <b>Always use <span class="tt">\\</span> in paths you store in components.</b> For paths built at runtime, <span class="tt">std::filesystem::path(p).make_preferred().string()</span> gives the right form.</li>
+<li>Two files that differ only in their extension get the same asset path. Only the first one found is registered. That is why the three compiled forms of each shader (<span class="tt">.dxil</span>, <span class="tt">.msl</span>, <span class="tt">.spv</span>) share one asset: the renderer picks the right file itself.</li>
+</ul>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
+Asset types</h2>
+<p><span class="tt">Resources/Config/filesystem.json</span> maps file extensions to <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1" title="The kind of file an asset is, set from its extension by filesystem.json.">Filesystem::EAssetType</a> values. Each file's type is set when it is registered (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>):</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The engine's extension table</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Config/filesystem.json#L1-L9" target="_blank">Config/filesystem.json:1</a></summary> </p><div class="fragment"><div class="line">{</div>
+<div class="line">  <span class="stringliteral">&quot;AssetTypes&quot;</span> : {</div>
+<div class="line">    <span class="stringliteral">&quot;TEXTURE&quot;</span>: [<span class="stringliteral">&quot;.png&quot;</span>, <span class="stringliteral">&quot;.jpg&quot;</span>],</div>
+<div class="line">    <span class="stringliteral">&quot;SHADER&quot;</span>: [<span class="stringliteral">&quot;.dxil&quot;</span>, <span class="stringliteral">&quot;.spv&quot;</span>, <span class="stringliteral">&quot;.msl&quot;</span>],</div>
+<div class="line">    <span class="stringliteral">&quot;FONT&quot;</span>: [<span class="stringliteral">&quot;.ttf&quot;</span>, <span class="stringliteral">&quot;.otf&quot;</span>],</div>
+<div class="line">    <span class="stringliteral">&quot;PREFAB&quot;</span>: [<span class="stringliteral">&quot;.prefab&quot;</span>],</div>
+<div class="line">    <span class="stringliteral">&quot;LEVEL&quot;</span>: [<span class="stringliteral">&quot;.level&quot;</span>]</div>
+<div class="line">  }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>The type is only a label. <span class="tt">LoadFile&lt;T&gt;</span> decides how to read a file from <span class="tt">T</span>, not from the asset type. The type is used by Filesystem::GetAllAssetPaths(EAssetType) and by editor drop-downs that list, for example, only textures.</p>
+<dl class="section note"><dt>Note</dt><dd>The engine copies its own <span class="tt">Config/</span> folder to <span class="tt">&lt;output&gt;/Config/Resources</span>, not to <span class="tt">&lt;output&gt;/Resources/Config</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/MoveConfigFiles.cmake\#L9-L16" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). Copy <span class="tt">filesystem.json</span> into your game's <span class="tt">Resources/Config/</span> yourself, as described in <a class="el" href="first_game.html" title="Your first game">Your first game</a>.</dd></dl>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
+Loading and caching</h2>
+<p><span class="tt">LoadFile&lt;T&gt;(path)</span> finds the asset's <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> and returns <span class="tt">SAssetData::ObjectData</span> if it is already loaded. Otherwise it calls the loader for <span class="tt">T</span>, stores the result in <span class="tt">ObjectData</span>, sets the asset's <span class="tt">AssetPath</span> and name, and returns it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>).</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Loader for  </th><th class="markdownTableHeadNone">Reads the file as  </th><th class="markdownTableHeadNone">Defined in  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span>  </td><td class="markdownTableBodyNone">Text, in <span class="tt">Data</span> (<span class="tt">std::string</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L40-L50" class="src-link">src/Filesystem/Importers/Importer.cpp:40</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span>  </td><td class="markdownTableBodyNone">Bytes, in <span class="tt">Data</span> (<span class="tt">std::vector&lt;uint8_t&gt;</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L27-L38" class="src-link">src/Filesystem/Importers/Importer.cpp:27</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a></span>  </td><td class="markdownTableBodyNone">An image (SDL_image), converted to RGBA  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L51-L73" class="src-link">src/Types/Graphics.cpp:51</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite_sheet.html" title="END ASSETS.">Graphics::SSpriteSheet</a></span>  </td><td class="markdownTableBodyNone">Same as a texture  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L75-L98" class="src-link">src/Types/Graphics.cpp:75</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">LDtk project and level types  </td><td class="markdownTableBodyNone">JSON, via nlohmann  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L9-L25" class="src-link">src/Filesystem/Importers/Importer.cpp:9</a>  </td></tr>
+</table>
+<dl class="section warning"><dt>Warning</dt><dd>An asset is cached once, for the first type it is loaded as. Loading the same path again as a <em>different</em> type returns the cached object cast to the new type, which is wrong. Load each file as one type only.</dd></dl>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
+Your own asset types</h3>
+<p>Derive from <span class="tt"><a class="el" href="struct_s_asset.html" title="Base type of everything the Filesystem module can load.">SAsset</a></span>, then specialize <a class="el" href="#ga750cb9a8723a9af7aa4f328925313ee0" title="Loads an asset directly from the provided AssetData This should never be called directly,...">Filesystem::Importers::LoadAsset</a> for your type. <a class="el" href="#gad808ab80fc1f63d3b1328d4a65451555" title="Declares the Filesystem::Importers::LoadAsset&lt;AssetType&gt; specialization for a custom asset type.">DEFINE_ASSET_LOADER</a> declares the specialization:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type and its loader</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
+<div class="line"><span class="comment">// that builds one from the file. DEFINE_ASSET_LOADER declares the specialization</span></div>
+<div class="line"><span class="comment">// (put it in a header if other files use it).</span></div>
+<div class="line"><span class="keyword">struct </span>SLineCountAsset : <a class="code hl_struct" href="struct_s_asset.html">SAsset</a> {</div>
+<div class="line">    <span class="keywordtype">size_t</span> Lines = 0;</div>
+<div class="line">};</div>
+<div class="line"><a class="code hl_define" href="#gad808ab80fc1f63d3b1328d4a65451555">DEFINE_ASSET_LOADER</a>(SLineCountAsset, )</div>
+<div class="line"> </div>
+<div class="line">namespace <a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>::Importers {</div>
+<div class="line">    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> LoadAsset&lt;SLineCountAsset&gt;(</div>
+<div class="line">            <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAssetData&gt;</a>&amp; InAssetData) {</div>
+<div class="line">        std::ifstream file {InAssetData-&gt;AssetFilePathRaw};</div>
+<div class="line">        <span class="keyword">const</span> std::istreambuf_iterator&lt;char&gt; begin(file), end;</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> asset;</div>
+<div class="line">        asset-&gt;Lines = std::count(begin, end, <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> asset;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// LoadFile works the same for your own types. Note that an asset is cached for</span></div>
+<div class="line">    <span class="comment">// the first type it is loaded as, so don&#39;t load one file as two different types.</span></div>
+<div class="line">    <span class="keyword">const</span> std::string vertexPath = <span class="stringliteral">&quot;Shaders/VertexShaderSrc.vert&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> vertexSource =</div>
+<div class="line">        <a class="code hl_function" href="#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;SLineCountAsset&gt;</a>(vertexPath);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} has {} lines&quot;</span>, vertexSource-&gt;GetName(), vertexSource-&gt;Lines);</div>
+</div><!-- fragment --><p>  </details></p>
+<h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
+Assets made in code</h3>
+<p>Register a <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> whose <span class="tt">ObjectData</span> is already set. <span class="tt">LoadFile</span> then returns that object without touching the disk, and the renderer can draw it like any image. This is how every example creates its textures:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering a texture generated at runtime</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
+<div class="line"><span class="comment">// the same format image files are converted to.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
+<div class="line">                                   <span class="keywordtype">int</span> Squares) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 light = SDL_MapSurfaceRGBA(surface, 235, 235, 240, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 dark = SDL_MapSurfaceRGBA(surface, 70, 80, 110, 255);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> cell = Size / Squares;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; Squares; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; Squares; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bLight = (x + y) % 2 == 0;</div>
+<div class="line">            <span class="keyword">const</span> SDL_Rect rect {x * cell, y * cell, cell, cell};</div>
+<div class="line">            SDL_FillSurfaceRect(surface, &amp;rect, bLight ? light : dark);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;   <span class="comment">// TObjectPtr&lt;T&gt;() creates a new T</span></div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;           <span class="comment">// the key GetAssetData() looks up</span></div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;            <span class="comment">// already loaded: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Assets can be registered at any time.</span></div>
+<div class="line">    <span class="comment">// The renderer uploads a texture the first time it is drawn.</span></div>
+<div class="line">    <span class="comment">// Asset paths use the platform&#39;s preferred separator (&#39;\&#39; on Windows), like</span></div>
+<div class="line">    <span class="comment">// the paths of scanned files. GetAssetData() converts &#39;/&#39; for you, but</span></div>
+<div class="line">    <span class="comment">// Filesystem::IsValid() (used by the renderer) does not.</span></div>
+<div class="line">    std::filesystem::path checkerFile = <span class="stringliteral">&quot;Generated/Checker&quot;</span>;</div>
+<div class="line">    <span class="keyword">const</span> std::string checkerPath = checkerFile.make_preferred().string();</div>
+<div class="line">    RegisterCheckerTexture(checkerPath, 64, 8);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">bool</span> bValid = <a class="code hl_function" href="#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem::IsValid</a>(<a class="code hl_struct" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a>(checkerPath));</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} valid: {}&quot;</span>, checkerPath, bValid);</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Assets can be registered before <span class="tt"><a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a></span> (needed for <span class="tt">CollisionTexture</span>) or at any time after. A file found by the startup scan with the same asset path is skipped.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
+Config files</h2>
+<p><a class="el" href="struct_filesystem_1_1_s_config.html" title="Base for JSON settings files in Resources/Config.">Filesystem::SConfig</a> is a small helper for JSON settings files under <span class="tt">Resources/Config/</span>. A config type derives from <span class="tt">SConfig&lt;Self&gt;</span>, says where its file is, and lists its fields for nlohmann/json. The engine's own <a class="el" href="struct_filesystem_1_1_s_filesystem_config.html" title="The asset-type table read from Resources/Config/filesystem.json.">Filesystem::SFilesystemConfig</a> reads <span class="tt">filesystem.json</span>:</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">SFilesystemConfig</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Config.hpp#L57-L65" target="_blank">include/Filesystem/Config.hpp:57</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">struct </span>SFilesystemConfig : SConfig&lt;SFilesystemConfig&gt; {</div>
+<div class="line">    std::map&lt;std::string, std::vector&lt;std::string&gt;&gt; AssetTypes;</div>
+<div class="line"> </div>
+<div class="line">    std::filesystem::path GetConfigPath()<span class="keyword"> override </span>{</div>
+<div class="line">        <span class="keywordflow">return</span> std::filesystem::path(<span class="stringliteral">&quot;Config&quot;</span>) / <span class="stringliteral">&quot;filesystem&quot;</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    NLOHMANN_DEFINE_TYPE_INTRUSIVE(SFilesystemConfig, AssetTypes)</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Reading it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp#L29-L31" target="_blank">src/Filesystem/FilesystemTypes.cpp:29</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SFilesystemConfig&gt;</a> config = SFilesystemConfig::Get();</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; assetType: config-&gt;AssetTypes) {</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+</div><!-- fragment --><p>  </details></p>
+<p>Only <span class="tt">Get()</span> works at this commit: it parses the file on every call. <span class="tt">Read()</span> and <span class="tt">Save()</span> fail to compile if you call them. See <a class="el" href="known_issues.html#known_issues_filesystem" title="Filesystem">Filesystem</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
+Things to watch out for</h2>
+<ul>
+<li><span class="tt">Resources/Config</span> must exist in the working directory, or <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a> throws (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L27-L29" class="src-link">src/Filesystem/Module.cpp:27</a>).</li>
+<li>At startup the log shows <span class="tt">Could not find asset [Config\<a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a>]</span> once, even when the file is there: the file's own type is looked up before it is registered. It is harmless.</li>
+<li><span class="tt">LoadFile(path)</span> throws <span class="tt">AssetCouldNotLoadException</span> when the path is unknown. <span class="tt">TryLoadFile(path)</span> throws <span class="tt">nullptr</span> instead; it does not return an empty pointer. Check with <span class="tt">AssetExists&lt;T&gt;(path)</span> or <a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a> first.</li>
+<li><a class="el" href="#ga70baa267c86fe3795214c8bd2cf74191" title="Declared but not defined at this commit.">Filesystem::Module()</a> is declared but not defined. Don't call it; the engine calls <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>.</li>
+<li>More in <a class="el" href="known_issues.html#known_issues_filesystem" title="Filesystem">Filesystem</a>. </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Filesystem_3A_3ASAssetData" id="r_Filesystem_3A_3ASAssetData"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_asset_data.html">Filesystem::SAssetData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Everything the registry knows about one file: where it is, its asset path, name, extension, type and, once loaded, the loaded object.  <a href="struct_filesystem_1_1_s_asset_data.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Filesystem_3A_3ASSoftAssetPath" id="r_Filesystem_3A_3ASSoftAssetPath"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to an asset by its path.  <a href="struct_filesystem_1_1_s_soft_asset_path.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Filesystem_3A_3ASTypedSoftAssetPath_3C_20TType_20_3E" id="r_Filesystem_3A_3ASTypedSoftAssetPath_3C_20TType_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html">Filesystem::STypedSoftAssetPath&lt; TType &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> that also states which asset type it points to.  <a href="struct_filesystem_1_1_s_typed_soft_asset_path.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SAsset" id="r_SAsset"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_s_asset.html">SAsset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base type of everything the <a class="el" href="namespace_filesystem.html">Filesystem</a> module can load.  <a href="struct_s_asset.html#details">More...</a><br /></td></tr>
+<tr class="memitem:STextFileAsset" id="r_STextFileAsset"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_s_text_file_asset.html">STextFileAsset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A file loaded as text.  <a href="struct_s_text_file_asset.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SRawFileAsset" id="r_SRawFileAsset"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_s_raw_file_asset.html">SRawFileAsset</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A file loaded as bytes.  <a href="struct_s_raw_file_asset.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Filesystem_3A_3ASConfig_3C_20TConfig_20_3E" id="r_Filesystem_3A_3ASConfig_3C_20TConfig_20_3E"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_config.html">Filesystem::SConfig&lt; TConfig &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base for JSON settings files in <span class="tt">Resources/Config</span>.  <a href="struct_filesystem_1_1_s_config.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Filesystem_3A_3ASFilesystemConfig" id="r_Filesystem_3A_3ASFilesystemConfig"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_filesystem_config.html">Filesystem::SFilesystemConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The asset-type table read from <span class="tt">Resources/Config/filesystem.json</span>.  <a href="struct_filesystem_1_1_s_filesystem_config.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-define-members" class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:gad808ab80fc1f63d3b1328d4a65451555" id="r_gad808ab80fc1f63d3b1328d4a65451555"><td class="memItemLeft">#define&#160;</td><td class="memItemRight"><a class="el" href="#gad808ab80fc1f63d3b1328d4a65451555">DEFINE_ASSET_LOADER</a>(AssetType,  Export)</td></tr>
+<tr class="memdesc:gad808ab80fc1f63d3b1328d4a65451555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declares the <span class="tt"><a class="el" href="#ga750cb9a8723a9af7aa4f328925313ee0" title="Loads an asset directly from the provided AssetData This should never be called directly,...">Filesystem::Importers::LoadAsset</a>&lt;AssetType&gt;</span> specialization for a custom asset type.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga84e0341c2c7fa23bcdd26ca56ea745e1" id="r_ga84e0341c2c7fa23bcdd26ca56ea745e1"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">Filesystem::EAssetType</a> { <br />
+&#160;&#160;<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">Filesystem::UNDEFINED</a> = 0
+, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>
+, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a>
+, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">Filesystem::FONT</a>
+, <br />
+&#160;&#160;<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">Filesystem::PREFAB</a>
+, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">Filesystem::LEVEL</a>
+, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">Filesystem::CONFIG</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga84e0341c2c7fa23bcdd26ca56ea745e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kind of file an asset is, set from its extension by <span class="tt">filesystem.json</span>.  <a href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga6931370076d808aeecee9dfb1e406eb6" id="r_ga6931370076d808aeecee9dfb1e406eb6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6">Filesystem::InitializeAllResources</a> ()</td></tr>
+<tr class="memdesc:ga6931370076d808aeecee9dfb1e406eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the entire resources directory and loads the asset data into memory.  <br /></td></tr>
+<tr class="memitem:ga67ef61bdf17c2c5152b74f3c978d9871" id="r_ga67ef61bdf17c2c5152b74f3c978d9871"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;AssetData)</td></tr>
+<tr class="memdesc:ga67ef61bdf17c2c5152b74f3c978d9871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an asset to the registry under <span class="tt">AssetData-&gt;AssetPath</span>.  <br /></td></tr>
+<tr class="memitem:ga7b08bf8a24a334fe7a267a5224c62b04" id="r_ga7b08bf8a24a334fe7a267a5224c62b04"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a> (const std::string &amp;AssetPath)</td></tr>
+<tr class="memdesc:ga7b08bf8a24a334fe7a267a5224c62b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if there is none.  <br /></td></tr>
+<tr class="memitem:ga72f345643ec84784a77eb0b02f70c971" id="r_ga72f345643ec84784a77eb0b02f70c971"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga72f345643ec84784a77eb0b02f70c971">Filesystem::GetAssetData</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_s_asset.html">SAsset</a> &gt; &amp;Asset)</td></tr>
+<tr class="memdesc:ga72f345643ec84784a77eb0b02f70c971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered asset for a loaded asset object.  <br /></td></tr>
+<tr class="memitem:gab7f2db5d0766acf15c288ae7a6e450e6" id="r_gab7f2db5d0766acf15c288ae7a6e450e6"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a> (const std::string &amp;RelativePath=&quot;&quot;)</td></tr>
+<tr class="memdesc:gab7f2db5d0766acf15c288ae7a6e450e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the asset paths of every registered asset, or of those inside the folder <span class="tt">RelativePath</span> (for example <span class="tt">"Images"</span>).  <br /></td></tr>
+<tr class="memitem:gae8c77073c80b013cc69a34a6f05413c0" id="r_gae8c77073c80b013cc69a34a6f05413c0"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#gae8c77073c80b013cc69a34a6f05413c0">Filesystem::GetAllAssetPaths</a> (<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> AssetType)</td></tr>
+<tr class="memdesc:gae8c77073c80b013cc69a34a6f05413c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns every registered asset of one type, for example all <span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></span> assets.  <br /></td></tr>
+<tr class="memitem:gad297a3aa7089dce544083e6dd5c1aab6" id="r_gad297a3aa7089dce544083e6dd5c1aab6"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="#gad297a3aa7089dce544083e6dd5c1aab6">Filesystem::GetResourcesDirectory</a> ()</td></tr>
+<tr class="memdesc:gad297a3aa7089dce544083e6dd5c1aab6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">&lt;current working directory&gt;/Resources</span>.  <br /></td></tr>
+<tr class="memitem:ga1b2e0ec808875788a7b96c3d7e8e814b" id="r_ga1b2e0ec808875788a7b96c3d7e8e814b"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="#ga1b2e0ec808875788a7b96c3d7e8e814b">Filesystem::GetConfigDirectory</a> ()</td></tr>
+<tr class="memdesc:ga1b2e0ec808875788a7b96c3d7e8e814b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">&lt;current working directory&gt;/Resources/Config</span>.  <br /></td></tr>
+<tr class="memitem:ga093d508bcb42f5b3eec44ad6a1d63824" id="r_ga093d508bcb42f5b3eec44ad6a1d63824"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem::IsValid</a> (const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &amp;Path)</td></tr>
+<tr class="memdesc:ga093d508bcb42f5b3eec44ad6a1d63824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if <span class="tt">Path</span> is a registered asset path.  <br /></td></tr>
+<tr class="memitem:ga70baa267c86fe3795214c8bd2cf74191" id="r_ga70baa267c86fe3795214c8bd2cf74191"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga70baa267c86fe3795214c8bd2cf74191">Filesystem::Module</a> ()</td></tr>
+<tr class="memdesc:ga70baa267c86fe3795214c8bd2cf74191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declared but not defined at this commit.  <br /></td></tr>
+<tr class="memitem:gabb430616847a501341456706c78f2c72" id="r_gabb430616847a501341456706c78f2c72"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gabb430616847a501341456706c78f2c72">Filesystem::TeardownModule</a> ()</td></tr>
+<tr class="memdesc:gabb430616847a501341456706c78f2c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forgets every registered asset.  <br /></td></tr>
+<tr class="memitem:ga3c7aac198685c3e727f5041068c9b9a1" id="r_ga3c7aac198685c3e727f5041068c9b9a1"><td class="memItemLeft"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a>&#160;</td><td class="memItemRight"><a class="el" href="#ga3c7aac198685c3e727f5041068c9b9a1">Filesystem::GetFileType</a> (const std::filesystem::path &amp;FilePath)</td></tr>
+<tr class="memdesc:ga3c7aac198685c3e727f5041068c9b9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the asset type of a file from its extension, using <span class="tt">Resources/Config/filesystem.json</span>.  <br /></td></tr>
+<tr class="memitem:ga4c0added2427c1f414db14dc89a83f56" id="r_ga4c0added2427c1f414db14dc89a83f56"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#ga4c0added2427c1f414db14dc89a83f56">Filesystem::FilePathToAssetPath</a> (std::filesystem::path FilePath)</td></tr>
+<tr class="memdesc:ga4c0added2427c1f414db14dc89a83f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a full file path into an asset path: relative to <span class="tt">Resources/</span>, without the extension.  <br /></td></tr>
+<tr class="memitem:ga2e22f7b3b5477c9055c7440e04f1f5cf" id="r_ga2e22f7b3b5477c9055c7440e04f1f5cf"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </td></tr>
+<tr class="memitem:ga2e22f7b3b5477c9055c7440e04f1f5cf template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga2e22f7b3b5477c9055c7440e04f1f5cf">Filesystem::Importers::LoadFile</a> (const std::string &amp;AssetPath)</td></tr>
+<tr class="memdesc:ga2e22f7b3b5477c9055c7440e04f1f5cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find and load the asset based on its name - Assumed the asset is within the Resources root dir.  <br /></td></tr>
+<tr class="memitem:gab5cabc4342be3707fd29b29bec7f4dd5" id="r_gab5cabc4342be3707fd29b29bec7f4dd5"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </td></tr>
+<tr class="memitem:gab5cabc4342be3707fd29b29bec7f4dd5 template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;Asset)</td></tr>
+<tr class="memdesc:gab5cabc4342be3707fd29b29bec7f4dd5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads an asset you already looked up, or returns its cached object.  <br /></td></tr>
+<tr class="memitem:ga893825381b744f0772e6226e6f923510" id="r_ga893825381b744f0772e6226e6f923510"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </td></tr>
+<tr class="memitem:ga893825381b744f0772e6226e6f923510 template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga893825381b744f0772e6226e6f923510">Filesystem::Importers::TryLoadFile</a> (const std::string &amp;AssetPath)</td></tr>
+<tr class="memdesc:ga893825381b744f0772e6226e6f923510"><td class="mdescLeft">&#160;</td><td class="mdescRight">Find and load the asset based on its name - Assumed the asset is within the Resources root dir.  <br /></td></tr>
+<tr class="memitem:gac7ffafed7c7a8a6f3505d55b899c1500" id="r_gac7ffafed7c7a8a6f3505d55b899c1500"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </td></tr>
+<tr class="memitem:gac7ffafed7c7a8a6f3505d55b899c1500 template"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists</a> (const std::string &amp;AssetPath)</td></tr>
+<tr class="memdesc:gac7ffafed7c7a8a6f3505d55b899c1500"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if <span class="tt">AssetPath</span> is registered.  <br /></td></tr>
+<tr class="memitem:ga750cb9a8723a9af7aa4f328925313ee0" id="r_ga750cb9a8723a9af7aa4f328925313ee0"><td class="memTemplParams" colspan="2">template&lt;typename TAssetType&gt; </td></tr>
+<tr class="memitem:ga750cb9a8723a9af7aa4f328925313ee0 template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga750cb9a8723a9af7aa4f328925313ee0">Filesystem::Importers::LoadAsset</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;InAssetData)</td></tr>
+<tr class="memdesc:ga750cb9a8723a9af7aa4f328925313ee0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Loads an asset directly from the provided AssetData This should never be called directly, use LoadFile instead!  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga073c9848a6d7e8c23ce9c44bed39044e" id="r_ga073c9848a6d7e8c23ce9c44bed39044e"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga073c9848a6d7e8c23ce9c44bed39044e">Filesystem::StringToType</a></td></tr>
+<tr class="memdesc:ga073c9848a6d7e8c23ce9c44bed39044e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the type names used in <span class="tt">filesystem.json</span> (<span class="tt">"<a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">TEXTURE</a>"</span>, ...) to <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1" title="The kind of file an asset is, set from its extension by filesystem.json.">Filesystem::EAssetType</a> values.  <br /></td></tr>
+</table>
+<a name="doc-define-members" id="doc-define-members"></a><h2 id="header-doc-define-members" class="groupheader">Macro Definition Documentation</h2>
+<a id="gad808ab80fc1f63d3b1328d4a65451555" name="gad808ab80fc1f63d3b1328d4a65451555"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad808ab80fc1f63d3b1328d4a65451555">&#9670;&#160;</a></span>DEFINE_ASSET_LOADER</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define DEFINE_ASSET_LOADER</td>
+          <td>(</td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>AssetType</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"></td>          <td class="paramname"><span class="paramname"><em>Export</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_filesystem_1_1_importers.html">Filesystem::Importers</a> { \</div>
+<div class="line">    <span class="keyword">template</span>&lt;&gt; Export <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;AssetType&gt;</a> LoadAsset&lt;AssetType&gt;(<span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAssetData&gt;</a>&amp; InAssetData); \</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespace_filesystem_1_1_importers_html"><div class="ttname"><a href="namespace_filesystem_1_1_importers.html">Filesystem::Importers</a></div><div class="ttdoc">Graphics importers.</div><div class="ttdef"><b>Definition</b> Importer.hpp:20</div></div>
+</div><!-- fragment --><p>Pass nothing for <span class="tt">Export</span> in game code.</p>
+<p>You still have to define the specialization in one source file. See <a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>. </p>
+
+</div>
+</div>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga84e0341c2c7fa23bcdd26ca56ea745e1" name="ga84e0341c2c7fa23bcdd26ca56ea745e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">&#9670;&#160;</a></span>EAssetType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">Filesystem::EAssetType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">UNDEFINED</a></span> when the extension is not listed.</p>
+<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/FilesystemTypes.hpp\#L18-L26" class="src-link">include/Filesystem/FilesystemTypes.hpp:18</a>. <span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a></span> is never assigned at this commit; config files get their type from their extension like any other file. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"></a>TEXTURE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a" name="ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a"></a>SHADER&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5" name="ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5"></a>FONT&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51"></a>PREFAB&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91" name="ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91"></a>LEVEL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14"></a>CONFIG&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga6931370076d808aeecee9dfb1e406eb6" name="ga6931370076d808aeecee9dfb1e406eb6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6931370076d808aeecee9dfb1e406eb6">&#9670;&#160;</a></span>InitializeAllResources()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Filesystem::InitializeAllResources </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Scans <span class="tt">Resources/Config</span>, then all of <span class="tt">Resources/</span>, and registers every file as an asset.</p>
+<p>This allows us to load the assets when we need them without having to do a new IO operation</p>
+<p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
+<p>Files are not read yet: only an <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> is created for each. A file whose asset path is already registered is skipped. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L24-L50" class="src-link">src/Filesystem/Module.cpp:24</a>. </p>
+
+</div>
+</div>
+<a id="ga67ef61bdf17c2c5152b74f3c978d9871" name="ga67ef61bdf17c2c5152b74f3c978d9871"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga67ef61bdf17c2c5152b74f3c978d9871">&#9670;&#160;</a></span>RegisterAssetData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Filesystem::RegisterAssetData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Use it for assets made in code.</p>
+<p>If <span class="tt">AssetData-&gt;ObjectData</span> is set, <span class="tt">LoadFile</span> returns that object instead of reading a file. Registering a path that already exists keeps the existing entry. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L52-L65" class="src-link">src/Filesystem/Module.cpp:52</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Generated texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
+<div class="line"><span class="comment">// the same format image files are converted to.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
+<div class="line">                                   <span class="keywordtype">int</span> Squares) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 light = SDL_MapSurfaceRGBA(surface, 235, 235, 240, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 dark = SDL_MapSurfaceRGBA(surface, 70, 80, 110, 255);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> cell = Size / Squares;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; Squares; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; Squares; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bLight = (x + y) % 2 == 0;</div>
+<div class="line">            <span class="keyword">const</span> SDL_Rect rect {x * cell, y * cell, cell, cell};</div>
+<div class="line">            SDL_FillSurfaceRect(surface, &amp;rect, bLight ? light : dark);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;   <span class="comment">// TObjectPtr&lt;T&gt;() creates a new T</span></div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;           <span class="comment">// the key GetAssetData() looks up</span></div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;            <span class="comment">// already loaded: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="ga7b08bf8a24a334fe7a267a5224c62b04" name="ga7b08bf8a24a334fe7a267a5224c62b04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga7b08bf8a24a334fe7a267a5224c62b04">&#9670;&#160;</a></span>GetAssetData() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; Filesystem::GetAssetData </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetPath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Accepts <span class="tt">/</span> or <span class="tt">\\endiskip</span> separators. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>. </p>
+
+</div>
+</div>
+<a id="ga72f345643ec84784a77eb0b02f70c971" name="ga72f345643ec84784a77eb0b02f70c971"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga72f345643ec84784a77eb0b02f70c971">&#9670;&#160;</a></span>GetAssetData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; Filesystem::GetAssetData </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_s_asset.html">SAsset</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Asset</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Looks the asset up by its <em>name</em> (<span class="tt">Asset-&gt;GetName()</span>), not its path (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L78-L81" class="src-link">src/Filesystem/Module.cpp:78</a>), so it only finds assets stored directly under <span class="tt">Resources/</span>. Prefer <span class="tt">Asset-&gt;<a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">GetAssetData()</a></span>, which uses the path. </p>
+
+</div>
+</div>
+<a id="gab7f2db5d0766acf15c288ae7a6e450e6" name="gab7f2db5d0766acf15c288ae7a6e450e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab7f2db5d0766acf15c288ae7a6e450e6">&#9670;&#160;</a></span>GetAllAssetPaths() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; std::string &gt; Filesystem::GetAllAssetPaths </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>RelativePath</em></span><span class="paramdefsep"> = </span><span class="paramdefval">&quot;&quot;</span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L83-L105" class="src-link">src/Filesystem/Module.cpp:83</a>. </p>
+
+</div>
+</div>
+<a id="gae8c77073c80b013cc69a34a6f05413c0" name="gae8c77073c80b013cc69a34a6f05413c0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gae8c77073c80b013cc69a34a6f05413c0">&#9670;&#160;</a></span>GetAllAssetPaths() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &gt; Filesystem::GetAllAssetPaths </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a></td>          <td class="paramname"><span class="paramname"><em>AssetType</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L107-L109" class="src-link">src/Filesystem/Module.cpp:107</a>. </p>
+
+</div>
+</div>
+<a id="gad297a3aa7089dce544083e6dd5c1aab6" name="gad297a3aa7089dce544083e6dd5c1aab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad297a3aa7089dce544083e6dd5c1aab6">&#9670;&#160;</a></span>GetResourcesDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::filesystem::path Filesystem::GetResourcesDirectory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L111-L113" class="src-link">src/Filesystem/Module.cpp:111</a>. </p>
+
+</div>
+</div>
+<a id="ga1b2e0ec808875788a7b96c3d7e8e814b" name="ga1b2e0ec808875788a7b96c3d7e8e814b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga1b2e0ec808875788a7b96c3d7e8e814b">&#9670;&#160;</a></span>GetConfigDirectory()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::filesystem::path Filesystem::GetConfigDirectory </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L115-L117" class="src-link">src/Filesystem/Module.cpp:115</a>. </p>
+
+</div>
+</div>
+<a id="ga093d508bcb42f5b3eec44ad6a1d63824" name="ga093d508bcb42f5b3eec44ad6a1d63824"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga093d508bcb42f5b3eec44ad6a1d63824">&#9670;&#160;</a></span>IsValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Filesystem::IsValid </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Path</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The comparison is exact: use the platform's separators.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>. The renderer skips sprites whose texture path is not valid. </p>
+
+</div>
+</div>
+<a id="ga70baa267c86fe3795214c8bd2cf74191" name="ga70baa267c86fe3795214c8bd2cf74191"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga70baa267c86fe3795214c8bd2cf74191">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Filesystem::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The engine starts the module with <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>. </p>
+
+</div>
+</div>
+<a id="gabb430616847a501341456706c78f2c72" name="gabb430616847a501341456706c78f2c72"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gabb430616847a501341456706c78f2c72">&#9670;&#160;</a></span>TeardownModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Filesystem::TeardownModule </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L20-L22" class="src-link">src/Filesystem/Module.cpp:20</a>. </p>
+
+</div>
+</div>
+<a id="ga3c7aac198685c3e727f5041068c9b9a1" name="ga3c7aac198685c3e727f5041068c9b9a1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3c7aac198685c3e727f5041068c9b9a1">&#9670;&#160;</a></span>GetFileType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> Filesystem::GetFileType </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>FilePath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>. </p>
+
+</div>
+</div>
+<a id="ga4c0added2427c1f414db14dc89a83f56" name="ga4c0added2427c1f414db14dc89a83f56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga4c0added2427c1f414db14dc89a83f56">&#9670;&#160;</a></span>FilePathToAssetPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Filesystem::FilePathToAssetPath </td>
+          <td>(</td>
+          <td class="paramtype">std::filesystem::path</td>          <td class="paramname"><span class="paramname"><em>FilePath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>. </p>
+
+</div>
+</div>
+<a id="ga2e22f7b3b5477c9055c7440e04f1f5cf" name="ga2e22f7b3b5477c9055c7440e04f1f5cf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga2e22f7b3b5477c9055c7440e04f1f5cf">&#9670;&#160;</a></span>LoadFile() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt; Filesystem::Importers::LoadFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetPath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Loads the asset at <span class="tt">AssetPath</span> as a <span class="tt">TAssetType</span>, or returns the cached object if it was loaded before.</p>
+<p>Throws <a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_could_not_load_exception.html">Filesystem::Importers::Exceptions::AssetCouldNotLoadException</a> if the path is not registered. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L89-L98" class="src-link">include/Filesystem/Importers/Importer.hpp:89</a>. </p>
+
+</div>
+</div>
+<a id="gab5cabc4342be3707fd29b29bec7f4dd5" name="gab5cabc4342be3707fd29b29bec7f4dd5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gab5cabc4342be3707fd29b29bec7f4dd5">&#9670;&#160;</a></span>LoadFile() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt; Filesystem::Importers::LoadFile </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Asset</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>. </p>
+
+</div>
+</div>
+<a id="ga893825381b744f0772e6226e6f923510" name="ga893825381b744f0772e6226e6f923510"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga893825381b744f0772e6226e6f923510">&#9670;&#160;</a></span>TryLoadFile()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt; Filesystem::Importers::TryLoadFile </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetPath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Like <span class="tt"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">LoadFile</a></span>, but throws <span class="tt">nullptr</span> (not an exception object) when the path is not registered.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L101-L110" class="src-link">include/Filesystem/Importers/Importer.hpp:101</a>. </p>
+
+</div>
+</div>
+<a id="gac7ffafed7c7a8a6f3505d55b899c1500" name="gac7ffafed7c7a8a6f3505d55b899c1500"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac7ffafed7c7a8a6f3505d55b899c1500">&#9670;&#160;</a></span>AssetExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Filesystem::Importers::AssetExists </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;</td>          <td class="paramname"><span class="paramname"><em>AssetPath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><span class="tt">TAssetType</span> is not checked. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L78-L86" class="src-link">include/Filesystem/Importers/Importer.hpp:78</a>. </p>
+
+</div>
+</div>
+<a id="ga750cb9a8723a9af7aa4f328925313ee0" name="ga750cb9a8723a9af7aa4f328925313ee0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga750cb9a8723a9af7aa4f328925313ee0">&#9670;&#160;</a></span>LoadAsset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TAssetType&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TAssetType &gt; Filesystem::Importers::LoadAsset </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>InAssetData</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Reads a file into a new <span class="tt">TAssetType</span>.</p>
+<p>Specialize it for your own asset types; call <span class="tt"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">LoadFile</a></span> instead of calling it directly. </p>
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ga073c9848a6d7e8c23ce9c44bed39044e" name="ga073c9848a6d7e8c23ce9c44bed39044e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga073c9848a6d7e8c23ce9c44bed39044e">&#9670;&#160;</a></span>StringToType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::map&lt;std::string, <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a>&gt; Filesystem::StringToType</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">                             = {</div>
+<div class="line">    {<span class="stringliteral">&quot;UNDEFINED&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">UNDEFINED</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;TEXTURE&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">TEXTURE</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;SHADER&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">SHADER</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;FONT&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">FONT</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;PREFAB&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">PREFAB</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;LEVEL&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">LEVEL</a>},</div>
+<div class="line">   {<span class="stringliteral">&quot;CONFIG&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a>}</div>
+<div class="line">}</div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">Filesystem::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:19</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">Filesystem::PREFAB</a></div><div class="ttdeci">@ PREFAB</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:23</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">Filesystem::CONFIG</a></div><div class="ttdeci">@ CONFIG</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:25</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">Filesystem::LEVEL</a></div><div class="ttdeci">@ LEVEL</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:24</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">Filesystem::FONT</a></div><div class="ttdeci">@ FONT</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:22</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a></div><div class="ttdeci">@ SHADER</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:21</div></div>
+</div><!-- fragment -->
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

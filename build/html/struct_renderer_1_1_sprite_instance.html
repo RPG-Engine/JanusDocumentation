@@ -1,0 +1,386 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Renderer::SpriteInstance Struct Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespace_renderer.html">Renderer</a></li><li class="navelem"><a href="struct_renderer_1_1_sprite_instance.html">SpriteInstance</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_renderer_1_1_sprite_instance-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Renderer::SpriteInstance Struct Reference<div class="ingroups"><a class="el" href="group__rendering.html">Renderer</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>One sprite as the GPU sees it: position, size, rotation, flip, texture rectangle and colour.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;Rendering/SpriteInstanceContainer.hpp&gt;</code></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/SpriteInstanceContainer.hpp\#L39-L46" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:39</a>. </p>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a43ad092b81640893cd480ab0be64b247" id="r_a43ad092b81640893cd480ab0be64b247"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a43ad092b81640893cd480ab0be64b247">x</a> {}</td></tr>
+<tr class="memitem:ac04a24f9fcd31ea1a48c1ba36e38609d" id="r_ac04a24f9fcd31ea1a48c1ba36e38609d"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ac04a24f9fcd31ea1a48c1ba36e38609d">y</a> {}</td></tr>
+<tr class="memitem:a82fcfa3eeb11e92de8d01665d6785464" id="r_a82fcfa3eeb11e92de8d01665d6785464"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a82fcfa3eeb11e92de8d01665d6785464">z</a> = 0</td></tr>
+<tr class="memitem:aa48c7143b7a369bdfc165655b8fe9837" id="r_aa48c7143b7a369bdfc165655b8fe9837"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#aa48c7143b7a369bdfc165655b8fe9837">rotation</a> = 0</td></tr>
+<tr class="memitem:a7ddc3218c155c4770aa46560624b71aa" id="r_a7ddc3218c155c4770aa46560624b71aa"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a7ddc3218c155c4770aa46560624b71aa">w</a> {}</td></tr>
+<tr class="memitem:af6e69d477081836c39f0127b501574a3" id="r_af6e69d477081836c39f0127b501574a3"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#af6e69d477081836c39f0127b501574a3">h</a> {}</td></tr>
+<tr class="memitem:ad0827f5b0105557d02645cf87877a499" id="r_ad0827f5b0105557d02645cf87877a499"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ad0827f5b0105557d02645cf87877a499">flip_x</a> {}</td></tr>
+<tr class="memitem:a2c8722a5cebae36d36d4ca79c0467466" id="r_a2c8722a5cebae36d36d4ca79c0467466"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a2c8722a5cebae36d36d4ca79c0467466">flip_y</a> = 0</td></tr>
+<tr class="memitem:ab1a29ee8de8ff19364011cc384c03c71" id="r_ab1a29ee8de8ff19364011cc384c03c71"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab1a29ee8de8ff19364011cc384c03c71">tex_u</a> {}</td></tr>
+<tr class="memitem:a113d21921614314d8172cf49c4127993" id="r_a113d21921614314d8172cf49c4127993"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a113d21921614314d8172cf49c4127993">tex_v</a> {}</td></tr>
+<tr class="memitem:a9c9a073c98f41a88f978625dd84c38dd" id="r_a9c9a073c98f41a88f978625dd84c38dd"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9c9a073c98f41a88f978625dd84c38dd">tex_w</a> {}</td></tr>
+<tr class="memitem:ab976b7018fc075e2e817600375b3e727" id="r_ab976b7018fc075e2e817600375b3e727"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#ab976b7018fc075e2e817600375b3e727">tex_h</a> = 0</td></tr>
+<tr class="memitem:a7b77eec8675d7657c29e7a1815964b30" id="r_a7b77eec8675d7657c29e7a1815964b30"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a7b77eec8675d7657c29e7a1815964b30">r</a> {}</td></tr>
+<tr class="memitem:a00bb0b47d22ef896dadcfd2282580e58" id="r_a00bb0b47d22ef896dadcfd2282580e58"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a00bb0b47d22ef896dadcfd2282580e58">g</a> {}</td></tr>
+<tr class="memitem:a18bc917c9e08709fd889fed399eb1e15" id="r_a18bc917c9e08709fd889fed399eb1e15"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a18bc917c9e08709fd889fed399eb1e15">b</a> {}</td></tr>
+<tr class="memitem:a9f1e3273db15e6b5d53cfd810efe04a6" id="r_a9f1e3273db15e6b5d53cfd810efe04a6"><td class="memItemLeft">float&#160;</td><td class="memItemRight"><a class="el" href="#a9f1e3273db15e6b5d53cfd810efe04a6">a</a> = 0</td></tr>
+</table>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a43ad092b81640893cd480ab0be64b247" name="a43ad092b81640893cd480ab0be64b247"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43ad092b81640893cd480ab0be64b247">&#9670;&#160;</a></span>x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::x {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac04a24f9fcd31ea1a48c1ba36e38609d" name="ac04a24f9fcd31ea1a48c1ba36e38609d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac04a24f9fcd31ea1a48c1ba36e38609d">&#9670;&#160;</a></span>y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::y {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a82fcfa3eeb11e92de8d01665d6785464" name="a82fcfa3eeb11e92de8d01665d6785464"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82fcfa3eeb11e92de8d01665d6785464">&#9670;&#160;</a></span>z</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::z = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa48c7143b7a369bdfc165655b8fe9837" name="aa48c7143b7a369bdfc165655b8fe9837"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa48c7143b7a369bdfc165655b8fe9837">&#9670;&#160;</a></span>rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::rotation = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ddc3218c155c4770aa46560624b71aa" name="a7ddc3218c155c4770aa46560624b71aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ddc3218c155c4770aa46560624b71aa">&#9670;&#160;</a></span>w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::w {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af6e69d477081836c39f0127b501574a3" name="af6e69d477081836c39f0127b501574a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af6e69d477081836c39f0127b501574a3">&#9670;&#160;</a></span>h</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::h {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad0827f5b0105557d02645cf87877a499" name="ad0827f5b0105557d02645cf87877a499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0827f5b0105557d02645cf87877a499">&#9670;&#160;</a></span>flip_x</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::flip_x {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2c8722a5cebae36d36d4ca79c0467466" name="a2c8722a5cebae36d36d4ca79c0467466"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c8722a5cebae36d36d4ca79c0467466">&#9670;&#160;</a></span>flip_y</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::flip_y = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1a29ee8de8ff19364011cc384c03c71" name="ab1a29ee8de8ff19364011cc384c03c71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1a29ee8de8ff19364011cc384c03c71">&#9670;&#160;</a></span>tex_u</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::tex_u {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a113d21921614314d8172cf49c4127993" name="a113d21921614314d8172cf49c4127993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a113d21921614314d8172cf49c4127993">&#9670;&#160;</a></span>tex_v</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::tex_v {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c9a073c98f41a88f978625dd84c38dd" name="a9c9a073c98f41a88f978625dd84c38dd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c9a073c98f41a88f978625dd84c38dd">&#9670;&#160;</a></span>tex_w</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::tex_w {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab976b7018fc075e2e817600375b3e727" name="ab976b7018fc075e2e817600375b3e727"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab976b7018fc075e2e817600375b3e727">&#9670;&#160;</a></span>tex_h</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::tex_h = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7b77eec8675d7657c29e7a1815964b30" name="a7b77eec8675d7657c29e7a1815964b30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b77eec8675d7657c29e7a1815964b30">&#9670;&#160;</a></span>r</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::r {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a00bb0b47d22ef896dadcfd2282580e58" name="a00bb0b47d22ef896dadcfd2282580e58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00bb0b47d22ef896dadcfd2282580e58">&#9670;&#160;</a></span>g</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::g {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a18bc917c9e08709fd889fed399eb1e15" name="a18bc917c9e08709fd889fed399eb1e15"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18bc917c9e08709fd889fed399eb1e15">&#9670;&#160;</a></span>b</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::b {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9f1e3273db15e6b5d53cfd810efe04a6" name="a9f1e3273db15e6b5d53cfd810efe04a6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9f1e3273db15e6b5d53cfd810efe04a6">&#9670;&#160;</a></span>a</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float Renderer::SpriteInstance::a = 0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

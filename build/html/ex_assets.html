@@ -1,0 +1,606 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Assets and memory | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Assets and memory </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>What the <a class="el" href="namespace_filesystem.html">Filesystem</a> module finds, how to load and cache assets, how to add your own asset type, how to make a texture in code, and how <a class="el" href="class_t_object_ptr.html" title="A reference-counted owning pointer.">TObjectPtr</a> behaves.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" class="src-link">examples/modules/AssetsAndMemory.cpp</a></span><span><b>Executable</b> <code>AssetsExample</code></span><span><b>Modules</b> <a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a>, <a class="el" href="group__memory.html" title="Memory">Memory</a></span></div><div class="image">
+<img src="assets.png" alt=""/>
+<div class="caption">
+The Asset Browser tool lists every registered asset; the checkerboard is a texture generated at runtime</div></div>
+<p>Most of this example writes to the log. Its output looks like this (paths shortened):</p>
+<div class="fragment"><div class="line">[LogAssets] info: 13 assets registered</div>
+<div class="line">[LogAssets] info: Shader asset: Shaders\Compiled\LightShader.vert</div>
+<div class="line">...</div>
+<div class="line">[LogAssets] info: Name: PullSpriteBatch.vert  Extension: .dxil  File: ...\Resources\Shaders\Compiled\PullSpriteBatch.vert.dxil</div>
+<div class="line">[LogAssets] info: FragmentShaderSrc.frag is 294 characters <span class="keywordtype">long</span>. First line: Texture2D&lt;float4&gt; Texture : <span class="keyword">register</span>(t0, space2);</div>
+<div class="line">[LogAssets] info: Cached: <span class="keyword">true</span></div>
+<div class="line">[LogAssets] info: VertexShaderSrc.vert has 79 lines</div>
+<div class="line">[LogAssets] info: Generated\Checker valid: <span class="keyword">true</span></div>
+<div class="line">[LogAssets] info: Items: 3 (both pointers see 3)</div>
+<div class="line">[LogAssets] info: empty.IsValid() = false</div>
+<div class="line">[LogAssets] info: After Clear: inventory valid = true, sameInventory valid = false</div>
+<div class="line">[LogAssets] info: <a class="code hl_function" href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo</a> round trip: hello</div>
+<div class="ttc" id="agroup__memory_html_gaaf47cf205f2dd836de6039cc31fc4c56"><div class="ttname"><a href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo</a></div><div class="ttdeci">TObjectPtr&lt; TCastType &gt; CastTo(const TObjectPtr&lt; TBaseType &gt; &amp;Ptr)</div><div class="ttdoc">Returns a pointer of another type to the same object, sharing its use count.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:125</div></div>
+</div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md119"></a>
+Finding assets</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing and looking up</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
+<div class="line">    <span class="comment">// its path relative to Resources/, without the extension.</span></div>
+<div class="line">    <span class="keyword">const</span> std::vector&lt;std::string&gt; allPaths = <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>();</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} assets registered&quot;</span>, allPaths.size());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Asset types come from Resources/Config/filesystem.json (file extension -&gt; type).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; shader : <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>(<a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a>)) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Shader asset: {}&quot;</span>, shader.AssetPath);</div>
+<div class="line">    }</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// GetAssetData accepts &#39;/&#39; or &#39;\&#39; separators.</span></div>
+<div class="line">    <span class="comment">// It logs an error and returns null if nothing matches.</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> data =</div>
+<div class="line">        <a class="code hl_function" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(<span class="stringliteral">&quot;Shaders/Compiled/PullSpriteBatch.vert&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> (data.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>()) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Name: {}  Extension: {}  File: {}&quot;</span>,</div>
+<div class="line">                          data-&gt;AssetName, data-&gt;AssetExtension,</div>
+<div class="line">                          data-&gt;AssetFilePathRaw.string());</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Note <span class="tt">Extension: .dxil</span>: the shader has three files with the same name, and only the first one found is registered (<a class="el" href="group__filesystem.html#filesystem_paths" title="Asset paths">Asset paths</a>).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
+Loading</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading text, and the cache</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
+<div class="line">    <span class="comment">// The file is Resources/Shaders/FragmentShaderSrc.frag.hlsl</span></div>
+<div class="line">    <span class="keyword">const</span> std::string shaderPath = <span class="stringliteral">&quot;Shaders/FragmentShaderSrc.frag&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__filesystem.html#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists&lt;STextFileAsset&gt;</a>(shaderPath)) {</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> source =</div>
+<div class="line">            <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        std::istringstream lines(source-&gt;Data);</div>
+<div class="line">        std::string firstLine;</div>
+<div class="line">        std::getline(lines, firstLine);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;{} is {} characters long. First line: {}&quot;</span>,</div>
+<div class="line">                          source-&gt;GetName(), source-&gt;Data.size(), firstLine);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Loading again returns the same object from the cache.</span></div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> again =</div>
+<div class="line">            <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Cached: {}&quot;</span>, again == source);</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
+<div class="line"><span class="comment">// that builds one from the file. DEFINE_ASSET_LOADER declares the specialization</span></div>
+<div class="line"><span class="comment">// (put it in a header if other files use it).</span></div>
+<div class="line"><span class="keyword">struct </span>SLineCountAsset : <a class="code hl_struct" href="struct_s_asset.html">SAsset</a> {</div>
+<div class="line">    <span class="keywordtype">size_t</span> Lines = 0;</div>
+<div class="line">};</div>
+<div class="line"><a class="code hl_define" href="group__filesystem.html#gad808ab80fc1f63d3b1328d4a65451555">DEFINE_ASSET_LOADER</a>(SLineCountAsset, )</div>
+<div class="line"> </div>
+<div class="line">namespace <a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>::Importers {</div>
+<div class="line">    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> LoadAsset&lt;SLineCountAsset&gt;(</div>
+<div class="line">            <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAssetData&gt;</a>&amp; InAssetData) {</div>
+<div class="line">        std::ifstream file {InAssetData-&gt;AssetFilePathRaw};</div>
+<div class="line">        <span class="keyword">const</span> std::istreambuf_iterator&lt;char&gt; begin(file), end;</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> asset;</div>
+<div class="line">        asset-&gt;Lines = std::count(begin, end, <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> asset;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// LoadFile works the same for your own types. Note that an asset is cached for</span></div>
+<div class="line">    <span class="comment">// the first type it is loaded as, so don&#39;t load one file as two different types.</span></div>
+<div class="line">    <span class="keyword">const</span> std::string vertexPath = <span class="stringliteral">&quot;Shaders/VertexShaderSrc.vert&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> vertexSource =</div>
+<div class="line">        <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;SLineCountAsset&gt;</a>(vertexPath);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} has {} lines&quot;</span>, vertexSource-&gt;GetName(), vertexSource-&gt;Lines);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md121"></a>
+Generated assets</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A checkerboard texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
+<div class="line"><span class="comment">// the same format image files are converted to.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
+<div class="line">                                   <span class="keywordtype">int</span> Squares) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 light = SDL_MapSurfaceRGBA(surface, 235, 235, 240, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 dark = SDL_MapSurfaceRGBA(surface, 70, 80, 110, 255);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> cell = Size / Squares;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; Squares; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; Squares; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bLight = (x + y) % 2 == 0;</div>
+<div class="line">            <span class="keyword">const</span> SDL_Rect rect {x * cell, y * cell, cell, cell};</div>
+<div class="line">            SDL_FillSurfaceRect(surface, &amp;rect, bLight ? light : dark);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;   <span class="comment">// TObjectPtr&lt;T&gt;() creates a new T</span></div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;           <span class="comment">// the key GetAssetData() looks up</span></div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;            <span class="comment">// already loaded: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Assets can be registered at any time.</span></div>
+<div class="line">    <span class="comment">// The renderer uploads a texture the first time it is drawn.</span></div>
+<div class="line">    <span class="comment">// Asset paths use the platform&#39;s preferred separator (&#39;\&#39; on Windows), like</span></div>
+<div class="line">    <span class="comment">// the paths of scanned files. GetAssetData() converts &#39;/&#39; for you, but</span></div>
+<div class="line">    <span class="comment">// Filesystem::IsValid() (used by the renderer) does not.</span></div>
+<div class="line">    std::filesystem::path checkerFile = <span class="stringliteral">&quot;Generated/Checker&quot;</span>;</div>
+<div class="line">    <span class="keyword">const</span> std::string checkerPath = checkerFile.make_preferred().string();</div>
+<div class="line">    RegisterCheckerTexture(checkerPath, 64, 8);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">bool</span> bValid = <a class="code hl_function" href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem::IsValid</a>(<a class="code hl_struct" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a>(checkerPath));</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} valid: {}&quot;</span>, checkerPath, bValid);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
+TObjectPtr</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Sharing, clearing and casting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
+<div class="line"><span class="comment">// Types derived from SAsset can also be loaded by the Filesystem module.</span></div>
+<div class="line"><span class="keyword">struct </span>SInventory {</div>
+<div class="line">    std::vector&lt;std::string&gt; Items;</div>
+<div class="line">};</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// TObjectPtr&lt;T&gt; is a reference-counted pointer.</span></div>
+<div class="line">    <span class="comment">// Copies share the object; the last one deletes it.</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> inventory;                  <span class="comment">// creates a new SInventory</span></div>
+<div class="line">    inventory-&gt;Items = {<span class="stringliteral">&quot;sword&quot;</span>, <span class="stringliteral">&quot;shield&quot;</span>};</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> sameInventory = inventory;  <span class="comment">// a second reference to it</span></div>
+<div class="line">    sameInventory-&gt;Items.push_back(<span class="stringliteral">&quot;potion&quot;</span>);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;Items: {} (both pointers see {})&quot;</span>,</div>
+<div class="line">                      inventory-&gt;Items.size(), sameInventory-&gt;Items.size());</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> empty = <span class="keyword">nullptr</span>;            <span class="comment">// an empty pointer</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;empty.IsValid() = {}&quot;</span>, empty.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    sameInventory.<a class="code hl_function" href="class_t_object_ptr.html#a8e01a838a6bb12d5596807ff14b40278">Clear</a>();                             <span class="comment">// drop one reference</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;After Clear: inventory valid = {}, sameInventory valid = {}&quot;</span>,</div>
+<div class="line">                      inventory.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>(), sameInventory.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// CastTo converts between related types</span></div>
+<div class="line">    <span class="comment">// (a static_cast: the object must really be of that type).</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> text;</div>
+<div class="line">    text-&gt;Data = <span class="stringliteral">&quot;hello&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAsset&gt;</a> asBase = text;                  <span class="comment">// derived -&gt; base is implicit</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> asText = <a class="code hl_function" href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo&lt;STextFileAsset&gt;</a>(asBase);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;CastTo round trip: {}&quot;</span>, asText-&gt;Data);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md123"></a>
+An asset browser tool</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets in an ImGui window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor window that lists every registered asset, with a filter box.</span></div>
+<div class="line"><span class="keyword">class </span>AssetBrowser : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        ImGui::SetNextWindowSize({560.f, 300.f}, ImGuiCond_FirstUseEver);</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Asset Browser&quot;</span>, &amp;bOpen);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">static</span> std::string filter;</div>
+<div class="line">        <span class="comment">// std::string overload from imgui_stdlib.h</span></div>
+<div class="line">        ImGui::InputText(<span class="stringliteral">&quot;Filter&quot;</span>, &amp;filter);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string&amp; path : <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>()) {</div>
+<div class="line">            <span class="keywordflow">if</span> (!filter.empty() &amp;&amp; path.find(filter) == std::string::npos) {</div>
+<div class="line">                <span class="keywordflow">continue</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> data = <a class="code hl_function" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(path);</div>
+<div class="line">            <span class="keyword">const</span> std::string type {magic_enum::enum_name(data-&gt;AssetType)};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">char</span>* state = data-&gt;ObjectData.IsValid() ? <span class="stringliteral">&quot;loaded&quot;</span> : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line">            ImGui::Text(<span class="stringliteral">&quot;%-48s %-8s %s&quot;</span>, path.c_str(), type.c_str(), state);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md124"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">AssetsAndMemory.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: assets (Filesystem) and TObjectPtr (Memory).</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Prints what the Filesystem module found under Resources/, loads a text asset that</span></div>
+<div class="line"><span class="comment">// ships with the engine (a shader source), shows TObjectPtr in use, and displays a</span></div>
+<div class="line"><span class="comment">// checkerboard texture generated at runtime. A window lists every registered asset.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows: GetAllAssetPaths, GetAssetData and SAssetData, LoadFile / AssetExists /</span></div>
+<div class="line"><span class="comment">// IsValid, STextFileAsset, registering an asset made in code, TObjectPtr and CastTo.</span></div>
+<div class="line"><span class="comment">// Uses no files of its own.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Importers/Importer.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Memory/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;magic_enum/magic_enum.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;fstream&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;iterator&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;sstream&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Assets, debug)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">float</span> ScreenW = 320.f, ScreenH = 180.f;</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
+<div class="line"><span class="comment">// the same format image files are converted to.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
+<div class="line">                                   <span class="keywordtype">int</span> Squares) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 light = SDL_MapSurfaceRGBA(surface, 235, 235, 240, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 dark = SDL_MapSurfaceRGBA(surface, 70, 80, 110, 255);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">int</span> cell = Size / Squares;</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; Squares; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; Squares; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bLight = (x + y) % 2 == 0;</div>
+<div class="line">            <span class="keyword">const</span> SDL_Rect rect {x * cell, y * cell, cell, cell};</div>
+<div class="line">            SDL_FillSurfaceRect(surface, &amp;rect, bLight ? light : dark);</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;   <span class="comment">// TObjectPtr&lt;T&gt;() creates a new T</span></div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;           <span class="comment">// the key GetAssetData() looks up</span></div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;            <span class="comment">// already loaded: LoadFile() returns it</span></div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, SDL_FColor Color) {</div>
+<div class="line">    <a class="code hl_namespace" href="namespace_world.html">World</a>.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_namespace" href="namespace_world.html">World</a>.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// An editor window that lists every registered asset, with a filter box.</span></div>
+<div class="line"><span class="keyword">class </span>AssetBrowser : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        ImGui::SetNextWindowSize({560.f, 300.f}, ImGuiCond_FirstUseEver);</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Asset Browser&quot;</span>, &amp;bOpen);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">static</span> std::string filter;</div>
+<div class="line">        <span class="comment">// std::string overload from imgui_stdlib.h</span></div>
+<div class="line">        ImGui::InputText(<span class="stringliteral">&quot;Filter&quot;</span>, &amp;filter);</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keyword">const</span> std::string&amp; path : <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>()) {</div>
+<div class="line">            <span class="keywordflow">if</span> (!filter.empty() &amp;&amp; path.find(filter) == std::string::npos) {</div>
+<div class="line">                <span class="keywordflow">continue</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keyword">const</span> <span class="keyword">auto</span> data = <a class="code hl_function" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(path);</div>
+<div class="line">            <span class="keyword">const</span> std::string type {magic_enum::enum_name(data-&gt;AssetType)};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">char</span>* state = data-&gt;ObjectData.IsValid() ? <span class="stringliteral">&quot;loaded&quot;</span> : <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line">            ImGui::Text(<span class="stringliteral">&quot;%-48s %-8s %s&quot;</span>, path.c_str(), type.c_str(), state);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
+<div class="line"><span class="comment">// Types derived from SAsset can also be loaded by the Filesystem module.</span></div>
+<div class="line"><span class="keyword">struct </span>SInventory {</div>
+<div class="line">    std::vector&lt;std::string&gt; Items;</div>
+<div class="line">};</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
+<div class="line"><span class="comment">// that builds one from the file. DEFINE_ASSET_LOADER declares the specialization</span></div>
+<div class="line"><span class="comment">// (put it in a header if other files use it).</span></div>
+<div class="line"><span class="keyword">struct </span>SLineCountAsset : <a class="code hl_struct" href="struct_s_asset.html">SAsset</a> {</div>
+<div class="line">    <span class="keywordtype">size_t</span> Lines = 0;</div>
+<div class="line">};</div>
+<div class="line"><a class="code hl_define" href="group__filesystem.html#gad808ab80fc1f63d3b1328d4a65451555">DEFINE_ASSET_LOADER</a>(SLineCountAsset, )</div>
+<div class="line"> </div>
+<div class="line">namespace <a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>::Importers {</div>
+<div class="line">    <span class="keyword">template</span>&lt;&gt;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> LoadAsset&lt;SLineCountAsset&gt;(</div>
+<div class="line">            <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAssetData&gt;</a>&amp; InAssetData) {</div>
+<div class="line">        std::ifstream file {InAssetData-&gt;AssetFilePathRaw};</div>
+<div class="line">        <span class="keyword">const</span> std::istreambuf_iterator&lt;char&gt; begin(file), end;</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> asset;</div>
+<div class="line">        asset-&gt;Lines = std::count(begin, end, <span class="charliteral">&#39;\n&#39;</span>);</div>
+<div class="line">        <span class="keywordflow">return</span> asset;</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();   <span class="comment">// scans Resources/ and registers every file it finds</span></div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
+<div class="line">    <span class="comment">// its path relative to Resources/, without the extension.</span></div>
+<div class="line">    <span class="keyword">const</span> std::vector&lt;std::string&gt; allPaths = <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>();</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} assets registered&quot;</span>, allPaths.size());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Asset types come from Resources/Config/filesystem.json (file extension -&gt; type).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; shader : <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>(<a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a>)) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Shader asset: {}&quot;</span>, shader.AssetPath);</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// GetAssetData accepts &#39;/&#39; or &#39;\&#39; separators.</span></div>
+<div class="line">    <span class="comment">// It logs an error and returns null if nothing matches.</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> data =</div>
+<div class="line">        <a class="code hl_function" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(<span class="stringliteral">&quot;Shaders/Compiled/PullSpriteBatch.vert&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> (data.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>()) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Name: {}  Extension: {}  File: {}&quot;</span>,</div>
+<div class="line">                          data-&gt;AssetName, data-&gt;AssetExtension,</div>
+<div class="line">                          data-&gt;AssetFilePathRaw.string());</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
+<div class="line">    <span class="comment">// The file is Resources/Shaders/FragmentShaderSrc.frag.hlsl</span></div>
+<div class="line">    <span class="keyword">const</span> std::string shaderPath = <span class="stringliteral">&quot;Shaders/FragmentShaderSrc.frag&quot;</span>;</div>
+<div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__filesystem.html#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists&lt;STextFileAsset&gt;</a>(shaderPath)) {</div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> source =</div>
+<div class="line">            <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        std::istringstream lines(source-&gt;Data);</div>
+<div class="line">        std::string firstLine;</div>
+<div class="line">        std::getline(lines, firstLine);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;{} is {} characters long. First line: {}&quot;</span>,</div>
+<div class="line">                          source-&gt;GetName(), source-&gt;Data.size(), firstLine);</div>
+<div class="line"> </div>
+<div class="line">        <span class="comment">// Loading again returns the same object from the cache.</span></div>
+<div class="line">        <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> again =</div>
+<div class="line">            <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;STextFileAsset&gt;</a>(shaderPath);</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Cached: {}&quot;</span>, again == source);</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// LoadFile works the same for your own types. Note that an asset is cached for</span></div>
+<div class="line">    <span class="comment">// the first type it is loaded as, so don&#39;t load one file as two different types.</span></div>
+<div class="line">    <span class="keyword">const</span> std::string vertexPath = <span class="stringliteral">&quot;Shaders/VertexShaderSrc.vert&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SLineCountAsset&gt;</a> vertexSource =</div>
+<div class="line">        <a class="code hl_function" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile&lt;SLineCountAsset&gt;</a>(vertexPath);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} has {} lines&quot;</span>, vertexSource-&gt;GetName(), vertexSource-&gt;Lines);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Assets can be registered at any time.</span></div>
+<div class="line">    <span class="comment">// The renderer uploads a texture the first time it is drawn.</span></div>
+<div class="line">    <span class="comment">// Asset paths use the platform&#39;s preferred separator (&#39;\&#39; on Windows), like</span></div>
+<div class="line">    <span class="comment">// the paths of scanned files. GetAssetData() converts &#39;/&#39; for you, but</span></div>
+<div class="line">    <span class="comment">// Filesystem::IsValid() (used by the renderer) does not.</span></div>
+<div class="line">    std::filesystem::path checkerFile = <span class="stringliteral">&quot;Generated/Checker&quot;</span>;</div>
+<div class="line">    <span class="keyword">const</span> std::string checkerPath = checkerFile.make_preferred().string();</div>
+<div class="line">    RegisterCheckerTexture(checkerPath, 64, 8);</div>
+<div class="line">    <span class="keyword">const</span> <span class="keywordtype">bool</span> bValid = <a class="code hl_function" href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem::IsValid</a>(<a class="code hl_struct" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a>(checkerPath));</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} valid: {}&quot;</span>, checkerPath, bValid);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// TObjectPtr&lt;T&gt; is a reference-counted pointer.</span></div>
+<div class="line">    <span class="comment">// Copies share the object; the last one deletes it.</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> inventory;                  <span class="comment">// creates a new SInventory</span></div>
+<div class="line">    inventory-&gt;Items = {<span class="stringliteral">&quot;sword&quot;</span>, <span class="stringliteral">&quot;shield&quot;</span>};</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> sameInventory = inventory;  <span class="comment">// a second reference to it</span></div>
+<div class="line">    sameInventory-&gt;Items.push_back(<span class="stringliteral">&quot;potion&quot;</span>);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;Items: {} (both pointers see {})&quot;</span>,</div>
+<div class="line">                      inventory-&gt;Items.size(), sameInventory-&gt;Items.size());</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> empty = <span class="keyword">nullptr</span>;            <span class="comment">// an empty pointer</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;empty.IsValid() = {}&quot;</span>, empty.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    sameInventory.<a class="code hl_function" href="class_t_object_ptr.html#a8e01a838a6bb12d5596807ff14b40278">Clear</a>();                             <span class="comment">// drop one reference</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;After Clear: inventory valid = {}, sameInventory valid = {}&quot;</span>,</div>
+<div class="line">                      inventory.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>(), sameInventory.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// CastTo converts between related types</span></div>
+<div class="line">    <span class="comment">// (a static_cast: the object must really be of that type).</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> text;</div>
+<div class="line">    text-&gt;Data = <span class="stringliteral">&quot;hello&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAsset&gt;</a> asBase = text;                  <span class="comment">// derived -&gt; base is implicit</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> asText = <a class="code hl_function" href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo&lt;STextFileAsset&gt;</a>(asBase);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;CastTo round trip: {}&quot;</span>, asText-&gt;Data);</div>
+<div class="line"> </div>
+<div class="line">    CreateCameraAndBackground(world, {0.12f, 0.12f, 0.14f, 1.f});</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Checkerboard&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {120.f, 50.f, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {checkerPath} },</div>
+<div class="line">            .TextureSize = {80.f, 80.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;AssetBrowser&gt;</a>();</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+<div class="ttc" id="aclass_t_object_ptr_html_a8e01a838a6bb12d5596807ff14b40278"><div class="ttname"><a href="class_t_object_ptr.html#a8e01a838a6bb12d5596807ff14b40278">TObjectPtr::Clear</a></div><div class="ttdeci">void Clear()</div><div class="ttdef"><b>Definition</b> Janitors.hpp:71</div></div>
+<div class="ttc" id="aclass_t_object_ptr_html_aa6a5385f75a389a3ab6fcc6ebf12a7b0"><div class="ttname"><a href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">TObjectPtr::IsValid</a></div><div class="ttdeci">bool IsValid() const</div><div class="ttdef"><b>Definition</b> Janitors.hpp:117</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga093d508bcb42f5b3eec44ad6a1d63824"><div class="ttname"><a href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem::IsValid</a></div><div class="ttdeci">bool IsValid(const SSoftAssetPath &amp;Path)</div><div class="ttdoc">Returns true if Path is a registered asset path.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga7b08bf8a24a334fe7a267a5224c62b04"><div class="ttname"><a href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a></div><div class="ttdeci">TObjectPtr&lt; SAssetData &gt; GetAssetData(const std::string &amp;AssetPath)</div><div class="ttdoc">Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...</div></div>
+<div class="ttc" id="agroup__filesystem_html_gab5cabc4342be3707fd29b29bec7f4dd5"><div class="ttname"><a href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers::LoadFile</a></div><div class="ttdeci">TObjectPtr&lt; TAssetType &gt; LoadFile(const TObjectPtr&lt; SAssetData &gt; &amp;Asset)</div><div class="ttdoc">Loads an asset you already looked up, or returns its cached object.</div><div class="ttdef"><b>Definition</b> Importer.hpp:64</div></div>
+<div class="ttc" id="agroup__filesystem_html_gab7f2db5d0766acf15c288ae7a6e450e6"><div class="ttname"><a href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a></div><div class="ttdeci">std::vector&lt; std::string &gt; GetAllAssetPaths(const std::string &amp;RelativePath=&quot;&quot;)</div><div class="ttdoc">Returns the asset paths of every registered asset, or of those inside the folder RelativePath (for ex...</div></div>
+<div class="ttc" id="agroup__filesystem_html_gac7ffafed7c7a8a6f3505d55b899c1500"><div class="ttname"><a href="group__filesystem.html#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists</a></div><div class="ttdeci">bool AssetExists(const std::string &amp;AssetPath)</div><div class="ttdoc">Returns true if AssetPath is registered.</div><div class="ttdef"><b>Definition</b> Importer.hpp:79</div></div>
+<div class="ttc" id="agroup__filesystem_html_gad808ab80fc1f63d3b1328d4a65451555"><div class="ttname"><a href="group__filesystem.html#gad808ab80fc1f63d3b1328d4a65451555">DEFINE_ASSET_LOADER</a></div><div class="ttdeci">#define DEFINE_ASSET_LOADER(AssetType, Export)</div><div class="ttdoc">Declares the Filesystem::Importers::LoadAsset&lt;AssetType&gt; specialization for a custom asset type.</div><div class="ttdef"><b>Definition</b> Importer.hpp:15</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html"><div class="ttname"><a href="namespace_filesystem.html">Filesystem</a></div><div class="ttdef"><b>Definition</b> Config.hpp:14</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a></div><div class="ttdeci">@ SHADER</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:21</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="anamespace_world_html"><div class="ttname"><a href="namespace_world.html">World</a></div><div class="ttdef"><b>Definition</b> World.hpp:20</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+<div class="ttc" id="astruct_filesystem_1_1_s_soft_asset_path_html"><div class="ttname"><a href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a></div><div class="ttdoc">A reference to an asset by its path.</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:116</div></div>
+<div class="ttc" id="astruct_im_g_u_i_wrapper_1_1_i_editor_tool_html"><div class="ttname"><a href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a></div><div class="ttdoc">Base class of editor tools.</div><div class="ttdef"><b>Definition</b> EditorTool.hpp:10</div></div>
+<div class="ttc" id="astruct_s_asset_html"><div class="ttname"><a href="struct_s_asset.html">SAsset</a></div><div class="ttdoc">Base type of everything the Filesystem module can load.</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:51</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

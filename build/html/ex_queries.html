@@ -1,0 +1,609 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Components, queries and observers | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Components, queries and observers </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>Thirty units on two teams wander around. Keys move units between teams and damage the blue team; observers recolour units and report defeats.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" class="src-link">examples/ecs/ComponentsAndQueries.cpp</a></span><span><b>Executable</b> <code>EcsQueries</code></span><span><b>Controls</b> <kbd>1</kbd> red → blue, <kbd>2</kbd> blue → red, <kbd>H</kbd> hurt every blue unit</span></div><div class="image">
+<img src="ecs-queries.png" alt=""/>
+<div class="caption">
+Red and blue units; the HUD shows the team counts from two queries</div></div>
+<p><b>Shows:</b> the three <span class="tt"><a class="el" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> variants, plain flecs tags, queries that filter on tags, observers, a custom pipeline phase, settings on the global entity, and selecting an entity for the Entity Debugger. See <a class="el" href="group__ecs.html" title="ECS">ECS</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
+Components and tags</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Defining components and tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// 1. DEFINE_COMPONENT: a struct with reflection data</span></div>
+<div class="line">    <span class="comment">//    and an automatic Entity Debugger panel.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FHealth,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Current, 100.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Max, 100.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 2. DEFINE_COMPONENT_NO_DEBUG: reflection data, but no Entity Debugger panel.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#ga6a4188d2969d3b937527ccde338182a0">DEFINE_COMPONENT_NO_DEBUG</a>(FWander,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Target, glm::vec2(0, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Speed, 30.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 3. DEFINE_COMPONENT_OVERRIDE_DEBUG: you supply functions that draw before</span></div>
+<div class="line">    <span class="comment">//    and after the automatic member widgets. Declare them first; the component</span></div>
+<div class="line">    <span class="comment">//    type is not defined yet.</span></div>
+<div class="line">    struct FUnit;</div>
+<div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit);</div>
+<div class="line">    <span class="keywordtype">void</span> PostDrawUnit(FUnit* Unit);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gabd119f037de795b5946602433ed34da3">DEFINE_COMPONENT_OVERRIDE_DEBUG</a>(FUnit, PreDrawUnit, PostDrawUnit,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Size, 8.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Settings shared by every unit, stored on the engine&#39;s global entity.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FTeamSettings,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, DamagePerHit, 25.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(SDL_FColor, RedColor, SDL_FColor(1.f, 0.35f, 0.35f, 1.f)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(SDL_FColor, BlueColor, SDL_FColor(0.35f, 0.6f, 1.f, 1.f)))</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Plain flecs tags: empty structs. They need no registration and carry no data.</span></div>
+<div class="line">struct RedTeam {};</div>
+<div class="line"><span class="keyword">struct </span>BlueTeam {};</div>
+</div><!-- fragment --><p>  </details></p>
+<p><span class="tt">FUnit</span> uses <span class="tt"><a class="el" href="group__ecs.html#gabd119f037de795b5946602433ed34da3" title="Like DEFINE_COMPONENT, but the Entity Debugger panel calls PreDebugDraw(ComponentName*) before and Po...">DEFINE_COMPONENT_OVERRIDE_DEBUG</a></span>, so its Entity Debugger panel gets extra content. Select a unit in <em>Entity Debugger → Entity Outliner</em> to see it:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Custom panel functions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
+<div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit) {</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Custom panel drawn by PreDrawUnit&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> PostDrawUnit(FUnit* Unit) {</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Grow&quot;</span>)) {</div>
+<div class="line">            Unit-&gt;Size += 2.f;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FHealth, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#ga2b693423b2113999c18ec9144a2a4f95">ECS_REGISTER_COMPONENT_NO_DEBUG</a>(FWander, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FUnit, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FTeamSettings, world);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
+Global settings</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Settings on the global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
+<div class="line">    <span class="comment">// so these settings can be edited live.</span></div>
+<div class="line">    flecs::entity settingsEntity = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>();</div>
+<div class="line">    settingsEntity.set&lt;FTeamSettings&gt;({});</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Open <em>Entity Debugger → Global Entity</em> and change <span class="tt">RedColor</span> or <span class="tt">DamagePerHit</span> while the example runs.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
+Queries</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Queries that filter on tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; RedUnits;</div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; BlueUnits;</div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;FHealth&gt; BlueHealth;</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    RedUnits = world.query_builder&lt;<span class="keyword">const</span> FUnit&gt;().with&lt;RedTeam&gt;().build();</div>
+<div class="line">    BlueUnits = world.query_builder&lt;<span class="keyword">const</span> FUnit&gt;().with&lt;BlueTeam&gt;().build();</div>
+<div class="line">    BlueHealth = world.query_builder&lt;FHealth&gt;().with&lt;BlueTeam&gt;().build();</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
+Observers</h2>
+<p>Units get their colour when a team tag is added, not every frame. The third observer fires when a unit's health component is removed, which also happens when the unit is destroyed:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Observers</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
+<div class="line">    <span class="comment">// instead of every frame.</span></div>
+<div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintRed&quot;</span>)</div>
+<div class="line">        .with&lt;RedTeam&gt;()</div>
+<div class="line">        .event(flecs::OnAdd)</div>
+<div class="line">        .each([](<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            sprite.Color = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;FTeamSettings&gt;().RedColor;</div>
+<div class="line">        });</div>
+<div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintBlue&quot;</span>)</div>
+<div class="line">        .with&lt;BlueTeam&gt;()</div>
+<div class="line">        .event(flecs::OnAdd)</div>
+<div class="line">        .each([](<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            sprite.Color = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;FTeamSettings&gt;().BlueColor;</div>
+<div class="line">        });</div>
+<div class="line">    <span class="comment">// OnRemove also fires when an entity is destroyed.</span></div>
+<div class="line">    <span class="comment">// The component can still be read here.</span></div>
+<div class="line">    world.observer&lt;<span class="keyword">const</span> FHealth&gt;(<span class="stringliteral">&quot;UnitDefeated&quot;</span>)</div>
+<div class="line">        .event(flecs::OnRemove)</div>
+<div class="line">        .each([](flecs::entity unit, <span class="keyword">const</span> FHealth&amp; health) {</div>
+<div class="line">            <span class="keywordflow">if</span> (health.Current &lt;= 0.f) {</div>
+<div class="line">                Log::Teams::Info(<span class="stringliteral">&quot;{} was defeated&quot;</span>, unit.name().c_str());</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
+Systems and a custom phase</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
+<div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
+<div class="line"><a class="code hl_define" href="group__ecs.html#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Systems</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input: act on the queries.</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FTeamSettings&gt;(<span class="stringliteral">&quot;TeamInput&quot;</span>)</div>
+<div class="line">        .each([](<span class="keyword">const</span> FTeamSettings&amp; settings) {</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToBlue)) {</div>
+<div class="line">                SwitchOneUnit&lt;RedTeam, BlueTeam&gt;(RedUnits);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToRed)) {</div>
+<div class="line">                SwitchOneUnit&lt;BlueTeam, RedTeam&gt;(BlueUnits);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::HurtBlue)) {</div>
+<div class="line">                BlueHealth.each([&amp;settings](FHealth&amp; health) {</div>
+<div class="line">                    health.Current -= settings.DamagePerHit;</div>
+<div class="line">                });</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Wander towards a target; pick a new one on arrival.</span></div>
+<div class="line">    <span class="comment">// FUnit::Size drives the sprite size.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 FWander,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FUnit&gt;(<span class="stringliteral">&quot;Wander&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 FWander&amp; wander, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite, <span class="keyword">const</span> FUnit&amp; unit) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 position {transform.Location.x, transform.Location.y};</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 toTarget = wander.Target - position;</div>
+<div class="line">            <span class="keywordflow">if</span> (glm::length(toTarget) &lt; 2.f) {</div>
+<div class="line">                wander.Target = RandomPoint();</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> distance = wander.Speed * it.delta_time();</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 step = glm::normalize(toTarget) * distance;</div>
+<div class="line">            transform.Location.x += step.x;</div>
+<div class="line">            transform.Location.y += step.y;</div>
+<div class="line">            sprite.TextureSize = {unit.Size, unit.Size};</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Runs in the custom phase, after all gameplay:</span></div>
+<div class="line">    <span class="comment">// remove units that ran out of health.</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FHealth&gt;(<span class="stringliteral">&quot;RemoveDead&quot;</span>)</div>
+<div class="line">        .kind(ECS::Phase::OnLateGameplay())</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> FHealth&amp; health) {</div>
+<div class="line">            <span class="keywordflow">if</span> (health.Current &lt;= 0.f) {</div>
+<div class="line">                entity.destruct();</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">ComponentsAndQueries.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: components, tags, queries, observers and phases.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Thirty units wander around, each on the red or the blue team.</span></div>
+<div class="line"><span class="comment">// Controls: 1 moves a red unit to the blue team, 2 does the opposite,</span></div>
+<div class="line"><span class="comment">//           H damages every blue unit (they are destroyed at 0 health).</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows:</span></div>
+<div class="line"><span class="comment">//   - the three DEFINE_COMPONENT variants (default, NO_DEBUG, OVERRIDE_DEBUG)</span></div>
+<div class="line"><span class="comment">//   - plain flecs tags, and queries that filter on them (with / without)</span></div>
+<div class="line"><span class="comment">//   - observers that react when a tag is added or an entity is destroyed</span></div>
+<div class="line"><span class="comment">//   - a custom pipeline phase made with DEFINE_NEW_ECS_PHASE</span></div>
+<div class="line"><span class="comment">//   - settings stored on the engine&#39;s global entity (ECS::GetGlobalSystemsEntity)</span></div>
+<div class="line"><span class="comment">//   - selecting an entity for the Entity Debugger with ECS::SelectEntity</span></div>
+<div class="line"><span class="comment">// Uses no files.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Input/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;glm/geometric.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Teams, debug)</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(ToBlue, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(ToRed, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(HurtBlue, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"></div>
+<div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
+<div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
+<div class="line"><a class="code hl_define" href="group__ecs.html#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// 1. DEFINE_COMPONENT: a struct with reflection data</span></div>
+<div class="line">    <span class="comment">//    and an automatic Entity Debugger panel.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FHealth,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Current, 100.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Max, 100.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 2. DEFINE_COMPONENT_NO_DEBUG: reflection data, but no Entity Debugger panel.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#ga6a4188d2969d3b937527ccde338182a0">DEFINE_COMPONENT_NO_DEBUG</a>(FWander,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Target, glm::vec2(0, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Speed, 30.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// 3. DEFINE_COMPONENT_OVERRIDE_DEBUG: you supply functions that draw before</span></div>
+<div class="line">    <span class="comment">//    and after the automatic member widgets. Declare them first; the component</span></div>
+<div class="line">    <span class="comment">//    type is not defined yet.</span></div>
+<div class="line">    struct FUnit;</div>
+<div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit);</div>
+<div class="line">    <span class="keywordtype">void</span> PostDrawUnit(FUnit* Unit);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gabd119f037de795b5946602433ed34da3">DEFINE_COMPONENT_OVERRIDE_DEBUG</a>(FUnit, PreDrawUnit, PostDrawUnit,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Size, 8.f))</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Settings shared by every unit, stored on the engine&#39;s global entity.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FTeamSettings,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, DamagePerHit, 25.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(SDL_FColor, RedColor, SDL_FColor(1.f, 0.35f, 0.35f, 1.f)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(SDL_FColor, BlueColor, SDL_FColor(0.35f, 0.6f, 1.f, 1.f)))</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Plain flecs tags: empty structs. They need no registration and carry no data.</span></div>
+<div class="line">struct RedTeam {};</div>
+<div class="line"><span class="keyword">struct </span>BlueTeam {};</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit) {</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Custom panel drawn by PreDrawUnit&quot;</span>);</div>
+<div class="line">    }</div>
+<div class="line">    <span class="keywordtype">void</span> PostDrawUnit(FUnit* Unit) {</div>
+<div class="line">        <span class="keywordflow">if</span> (ImGui::Button(<span class="stringliteral">&quot;Grow&quot;</span>)) {</div>
+<div class="line">            Unit-&gt;Size += 2.f;</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">float</span> ScreenW = 320.f, ScreenH = 180.f;</div>
+<div class="line"><span class="keyword">static</span> std::mt19937 Rng {7};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> glm::vec2 RandomPoint() {</div>
+<div class="line">    <span class="keywordflow">return</span> {std::uniform_real_distribution&lt;float&gt;(10.f, ScreenW - 20.f)(Rng),</div>
+<div class="line">            std::uniform_real_distribution&lt;float&gt;(10.f, ScreenH - 20.f)(Rng)};</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Scene helpers (the same in every example) -------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    TObjectPtr&lt;Graphics::STexture2D&gt; texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    TObjectPtr&lt;Filesystem::SAssetData&gt; assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; World, SDL_FColor Color) {</div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; RedUnits;</div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; BlueUnits;</div>
+<div class="line"><span class="keyword">static</span> flecs::query&lt;FHealth&gt; BlueHealth;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>TeamsHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Teams&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">int</span> red = RedUnits.count();</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">int</span> blue = BlueUnits.count();</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Red units: %d    Blue units: %d&quot;</span>, red, blue);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;1: red -&gt; blue   2: blue -&gt; red   H: hurt blue&quot;</span>);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Open Entity Debugger &gt; Entity Outliner to inspect units&quot;</span>);</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Moves the first entity a query finds from one team to the other.</span></div>
+<div class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> TFrom, <span class="keyword">typename</span> TTo&gt;</div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> SwitchOneUnit(<span class="keyword">const</span> flecs::query&lt;const FUnit&gt;&amp; From) {</div>
+<div class="line">    <span class="keyword">const</span> flecs::entity unit = From.first();</div>
+<div class="line">    <span class="keywordflow">if</span> (unit.is_alive()) {</div>
+<div class="line">        unit.remove&lt;TFrom&gt;().add&lt;TTo&gt;();</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FHealth, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#ga2b693423b2113999c18ec9144a2a4f95">ECS_REGISTER_COMPONENT_NO_DEBUG</a>(FWander, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FUnit, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FTeamSettings, world);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::ToBlue, {{SDL_SCANCODE_1, <span class="keyword">true</span>}});</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::ToRed, {{SDL_SCANCODE_2, <span class="keyword">true</span>}});</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::HurtBlue, {{SDL_SCANCODE_H, <span class="keyword">true</span>}});</div>
+<div class="line"> </div>
+<div class="line">    CreateCameraAndBackground(world, {0.1f, 0.1f, 0.12f, 1.f});</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
+<div class="line">    <span class="comment">// so these settings can be edited live.</span></div>
+<div class="line">    flecs::entity settingsEntity = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>();</div>
+<div class="line">    settingsEntity.set&lt;FTeamSettings&gt;({});</div>
+<div class="line"></div>
+<div class="line">    RedUnits = world.query_builder&lt;<span class="keyword">const</span> FUnit&gt;().with&lt;RedTeam&gt;().build();</div>
+<div class="line">    BlueUnits = world.query_builder&lt;<span class="keyword">const</span> FUnit&gt;().with&lt;BlueTeam&gt;().build();</div>
+<div class="line">    BlueHealth = world.query_builder&lt;FHealth&gt;().with&lt;BlueTeam&gt;().build();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
+<div class="line">    <span class="comment">// instead of every frame.</span></div>
+<div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintRed&quot;</span>)</div>
+<div class="line">        .with&lt;RedTeam&gt;()</div>
+<div class="line">        .event(flecs::OnAdd)</div>
+<div class="line">        .each([](<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            sprite.Color = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;FTeamSettings&gt;().RedColor;</div>
+<div class="line">        });</div>
+<div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintBlue&quot;</span>)</div>
+<div class="line">        .with&lt;BlueTeam&gt;()</div>
+<div class="line">        .event(flecs::OnAdd)</div>
+<div class="line">        .each([](<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            sprite.Color = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;FTeamSettings&gt;().BlueColor;</div>
+<div class="line">        });</div>
+<div class="line">    <span class="comment">// OnRemove also fires when an entity is destroyed.</span></div>
+<div class="line">    <span class="comment">// The component can still be read here.</span></div>
+<div class="line">    world.observer&lt;<span class="keyword">const</span> FHealth&gt;(<span class="stringliteral">&quot;UnitDefeated&quot;</span>)</div>
+<div class="line">        .event(flecs::OnRemove)</div>
+<div class="line">        .each([](flecs::entity unit, <span class="keyword">const</span> FHealth&amp; health) {</div>
+<div class="line">            <span class="keywordflow">if</span> (health.Current &lt;= 0.f) {</div>
+<div class="line">                Log::Teams::Info(<span class="stringliteral">&quot;{} was defeated&quot;</span>, unit.name().c_str());</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Spawn the units. The team tag is added last, so the observers see the sprite.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 30; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 position = RandomPoint();</div>
+<div class="line">        flecs::entity unit = world.entity((<span class="stringliteral">&quot;Unit &quot;</span> + std::to_string(i)).c_str())</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {position.x, position.y, 0.f} })</div>
+<div class="line">            .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">                .TextureSize = {8.f, 8.f},</div>
+<div class="line">            })</div>
+<div class="line">            .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">            .set&lt;FUnit&gt;({})</div>
+<div class="line">            .set&lt;FHealth&gt;({})</div>
+<div class="line">            .set&lt;FWander&gt;({ .Target = RandomPoint() });</div>
+<div class="line">        <span class="keywordflow">if</span> (i % 2 == 0) {</div>
+<div class="line">            unit.add&lt;RedTeam&gt;();</div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            unit.add&lt;BlueTeam&gt;();</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    <a class="code hl_function" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a>(world.lookup(<span class="stringliteral">&quot;Unit 0&quot;</span>));   <span class="comment">// shown in the Entity Debugger</span></div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Input: act on the queries.</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FTeamSettings&gt;(<span class="stringliteral">&quot;TeamInput&quot;</span>)</div>
+<div class="line">        .each([](<span class="keyword">const</span> FTeamSettings&amp; settings) {</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToBlue)) {</div>
+<div class="line">                SwitchOneUnit&lt;RedTeam, BlueTeam&gt;(RedUnits);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToRed)) {</div>
+<div class="line">                SwitchOneUnit&lt;BlueTeam, RedTeam&gt;(BlueUnits);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::HurtBlue)) {</div>
+<div class="line">                BlueHealth.each([&amp;settings](FHealth&amp; health) {</div>
+<div class="line">                    health.Current -= settings.DamagePerHit;</div>
+<div class="line">                });</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Wander towards a target; pick a new one on arrival.</span></div>
+<div class="line">    <span class="comment">// FUnit::Size drives the sprite size.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 FWander,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FUnit&gt;(<span class="stringliteral">&quot;Wander&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 FWander&amp; wander, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite, <span class="keyword">const</span> FUnit&amp; unit) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 position {transform.Location.x, transform.Location.y};</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 toTarget = wander.Target - position;</div>
+<div class="line">            <span class="keywordflow">if</span> (glm::length(toTarget) &lt; 2.f) {</div>
+<div class="line">                wander.Target = RandomPoint();</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> distance = wander.Speed * it.delta_time();</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 step = glm::normalize(toTarget) * distance;</div>
+<div class="line">            transform.Location.x += step.x;</div>
+<div class="line">            transform.Location.y += step.y;</div>
+<div class="line">            sprite.TextureSize = {unit.Size, unit.Size};</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Runs in the custom phase, after all gameplay:</span></div>
+<div class="line">    <span class="comment">// remove units that ran out of health.</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FHealth&gt;(<span class="stringliteral">&quot;RemoveDead&quot;</span>)</div>
+<div class="line">        .kind(ECS::Phase::OnLateGameplay())</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> FHealth&amp; health) {</div>
+<div class="line">            <span class="keywordflow">if</span> (health.Current &lt;= 0.f) {</div>
+<div class="line">                entity.destruct();</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;TeamsHud&gt;</a>();</div>
+<div class="line">    Log::Teams::Info(<span class="stringliteral">&quot;Press 1, 2 or H. Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__ecs_html_ga2b693423b2113999c18ec9144a2a4f95"><div class="ttname"><a href="group__ecs.html#ga2b693423b2113999c18ec9144a2a4f95">ECS_REGISTER_COMPONENT_NO_DEBUG</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT_NO_DEBUG(ComponentName, World)</div><div class="ttdoc">Registers a component&#39;s reflection data only.</div><div class="ttdef"><b>Definition</b> Components.hpp:58</div></div>
+<div class="ttc" id="agroup__ecs_html_ga6a4188d2969d3b937527ccde338182a0"><div class="ttname"><a href="group__ecs.html#ga6a4188d2969d3b937527ccde338182a0">DEFINE_COMPONENT_NO_DEBUG</a></div><div class="ttdeci">#define DEFINE_COMPONENT_NO_DEBUG(ComponentName,...)</div><div class="ttdoc">Like DEFINE_COMPONENT, without the Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:100</div></div>
+<div class="ttc" id="agroup__ecs_html_ga8d1a9506430300f676b73b96ab6d64c5"><div class="ttname"><a href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a></div><div class="ttdeci">void SelectEntity(flecs::entity Entity)</div><div class="ttdoc">Makes Entity the one the Entity Debugger shows.</div></div>
+<div class="ttc" id="agroup__ecs_html_ga9229592f5849039955e79d6b9e492150"><div class="ttname"><a href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a></div><div class="ttdeci">flecs::entity &amp; GetGlobalSystemsEntity()</div><div class="ttdoc">Returns an entity for game-wide components, created on first use.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaaa910f10b526ad0b951fd8f6e70cf66d"><div class="ttname"><a href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a></div><div class="ttdeci">#define ECS_MEMBER(MemberType, MemberName, DefaultValue)</div><div class="ttdoc">One field of a component: its type, name and default value.</div><div class="ttdef"><b>Definition</b> Components.hpp:61</div></div>
+<div class="ttc" id="agroup__ecs_html_gabd119f037de795b5946602433ed34da3"><div class="ttname"><a href="group__ecs.html#gabd119f037de795b5946602433ed34da3">DEFINE_COMPONENT_OVERRIDE_DEBUG</a></div><div class="ttdeci">#define DEFINE_COMPONENT_OVERRIDE_DEBUG(ComponentName, PreDebugDraw, PostDebugDraw,...)</div><div class="ttdoc">Like DEFINE_COMPONENT, but the Entity Debugger panel calls PreDebugDraw(ComponentName*) before and Po...</div><div class="ttdef"><b>Definition</b> Components.hpp:95</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf4b0b6fc47160f097ee5a26ebe345250"><div class="ttname"><a href="group__ecs.html#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a></div><div class="ttdeci">#define DEFINE_NEW_ECS_PHASE(PhaseName, AfterPhase)</div><div class="ttdoc">Defines ECS::Phase::PhaseName(), a pipeline phase that runs after the flecs phase flecs::AfterPhase.</div><div class="ttdef"><b>Definition</b> Module.hpp:5</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__input_html_ga02d3523d67343616c2ed3db12b4cd48d"><div class="ttname"><a href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION(InActionName, ValueType)</div><div class="ttdoc">Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:103</div></div>
+<div class="ttc" id="agroup__input_html_ga73ab4a055d9eee1429fa07130693ae29"><div class="ttname"><a href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a></div><div class="ttdeci">void AddInputBindings_Press(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger on the frame their key goes down (and on key repeat).</div><div class="ttdef"><b>Definition</b> Module.hpp:35</div></div>
+<div class="ttc" id="agroup__input_html_ga96cd377a209587f7494f3357edd5fcec"><div class="ttname"><a href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a></div><div class="ttdeci">bool IsActionTriggered(const SAction&lt; TValueType &gt; &amp;Action)</div><div class="ttdoc">Returns true if any of the action&#39;s bindings triggered this frame.</div><div class="ttdef"><b>Definition</b> Module.hpp:84</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,638 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Collision and mouse hover | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Collision and mouse hover </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>Walk around a walled room with pillars. The player slides along walls, <kbd>F1</kbd> shows the colliders, and blocks light up under the mouse.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" class="src-link">examples/ecs/CollisionAndHover.cpp</a></span><span><b>Executable</b> <code>EcsCollision</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> to move, <kbd>F1</kbd> collider overlay, click a hovered block to select it</span></div><div class="image">
+<img src="ecs-collision.png" alt=""/>
+<div class="caption">
+The collider overlay is on (red outlines); the mouse is over the highlighted pillar; the player is stopped by the top wall</div></div>
+<p><b>Shows:</b> <a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a> (<a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>): colliders, the engine's <span class="tt">Move2D</span> and <span class="tt">ToggleDebugColliders</span> actions, mouse hover; plus the renderer's debug-collider overlay (<a class="el" href="group__rendering.html" title="Renderer">Renderer</a>).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
+Setup</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting GameplayFramework and binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
+<div class="line">    <span class="comment">// using FColliderComponent or FMouseState, so they get reflection data and</span></div>
+<div class="line">    <span class="comment">// Entity Debugger panels.</span></div>
+<div class="line">    <a class="code hl_function" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework::Module</a>();</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FPlayer, world);</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// The engine declares Move2D in Gameplay/Module.hpp and ToggleDebugColliders</span></div>
+<div class="line">    <span class="comment">// in Types/Module.hpp. It binds no keys to either; that is up to the game.</span></div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move2D, {</div>
+<div class="line">        {SDL_SCANCODE_W, {0, -1}}, {SDL_SCANCODE_S, {0, 1}},</div>
+<div class="line">        {SDL_SCANCODE_A, {-1, 0}}, {SDL_SCANCODE_D, {1, 0}},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::ToggleDebugColliders, {</div>
+<div class="line">        {SDL_SCANCODE_F1, <span class="keyword">true</span>},</div>
+<div class="line">    });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>The overlay draws colliders with the <span class="tt">CollisionTexture</span> asset, so this example generates an outline for it:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">An outline texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// The debug-collider overlay draws every collider with the &quot;CollisionTexture&quot; asset.</span></div>
+<div class="line"><span class="comment">// Generate an outline: an opaque 1-pixel border around a faint interior.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterOutlineTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 border = SDL_MapSurfaceRGBA(surface, 255, 60, 60, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 interior = SDL_MapSurfaceRGBA(surface, 255, 60, 60, 40);</div>
+<div class="line">    <span class="keyword">const</span> SDL_Rect inner {1, 1, Size - 2, Size - 2};</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, border);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, &amp;inner, interior);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
+Colliders and blocking</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Solid blocks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
+<div class="line"><span class="comment">// both covering the whole sprite.</span></div>
+<div class="line"><span class="comment">// This example stores ColliderShape as (x offset, y offset, width, height).</span></div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnSolidBlock(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, glm::vec2 Position,</div>
+<div class="line">                                     glm::vec2 Size, SDL_FColor Color) {</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespace_world.html">World</a>.entity()</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Position.x, Position.y, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = Size,</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">        .set&lt;FColliderComponent&gt;({ .ColliderShape = {0.f, 0.f, Size.x, Size.y} })</div>
+<div class="line">        .set&lt;FBoundingBoxComponent&gt;({ .Height = Size.y, .Width = Size.x });</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Moving one axis at a time and undoing only the blocked axis lets the player slide along walls instead of sticking to them:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Movement that stops at colliders</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Move one axis at a time, and undo the move on an axis that would overlap</span></div>
+<div class="line">    <span class="comment">// a collider. That lets the player slide along walls.</span></div>
+<div class="line">    <span class="comment">// F1 (ToggleDebugColliders) switches the overlay.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FPlayer&gt;(<span class="stringliteral">&quot;MovePlayer&quot;</span>)</div>
+<div class="line">        .each([colliders](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                          <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; collider, <span class="keyword">const</span> FPlayer&amp;) {</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToggleDebugColliders)) {</div>
+<div class="line">                <span class="keywordtype">bool</span>&amp; bOverlay = <a class="code hl_variable" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2">CoreTypes::bShouldDisplayDebugColliders</a>;</div>
+<div class="line">                bOverlay = !bOverlay;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            glm::vec2 move = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Move2D);</div>
+<div class="line">            <span class="keywordflow">if</span> (glm::length(move) &gt; 1.f) {</div>
+<div class="line">                move = glm::normalize(move);</div>
+<div class="line">            }</div>
+<div class="line">            move *= 80.f * it.delta_time();</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> axis = 0; axis &lt; 2; ++axis) {</div>
+<div class="line">                transform.Location[axis] += move[axis];</div>
+<div class="line">                <span class="keyword">const</span> SDL_FRect playerRect = ColliderRect(transform, collider);</div>
+<div class="line">                <span class="keywordtype">bool</span> bBlocked = <span class="keyword">false</span>;</div>
+<div class="line">                colliders.each([&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; otherTransform,</div>
+<div class="line">                                   <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; otherCollider) {</div>
+<div class="line">                    <span class="keyword">const</span> SDL_FRect other = ColliderRect(otherTransform, otherCollider);</div>
+<div class="line">                    <span class="keywordflow">if</span> (SDL_HasRectIntersectionFloat(&amp;playerRect, &amp;other)) {</div>
+<div class="line">                        bBlocked = <span class="keyword">true</span>;</div>
+<div class="line">                    }</div>
+<div class="line">                });</div>
+<div class="line">                <span class="keywordflow">if</span> (bBlocked) {</div>
+<div class="line">                    transform.Location[axis] -= move[axis];</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
+The collider overlay</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Filling the debug-collider container</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
+<div class="line">    <span class="comment">// while CoreTypes::bShouldDisplayDebugColliders is true (toggled here by the</span></div>
+<div class="line">    <span class="comment">// ToggleDebugColliders action).</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;(<span class="stringliteral">&quot;DebugColliders&quot;</span>)</div>
+<div class="line">        .kind(ECS::Phase::OnPreRender())</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; collider) {</div>
+<div class="line">            <span class="keyword">const</span> SDL_FRect rect = ColliderRect(transform, collider);</div>
+<div class="line">            <span class="keyword">const</span> uint32_t <span class="keywordtype">id</span> = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(entity.id());</div>
+<div class="line">            <span class="keyword">auto</span>&amp; container = <a class="code hl_variable" href="group__rendering.html#gaa59c6f0758bb042e1564f083d3e4cd66">Renderer::CollisionInstances</a>;</div>
+<div class="line">            container.<a class="code hl_function" href="struct_renderer_1_1_sprite_instance_container.html#a0abd85883dd0597896a1678340292ccf">AddEntity</a>(<span class="keywordtype">id</span>);</div>
+<div class="line">            <a class="code hl_struct" href="struct_renderer_1_1_sprite_instance.html">Renderer::SpriteInstance</a>&amp; instance = container.Instances[id];</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a43ad092b81640893cd480ab0be64b247">x</a> = rect.x;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ac04a24f9fcd31ea1a48c1ba36e38609d">y</a> = rect.y;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7ddc3218c155c4770aa46560624b71aa">w</a> = rect.w;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#af6e69d477081836c39f0127b501574a3">h</a> = rect.h;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9c9a073c98f41a88f978625dd84c38dd">tex_w</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ab976b7018fc075e2e817600375b3e727">tex_h</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7b77eec8675d7657c29e7a1815964b30">r</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a00bb0b47d22ef896dadcfd2282580e58">g</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a18bc917c9e08709fd889fed399eb1e15">b</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9f1e3273db15e6b5d53cfd810efe04a6">a</a> = 1.f;</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
+Mouse hover</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Highlighting and selecting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
+<div class="line">    <span class="comment">// FMouseState component on ECS::GetGlobalSystemsEntity(). It checks entities</span></div>
+<div class="line">    <span class="comment">// with FTransformComponent and FBoundingBoxComponent.</span></div>
+<div class="line">    <a class="code hl_function" href="group__gameplay.html#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework::ActivateMouseStateSystem</a>();</div>
+<div class="line"> </div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_bounding_box_component.html">FBoundingBoxComponent</a>,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;Highlight&quot;</span>)</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_bounding_box_component.html">FBoundingBoxComponent</a>&amp; box, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_mouse_state.html">FMouseState</a>&amp; mouse = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;<a class="code hl_struct" href="struct_components_1_1_f_mouse_state.html">FMouseState</a>&gt;();</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// HoveredEntityId keeps the last entity hovered,</span></div>
+<div class="line">            <span class="comment">// so also check that the cursor is still inside the box.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 cursor = mouse.MousePosition;</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 min {transform.Location.x, transform.Location.y};</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 max = min + glm::vec2(box.Width, box.Height);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bInside = cursor.x &gt;= min.x &amp;&amp; cursor.x &lt;= max.x</div>
+<div class="line">                              &amp;&amp; cursor.y &gt;= min.y &amp;&amp; cursor.y &lt;= max.y;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bHovered = mouse.HoveredEntityId == entity.id() &amp;&amp; bInside;</div>
+<div class="line">            sprite.Color = bHovered ? HoverColor : BlockColor;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> SDL_MouseButtonFlags buttons = SDL_GetMouseState(<span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bClicked = buttons &amp; SDL_BUTTON_LMASK;</div>
+<div class="line">            <span class="keywordflow">if</span> (bHovered &amp;&amp; bClicked) {</div>
+<div class="line">                <span class="comment">// Shows it in Entity Debugger &gt; Entity Outliner</span></div>
+<div class="line">                <a class="code hl_function" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a>(entity);</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">CollisionAndHover.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: colliders, the debug-collider overlay, and mouse hover.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Controls: W A S D to move. F1 toggles the collider overlay.</span></div>
+<div class="line"><span class="comment">//           Hover a block with the mouse to highlight it;</span></div>
+<div class="line"><span class="comment">//           click to select it in the Entity Debugger.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows:</span></div>
+<div class="line"><span class="comment">//   - GameplayFramework::Module(), which registers FColliderComponent and FMouseState</span></div>
+<div class="line"><span class="comment">//   - the engine&#39;s Move2D action and ToggleDebugColliders action</span></div>
+<div class="line"><span class="comment">//   - blocking movement against colliders, one axis at a time</span></div>
+<div class="line"><span class="comment">//   - drawing collider outlines with the renderer&#39;s debug-collider container</span></div>
+<div class="line"><span class="comment">//   - GameplayFramework::ActivateMouseStateSystem() and FBoundingBoxComponent for hover</span></div>
+<div class="line"><span class="comment">// Uses no files.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Input/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/Components.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;glm/geometric.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Collision, debug)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FPlayer)</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">float</span> ScreenW = 320.f, ScreenH = 180.f;</div>
+<div class="line"><span class="keyword">constexpr</span> SDL_FColor BlockColor {0.45f, 0.42f, 0.55f, 1.f};</div>
+<div class="line"><span class="keyword">constexpr</span> SDL_FColor HoverColor {0.95f, 0.8f, 0.35f, 1.f};</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Textures --------------------------------------------------------------------</span></div>
+<div class="line"><span class="comment">// The debug-collider overlay draws every collider with the &quot;CollisionTexture&quot; asset.</span></div>
+<div class="line"><span class="comment">// Generate an outline: an opaque 1-pixel border around a faint interior.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterOutlineTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 border = SDL_MapSurfaceRGBA(surface, 255, 60, 60, 255);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 interior = SDL_MapSurfaceRGBA(surface, 255, 60, 60, 40);</div>
+<div class="line">    <span class="keyword">const</span> SDL_Rect inner {1, 1, Size - 2, Size - 2};</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, border);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, &amp;inner, interior);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, SDL_FColor Color) {</div>
+<div class="line">    <a class="code hl_namespace" href="namespace_world.html">World</a>.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_namespace" href="namespace_world.html">World</a>.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
+<div class="line"><span class="comment">// both covering the whole sprite.</span></div>
+<div class="line"><span class="comment">// This example stores ColliderShape as (x offset, y offset, width, height).</span></div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnSolidBlock(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, glm::vec2 Position,</div>
+<div class="line">                                     glm::vec2 Size, SDL_FColor Color) {</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespace_world.html">World</a>.entity()</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Position.x, Position.y, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = Size,</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">        .set&lt;FColliderComponent&gt;({ .ColliderShape = {0.f, 0.f, Size.x, Size.y} })</div>
+<div class="line">        .set&lt;FBoundingBoxComponent&gt;({ .Height = Size.y, .Width = Size.x });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The collider&#39;s rectangle in world coordinates.</span></div>
+<div class="line"><span class="keyword">static</span> SDL_FRect ColliderRect(<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; Transform,</div>
+<div class="line">                              <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; Collider) {</div>
+<div class="line">    <span class="keyword">const</span> glm::vec4&amp; shape = Collider.ColliderShape;</div>
+<div class="line">    <span class="keywordflow">return</span> {Transform.Location.x + shape.x, Transform.Location.y + shape.y,</div>
+<div class="line">            shape.z, shape.w};</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>CollisionHud : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Collision&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        <span class="keyword">const</span> <span class="keywordtype">bool</span> bOverlay = <a class="code hl_variable" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2">CoreTypes::bShouldDisplayDebugColliders</a>;</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Collider overlay: %s&quot;</span>, bOverlay ? <span class="stringliteral">&quot;on&quot;</span> : <span class="stringliteral">&quot;off&quot;</span>);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;WASD: move   F1: overlay   Click: select hovered block&quot;</span>);</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterOutlineTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 16);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
+<div class="line">    <span class="comment">// using FColliderComponent or FMouseState, so they get reflection data and</span></div>
+<div class="line">    <span class="comment">// Entity Debugger panels.</span></div>
+<div class="line">    <a class="code hl_function" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework::Module</a>();</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FPlayer, world);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// The engine declares Move2D in Gameplay/Module.hpp and ToggleDebugColliders</span></div>
+<div class="line">    <span class="comment">// in Types/Module.hpp. It binds no keys to either; that is up to the game.</span></div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move2D, {</div>
+<div class="line">        {SDL_SCANCODE_W, {0, -1}}, {SDL_SCANCODE_S, {0, 1}},</div>
+<div class="line">        {SDL_SCANCODE_A, {-1, 0}}, {SDL_SCANCODE_D, {1, 0}},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::ToggleDebugColliders, {</div>
+<div class="line">        {SDL_SCANCODE_F1, <span class="keyword">true</span>},</div>
+<div class="line">    });</div>
+<div class="line"> </div>
+<div class="line">    CreateCameraAndBackground(world, {0.11f, 0.12f, 0.1f, 1.f});</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Walls around the edge, and a few pillars.</span></div>
+<div class="line">    SpawnSolidBlock(world, {0, 0}, {ScreenW, 8}, BlockColor);</div>
+<div class="line">    SpawnSolidBlock(world, {0, ScreenH - 8}, {ScreenW, 8}, BlockColor);</div>
+<div class="line">    SpawnSolidBlock(world, {0, 8}, {8, ScreenH - 16}, BlockColor);</div>
+<div class="line">    SpawnSolidBlock(world, {ScreenW - 8, 8}, {8, ScreenH - 16}, BlockColor);</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 position {50.f + i * 65.f, 40.f + (i % 2) * 50.f};</div>
+<div class="line">        <span class="keyword">const</span> std::string name = <span class="stringliteral">&quot;Pillar &quot;</span> + std::to_string(i);</div>
+<div class="line">        SpawnSolidBlock(world, position, {24.f, 40.f}, BlockColor)</div>
+<div class="line">            .set_name(name.c_str());</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// The player: a small sprite with a collider only at its feet,</span></div>
+<div class="line">    <span class="comment">// like a top-down character.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Player&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {20.f, 140.f, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {12.f, 16.f},</div>
+<div class="line">            .Color = {0.4f, 0.9f, 1.f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> })</div>
+<div class="line">        .set&lt;FColliderComponent&gt;({ .ColliderShape = {0.f, 10.f, 12.f, 6.f} })</div>
+<div class="line">        .add&lt;FPlayer&gt;();</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">auto</span> colliders = world.query_builder&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                                         <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;()</div>
+<div class="line">        .without&lt;FPlayer&gt;()</div>
+<div class="line">        .build();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Move one axis at a time, and undo the move on an axis that would overlap</span></div>
+<div class="line">    <span class="comment">// a collider. That lets the player slide along walls.</span></div>
+<div class="line">    <span class="comment">// F1 (ToggleDebugColliders) switches the overlay.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FPlayer&gt;(<span class="stringliteral">&quot;MovePlayer&quot;</span>)</div>
+<div class="line">        .each([colliders](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                          <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; collider, <span class="keyword">const</span> FPlayer&amp;) {</div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToggleDebugColliders)) {</div>
+<div class="line">                <span class="keywordtype">bool</span>&amp; bOverlay = <a class="code hl_variable" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2">CoreTypes::bShouldDisplayDebugColliders</a>;</div>
+<div class="line">                bOverlay = !bOverlay;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            glm::vec2 move = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Move2D);</div>
+<div class="line">            <span class="keywordflow">if</span> (glm::length(move) &gt; 1.f) {</div>
+<div class="line">                move = glm::normalize(move);</div>
+<div class="line">            }</div>
+<div class="line">            move *= 80.f * it.delta_time();</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">for</span> (<span class="keywordtype">int</span> axis = 0; axis &lt; 2; ++axis) {</div>
+<div class="line">                transform.Location[axis] += move[axis];</div>
+<div class="line">                <span class="keyword">const</span> SDL_FRect playerRect = ColliderRect(transform, collider);</div>
+<div class="line">                <span class="keywordtype">bool</span> bBlocked = <span class="keyword">false</span>;</div>
+<div class="line">                colliders.each([&amp;](<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; otherTransform,</div>
+<div class="line">                                   <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; otherCollider) {</div>
+<div class="line">                    <span class="keyword">const</span> SDL_FRect other = ColliderRect(otherTransform, otherCollider);</div>
+<div class="line">                    <span class="keywordflow">if</span> (SDL_HasRectIntersectionFloat(&amp;playerRect, &amp;other)) {</div>
+<div class="line">                        bBlocked = <span class="keyword">true</span>;</div>
+<div class="line">                    }</div>
+<div class="line">                });</div>
+<div class="line">                <span class="keywordflow">if</span> (bBlocked) {</div>
+<div class="line">                    transform.Location[axis] -= move[axis];</div>
+<div class="line">                }</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
+<div class="line">    <span class="comment">// while CoreTypes::bShouldDisplayDebugColliders is true (toggled here by the</span></div>
+<div class="line">    <span class="comment">// ToggleDebugColliders action).</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;(<span class="stringliteral">&quot;DebugColliders&quot;</span>)</div>
+<div class="line">        .kind(ECS::Phase::OnPreRender())</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; collider) {</div>
+<div class="line">            <span class="keyword">const</span> SDL_FRect rect = ColliderRect(transform, collider);</div>
+<div class="line">            <span class="keyword">const</span> uint32_t <span class="keywordtype">id</span> = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(entity.id());</div>
+<div class="line">            <span class="keyword">auto</span>&amp; container = <a class="code hl_variable" href="group__rendering.html#gaa59c6f0758bb042e1564f083d3e4cd66">Renderer::CollisionInstances</a>;</div>
+<div class="line">            container.<a class="code hl_function" href="struct_renderer_1_1_sprite_instance_container.html#a0abd85883dd0597896a1678340292ccf">AddEntity</a>(<span class="keywordtype">id</span>);</div>
+<div class="line">            <a class="code hl_struct" href="struct_renderer_1_1_sprite_instance.html">Renderer::SpriteInstance</a>&amp; instance = container.Instances[id];</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a43ad092b81640893cd480ab0be64b247">x</a> = rect.x;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ac04a24f9fcd31ea1a48c1ba36e38609d">y</a> = rect.y;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7ddc3218c155c4770aa46560624b71aa">w</a> = rect.w;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#af6e69d477081836c39f0127b501574a3">h</a> = rect.h;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9c9a073c98f41a88f978625dd84c38dd">tex_w</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ab976b7018fc075e2e817600375b3e727">tex_h</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7b77eec8675d7657c29e7a1815964b30">r</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a00bb0b47d22ef896dadcfd2282580e58">g</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a18bc917c9e08709fd889fed399eb1e15">b</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9f1e3273db15e6b5d53cfd810efe04a6">a</a> = 1.f;</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
+<div class="line">    <span class="comment">// FMouseState component on ECS::GetGlobalSystemsEntity(). It checks entities</span></div>
+<div class="line">    <span class="comment">// with FTransformComponent and FBoundingBoxComponent.</span></div>
+<div class="line">    <a class="code hl_function" href="group__gameplay.html#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework::ActivateMouseStateSystem</a>();</div>
+<div class="line"> </div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_bounding_box_component.html">FBoundingBoxComponent</a>,</div>
+<div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;Highlight&quot;</span>)</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_bounding_box_component.html">FBoundingBoxComponent</a>&amp; box, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
+<div class="line">            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_mouse_state.html">FMouseState</a>&amp; mouse = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>().get&lt;<a class="code hl_struct" href="struct_components_1_1_f_mouse_state.html">FMouseState</a>&gt;();</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// HoveredEntityId keeps the last entity hovered,</span></div>
+<div class="line">            <span class="comment">// so also check that the cursor is still inside the box.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 cursor = mouse.MousePosition;</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 min {transform.Location.x, transform.Location.y};</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 max = min + glm::vec2(box.Width, box.Height);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bInside = cursor.x &gt;= min.x &amp;&amp; cursor.x &lt;= max.x</div>
+<div class="line">                              &amp;&amp; cursor.y &gt;= min.y &amp;&amp; cursor.y &lt;= max.y;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bHovered = mouse.HoveredEntityId == entity.id() &amp;&amp; bInside;</div>
+<div class="line">            sprite.Color = bHovered ? HoverColor : BlockColor;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> SDL_MouseButtonFlags buttons = SDL_GetMouseState(<span class="keyword">nullptr</span>, <span class="keyword">nullptr</span>);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bClicked = buttons &amp; SDL_BUTTON_LMASK;</div>
+<div class="line">            <span class="keywordflow">if</span> (bHovered &amp;&amp; bClicked) {</div>
+<div class="line">                <span class="comment">// Shows it in Entity Debugger &gt; Entity Outliner</span></div>
+<div class="line">                <a class="code hl_function" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a>(entity);</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;CollisionHud&gt;</a>();</div>
+<div class="line">    Log::Collision::Info(<span class="stringliteral">&quot;WASD to move, F1 for the collider overlay.&quot;</span>);</div>
+<div class="line">    Log::Collision::Info(<span class="stringliteral">&quot;Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+<div class="ttc" id="agroup__coretypes_html_ga11979497e152d7aef17df0d06e8755c2"><div class="ttname"><a href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2">CoreTypes::bShouldDisplayDebugColliders</a></div><div class="ttdeci">bool bShouldDisplayDebugColliders</div><div class="ttdoc">When true, the renderer draws Renderer::CollisionInstances on top of the scene.</div></div>
+<div class="ttc" id="agroup__ecs_html_ga8d1a9506430300f676b73b96ab6d64c5"><div class="ttname"><a href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS::SelectEntity</a></div><div class="ttdeci">void SelectEntity(flecs::entity Entity)</div><div class="ttdoc">Makes Entity the one the Entity Debugger shows.</div></div>
+<div class="ttc" id="agroup__ecs_html_ga9229592f5849039955e79d6b9e492150"><div class="ttname"><a href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a></div><div class="ttdeci">flecs::entity &amp; GetGlobalSystemsEntity()</div><div class="ttdoc">Returns an entity for game-wide components, created on first use.</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__gameplay_html_ga73015ea59b5c3e9a52ca1ea1007a250a"><div class="ttname"><a href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Registers Components::FColliderComponent and Components::FMouseState with the ECS world.</div></div>
+<div class="ttc" id="agroup__gameplay_html_gaa343b5f39bfc5a1ad0eb20a04a2e0ddf"><div class="ttname"><a href="group__gameplay.html#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework::ActivateMouseStateSystem</a></div><div class="ttdeci">void ActivateMouseStateSystem()</div><div class="ttdoc">Adds Components::FMouseState to ECS::GetGlobalSystemsEntity() and starts a system that tracks the mou...</div></div>
+<div class="ttc" id="agroup__input_html_ga2563a145ce13e323f5e0eeb75008e001"><div class="ttname"><a href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a></div><div class="ttdeci">void AddInputBindings_Hold(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger every frame their key (or all their keys) are held down.</div><div class="ttdef"><b>Definition</b> Module.hpp:45</div></div>
+<div class="ttc" id="agroup__input_html_ga61a6a4c192b6c90c1f7c15b2841c7d44"><div class="ttname"><a href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a></div><div class="ttdeci">TActionValue GetValue(const SAction&lt; TActionValue &gt; &amp;Action)</div><div class="ttdoc">Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...</div><div class="ttdef"><b>Definition</b> Module.hpp:72</div></div>
+<div class="ttc" id="agroup__input_html_ga73ab4a055d9eee1429fa07130693ae29"><div class="ttname"><a href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a></div><div class="ttdeci">void AddInputBindings_Press(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger on the frame their key goes down (and on key repeat).</div><div class="ttdef"><b>Definition</b> Module.hpp:35</div></div>
+<div class="ttc" id="agroup__input_html_ga96cd377a209587f7494f3357edd5fcec"><div class="ttname"><a href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a></div><div class="ttdeci">bool IsActionTriggered(const SAction&lt; TValueType &gt; &amp;Action)</div><div class="ttdoc">Returns true if any of the action&#39;s bindings triggered this frame.</div><div class="ttdef"><b>Definition</b> Module.hpp:84</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="agroup__rendering_html_gaa59c6f0758bb042e1564f083d3e4cd66"><div class="ttname"><a href="group__rendering.html#gaa59c6f0758bb042e1564f083d3e4cd66">Renderer::CollisionInstances</a></div><div class="ttdeci">SpriteInstanceContainer CollisionInstances</div><div class="ttdoc">The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="anamespace_world_html"><div class="ttname"><a href="namespace_world.html">World</a></div><div class="ttdef"><b>Definition</b> World.hpp:20</div></div>
+<div class="ttc" id="astruct_components_1_1_f_bounding_box_component_html"><div class="ttname"><a href="struct_components_1_1_f_bounding_box_component.html">Components::FBoundingBoxComponent</a></div><div class="ttdoc">Component representing a generic bounding box for the entity.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:33</div></div>
+<div class="ttc" id="astruct_components_1_1_f_collider_component_html"><div class="ttname"><a href="struct_components_1_1_f_collider_component.html">Components::FColliderComponent</a></div><div class="ttdoc">One collision rectangle, glm::vec4 ColliderShape, relative to the entity&#39;s position.</div><div class="ttdef"><b>Definition</b> Module.hpp:31</div></div>
+<div class="ttc" id="astruct_components_1_1_f_mouse_state_html"><div class="ttname"><a href="struct_components_1_1_f_mouse_state.html">Components::FMouseState</a></div><div class="ttdoc">The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...</div><div class="ttdef"><b>Definition</b> Components.hpp:18</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+<div class="ttc" id="astruct_im_g_u_i_wrapper_1_1_i_editor_tool_html"><div class="ttname"><a href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a></div><div class="ttdoc">Base class of editor tools.</div><div class="ttdef"><b>Definition</b> EditorTool.hpp:10</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_container_html_a0abd85883dd0597896a1678340292ccf"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance_container.html#a0abd85883dd0597896a1678340292ccf">Renderer::SpriteInstanceContainer::AddEntity</a></div><div class="ttdeci">void AddEntity(uint32_t EntityID)</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:57</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html">Renderer::SpriteInstance</a></div><div class="ttdoc">One sprite as the GPU sees it: position, size, rotation, flip, texture rectangle and colour.</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:40</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a00bb0b47d22ef896dadcfd2282580e58"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a00bb0b47d22ef896dadcfd2282580e58">Renderer::SpriteInstance::g</a></div><div class="ttdeci">float g</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:45</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a18bc917c9e08709fd889fed399eb1e15"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a18bc917c9e08709fd889fed399eb1e15">Renderer::SpriteInstance::b</a></div><div class="ttdeci">float b</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:45</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a43ad092b81640893cd480ab0be64b247"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a43ad092b81640893cd480ab0be64b247">Renderer::SpriteInstance::x</a></div><div class="ttdeci">float x</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:41</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a7b77eec8675d7657c29e7a1815964b30"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a7b77eec8675d7657c29e7a1815964b30">Renderer::SpriteInstance::r</a></div><div class="ttdeci">float r</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:45</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a7ddc3218c155c4770aa46560624b71aa"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a7ddc3218c155c4770aa46560624b71aa">Renderer::SpriteInstance::w</a></div><div class="ttdeci">float w</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:43</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a9c9a073c98f41a88f978625dd84c38dd"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a9c9a073c98f41a88f978625dd84c38dd">Renderer::SpriteInstance::tex_w</a></div><div class="ttdeci">float tex_w</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:44</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_a9f1e3273db15e6b5d53cfd810efe04a6"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#a9f1e3273db15e6b5d53cfd810efe04a6">Renderer::SpriteInstance::a</a></div><div class="ttdeci">float a</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:45</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_ab976b7018fc075e2e817600375b3e727"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#ab976b7018fc075e2e817600375b3e727">Renderer::SpriteInstance::tex_h</a></div><div class="ttdeci">float tex_h</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:44</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_ac04a24f9fcd31ea1a48c1ba36e38609d"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#ac04a24f9fcd31ea1a48c1ba36e38609d">Renderer::SpriteInstance::y</a></div><div class="ttdeci">float y</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:41</div></div>
+<div class="ttc" id="astruct_renderer_1_1_sprite_instance_html_af6e69d477081836c39f0127b501574a3"><div class="ttname"><a href="struct_renderer_1_1_sprite_instance.html#af6e69d477081836c39f0127b501574a3">Renderer::SpriteInstance::h</a></div><div class="ttdeci">float h</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:43</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

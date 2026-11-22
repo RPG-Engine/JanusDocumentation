@@ -1,0 +1,212 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Janus Engine documentation | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div><div class="header">
+  <div class="headertitle"><div class="title">Janus Engine documentation </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
+<p class="lede"></p>
+<p>Janus is a C++26 engine for 2D games. Games are built from entities and components with <a href="https://www.flecs.dev/flecs/">flecs</a>, drawn by a batched sprite renderer on SDL3's GPU API, and inspected live with Dear ImGui editor tools. It compiles into a single static library that your game links.</p>
+<div class="jd-meta"><span><b>Documents engine commit</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/824ee2043e545a75c0510187f5c7ca53b5aa21c4" class="src-link"><code>824ee20</code></a></span><span><b>Updated</b> 2026-11-22</span><span><a class="el" href="docs_version.html" title="Documentation version">How this is kept up to date</a></span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md133"></a>
+Start here</h1>
+<div class="jd-cards"> <a href="getting_started.html" class="jd-card"><span class="jd-card-title">Install and build</span><span class="jd-card-text">Requirements, vcpkg, building the engine and the examples.</span></a> <a href="first_game.html" class="jd-card"><span class="jd-card-title">Your first game</span><span class="jd-card-text">Set up a game project and put a sprite on screen, step by step.</span></a> <a href="essentials.html" class="jd-card"><span class="jd-card-title">Things to know</span><span class="jd-card-text">The rules every Janus game follows: camera, lights, layers, assets, input.</span></a> <a href="examples.html" class="jd-card"><span class="jd-card-title">Examples</span><span class="jd-card-text">Three small games and focused examples for the ECS and every module.</span></a> </div><h1 class="doxsection"><a class="anchor" id="autotoc_md134"></a>
+The manual</h1>
+<div class="jd-cards"> <a href="engine_organization.html" class="jd-card"><span class="jd-card-title">How the engine is organized</span><span class="jd-card-text">Startup, the game loop, shutdown and how modules depend on each other.</span></a> <a href="modules_overview.html" class="jd-card"><span class="jd-card-title">Engine modules</span><span class="jd-card-text">One page per module, each starting with how to use it.</span></a> <a href="known_issues.html" class="jd-card"><span class="jd-card-title">Known issues</span><span class="jd-card-text">Engine behaviour that may surprise you, with workarounds.</span></a> <a href="annotated.html" class="jd-card"><span class="jd-card-title">API reference</span><span class="jd-card-text">Every class, function and macro. Or press <kbd>Ctrl</kbd> <kbd>K</kbd> to search.</span></a> </div><h1 class="doxsection"><a class="anchor" id="autotoc_md135"></a>
+What a Janus game looks like</h1>
+<p>A game is an ordinary <span class="tt">main()</span> that starts the engine, creates entities, adds systems and runs the loop. This is the whole of the <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> example, minus the texture helper:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Hello Janus: main()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<div class="line">    <span class="comment">// so register it first.</span></div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Camera: shows world units (0,0) to (320,180). Boundaries of 0 pin it in place.</span></div>
+<div class="line">    <span class="comment">// The light on the same entity is large enough to light the whole screen.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({ .CameraSize = {320, 180}, .Boundaries = {0, 0, 0, 0} })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Background: a full-screen sprite on the Background layer.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {320, 180},</div>
+<div class="line">            .Color = {0.10f, 0.12f, 0.18f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A 32x32 orange square. Location is its top-left corner, in world units.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Square&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {48, 100, 0} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {32, 32},</div>
+<div class="line">            .Color = {1.f, 0.55f, 0.1f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line"> </div>
+<div class="line">    Log::Hello::Info(<span class="stringliteral">&quot;Hello, Janus! Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();             <span class="comment">// returns when the window is closed</span></div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Known issue: returning from main() after TeardownPlugins() crashes in static</span></div>
+<div class="line">    <span class="comment">// destructors.</span></div>
+<div class="line">    <span class="comment">// Exit without running them (the engine has already flushed its logs).</span></div>
+<div class="line">    std::quick_exit(0);</div>
+</div><!-- fragment --><p>  </details></p>
+<div class="jd-meta"><span>From <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" class="src-link">examples/modules/HelloJanus.cpp</a>, which is compiled and run against the documented commit.</span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md136"></a>
+What the engine gives you</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Area  </th><th class="markdownTableHeadNone">What you get  </th><th class="markdownTableHeadNone">Module  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Game objects  </td><td class="markdownTableBodyNone">flecs entities, components and systems; component macros with reflection and editor panels  </td><td class="markdownTableBodyNone"><a class="el" href="group__ecs.html" title="ECS">ECS</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Drawing  </td><td class="markdownTableBodyNone">Batched sprites in five layers, sprite-sheet cells, tint, rotation, Y-sorting, a camera, 2D lights  </td><td class="markdownTableBodyNone"><a class="el" href="group__rendering.html" title="Renderer">Renderer</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="namespace_input.html">Input</a>  </td><td class="markdownTableBodyNone">Named actions with press, hold and release bindings and value operators  </td><td class="markdownTableBodyNone"><a class="el" href="group__input.html" title="Input">Input</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Assets  </td><td class="markdownTableBodyNone">A registry of every file under <span class="tt">Resources/</span>, typed loaders, LDtk level import  </td><td class="markdownTableBodyNone"><a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Tools  </td><td class="markdownTableBodyNone">Dear ImGui with docking, an Entity Debugger, an FPS counter, your own tool windows  </td><td class="markdownTableBodyNone"><a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>, <a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">Gameplay helpers  </td><td class="markdownTableBodyNone">Colliders, mouse hover, a 2D movement action  </td><td class="markdownTableBodyNone"><a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Basics  </td><td class="markdownTableBodyNone">Logging, a reference-counted pointer, frame timing  </td><td class="markdownTableBodyNone"><a class="el" href="group__logging.html" title="Log">Log</a>, <a class="el" href="group__memory.html" title="Memory">Memory</a>, <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md137"></a>
+How these pages are organized</h1>
+<ul>
+<li><b>Using Janus</b> gets you from a fresh checkout to a running game, and lists what every game needs.</li>
+<li><b><a class="el" href="namespace_engine.html">Engine</a> modules</b> has a page per module. Each one opens with <em>How to use</em>, then explains the details, then lists the module's classes and functions.</li>
+<li><b>Examples</b> are complete programs. Every one is a single <span class="tt">.cpp</span> file that uses no image or data files, and every one has been compiled and run.</li>
+<li>Code taken from the engine is marked <b><a class="el" href="namespace_engine.html">Engine</a> example</b>. Code written for these docs by AI has no label, and its page starts with an AI-generated notice. See <a class="el" href="conventions.html" title="How to read these docs">How to read these docs</a>.</li>
+<li>Links marked ↗ open the source on GitHub at the exact line, at the commit these docs describe.</li>
+</ul>
+<p> <div style="display:none"> <a class="el" href="using_janus.html" title="Using Janus">Using Janus</a> <a class="el" href="engine_organization.html" title="How the engine is organized">How the engine is organized</a> <a class="el" href="modules_overview.html" title="Engine modules">Engine modules</a> <a class="el" href="examples.html" title="Examples">Examples</a> <a class="el" href="known_issues.html" title="Known issues">Known issues</a> <a class="el" href="docs_version.html" title="Documentation version">Documentation version</a> <a class="el" href="conventions.html" title="How to read these docs">How to read these docs</a>  </div> </p>
+</div></div><!-- PageDoc -->
+<a href="doxygen_crawl.html"></a>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,322 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Filesystem::SAssetData Struct Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespace_filesystem.html">Filesystem</a></li><li class="navelem"><a href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_filesystem_1_1_s_asset_data-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Filesystem::SAssetData Struct Reference<div class="ingroups"><a class="el" href="group__filesystem.html">Filesystem</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Everything the registry knows about one file: where it is, its asset path, name, extension, type and, once loaded, the loaded object.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;Filesystem/FilesystemTypes.hpp&gt;</code></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Created for every file at startup. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/FilesystemTypes.hpp\#L79-L114" class="src-link">include/Filesystem/FilesystemTypes.hpp:79</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md33"></a>
+How to use</h2>
+<p>Get one with <a class="el" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">Filesystem::GetAssetData()</a>, read its fields, and pass it to <span class="tt"><a class="el" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">Filesystem::Importers::LoadFile</a>&lt;T&gt;()</span> to load it. To add an asset made in code, create one with the default constructor, fill in <span class="tt"><a class="el" href="#ae42684ef88b48be07174a8b7467cd207" title="The in-engine filepath.">AssetPath</a></span>, <span class="tt"><a class="el" href="#a08356b831ce1159e2a22c5d6ae5abfd1" title="The name of this asset without any path information.">AssetName</a></span>, <span class="tt"><a class="el" href="#aedf28cb68de4627985f9398d24fd6c18" title="The asset type from filesystem.json.">AssetType</a></span> and <span class="tt"><a class="el" href="#a0c00746206c04b9835c7b3bdda8df2ac" title="The loaded object, or empty until the asset is first loaded with LoadFile.">ObjectData</a></span>, and pass it to <a class="el" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871" title="Adds an asset to the registry under AssetData-&gt;AssetPath.">Filesystem::RegisterAssetData()</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Asset data</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// GetAssetData accepts &#39;/&#39; or &#39;\&#39; separators.</span></div>
+<div class="line">    <span class="comment">// It logs an error and returns null if nothing matches.</span></div>
+<div class="line">    <span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> data =</div>
+<div class="line">        <a class="code hl_function" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem::GetAssetData</a>(<span class="stringliteral">&quot;Shaders/Compiled/PullSpriteBatch.vert&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">if</span> (data.<a class="code hl_function" href="class_t_object_ptr.html#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>()) {</div>
+<div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Name: {}  Extension: {}  File: {}&quot;</span>,</div>
+<div class="line">                          data-&gt;AssetName, data-&gt;AssetExtension,</div>
+<div class="line">                          data-&gt;AssetFilePathRaw.string());</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details> </p>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:afe2f9eb547ce4791574787034dc3231c" id="r_afe2f9eb547ce4791574787034dc3231c"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#afe2f9eb547ce4791574787034dc3231c">SAssetData</a> ()=default</td></tr>
+<tr class="memitem:a9c54283bb4f2e4cd7a4e15a6ef298e66" id="r_a9c54283bb4f2e4cd7a4e15a6ef298e66"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a9c54283bb4f2e4cd7a4e15a6ef298e66">SAssetData</a> (const std::filesystem::path &amp;InAssetFilePath)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a3ae17479a54e8e24deefd8c031180d3e" id="r_a3ae17479a54e8e24deefd8c031180d3e"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="#a3ae17479a54e8e24deefd8c031180d3e">AssetFilePathRaw</a> {}</td></tr>
+<tr class="memdesc:a3ae17479a54e8e24deefd8c031180d3e"><td class="mdescLeft">&#160;</td><td class="mdescRight">True file path.  <br /></td></tr>
+<tr class="memitem:ae42684ef88b48be07174a8b7467cd207" id="r_ae42684ef88b48be07174a8b7467cd207"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="#ae42684ef88b48be07174a8b7467cd207">AssetPath</a> {}</td></tr>
+<tr class="memdesc:ae42684ef88b48be07174a8b7467cd207"><td class="mdescLeft">&#160;</td><td class="mdescRight">The in-engine filepath.  <br /></td></tr>
+<tr class="memitem:a08356b831ce1159e2a22c5d6ae5abfd1" id="r_a08356b831ce1159e2a22c5d6ae5abfd1"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a08356b831ce1159e2a22c5d6ae5abfd1">AssetName</a> {}</td></tr>
+<tr class="memdesc:a08356b831ce1159e2a22c5d6ae5abfd1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The name of this asset without any path information.  <br /></td></tr>
+<tr class="memitem:a2237e0ac7efb967939df7654a4d73d9f" id="r_a2237e0ac7efb967939df7654a4d73d9f"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="#a2237e0ac7efb967939df7654a4d73d9f">AssetExtension</a> {}</td></tr>
+<tr class="memdesc:a2237e0ac7efb967939df7654a4d73d9f"><td class="mdescLeft">&#160;</td><td class="mdescRight">The file extension for this asset Char.png -&gt; png.  <br /></td></tr>
+<tr class="memitem:aedf28cb68de4627985f9398d24fd6c18" id="r_aedf28cb68de4627985f9398d24fd6c18"><td class="memItemLeft"><a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a>&#160;</td><td class="memItemRight"><a class="el" href="#aedf28cb68de4627985f9398d24fd6c18">AssetType</a> = <a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">EAssetType::UNDEFINED</a></td></tr>
+<tr class="memdesc:aedf28cb68de4627985f9398d24fd6c18"><td class="mdescLeft">&#160;</td><td class="mdescRight">The asset type from <span class="tt">filesystem.json</span>.  <br /></td></tr>
+<tr class="memitem:a0c00746206c04b9835c7b3bdda8df2ac" id="r_a0c00746206c04b9835c7b3bdda8df2ac"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_s_asset.html">SAsset</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a0c00746206c04b9835c7b3bdda8df2ac">ObjectData</a> = nullptr</td></tr>
+<tr class="memdesc:a0c00746206c04b9835c7b3bdda8df2ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">The loaded object, or empty until the asset is first loaded with <span class="tt">LoadFile</span>.  <br /></td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="afe2f9eb547ce4791574787034dc3231c" name="afe2f9eb547ce4791574787034dc3231c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afe2f9eb547ce4791574787034dc3231c">&#9670;&#160;</a></span>SAssetData() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Filesystem::SAssetData::SAssetData </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel default">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9c54283bb4f2e4cd7a4e15a6ef298e66" name="a9c54283bb4f2e4cd7a4e15a6ef298e66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c54283bb4f2e4cd7a4e15a6ef298e66">&#9670;&#160;</a></span>SAssetData() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Filesystem::SAssetData::SAssetData </td>
+          <td>(</td>
+          <td class="paramtype">const std::filesystem::path &amp;</td>          <td class="paramname"><span class="paramname"><em>InAssetFilePath</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a3ae17479a54e8e24deefd8c031180d3e" name="a3ae17479a54e8e24deefd8c031180d3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ae17479a54e8e24deefd8c031180d3e">&#9670;&#160;</a></span>AssetFilePathRaw</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::filesystem::path Filesystem::SAssetData::AssetFilePathRaw {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Full path of the file on disk.</p>
+<p>Empty for assets made in code. </p>
+
+</div>
+</div>
+<a id="ae42684ef88b48be07174a8b7467cd207" name="ae42684ef88b48be07174a8b7467cd207"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae42684ef88b48be07174a8b7467cd207">&#9670;&#160;</a></span>AssetPath</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::filesystem::path Filesystem::SAssetData::AssetPath {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The asset path: relative to <span class="tt">Resources/</span>, without the extension, e.g.</p>
+<p>Assumes the parent path is the resources directory. For example, this could be "Images/Characters/Char" while AssetFilePathRaw would be "F:/Game/Resources/Images/Characters/Char.png"</p>
+<p><span class="tt">Images\Player</span>. This is the registry key. </p>
+
+</div>
+</div>
+<a id="a08356b831ce1159e2a22c5d6ae5abfd1" name="a08356b831ce1159e2a22c5d6ae5abfd1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a08356b831ce1159e2a22c5d6ae5abfd1">&#9670;&#160;</a></span>AssetName</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Filesystem::SAssetData::AssetName {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The file name without folder or extension, e.g.</p>
+<p>"Images/Characters/Char" -&gt; "Char"</p>
+<p><span class="tt">Player</span>. </p>
+
+</div>
+</div>
+<a id="a2237e0ac7efb967939df7654a4d73d9f" name="a2237e0ac7efb967939df7654a4d73d9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2237e0ac7efb967939df7654a4d73d9f">&#9670;&#160;</a></span>AssetExtension</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Filesystem::SAssetData::AssetExtension {}</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The file's extension including the dot, e.g.</p>
+<p><span class="tt">.png</span>. </p>
+
+</div>
+</div>
+<a id="aedf28cb68de4627985f9398d24fd6c18" name="aedf28cb68de4627985f9398d24fd6c18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aedf28cb68de4627985f9398d24fd6c18">&#9670;&#160;</a></span>AssetType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> Filesystem::SAssetData::AssetType = <a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">EAssetType::UNDEFINED</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0c00746206c04b9835c7b3bdda8df2ac" name="a0c00746206c04b9835c7b3bdda8df2ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c00746206c04b9835c7b3bdda8df2ac">&#9670;&#160;</a></span>ObjectData</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt;<a class="el" href="struct_s_asset.html">SAsset</a>&gt; Filesystem::SAssetData::ObjectData = nullptr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

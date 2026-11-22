@@ -1,0 +1,201 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Filesystem Namespace Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Filesystem Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-namespaces" class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:Importers" id="r_Importers"><td class="memItemLeft">namespace &#160;</td><td class="memItemRight"><a class="el" href="namespace_filesystem_1_1_importers.html">Importers</a></td></tr>
+<tr class="memdesc:namespace_filesystem_1_1_importers"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespace_graphics.html">Graphics</a> importers. <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:SAssetData" id="r_SAssetData"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Everything the registry knows about one file: where it is, its asset path, name, extension, type and, once loaded, the loaded object.  <a href="struct_filesystem_1_1_s_asset_data.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SConfig" id="r_SConfig"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_config.html">SConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base for JSON settings files in <span class="tt">Resources/Config</span>.  <a href="struct_filesystem_1_1_s_config.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SFilesystemConfig" id="r_SFilesystemConfig"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_filesystem_config.html">SFilesystemConfig</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The asset-type table read from <span class="tt">Resources/Config/filesystem.json</span>.  <a href="struct_filesystem_1_1_s_filesystem_config.html#details">More...</a><br /></td></tr>
+<tr class="memitem:SSoftAssetPath" id="r_SSoftAssetPath"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A reference to an asset by its path.  <a href="struct_filesystem_1_1_s_soft_asset_path.html#details">More...</a><br /></td></tr>
+<tr class="memitem:STypedSoftAssetPath" id="r_STypedSoftAssetPath"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html">STypedSoftAssetPath</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">An <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> that also states which asset type it points to.  <a href="struct_filesystem_1_1_s_typed_soft_asset_path.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga84e0341c2c7fa23bcdd26ca56ea745e1" id="r_ga84e0341c2c7fa23bcdd26ca56ea745e1"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> { <br />
+&#160;&#160;<a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">UNDEFINED</a> = 0
+, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">TEXTURE</a>
+, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">SHADER</a>
+, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">FONT</a>
+, <br />
+&#160;&#160;<a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">PREFAB</a>
+, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">LEVEL</a>
+, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga84e0341c2c7fa23bcdd26ca56ea745e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">The kind of file an asset is, set from its extension by <span class="tt">filesystem.json</span>.  <a href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga3c7aac198685c3e727f5041068c9b9a1" id="r_ga3c7aac198685c3e727f5041068c9b9a1"><td class="memItemLeft"><a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a>&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga3c7aac198685c3e727f5041068c9b9a1">GetFileType</a> (const std::filesystem::path &amp;FilePath)</td></tr>
+<tr class="memdesc:ga3c7aac198685c3e727f5041068c9b9a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the asset type of a file from its extension, using <span class="tt">Resources/Config/filesystem.json</span>.  <br /></td></tr>
+<tr class="memitem:ga4c0added2427c1f414db14dc89a83f56" id="r_ga4c0added2427c1f414db14dc89a83f56"><td class="memItemLeft">std::string&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga4c0added2427c1f414db14dc89a83f56">FilePathToAssetPath</a> (std::filesystem::path FilePath)</td></tr>
+<tr class="memdesc:ga4c0added2427c1f414db14dc89a83f56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a full file path into an asset path: relative to <span class="tt">Resources/</span>, without the extension.  <br /></td></tr>
+<tr class="memitem:ga70baa267c86fe3795214c8bd2cf74191" id="r_ga70baa267c86fe3795214c8bd2cf74191"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga70baa267c86fe3795214c8bd2cf74191">Module</a> ()</td></tr>
+<tr class="memdesc:ga70baa267c86fe3795214c8bd2cf74191"><td class="mdescLeft">&#160;</td><td class="mdescRight">Declared but not defined at this commit.  <br /></td></tr>
+<tr class="memitem:gabb430616847a501341456706c78f2c72" id="r_gabb430616847a501341456706c78f2c72"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#gabb430616847a501341456706c78f2c72">TeardownModule</a> ()</td></tr>
+<tr class="memdesc:gabb430616847a501341456706c78f2c72"><td class="mdescLeft">&#160;</td><td class="mdescRight">Forgets every registered asset.  <br /></td></tr>
+<tr class="memitem:ga6931370076d808aeecee9dfb1e406eb6" id="r_ga6931370076d808aeecee9dfb1e406eb6"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga6931370076d808aeecee9dfb1e406eb6">InitializeAllResources</a> ()</td></tr>
+<tr class="memdesc:ga6931370076d808aeecee9dfb1e406eb6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Iterates over the entire resources directory and loads the asset data into memory.  <br /></td></tr>
+<tr class="memitem:ga67ef61bdf17c2c5152b74f3c978d9871" id="r_ga67ef61bdf17c2c5152b74f3c978d9871"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">RegisterAssetData</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt; &amp;AssetData)</td></tr>
+<tr class="memdesc:ga67ef61bdf17c2c5152b74f3c978d9871"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds an asset to the registry under <span class="tt">AssetData-&gt;AssetPath</span>.  <br /></td></tr>
+<tr class="memitem:ga7b08bf8a24a334fe7a267a5224c62b04" id="r_ga7b08bf8a24a334fe7a267a5224c62b04"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">GetAssetData</a> (const std::string &amp;AssetPath)</td></tr>
+<tr class="memdesc:ga7b08bf8a24a334fe7a267a5224c62b04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if there is none.  <br /></td></tr>
+<tr class="memitem:ga72f345643ec84784a77eb0b02f70c971" id="r_ga72f345643ec84784a77eb0b02f70c971"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_filesystem_1_1_s_asset_data.html">SAssetData</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga72f345643ec84784a77eb0b02f70c971">GetAssetData</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_s_asset.html">SAsset</a> &gt; &amp;Asset)</td></tr>
+<tr class="memdesc:ga72f345643ec84784a77eb0b02f70c971"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the registered asset for a loaded asset object.  <br /></td></tr>
+<tr class="memitem:gab7f2db5d0766acf15c288ae7a6e450e6" id="r_gab7f2db5d0766acf15c288ae7a6e450e6"><td class="memItemLeft">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">GetAllAssetPaths</a> (const std::string &amp;RelativePath=&quot;&quot;)</td></tr>
+<tr class="memdesc:gab7f2db5d0766acf15c288ae7a6e450e6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns the asset paths of every registered asset, or of those inside the folder <span class="tt">RelativePath</span> (for example <span class="tt">"Images"</span>).  <br /></td></tr>
+<tr class="memitem:gae8c77073c80b013cc69a34a6f05413c0" id="r_gae8c77073c80b013cc69a34a6f05413c0"><td class="memItemLeft">std::vector&lt; <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#gae8c77073c80b013cc69a34a6f05413c0">GetAllAssetPaths</a> (<a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> AssetType)</td></tr>
+<tr class="memdesc:gae8c77073c80b013cc69a34a6f05413c0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns every registered asset of one type, for example all <span class="tt"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></span> assets.  <br /></td></tr>
+<tr class="memitem:gad297a3aa7089dce544083e6dd5c1aab6" id="r_gad297a3aa7089dce544083e6dd5c1aab6"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#gad297a3aa7089dce544083e6dd5c1aab6">GetResourcesDirectory</a> ()</td></tr>
+<tr class="memdesc:gad297a3aa7089dce544083e6dd5c1aab6"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">&lt;current working directory&gt;/Resources</span>.  <br /></td></tr>
+<tr class="memitem:ga1b2e0ec808875788a7b96c3d7e8e814b" id="r_ga1b2e0ec808875788a7b96c3d7e8e814b"><td class="memItemLeft">std::filesystem::path&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga1b2e0ec808875788a7b96c3d7e8e814b">GetConfigDirectory</a> ()</td></tr>
+<tr class="memdesc:ga1b2e0ec808875788a7b96c3d7e8e814b"><td class="mdescLeft">&#160;</td><td class="mdescRight"><span class="tt">&lt;current working directory&gt;/Resources/Config</span>.  <br /></td></tr>
+<tr class="memitem:ga093d508bcb42f5b3eec44ad6a1d63824" id="r_ga093d508bcb42f5b3eec44ad6a1d63824"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824">IsValid</a> (const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">SSoftAssetPath</a> &amp;Path)</td></tr>
+<tr class="memdesc:ga093d508bcb42f5b3eec44ad6a1d63824"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns <span class="tt">true</span> if <span class="tt">Path</span> is a registered asset path.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga073c9848a6d7e8c23ce9c44bed39044e" id="r_ga073c9848a6d7e8c23ce9c44bed39044e"><td class="memItemLeft">std::map&lt; std::string, <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1">EAssetType</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="group__filesystem.html#ga073c9848a6d7e8c23ce9c44bed39044e">StringToType</a></td></tr>
+<tr class="memdesc:ga073c9848a6d7e8c23ce9c44bed39044e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maps the type names used in <span class="tt">filesystem.json</span> (<span class="tt">"<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">TEXTURE</a>"</span>, ...) to <a class="el" href="group__filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1" title="The kind of file an asset is, set from its extension by filesystem.json.">Filesystem::EAssetType</a> values.  <br /></td></tr>
+</table>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

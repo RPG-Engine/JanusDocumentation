@@ -1,0 +1,865 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>TObjectPtr&lt; TObject &gt; Class Template Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-methods">Protected Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
+<a href="#friends">Friends</a> &#124;
+<a href="class_t_object_ptr-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">TObjectPtr&lt; TObject &gt; Class Template Reference<div class="ingroups"><a class="el" href="group__memory.html">Memory</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>A reference-counted owning pointer.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;Memory/Janitors.hpp&gt;</code></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename TObject&gt;<br />
+class TObjectPtr&lt; TObject &gt;</div><p>Copies share the object; the last copy deletes it.</p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TObject</td><td>The type of the object it owns.</td></tr>
+  </table>
+  </dd>
+</dl>
+<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L10-L122" class="src-link">include/Memory/Janitors.hpp:10</a>. See <a class="el" href="group__memory.html" title="Memory">Memory</a> for how to use it and what to watch out for.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Object ptr</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// TObjectPtr&lt;T&gt; is a reference-counted pointer.</span></div>
+<div class="line">    <span class="comment">// Copies share the object; the last one deletes it.</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> inventory;                  <span class="comment">// creates a new SInventory</span></div>
+<div class="line">    inventory-&gt;Items = {<span class="stringliteral">&quot;sword&quot;</span>, <span class="stringliteral">&quot;shield&quot;</span>};</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> sameInventory = inventory;  <span class="comment">// a second reference to it</span></div>
+<div class="line">    sameInventory-&gt;Items.push_back(<span class="stringliteral">&quot;potion&quot;</span>);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;Items: {} (both pointers see {})&quot;</span>,</div>
+<div class="line">                      inventory-&gt;Items.size(), sameInventory-&gt;Items.size());</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SInventory&gt;</a> empty = <span class="keyword">nullptr</span>;            <span class="comment">// an empty pointer</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;empty.IsValid() = {}&quot;</span>, empty.<a class="code hl_function" href="#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    sameInventory.<a class="code hl_function" href="#a8e01a838a6bb12d5596807ff14b40278">Clear</a>();                             <span class="comment">// drop one reference</span></div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;After Clear: inventory valid = {}, sameInventory valid = {}&quot;</span>,</div>
+<div class="line">                      inventory.<a class="code hl_function" href="#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>(), sameInventory.<a class="code hl_function" href="#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a>());</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// CastTo converts between related types</span></div>
+<div class="line">    <span class="comment">// (a static_cast: the object must really be of that type).</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> text;</div>
+<div class="line">    text-&gt;Data = <span class="stringliteral">&quot;hello&quot;</span>;</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAsset&gt;</a> asBase = text;                  <span class="comment">// derived -&gt; base is implicit</span></div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;STextFileAsset&gt;</a> asText = <a class="code hl_function" href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo&lt;STextFileAsset&gt;</a>(asBase);</div>
+<div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;CastTo round trip: {}&quot;</span>, asText-&gt;Data);</div>
+</div><!-- fragment --><p>  </details> </p>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a878c6bf653150858929c29822413f21a" id="r_a878c6bf653150858929c29822413f21a"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a878c6bf653150858929c29822413f21a">TObjectPtr</a> ()</td></tr>
+<tr class="memitem:a7c6b688086b3ad663bdc72936fa343b0" id="r_a7c6b688086b3ad663bdc72936fa343b0"><td class="memTemplParams" colspan="2">template&lt;typename... TArgs&gt; </td></tr>
+<tr class="memitem:a7c6b688086b3ad663bdc72936fa343b0 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a7c6b688086b3ad663bdc72936fa343b0">TObjectPtr</a> (TArgs... Args)</td></tr>
+<tr class="memitem:ab1c179a4aafba8537738771cb267c52f" id="r_ab1c179a4aafba8537738771cb267c52f"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#ab1c179a4aafba8537738771cb267c52f">TObjectPtr</a> (const TObject &amp;Obj)</td></tr>
+<tr class="memitem:a1afe18f567452c39cb8c9565c840f7e6" id="r_a1afe18f567452c39cb8c9565c840f7e6"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a1afe18f567452c39cb8c9565c840f7e6">TObjectPtr</a> (TObject &amp;&amp;Obj)</td></tr>
+<tr class="memitem:a2175a7fb68fc0019e260f510fbcbd763" id="r_a2175a7fb68fc0019e260f510fbcbd763"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a2175a7fb68fc0019e260f510fbcbd763">TObjectPtr</a> (nullptr_t)</td></tr>
+<tr class="memitem:a14d43f5de677412272d906e283c115e0" id="r_a14d43f5de677412272d906e283c115e0"><td class="memTemplParams" colspan="2">template&lt;typename TOther&gt; </td></tr>
+<tr class="memitem:a14d43f5de677412272d906e283c115e0 template"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a14d43f5de677412272d906e283c115e0">TObjectPtr</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TOther &gt; &amp;Ptr)</td></tr>
+<tr class="memitem:a5f7711f01916b5db90a368eec81fa7ed" id="r_a5f7711f01916b5db90a368eec81fa7ed"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a5f7711f01916b5db90a368eec81fa7ed">TObjectPtr</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;Ptr)</td></tr>
+<tr class="memitem:aef7edeec9361fd76452de45b69739316" id="r_aef7edeec9361fd76452de45b69739316"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#aef7edeec9361fd76452de45b69739316">TObjectPtr</a> (<a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;&amp;MovedPtr) noexcept</td></tr>
+<tr class="memitem:a8668f762c30210034da98ef418f15183" id="r_a8668f762c30210034da98ef418f15183"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a8668f762c30210034da98ef418f15183">~TObjectPtr</a> ()</td></tr>
+<tr class="memitem:a8e01a838a6bb12d5596807ff14b40278" id="r_a8e01a838a6bb12d5596807ff14b40278"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a8e01a838a6bb12d5596807ff14b40278">Clear</a> ()</td></tr>
+<tr class="memitem:ac4ba56d10564ef85972e1fe318c02db4" id="r_ac4ba56d10564ef85972e1fe318c02db4"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ac4ba56d10564ef85972e1fe318c02db4">operator==</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;object) const</td></tr>
+<tr class="memitem:a9930eb6d644c134121c739413bf83420" id="r_a9930eb6d644c134121c739413bf83420"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a9930eb6d644c134121c739413bf83420">operator=</a> (nullptr_t nullVal) noexcept</td></tr>
+<tr class="memitem:a46ed42cd62af981814f1d72b03296e47" id="r_a46ed42cd62af981814f1d72b03296e47"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a46ed42cd62af981814f1d72b03296e47">operator=</a> (<a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;&amp;MoveAssignmentPtr) noexcept</td></tr>
+<tr class="memitem:a1d8e95775c0b00a33b780de6a1828a82" id="r_a1d8e95775c0b00a33b780de6a1828a82"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;&#160;</td><td class="memItemRight"><a class="el" href="#a1d8e95775c0b00a33b780de6a1828a82">operator=</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp;Ptr)</td></tr>
+<tr class="memitem:a885b75619072fe24d11c48fd52d42353" id="r_a885b75619072fe24d11c48fd52d42353"><td class="memItemLeft">TObject *&#160;</td><td class="memItemRight"><a class="el" href="#a885b75619072fe24d11c48fd52d42353">Raw</a> ()</td></tr>
+<tr class="memitem:aa6a5385f75a389a3ab6fcc6ebf12a7b0" id="r_aa6a5385f75a389a3ab6fcc6ebf12a7b0"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#aa6a5385f75a389a3ab6fcc6ebf12a7b0">IsValid</a> () const</td></tr>
+<tr class="memitem:a29d8d7959142a355c691f506206f7068" id="r_a29d8d7959142a355c691f506206f7068"><td class="memItemLeft">TObject *&#160;</td><td class="memItemRight"><a class="el" href="#a29d8d7959142a355c691f506206f7068">operator-&gt;</a> () const</td></tr>
+<tr class="memitem:a62224c19a7006b95f14f7c2940e6cbb5" id="r_a62224c19a7006b95f14f7c2940e6cbb5"><td class="memItemLeft">TObject *&#160;</td><td class="memItemRight"><a class="el" href="#a62224c19a7006b95f14f7c2940e6cbb5">operator-&gt;</a> ()</td></tr>
+<tr class="memitem:af7921bd2c49f6fb439801ac501b012e3" id="r_af7921bd2c49f6fb439801ac501b012e3"><td class="memItemLeft">TObject &amp;&#160;</td><td class="memItemRight"><a class="el" href="#af7921bd2c49f6fb439801ac501b012e3">operator*</a> ()</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-methods" class="groupheader"><a id="pro-methods" name="pro-methods"></a>
+Protected Member Functions</h2></td></tr>
+<tr class="memitem:a073ac7736113f06eff6a168eac7bad25" id="r_a073ac7736113f06eff6a168eac7bad25"><td class="memItemLeft">&#160;</td><td class="memItemRight"><a class="el" href="#a073ac7736113f06eff6a168eac7bad25">TObjectPtr</a> (TObject *Obj)</td></tr>
+<tr class="memdesc:a073ac7736113f06eff6a168eac7bad25"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructors.  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pro-attribs" class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:ab318b607181c9e2a10b9411c3deda098" id="r_ab318b607181c9e2a10b9411c3deda098"><td class="memItemLeft">TObject *&#160;</td><td class="memItemRight"><a class="el" href="#ab318b607181c9e2a10b9411c3deda098">_internalObject</a> = nullptr</td></tr>
+<tr class="memitem:a14052e373bc23994a2f1ec34933fa02f" id="r_a14052e373bc23994a2f1ec34933fa02f"><td class="memItemLeft">int *&#160;</td><td class="memItemRight"><a class="el" href="#a14052e373bc23994a2f1ec34933fa02f">_usageCount</a> = nullptr</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-friends" class="groupheader"><a id="friends" name="friends"></a>
+Friends</h2></td></tr>
+<tr class="memitem:aea4ba1f536f1edd81c13060acef3d90d" id="r_aea4ba1f536f1edd81c13060acef3d90d"><td class="memTemplParams" colspan="2">template&lt;class TOther&gt; </td></tr>
+<tr class="memitem:aea4ba1f536f1edd81c13060acef3d90d template"><td class="memItemLeft">class&#160;</td><td class="memItemRight"><a class="el" href="#aea4ba1f536f1edd81c13060acef3d90d">TObjectPtr</a></td></tr>
+<tr class="memitem:a1031e708763cbf64269412ead5bd4c09" id="r_a1031e708763cbf64269412ead5bd4c09"><td class="memTemplParams" colspan="2">template&lt;class TOther, class TSelf&gt; </td></tr>
+<tr class="memitem:a1031e708763cbf64269412ead5bd4c09 template"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TOther &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a1031e708763cbf64269412ead5bd4c09">CastTo</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TSelf &gt; &amp;Ptr)</td></tr>
+</table>
+<a name="doc-constructors" id="doc-constructors"></a><h2 id="header-doc-constructors" class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a073ac7736113f06eff6a168eac7bad25" name="a073ac7736113f06eff6a168eac7bad25"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a073ac7736113f06eff6a168eac7bad25">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[1/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">TObject *</td>          <td class="paramname"><span class="paramname"><em>Obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a878c6bf653150858929c29822413f21a" name="a878c6bf653150858929c29822413f21a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a878c6bf653150858929c29822413f21a">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[2/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7c6b688086b3ad663bdc72936fa343b0" name="a7c6b688086b3ad663bdc72936fa343b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c6b688086b3ad663bdc72936fa343b0">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[3/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<div class="memtemplate">
+template&lt;typename... TArgs&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">TArgs...</td>          <td class="paramname"><span class="paramname"><em>Args</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel explicit">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab1c179a4aafba8537738771cb267c52f" name="ab1c179a4aafba8537738771cb267c52f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1c179a4aafba8537738771cb267c52f">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[4/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">const TObject &amp;</td>          <td class="paramname"><span class="paramname"><em>Obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1afe18f567452c39cb8c9565c840f7e6" name="a1afe18f567452c39cb8c9565c840f7e6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1afe18f567452c39cb8c9565c840f7e6">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[5/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">TObject &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>Obj</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2175a7fb68fc0019e260f510fbcbd763" name="a2175a7fb68fc0019e260f510fbcbd763"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2175a7fb68fc0019e260f510fbcbd763">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[6/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">nullptr_t</td>          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14d43f5de677412272d906e283c115e0" name="a14d43f5de677412272d906e283c115e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14d43f5de677412272d906e283c115e0">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[7/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<div class="memtemplate">
+template&lt;typename TOther&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TOther &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f7711f01916b5db90a368eec81fa7ed" name="a5f7711f01916b5db90a368eec81fa7ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f7711f01916b5db90a368eec81fa7ed">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[8/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef7edeec9361fd76452de45b69739316" name="aef7edeec9361fd76452de45b69739316"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef7edeec9361fd76452de45b69739316">&#9670;&#160;</a></span>TObjectPtr() <span class="overload">[9/9]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::TObjectPtr </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>MovedPtr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8668f762c30210034da98ef418f15183" name="a8668f762c30210034da98ef418f15183"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8668f762c30210034da98ef418f15183">&#9670;&#160;</a></span>~TObjectPtr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::~<a class="el" href="class_t_object_ptr.html">TObjectPtr</a> </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a8e01a838a6bb12d5596807ff14b40278" name="a8e01a838a6bb12d5596807ff14b40278"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e01a838a6bb12d5596807ff14b40278">&#9670;&#160;</a></span>Clear()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::Clear </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac4ba56d10564ef85972e1fe318c02db4" name="ac4ba56d10564ef85972e1fe318c02db4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4ba56d10564ef85972e1fe318c02db4">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>object</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9930eb6d644c134121c739413bf83420" name="a9930eb6d644c134121c739413bf83420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9930eb6d644c134121c739413bf83420">&#9670;&#160;</a></span>operator=() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">nullptr_t</td>          <td class="paramname"><span class="paramname"><em>nullVal</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a46ed42cd62af981814f1d72b03296e47" name="a46ed42cd62af981814f1d72b03296e47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46ed42cd62af981814f1d72b03296e47">&#9670;&#160;</a></span>operator=() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt; &amp;&amp;</td>          <td class="paramname"><span class="paramname"><em>MoveAssignmentPtr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel noexcept">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1d8e95775c0b00a33b780de6a1828a82" name="a1d8e95775c0b00a33b780de6a1828a82"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1d8e95775c0b00a33b780de6a1828a82">&#9670;&#160;</a></span>operator=() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a> &amp; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a885b75619072fe24d11c48fd52d42353" name="a885b75619072fe24d11c48fd52d42353"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a885b75619072fe24d11c48fd52d42353">&#9670;&#160;</a></span>Raw()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TObject * <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::Raw </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span><span class="mlabel nodiscard">nodiscard</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa6a5385f75a389a3ab6fcc6ebf12a7b0" name="aa6a5385f75a389a3ab6fcc6ebf12a7b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6a5385f75a389a3ab6fcc6ebf12a7b0">&#9670;&#160;</a></span>IsValid()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::IsValid </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a29d8d7959142a355c691f506206f7068" name="a29d8d7959142a355c691f506206f7068"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a29d8d7959142a355c691f506206f7068">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TObject * <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a62224c19a7006b95f14f7c2940e6cbb5" name="a62224c19a7006b95f14f7c2940e6cbb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62224c19a7006b95f14f7c2940e6cbb5">&#9670;&#160;</a></span>operator-&gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TObject * <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator-&gt; </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="af7921bd2c49f6fb439801ac501b012e3" name="af7921bd2c49f6fb439801ac501b012e3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7921bd2c49f6fb439801ac501b012e3">&#9670;&#160;</a></span>operator*()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TObject &amp; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::operator* </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-related-members" id="doc-related-members"></a><h2 id="header-doc-related-members" class="groupheader">Friends And Related Symbol Documentation</h2>
+<a id="aea4ba1f536f1edd81c13060acef3d90d" name="aea4ba1f536f1edd81c13060acef3d90d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea4ba1f536f1edd81c13060acef3d90d">&#9670;&#160;</a></span>TObjectPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<div class="memtemplate">
+template&lt;class TOther&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">friend class <a class="el" href="class_t_object_ptr.html">TObjectPtr</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1031e708763cbf64269412ead5bd4c09" name="a1031e708763cbf64269412ead5bd4c09"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1031e708763cbf64269412ead5bd4c09">&#9670;&#160;</a></span>CastTo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<div class="memtemplate">
+template&lt;class TOther, class TSelf&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TOther &gt; CastTo </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TSelf &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Ptr</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel friend">friend</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="ab318b607181c9e2a10b9411c3deda098" name="ab318b607181c9e2a10b9411c3deda098"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab318b607181c9e2a10b9411c3deda098">&#9670;&#160;</a></span>_internalObject</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">TObject* <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::_internalObject = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a14052e373bc23994a2f1ec34933fa02f" name="a14052e373bc23994a2f1ec34933fa02f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14052e373bc23994a2f1ec34933fa02f">&#9670;&#160;</a></span>_usageCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TObject&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int* <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; TObject &gt;::_usageCount = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel protected">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

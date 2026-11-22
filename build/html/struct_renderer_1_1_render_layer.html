@@ -1,0 +1,311 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Renderer::RenderLayer Struct Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a href="namespace_renderer.html">Renderer</a></li><li class="navelem"><a href="struct_renderer_1_1_render_layer.html">RenderLayer</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="struct_renderer_1_1_render_layer-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">Renderer::RenderLayer Struct Reference<div class="ingroups"><a class="el" href="group__rendering.html">Renderer</a></div></div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>One render layer: a list of <a class="el" href="struct_renderer_1_1_sprite_instance_container.html" title="A batch of sprites that share one texture, keyed by entity ID.">Renderer::SpriteInstanceContainer</a>, one per texture.  
+ <a href="#details">More...</a></p>
+
+<p><code>#include &lt;Rendering/SpriteInstanceContainer.hpp&gt;</code></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/SpriteInstanceContainer.hpp\#L72-L117" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:72</a>. </p>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a99c3832b796b64cb0bc1e06d046a288b" id="r_a99c3832b796b64cb0bc1e06d046a288b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a99c3832b796b64cb0bc1e06d046a288b">UpdateEntities</a> ()</td></tr>
+<tr class="memitem:abd52dbb1e02093a80675e4d60bb9e040" id="r_abd52dbb1e02093a80675e4d60bb9e040"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#abd52dbb1e02093a80675e4d60bb9e040">Iterate</a> (std::function&lt; void(const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt; &amp;)&gt; Callback) const</td></tr>
+<tr class="memitem:a5f3eba5a6be2364ae91c48b1778dd3db" id="r_a5f3eba5a6be2364ae91c48b1778dd3db"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a5f3eba5a6be2364ae91c48b1778dd3db">ClearContainers</a> ()</td></tr>
+<tr class="memitem:ac0d909ef5b171c7976448d354498f2f2" id="r_ac0d909ef5b171c7976448d354498f2f2"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac0d909ef5b171c7976448d354498f2f2">GetContainerForTexture</a> (const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> &amp;Texture)</td></tr>
+<tr class="memitem:a3b0a2c17833089bbf4134f7f796aa38d" id="r_a3b0a2c17833089bbf4134f7f796aa38d"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#a3b0a2c17833089bbf4134f7f796aa38d">FindOrAddContainerForTexture</a> (const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> &amp;Texture)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-pub-attribs" class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Public Attributes</h2></td></tr>
+<tr class="memitem:a4385f4c137f07e2e0fd538c1beb7107c" id="r_a4385f4c137f07e2e0fd538c1beb7107c"><td class="memItemLeft"><a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">EInstanceLayer</a>&#160;</td><td class="memItemRight"><a class="el" href="#a4385f4c137f07e2e0fd538c1beb7107c">InstanceLayer</a></td></tr>
+<tr class="memitem:ac1fb426e6160a0f9c92f15c9e014f6d9" id="r_ac1fb426e6160a0f9c92f15c9e014f6d9"><td class="memItemLeft">std::vector&lt; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ac1fb426e6160a0f9c92f15c9e014f6d9">SpriteContainers</a></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Member Function Documentation</h2>
+<a id="a99c3832b796b64cb0bc1e06d046a288b" name="a99c3832b796b64cb0bc1e06d046a288b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99c3832b796b64cb0bc1e06d046a288b">&#9670;&#160;</a></span>UpdateEntities()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::RenderLayer::UpdateEntities </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd52dbb1e02093a80675e4d60bb9e040" name="abd52dbb1e02093a80675e4d60bb9e040"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd52dbb1e02093a80675e4d60bb9e040">&#9670;&#160;</a></span>Iterate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::RenderLayer::Iterate </td>
+          <td>(</td>
+          <td class="paramtype">std::function&lt; void(const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt; &amp;)&gt;</td>          <td class="paramname"><span class="paramname"><em>Callback</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f3eba5a6be2364ae91c48b1778dd3db" name="a5f3eba5a6be2364ae91c48b1778dd3db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f3eba5a6be2364ae91c48b1778dd3db">&#9670;&#160;</a></span>ClearContainers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::RenderLayer::ClearContainers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac0d909ef5b171c7976448d354498f2f2" name="ac0d909ef5b171c7976448d354498f2f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0d909ef5b171c7976448d354498f2f2">&#9670;&#160;</a></span>GetContainerForTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt; Renderer::RenderLayer::GetContainerForTexture </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Texture</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3b0a2c17833089bbf4134f7f796aa38d" name="a3b0a2c17833089bbf4134f7f796aa38d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b0a2c17833089bbf4134f7f796aa38d">&#9670;&#160;</a></span>FindOrAddContainerForTexture()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> &gt; Renderer::RenderLayer::FindOrAddContainerForTexture </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>Texture</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-variable-members" id="doc-variable-members"></a><h2 id="header-doc-variable-members" class="groupheader">Member Data Documentation</h2>
+<a id="a4385f4c137f07e2e0fd538c1beb7107c" name="a4385f4c137f07e2e0fd538c1beb7107c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4385f4c137f07e2e0fd538c1beb7107c">&#9670;&#160;</a></span>InstanceLayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">EInstanceLayer</a> Renderer::RenderLayer::InstanceLayer</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ac1fb426e6160a0f9c92f15c9e014f6d9" name="ac1fb426e6160a0f9c92f15c9e014f6d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac1fb426e6160a0f9c92f15c9e014f6d9">&#9670;&#160;</a></span>SpriteContainers</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt;<a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a>&gt; &gt; Renderer::RenderLayer::SpriteContainers</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$struct_input_1_1_s_input_binding_base.html" title="The part of a binding that does not depend on the value type: binding type, keyboard keys and (unused..." alt="" coords="5,13,175,40"/>
+<area shape="rect" id="Node000001" href="$struct_input_1_1_s_input_binding.html" title="One binding: the key(s) that trigger it, when (Input::EInputType) and the value it contributes." alt="" coords="223,5,362,48"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="190,24,225,26,220,27,190,29"/>
+</map>

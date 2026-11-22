@@ -1,0 +1,299 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Namespace Members | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="contents">
+<div class="textblock">Here is a list of all namespace functions with links to the namespace documentation for each function:</div>
+
+<h3 class="doxsection"><a id="index_a" name="index_a"></a>- a -</h3><ul>
+<li>ActivateMouseStateSystem()&#160;:&#160;<a class="el" href="group__gameplay.html#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework</a></li>
+<li>AddDebugCollision()&#160;:&#160;<a class="el" href="group__rendering.html#gaf0b6ef8bc00e7879941f988affb7c407">Renderer</a></li>
+<li>AddEditorTool()&#160;:&#160;<a class="el" href="group__editor.html#gaeb46f69fcfcbe226ad5144ed4497d9a0">CoreEditor</a></li>
+<li>AddInputBindings()&#160;:&#160;<a class="el" href="group__input.html#gade3db88ae33a507ded4195d0457949b0">Input</a></li>
+<li>AddInputBindings_Hold()&#160;:&#160;<a class="el" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input</a></li>
+<li>AddInputBindings_Press()&#160;:&#160;<a class="el" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input</a></li>
+<li>AddInputBindings_Release()&#160;:&#160;<a class="el" href="group__input.html#ga692e8eb3078fece0e078948082b67626">Input</a></li>
+<li>AddInputBoundFunction()&#160;:&#160;<a class="el" href="group__input.html#gac915fff078332d3f3e3e887fd6fc3d81">Input</a></li>
+<li>ApplyBindingOperation()&#160;:&#160;<a class="el" href="group__input.html#ga09e1e8497ec26eef83815dc73d35dbbf">Input</a></li>
+<li>AssetExists()&#160;:&#160;<a class="el" href="group__filesystem.html#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_b" name="index_b"></a>- b -</h3><ul>
+<li>BeginRender()&#160;:&#160;<a class="el" href="group__editor.html#ga751cd21ab3507407a5ecc01b4901960d">CoreEditor</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_c" name="index_c"></a>- c -</h3><ul>
+<li>CleanupEntity()&#160;:&#160;<a class="el" href="group__rendering.html#gaf21ddb63fd9331115ede4a1c9e25112b">Renderer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_d" name="index_d"></a>- d -</h3><ul>
+<li>Debug()&#160;:&#160;<a class="el" href="group__logging.html#ga8fb609eb8974957365a6a0cecca00d41">Log::Generic</a></li>
+<li>DispatchTriggeredActions()&#160;:&#160;<a class="el" href="group__input.html#ga1df2961db497af975681828f55a7787d">Input</a></li>
+<li>DrawFactory_Container()&#160;:&#160;<a class="el" href="group__imguiwrapper.html#ga0c5cd7df04bf185f1c7372b5a787f3b5">ImGuiWrapper</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_e" name="index_e"></a>- e -</h3><ul>
+<li>ECSDebug_DrawElement()&#160;:&#160;<a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components</a></li>
+<li>ECSDebug_DrawElement&lt; Filesystem::SSoftAssetPath &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#a271c12e76d5aca1f8db9c361db78fa04">Components</a></li>
+<li>ECSDebug_DrawElement&lt; float &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#aaf06a60848a1f30650897e042c630931">Components</a></li>
+<li>ECSDebug_DrawElement&lt; glm::vec2 &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#ad41e0630b42b19cd7369fe5a1f9f15f4">Components</a></li>
+<li>ECSDebug_DrawElement&lt; glm::vec3 &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#add466f6cb0088eb18e78603a20a9cc9b">Components</a></li>
+<li>ECSDebug_DrawElement&lt; glm::vec4 &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#ab4fb631ff6dccc7e05346330cbfe92d8">Components</a></li>
+<li>ECSDebug_DrawElement&lt; Renderer::EInstanceLayer &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#aef2c7b75d7180b0c1529bf2998c5d493">Components</a></li>
+<li>ECSDebug_DrawElement&lt; SDL_FColor &gt;()&#160;:&#160;<a class="el" href="namespace_components.html#acd320dda6ed5cb74544c655238ee6d37">Components</a></li>
+<li>ECSDebug_DrawElementPath()&#160;:&#160;<a class="el" href="namespace_components.html#a0dc3968df7db32fcd638b3e8a166fa7f">Components</a></li>
+<li>EndRender()&#160;:&#160;<a class="el" href="group__editor.html#gaca358e2c39c012ee60c3250455e3fba9">CoreEditor</a></li>
+<li>Error()&#160;:&#160;<a class="el" href="group__logging.html#ga8fb18c7737cd0a756c51218239da4f8e">Log::Generic</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_f" name="index_f"></a>- f -</h3><ul>
+<li>FilePathToAssetPath()&#160;:&#160;<a class="el" href="group__filesystem.html#ga4c0added2427c1f414db14dc89a83f56">Filesystem</a></li>
+<li>Flush()&#160;:&#160;<a class="el" href="group__logging.html#gafb04394b40af57b572c2f2a0eb3aa47b">Log</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_g" name="index_g"></a>- g -</h3><ul>
+<li>GenerateLevel()&#160;:&#160;<a class="el" href="group__coretypes.html#ga43481861a4cbba431c3fcf866f9a28dd">World</a></li>
+<li>GetAllAssetPaths()&#160;:&#160;<a class="el" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem</a></li>
+<li>GetAssetData()&#160;:&#160;<a class="el" href="group__filesystem.html#ga7b08bf8a24a334fe7a267a5224c62b04">Filesystem</a></li>
+<li>GetCameraMaxDistance()&#160;:&#160;<a class="el" href="group__ecs.html#ga2c2d1f56afc6aa3a3f764f8a2d891d04">Components</a></li>
+<li>GetCameraProjectionMatrix()&#160;:&#160;<a class="el" href="group__rendering.html#gac90576f857c8e63458529c663e2ecd99">Renderer</a></li>
+<li>GetCameraView()&#160;:&#160;<a class="el" href="group__rendering.html#ga46f2dc762424ae32ecddf096b7d028c2">Renderer</a></li>
+<li>GetConfigDirectory()&#160;:&#160;<a class="el" href="group__filesystem.html#ga1b2e0ec808875788a7b96c3d7e8e814b">Filesystem</a></li>
+<li>GetCurrentContext()&#160;:&#160;<a class="el" href="group__imguiwrapper.html#ga531e896db04de51b6f407385149bb651">ImGuiWrapper</a></li>
+<li>GetCurrentLevel()&#160;:&#160;<a class="el" href="group__coretypes.html#ga2cf6140a8c905cb4d841981e32349a3c">World</a></li>
+<li>GetDeltaTime()&#160;:&#160;<a class="el" href="group__coretypes.html#ga945d13c62e7daa61e5bb6c277aaf2bcd">Engine::Globals</a></li>
+<li>GetFactory()&#160;:&#160;<a class="el" href="group__imguiwrapper.html#gaea18796d0e5f6d9dd5badf77b1be3c8d">ImGuiWrapper</a></li>
+<li>GetFactoryNames()&#160;:&#160;<a class="el" href="group__imguiwrapper.html#gaa6c89c2f9f8ee32e4859636b5b7455e1">ImGuiWrapper</a></li>
+<li>GetFileType()&#160;:&#160;<a class="el" href="group__filesystem.html#ga3c7aac198685c3e727f5041068c9b9a1">Filesystem</a></li>
+<li>GetFPS()&#160;:&#160;<a class="el" href="group__coretypes.html#ga147fa8f4fd507487dd9bd4e8419b8531">Engine::Globals</a></li>
+<li>GetGlobalSystemsEntity()&#160;:&#160;<a class="el" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS</a></li>
+<li>GetRenderLayer()&#160;:&#160;<a class="el" href="group__rendering.html#ga98c6419591eb44f491126fb555bad106">Renderer</a></li>
+<li>GetRenderLayers()&#160;:&#160;<a class="el" href="group__rendering.html#gaa895f686136f33430cb3dc999095e0f2">Renderer</a></li>
+<li>GetResourcesDirectory()&#160;:&#160;<a class="el" href="group__filesystem.html#gad297a3aa7089dce544083e6dd5c1aab6">Filesystem</a></li>
+<li>GetSelectedEntity()&#160;:&#160;<a class="el" href="group__ecs.html#ga89e389505c8938705c383efab7164307">ECS</a></li>
+<li>GetTile()&#160;:&#160;<a class="el" href="namespace_graphics.html#a96595529403fef9d6fd37a61434619b0">Graphics</a></li>
+<li>GetValue()&#160;:&#160;<a class="el" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input</a></li>
+<li>GetWorld()&#160;:&#160;<a class="el" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_h" name="index_h"></a>- h -</h3><ul>
+<li>HasAnyOptions()&#160;:&#160;<a class="el" href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">Log</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_i" name="index_i"></a>- i -</h3><ul>
+<li>Info()&#160;:&#160;<a class="el" href="group__logging.html#ga92120bdeaa9bca10136598f29b04a86c">Log::Generic</a></li>
+<li>Initialize()&#160;:&#160;<a class="el" href="group__rendering.html#ga63eaa355b52e1ba2453eaa93cf230820">Renderer</a></li>
+<li>InitializeAllResources()&#160;:&#160;<a class="el" href="group__filesystem.html#ga6931370076d808aeecee9dfb1e406eb6">Filesystem</a></li>
+<li>InitializePlugins()&#160;:&#160;<a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine</a></li>
+<li>IsActionTriggered()&#160;:&#160;<a class="el" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input</a></li>
+<li>IsBindingTriggered()&#160;:&#160;<a class="el" href="group__input.html#ga0ee2bc0b166d7981bc5137d45daff07e">Input</a></li>
+<li>IsValid()&#160;:&#160;<a class="el" href="group__filesystem.html#ga093d508bcb42f5b3eec44ad6a1d63824">Filesystem</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_l" name="index_l"></a>- l -</h3><ul>
+<li>Load()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#a5318767a728207738aec6a7875a3ec03">Filesystem::Importers</a></li>
+<li>LoadAsset()&#160;:&#160;<a class="el" href="group__filesystem.html#ga750cb9a8723a9af7aa4f328925313ee0">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; Graphics::SSpriteSheet &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#ae298b023c79497fb22b74b705cc62112">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; Graphics::STexture2D &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#ae680f8a71f76fbdb06bb35deaa9632a7">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; Ldtk::Data::LdtkJson &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#a90b2432bd19acb97edc00c0d4253499c">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; Ldtk::Data::Level &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#a7c6fbb9cfa58ecb649657c79fcb3cab0">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; SRawFileAsset &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#aacf45ef287bf9fe90ce7187c9381d57c">Filesystem::Importers</a></li>
+<li>LoadAsset&lt; STextFileAsset &gt;()&#160;:&#160;<a class="el" href="namespace_filesystem_1_1_importers.html#a77846d626ab55af9deffaaf328f43a89">Filesystem::Importers</a></li>
+<li>LoadFile()&#160;:&#160;<a class="el" href="group__filesystem.html#gab5cabc4342be3707fd29b29bec7f4dd5">Filesystem::Importers</a></li>
+<li>LoadLevel()&#160;:&#160;<a class="el" href="group__rendering.html#ga8b458a67cb24d0cd348afcb0a1dc5685">Renderer</a></li>
+<li>LoadTextureToVRam()&#160;:&#160;<a class="el" href="group__rendering.html#gade643b8953652451b4ae66e50de0869f">Renderer</a></li>
+<li>LoadTilemap()&#160;:&#160;<a class="el" href="group__coretypes.html#ga062310a9df8c614447b686dc6672cfdc">Graphics</a></li>
+<li>LogInternal()&#160;:&#160;<a class="el" href="namespace_log_1_1_generic.html#a51a47cea41e6e24527022fb5633cb4ac">Log::Generic</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_m" name="index_m"></a>- m -</h3><ul>
+<li>Module()&#160;:&#160;<a class="el" href="group__coretypes.html#ga6b7817a2f7792e6a3f27cb9c70d25fa5">CoreTypes</a>, <a class="el" href="group__ecs.html#ga76e41f00afcfc05f1fc8fec835f6f958">ECS</a>, <a class="el" href="group__filesystem.html#ga70baa267c86fe3795214c8bd2cf74191">Filesystem</a>, <a class="el" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework</a>, <a class="el" href="group__imguiwrapper.html#ga8b2e41551324a47f489a67aff497415f">ImGuiWrapper</a>, <a class="el" href="group__input.html#gab1c5a9029113d605361596db0c7420ae">Input</a>, <a class="el" href="group__logging.html#ga6e5199d4346a2b55762b647155b4fba7">Log</a>, <a class="el" href="group__memory.html#ga8a3c954634f8152d169b215436724305">Memory</a>, <a class="el" href="group__rendering.html#ga9394e46f66fc65fa78e082934ae66576">Renderer</a></li>
+<li>ModuleStartup()&#160;:&#160;<a class="el" href="group__editor.html#gaa0ee68d5de18fb9b1cd0b3c96135b4ea">CoreEditor</a></li>
+<li>ModuleTeardown()&#160;:&#160;<a class="el" href="group__editor.html#ga6fc0bb96d0335ac712d738d90f0beb29">CoreEditor</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_o" name="index_o"></a>- o -</h3><ul>
+<li>Open()&#160;:&#160;<a class="el" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_p" name="index_p"></a>- p -</h3><ul>
+<li>PostDebugDraw_TextureComp()&#160;:&#160;<a class="el" href="namespace_components.html#a63519fb9cbbbff66ad8a063947aed254">Components</a></li>
+<li>PostDebugDraw_TransformComponent()&#160;:&#160;<a class="el" href="namespace_components.html#afef81dbc43ace911f5bd9d918ccc21f8">Components</a></li>
+<li>PreDebugDraw_TextureComp()&#160;:&#160;<a class="el" href="namespace_components.html#a7ba3c00c5fc8d21ce7601d5eaf41119b">Components</a></li>
+<li>PreDebugDraw_TransformComponent()&#160;:&#160;<a class="el" href="namespace_components.html#a61769102210e9ef96b297887eeb000df">Components</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_r" name="index_r"></a>- r -</h3><ul>
+<li>RegisterActionCallback()&#160;:&#160;<a class="el" href="group__input.html#ga8372a1f4b0896466885d360d25891c8b">Input</a></li>
+<li>RegisterAssetData()&#160;:&#160;<a class="el" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem</a></li>
+<li>RegisterEntity()&#160;:&#160;<a class="el" href="group__rendering.html#gafd2e36acbdd6b4f860a76f6834c26143">Renderer</a></li>
+<li>RegisterFactory()&#160;:&#160;<a class="el" href="group__imguiwrapper.html#ga140cfe6607dd8fd5dbfe9384e683c204">ImGuiWrapper</a></li>
+<li>RegisterLogger()&#160;:&#160;<a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">Log</a></li>
+<li>RenderFrame()&#160;:&#160;<a class="el" href="group__rendering.html#gac4692349b6e6ccc20e43aff514b34139">Renderer</a></li>
+<li>ReportRenderTime_NS()&#160;:&#160;<a class="el" href="group__coretypes.html#ga07bb19854e5ee185a3eabe9ad17851bc">Engine::Globals</a></li>
+<li>Run()&#160;:&#160;<a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_s" name="index_s"></a>- s -</h3><ul>
+<li>ScreenPosToWorldPos()&#160;:&#160;<a class="el" href="group__rendering.html#gaa6a288406f43c706dbe7378a282dafa8">Renderer</a></li>
+<li>SelectEntity()&#160;:&#160;<a class="el" href="group__ecs.html#ga8d1a9506430300f676b73b96ab6d64c5">ECS</a></li>
+<li>SetCurrentLevel()&#160;:&#160;<a class="el" href="group__coretypes.html#gaf97bd596d71b13b29efc8cfff8fd896e">World</a></li>
+<li>ShouldQuit()&#160;:&#160;<a class="el" href="group__input.html#ga432f86a22f8805741eb37ed36fcd6bc9">Input</a></li>
+<li>StartRenderFrame()&#160;:&#160;<a class="el" href="group__rendering.html#gad16e464164f092e01ae4a79d9b1722b5">Renderer</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_t" name="index_t"></a>- t -</h3><ul>
+<li>TeardownModule()&#160;:&#160;<a class="el" href="group__coretypes.html#gab162a598645b4a969870dc5ffc797cd4">CoreTypes</a>, <a class="el" href="group__ecs.html#gae303bbf402a078ff1926c119f5360f5d">ECS</a>, <a class="el" href="group__filesystem.html#gabb430616847a501341456706c78f2c72">Filesystem</a>, <a class="el" href="group__gameplay.html#ga557b4105e14cc2594f2ad2b6d16ac3c4">GameplayFramework</a>, <a class="el" href="group__imguiwrapper.html#gace4b70d35cf489f51dd2ccf5a819944b">ImGuiWrapper</a>, <a class="el" href="group__input.html#ga49072c2a5aa86e4fc2d7abbfc4bfeab1">Input</a>, <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938">Log</a>, <a class="el" href="group__memory.html#ga67af00533e44665fbf0187a808c62fa7">Memory</a>, <a class="el" href="group__rendering.html#ga6cf35bc92d99fea05a53fa55b4adab26">Renderer</a></li>
+<li>TeardownPlugins()&#160;:&#160;<a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine</a></li>
+<li>TryLoadFile()&#160;:&#160;<a class="el" href="group__filesystem.html#ga893825381b744f0772e6226e6f923510">Filesystem::Importers</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_u" name="index_u"></a>- u -</h3><ul>
+<li>UpdateEntities()&#160;:&#160;<a class="el" href="group__ecs.html#ga8b8816c958e2ace108c9e6a87df4ba13">ECS</a></li>
+<li>UpdateInputs()&#160;:&#160;<a class="el" href="group__input.html#ga146ca4dedb07368ad44fe3509ef47bfa">Input</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_v" name="index_v"></a>- v -</h3><ul>
+<li>Verbose()&#160;:&#160;<a class="el" href="group__logging.html#gad90e4b88cce62a4da8b9ae480c7b8acb">Log::Generic</a></li>
+</ul>
+
+
+<h3 class="doxsection"><a id="index_w" name="index_w"></a>- w -</h3><ul>
+<li>Warning()&#160;:&#160;<a class="el" href="group__logging.html#ga2cef5edae08581db6f8244f9a5e2625d">Log::Generic</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

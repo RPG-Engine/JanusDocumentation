@@ -1,0 +1,9 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools." alt="" coords="5,56,184,83"/>
+<area shape="rect" id="Node000001" href="$class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window." alt="" coords="232,5,426,32"/>
+<area shape="poly" id="edge4_Node000000_Node000001" title=" " alt="" coords="174,50,266,31,261,34,175,55"/>
+<area shape="rect" id="Node000002" href="$class_core_editor_1_1_entity_editor_tool.html" title="The Entity Debugger window: create, browse, inspect and edit entities and their components." alt="" coords="237,56,420,83"/>
+<area shape="poly" id="edge5_Node000000_Node000002" title=" " alt="" coords="199,67,239,69,234,70,200,72"/>
+<area shape="rect" id="Node000003" href="$class_core_editor_1_1_sprite_sheet_editor.html" title="The Sprite Sheet window: a zoomable view of a texture with a grid." alt="" coords="232,107,426,133"/>
+<area shape="poly" id="edge6_Node000000_Node000003" title=" " alt="" coords="175,84,266,105,261,107,174,89"/>
+</map>

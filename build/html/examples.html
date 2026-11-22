@@ -1,0 +1,179 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Examples | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Examples </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2examples_2examples"></a></p>
+<p class="lede"></p>
+<p>Complete programs that use only Janus. Each is a single <code>.cpp</code> file, needs no image or data files (textures are generated in code), and was compiled and run against the documented engine commit.</p>
+<p>Build them all at once from <span class="tt">Engine/Documentation/examples</span>; see <a class="el" href="getting_started.html#getting_started_examples" title="Build and run the examples">Build and run the examples</a>. Each page shows a screenshot, explains the important parts, and ends with the full source.</p>
+<h1 class="doxsection"><a class="anchor" id="examples_games"></a>
+Game examples</h1>
+<p>Three small games that show how the pieces fit together. They are meant to be read, not to be good games.</p>
+<div class="jd-cards"> <a href="ex_dodge.html" class="jd-card"><span class="jd-card-title">Dodge</span><span class="jd-card-text">Avoid falling blocks. Input, spawning on a timer, destroying entities, collision with a query, a HUD.</span></a> <a href="ex_snake.html" class="jd-card"><span class="jd-card-title">Snake</span><span class="jd-card-text">Grid movement on a fixed time step, game data separate from presentation, reusing entities.</span></a> <a href="ex_breakout.html" class="jd-card"><span class="jd-card-title">Breakout</span><span class="jd-card-text">A bouncing ball, paddle angles, breaking bricks, lives and a win condition.</span></a> </div><h1 class="doxsection"><a class="anchor" id="examples_ecs"></a>
+ECS examples</h1>
+<p>Focused examples of common mechanics built with entities, components and systems.</p>
+<div class="jd-cards"> <a href="ex_movement.html" class="jd-card"><span class="jd-card-title">Moving entities</span><span class="jd-card-text">Input to velocity to position, bouncing, and a camera that follows the player.</span></a> <a href="ex_spawning.html" class="jd-card"><span class="jd-card-title">Spawning and destroying</span><span class="jd-card-text">Spawners, prefabs, lifetimes and fading out.</span></a> <a href="ex_queries.html" class="jd-card"><span class="jd-card-title">Components, queries and observers</span><span class="jd-card-text">The component macros, tags, queries, observers, a custom phase and global settings.</span></a> <a href="ex_collision.html" class="jd-card"><span class="jd-card-title">Collision and mouse hover</span><span class="jd-card-text">Colliders, sliding along walls, the collider overlay and hovering with the mouse.</span></a> </div><h1 class="doxsection"><a class="anchor" id="examples_modules"></a>
+Module examples</h1>
+<p>One example per engine module.</p>
+<div class="jd-cards"> <a href="ex_hello.html" class="jd-card"><span class="jd-card-title">Hello Janus</span><span class="jd-card-text">The smallest program that shows something. Engine core.</span></a> <a href="ex_logging.html" class="jd-card"><span class="jd-card-title">Logging</span><span class="jd-card-text">Loggers, levels, outputs and log files. A console program.</span></a> <a href="ex_input.html" class="jd-card"><span class="jd-card-title">Input</span><span class="jd-card-text">Press, hold and release bindings, combos, operators, callbacks, quitting.</span></a> <a href="ex_assets.html" class="jd-card"><span class="jd-card-title">Assets and memory</span><span class="jd-card-text">Asset paths, loading and caching, custom asset types, generated textures, TObjectPtr.</span></a> <a href="ex_rendering.html" class="jd-card"><span class="jd-card-title">Rendering</span><span class="jd-card-text">Layers, sprite-sheet cells, tint, rotation, Y-sorting and coloured lights.</span></a> <a href="ex_editor.html" class="jd-card"><span class="jd-card-title">Editor tools</span><span class="jd-card-text">Your own ImGui tool windows, opening and closing tools, the built-in tools.</span></a> </div><h1 class="doxsection"><a class="anchor" id="autotoc_md94"></a>
+Which example covers what</h1>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Module  </th><th class="markdownTableHeadNone">Examples  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__engine__core.html" title="Engine core">Engine core</a>  </td><td class="markdownTableBodyNone">All of them; <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> is the shortest  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="group__logging.html" title="Log">Log</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_logging.html" title="Logging">Logging</a>; every example declares a logger  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>; every example registers generated textures  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="group__memory.html" title="Memory">Memory</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__ecs.html" title="ECS">ECS</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_movement.html" title="Moving entities">Moving entities</a>, <a class="el" href="ex_spawning.html" title="Spawning and destroying">Spawning and destroying</a>, <a class="el" href="ex_queries.html" title="Components, queries and observers">Components, queries and observers</a>, <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a>, all games  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="group__rendering.html" title="Renderer">Renderer</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_rendering.html" title="Rendering">Rendering</a>, <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a>, all games  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__input.html" title="Input">Input</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_input.html" title="Input">Input</a>, <a class="el" href="ex_movement.html" title="Moving entities">Moving entities</a>, all games  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a> (textures), <a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a> (frame timing), <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> (debug colliders)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a>, every HUD  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>  </td><td class="markdownTableBodyNone"><a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a>, every HUD  </td></tr>
+</table>
+<h1 class="doxsection"><a class="anchor" id="autotoc_md95"></a>
+The parts every example shares</h1>
+<p>Every graphical example starts with the same few helpers, because the renderer needs them (see <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>):</p>
+<ul>
+<li><span class="tt">RegisterSolidTexture("CollisionTexture", 8)</span> and <span class="tt">RegisterSolidTexture("White", 8)</span> before <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>: textures made in code, so no image files are needed. Sprites tint the white texture with their colour.</li>
+<li><span class="tt">CreateCameraAndBackground(...)</span>: a fixed camera showing 320 × 180 world units, a light that covers the screen, and a full-screen sprite on the Background layer.</li>
+<li>A small HUD tool that collapses the Dear ImGui demo window and shows the controls.</li>
+<li><span class="tt">std::quick_exit(0)</span> at the end of <span class="tt">main()</span>, to avoid a crash after shutdown (<a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>).</li>
+</ul>
+<p> <div style="display:none"> <a class="el" href="ex_dodge.html" title="Dodge">Dodge</a> <a class="el" href="ex_snake.html" title="Snake">Snake</a> <a class="el" href="ex_breakout.html" title="Breakout">Breakout</a> <a class="el" href="ex_movement.html" title="Moving entities">Moving entities</a> <a class="el" href="ex_spawning.html" title="Spawning and destroying">Spawning and destroying</a> <a class="el" href="ex_queries.html" title="Components, queries and observers">Components, queries and observers</a> <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> <a class="el" href="ex_logging.html" title="Logging">Logging</a> <a class="el" href="ex_input.html" title="Input">Input</a> <a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a> <a class="el" href="ex_rendering.html" title="Rendering">Rendering</a> <a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a>  </div> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

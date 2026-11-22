@@ -1,0 +1,5 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" href="$class_im_gui_wrapper_1_1_debug_factory_base.html" title="Base for debug factories: override DrawDebug(void* Container) to draw the data Container points to." alt="" coords="5,5,230,32"/>
+<area shape="rect" id="Node000001" href="$class_components_1_1_e_c_s_debug_factory.html" title="Base of the Entity Debugger panel classes the component macros generate." alt="" coords="278,5,491,32"/>
+<area shape="poly" id="edge3_Node000000_Node000001" title=" " alt="" coords="245,16,280,19,275,19,245,21"/>
+</map>

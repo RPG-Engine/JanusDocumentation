@@ -1,0 +1,867 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Renderer | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#enum-members">Enumerations</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Renderer </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Draws sprites in five layers on the GPU, follows a camera entity and lights the image with 2D lights.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Sprites are entities with three components.</p>
+<table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering" class="src-link">include/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering" class="src-link">src/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Resources/Shaders" class="src-link">Resources/Shaders/</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span> (sprite components; includes <span class="tt">&lt;Rendering/Module.hpp&gt;</span>) · <span class="tt">#include &lt;Rendering/RenderingBackend.hpp&gt;</span> (layers, low-level calls)</td></tr>
+<tr>
+<td><b>Namespace</b></td><td><span class="tt"><a class="el" href="namespace_renderer.html">Renderer</a></span>; components in <span class="tt"><a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span></td></tr>
+<tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L87" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga9394e46f66fc65fa78e082934ae66576" title="Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...">Renderer::Module()</a>, which opens the window</td></tr>
+<tr>
+<td><b>Built on</b></td><td><a href="https://wiki.libsdl.org/SDL3/CategoryGPU">SDL3 GPU API</a> with the Vulkan backend, SDL_shadercross for shaders</td></tr>
+<tr>
+<td><b>Examples</b></td><td><a class="el" href="ex_rendering.html" title="Rendering">Rendering</a> · <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> · every game</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md55"></a>
+How to use</h2>
+<ol type="1">
+<li><b>Set up the scene once</b> (see <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>): a <span class="tt">CollisionTexture</span> asset before startup, a camera entity, at least one light, and a sprite on the <span class="tt">Background</span> layer.</li>
+<li><b>Make a sprite</b>: give an entity an <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> (where), an <a class="el" href="struct_components_1_1_f_texture2_d_component.html" title="What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...">Components::FTexture2DComponent</a> (which texture, how big, what colour) and an <a class="el" href="struct_components_1_1_f_rendering_component.html" title="Which layer a sprite is drawn on: Renderer::EInstanceLayer RenderLayer (default Entities).">Components::FRenderingComponent</a> (which layer).</li>
+<li><b>Move it</b> by changing <span class="tt">FTransformComponent::Location</span> in a system. The renderer picks up the new position every frame.</li>
+</ol>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Camera, light, background and a sprite</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<div class="line">    <span class="comment">// so register it first.</span></div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Camera: shows world units (0,0) to (320,180). Boundaries of 0 pin it in place.</span></div>
+<div class="line">    <span class="comment">// The light on the same entity is large enough to light the whole screen.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({ .CameraSize = {320, 180}, .Boundaries = {0, 0, 0, 0} })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Background: a full-screen sprite on the Background layer.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {320, 180},</div>
+<div class="line">            .Color = {0.10f, 0.12f, 0.18f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A 32x32 orange square. Location is its top-left corner, in world units.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Square&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {48, 100, 0} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {32, 32},</div>
+<div class="line">            .Color = {1.f, 0.55f, 0.1f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line"> </div>
+<div class="line">    Log::Hello::Info(<span class="stringliteral">&quot;Hello, Janus! Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();             <span class="comment">// returns when the window is closed</span></div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Known issue: returning from main() after TeardownPlugins() crashes in static</span></div>
+<div class="line">    <span class="comment">// destructors.</span></div>
+<div class="line">    <span class="comment">// Exit without running them (the engine has already flushed its logs).</span></div>
+<div class="line">    std::quick_exit(0);</div>
+</div><!-- fragment --><p>  </details></p>
+<p>The renderer's own systems run in the <span class="tt">ECS::Phase::OnPreRender()</span> phase, after all game systems (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L425-L445" class="src-link">src/Rendering/Vulkan_Renderer.cpp:425</a>):</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">System  </th><th class="markdownTableHeadNone">Reads  </th><th class="markdownTableHeadNone">Does  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Render transforms</span>  </td><td class="markdownTableBodyNone">Transform, Texture2D, Rendering  </td><td class="markdownTableBodyNone">Writes each sprite into its layer's batch for its texture  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Render Camera</span>  </td><td class="markdownTableBodyNone">Transform, Camera  </td><td class="markdownTableBodyNone">Builds the view and projection  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Render Lighting</span>  </td><td class="markdownTableBodyNone">Transform, Light  </td><td class="markdownTableBodyNone">Collects the lights for this frame  </td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md56"></a>
+Sprites</h2>
+<p><a class="el" href="struct_components_1_1_f_texture2_d_component.html" title="What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...">Components::FTexture2DComponent</a> says what to draw:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member  </th><th class="markdownTableHeadNone">Meaning  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Sprite.SpriteSheet</span>  </td><td class="markdownTableBodyNone">The texture's asset path, e.g. <span class="tt">"Images\\Player"</span> (Windows separators; see <a class="el" href="group__filesystem.html#filesystem_paths" title="Asset paths">Asset paths</a>).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Sprite.UVCoords</span>, <span class="tt">Sprite.WHCoords</span>  </td><td class="markdownTableBodyNone">The part of the texture to draw: top-left corner and size, as fractions of the texture (0 to 1). Default: the whole texture.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">TextureSize</span>  </td><td class="markdownTableBodyNone">The sprite's size in world units (default 32 × 32).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Color</span>  </td><td class="markdownTableBodyNone">Multiplied with the texture. White leaves it unchanged; alpha below 1 is see-through.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">BoundingBox</span>  </td><td class="markdownTableBodyNone">Not used when drawing (only by the legacy <a class="el" href="#gafd2e36acbdd6b4f860a76f6834c26143" title="Legacy: writes one entity&#39;s sprite into its layer immediately, using FTexture2DComponent::BoundingBox...">Renderer::RegisterEntity()</a>).  </td></tr>
+</table>
+<p>To draw one cell of a sprite sheet, set <span class="tt">UVCoords</span> and <span class="tt">WHCoords</span>. A 64 × 64 texture with four 32 × 32 cells has cells at <span class="tt">(0,0)</span>, <span class="tt">(0.5,0)</span>, <span class="tt">(0,0.5)</span> and <span class="tt">(0.5,0.5)</span>, each <span class="tt">(0.5,0.5)</span> in size:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing sprite-sheet cells</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
+<div class="line">    <span class="comment">// both as fractions of the texture (0..1).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> cell = 0; cell &lt; 4; ++cell) {</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 uv {(cell % 2) * 0.5f, (cell / 2) * 0.5f};</div>
+<div class="line">        world.entity()</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {16.f + cell * 36.f, 16.f, 0.f} })</div>
+<div class="line">            .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                .Sprite = {</div>
+<div class="line">                    .SpriteSheet = {<span class="stringliteral">&quot;Atlas&quot;</span>},</div>
+<div class="line">                    .UVCoords = uv,</div>
+<div class="line">                    .WHCoords = {0.5f, 0.5f},</div>
+<div class="line">                },</div>
+<div class="line">                .TextureSize = {32.f, 32.f},</div>
+<div class="line">            })</div>
+<div class="line">            .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Tint, transparency and rotation:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Colour, alpha and rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> SDL_FColor orange {1.f, 0.75f, 0.3f, 0.2f + i * 0.2f};</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {16.f + i * 22.f, 120.f}, {18.f, 18.f}, orange);</div>
+<div class="line">    }</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="keyword">const</span> SDL_FColor noTint {1.f, 1.f, 1.f, 1.f};</div>
+<div class="line">    flecs::entity spinner =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;Atlas&quot;</span>, {150.f, 112.f}, {32.f, 32.f}, noTint)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Spinner&quot;</span>);</div>
+<div class="line">    <span class="comment">// Show only the red square cell</span></div>
+<div class="line">    spinner.get_mut&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().Sprite.WHCoords = {0.5f, 0.5f};</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Spin&quot;</span>)</div>
+<div class="line">        .each([spinner](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == spinner) {</div>
+<div class="line">                <span class="comment">// Radians per second</span></div>
+<div class="line">                transform.Rotation.x += entity.world().delta_time();</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Textures are uploaded to the GPU the first time a sprite uses them; that sprite appears one frame later (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L589-L593" class="src-link">src/Rendering/Vulkan_Renderer.cpp:589</a>). Upload earlier with <a class="el" href="#gade643b8953652451b4ae66e50de0869f" title="Uploads a loaded texture to the GPU and creates its sampler (nearest filtering).">Renderer::LoadTextureToVRam()</a> if that matters.</p>
+<h2 class="doxsection"><a class="anchor" id="rendering_layers"></a>
+Layers and draw order</h2>
+<p><a class="el" href="struct_components_1_1_f_rendering_component.html" title="Which layer a sprite is drawn on: Renderer::EInstanceLayer RenderLayer (default Entities).">Components::FRenderingComponent</a> chooses the layer (<a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a>). Layers are drawn in this order, each on top of the previous:</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Layer  </th><th class="markdownTableHeadNone">Use for  </th><th class="markdownTableHeadNone">Each frame  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Background</span>  </td><td class="markdownTableBodyNone">The backdrop; level tiles from <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a>  </td><td class="markdownTableBodyNone">Drawing it clears the screen. Every texture group on this layer clears again, so use <b>one</b> texture here.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Entities</span> (default)  </td><td class="markdownTableBodyNone">Everything that moves, appears or disappears  </td><td class="markdownTableBodyNone">Emptied and rebuilt (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L783" class="src-link">src/Rendering/Vulkan_Renderer.cpp:783</a>)  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Foreground</span>  </td><td class="markdownTableBodyNone">Static things in front of entities  </td><td class="markdownTableBodyNone">Kept. Destroyed entities stay visible.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Debug</span>  </td><td class="markdownTableBodyNone">Static debug markers  </td><td class="markdownTableBodyNone">Kept  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Overlay</span>  </td><td class="markdownTableBodyNone">Static things on top of everything  </td><td class="markdownTableBodyNone">Kept  </td></tr>
+</table>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
+<div class="line">    <span class="comment">// Each square overlaps the previous one and is drawn on top of it.</span></div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 square {36.f, 36.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor red {0.9f, 0.35f, 0.35f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor green {0.35f, 0.85f, 0.45f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor blue {0.35f, 0.55f, 0.95f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor white {1.f, 1.f, 1.f, 0.6f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {200.f, 14.f}, square, red, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {216.f, 24.f}, square, green, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Renderer::Foreground</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 34.f}, square, blue, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {248.f, 44.f}, square, white, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a>);</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Inside a layer, sprites are batched by texture. Batches are drawn in the order each texture was first used on that layer, and inside a batch sprites are sorted by <span class="tt">Location.y</span>, so lower sprites are drawn over higher ones (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L553-L555" class="src-link">src/Rendering/Vulkan_Renderer.cpp:553</a>). Sprites with different textures on one layer are therefore <b>not</b> sorted against each other.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
+<div class="line">    <span class="comment">// The bobbing square passes in front of and behind the fixed one.</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor grey {0.5f, 0.5f, 0.55f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor pink {0.95f, 0.6f, 0.9f, 1.f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {220.f, 120.f}, {30.f, 30.f}, grey)</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Fixed&quot;</span>);</div>
+<div class="line">    flecs::entity bobber =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 110.f}, {24.f, 24.f}, pink)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Bobber&quot;</span>);</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Bob&quot;</span>)</div>
+<div class="line">        .each([bobber](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == bobber) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> seconds = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(SDL_GetTicks()) / 1000.f;</div>
+<div class="line">                transform.Location.y = 115.f + std::sin(seconds / 0.6f) * 22.f;</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="rendering_camera"></a>
+Camera</h2>
+<p>The entity with <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a> is the camera (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L293-L315" class="src-link">src/Rendering/Vulkan_Renderer.cpp:293</a>). With several, the last one processed wins.</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member  </th><th class="markdownTableHeadNone">Meaning  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">CameraSize</span>  </td><td class="markdownTableBodyNone">How many world units the view shows, e.g. <span class="tt">{320, 180}</span>. Keep the 16:9 shape of the 1920 × 1080 window.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">CenterSize</span>  </td><td class="markdownTableBodyNone">The size of the followed entity. The camera keeps the entity's top-left corner at <span class="tt">CameraSize / 2 - CenterSize / 2</span> from the view's corner, which centres an entity of that size.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Boundaries</span>  </td><td class="markdownTableBodyNone">Limits for the view's top-left corner: <span class="tt">(minX, maxX, minY, maxY)</span>. <span class="tt">{0, 0, 0, 0}</span> fixes the camera at the origin. For a world <span class="tt">W × H</span> wide, use <span class="tt">{0, W - CameraSize.x, 0, H - CameraSize.y}</span> to stop at the edges.  </td></tr>
+</table>
+<p>Put the camera component on the player to follow it:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A camera that follows the player and stops at the world's edges</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
+<div class="line">    <span class="comment">// Camera Boundaries are (minX, maxX, minY, maxY) for the camera&#39;s top-left corner.</span></div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 worldCentre {WorldW / 2.f, WorldH / 2.f};</div>
+<div class="line">    SpawnRect(world, worldCentre, {ActorSize, ActorSize}, {0.4f, 0.9f, 1.f, 1.f})</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Player&quot;</span>)</div>
+<div class="line">        .set&lt;FPlayer&gt;({})</div>
+<div class="line">        .set&lt;FVelocity&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ViewW, ViewH},</div>
+<div class="line">            .Boundaries = {0.f, WorldW - ViewW, 0.f, WorldH - ViewH},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.6f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .PositionOffset = {ActorSize / 2, ActorSize / 2},</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="rendering_lights"></a>
+Lights</h2>
+<p>After all layers are drawn, the image is lit: each pixel is its colour × 0.3 (a fixed ambient level, <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L680-L683" class="src-link">src/Rendering/Vulkan_Renderer.cpp:680</a>), plus the contribution of every light. <b>With no light at all, the lit image is never drawn and the screen stays black</b> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L625-L627" class="src-link">src/Rendering/Vulkan_Renderer.cpp:625</a>).</p>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Member of <a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a>  </th><th class="markdownTableHeadNone">Meaning  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Radius</span>  </td><td class="markdownTableBodyNone">Reach of the light in <b>screen space</b>, not world units: about the fraction of the screen it covers. <span class="tt">0.35</span> lights roughly a third of the screen; <span class="tt">100</span> lights everything.  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">Intensity</span>  </td><td class="markdownTableBodyNone">Brightness. A light covering everything with <span class="tt">Intensity = 2.4</span> brings the image to about full brightness.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">RGB</span>  </td><td class="markdownTableBodyNone">Light colour (<span class="tt">SDL_FColor</span>, alpha unused).  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">PositionOffset</span>  </td><td class="markdownTableBodyNone">Offset from the entity's <span class="tt">Location</span>, in world units.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><span class="tt">Falloff</span>  </td><td class="markdownTableBodyNone">Not used by the shader at this commit.  </td></tr>
+</table>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A soft light over the whole screen,</span></div>
+<div class="line">    <span class="comment">// plus two small coloured lights that orbit the middle.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Fill light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 1.2f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Red light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {1.f, 0.3f, 0.2f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({ .Center = {160.f, 90.f}, .Radius = 70.f, .Speed = 0.8f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Blue light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {0.2f, 0.5f, 1.f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({</div>
+<div class="line">            .Center = {160.f, 90.f},</div>
+<div class="line">            .Radius = 70.f,</div>
+<div class="line">            .Speed = 0.8f,</div>
+<div class="line">            .Angle = 3.14159f,      <span class="comment">// start on the opposite side</span></div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>The lighting shader is <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Resources/Shaders/Compiled/LightShader.frag.hlsl" class="src-link">Resources/Shaders/Compiled/LightShader.frag.hlsl</a>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
+Debug colliders</h2>
+<p>While <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a> is <span class="tt">true</span>, the renderer draws <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> on top of the lit image, using the <span class="tt">CollisionTexture</span> asset (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L748-L754" class="src-link">src/Rendering/Vulkan_Renderer.cpp:748</a>). Fill that container yourself, one entry per collider, keyed by an ID:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing collider outlines</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
+<div class="line">    <span class="comment">// while CoreTypes::bShouldDisplayDebugColliders is true (toggled here by the</span></div>
+<div class="line">    <span class="comment">// ToggleDebugColliders action).</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;(<span class="stringliteral">&quot;DebugColliders&quot;</span>)</div>
+<div class="line">        .kind(ECS::Phase::OnPreRender())</div>
+<div class="line">        .each([](flecs::entity entity, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&amp; collider) {</div>
+<div class="line">            <span class="keyword">const</span> SDL_FRect rect = ColliderRect(transform, collider);</div>
+<div class="line">            <span class="keyword">const</span> uint32_t <span class="keywordtype">id</span> = <span class="keyword">static_cast&lt;</span>uint32_t<span class="keyword">&gt;</span>(entity.id());</div>
+<div class="line">            <span class="keyword">auto</span>&amp; container = <a class="code hl_variable" href="#gaa59c6f0758bb042e1564f083d3e4cd66">Renderer::CollisionInstances</a>;</div>
+<div class="line">            container.<a class="code hl_function" href="struct_renderer_1_1_sprite_instance_container.html#a0abd85883dd0597896a1678340292ccf">AddEntity</a>(<span class="keywordtype">id</span>);</div>
+<div class="line">            <a class="code hl_struct" href="struct_renderer_1_1_sprite_instance.html">Renderer::SpriteInstance</a>&amp; instance = container.Instances[id];</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a43ad092b81640893cd480ab0be64b247">x</a> = rect.x;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ac04a24f9fcd31ea1a48c1ba36e38609d">y</a> = rect.y;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7ddc3218c155c4770aa46560624b71aa">w</a> = rect.w;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#af6e69d477081836c39f0127b501574a3">h</a> = rect.h;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9c9a073c98f41a88f978625dd84c38dd">tex_w</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#ab976b7018fc075e2e817600375b3e727">tex_h</a> = 1.f;</div>
+<div class="line">            instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a7b77eec8675d7657c29e7a1815964b30">r</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a00bb0b47d22ef896dadcfd2282580e58">g</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a18bc917c9e08709fd889fed399eb1e15">b</a> = instance.<a class="code hl_variable" href="struct_renderer_1_1_sprite_instance.html#a9f1e3273db15e6b5d53cfd810efe04a6">a</a> = 1.f;</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Entries stay until you remove them with <span class="tt">Renderer::CollisionInstances.RemoveEntity(id)</span>. <a class="el" href="#gaf0b6ef8bc00e7879941f988affb7c407" title="Deprecated.">Renderer::AddDebugCollision()</a> does the same as the snippet but is deprecated and reads its rectangle as <span class="tt">(x, y, height, width)</span>.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md58"></a>
+Levels from LDtk</h2>
+<p><span class="tt"><a class="el" href="group__coretypes.html#ga43481861a4cbba431c3fcf866f9a28dd" title="Builds a World::SLevel from an LDtk project (LevelAssetName, an asset path) and one of its separately...">World::GenerateLevel()</a></span> (<a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>) loads a level from an <a href="https://ldtk.io">LDtk</a> project. <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a> then puts its tiles on the <span class="tt">Background</span> layer and returns a rectangle for every IntGrid cell with value 1, to use as collision (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>). Layers whose name contains <span class="tt">Grass</span> or <span class="tt">Ground_Base</span> are drawn below the others.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
+Screen and world positions</h2>
+<p><a class="el" href="#gaa6a288406f43c706dbe7378a282dafa8" title="Converts a window position in pixels to world units, using the current camera.">Renderer::ScreenPosToWorldPos()</a> converts a window position (for example from <span class="tt">SDL_GetMouseState</span>) to world units. It assumes a 1920 × 1080 window (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>).</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
+Things to watch out for</h2>
+<ul>
+<li>The window and the render target are fixed at 1920 × 1080 (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L58" class="src-link">src/Rendering/Vulkan_Renderer.cpp:58</a>). Resizing stretches the image.</li>
+<li>If the <em>first</em> sprite in a batch has an invalid texture path, the whole batch is skipped that frame (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L233-L235" class="src-link">src/Rendering/Vulkan_Renderer.cpp:233</a>).</li>
+<li>At most 50 000 sprites fit in a batch (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L37" class="src-link">src/Rendering/Vulkan_Renderer.cpp:37</a>).</li>
+<li>flecs prints <span class="tt">computed size (64) for 'SSprite' is larger than actual type (48)</span> at shutdown: the reflection data registered for <a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> doesn't match the struct (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L55-L59" class="src-link">src/Rendering/Module.cpp:55</a>). Drawing is not affected, but editing or saving a sprite's fields in the Entity Debugger may be wrong.</li>
+<li>More in <a class="el" href="known_issues.html#known_issues_rendering" title="Rendering">Rendering</a>. </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:Components_3A_3AFTexture2DComponent" id="r_Components_3A_3AFTexture2DComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What a sprite draws: <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> Sprite</span> (texture path and cell), <span class="tt">glm::vec2 TextureSize</span> (32 × 32), <span class="tt">SDL_FColor Color</span> (white), <span class="tt">glm::vec4 BoundingBox</span> (unused when drawing).  <a href="struct_components_1_1_f_texture2_d_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Components_3A_3AFRenderingComponent" id="r_Components_3A_3AFRenderingComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_rendering_component.html">Components::FRenderingComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which layer a sprite is drawn on: <span class="tt"><a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a> RenderLayer</span> (default <span class="tt">Entities</span>).  <a href="struct_components_1_1_f_rendering_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Renderer_3A_3ASpriteInstance" id="r_Renderer_3A_3ASpriteInstance"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_renderer_1_1_sprite_instance.html">Renderer::SpriteInstance</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One sprite as the GPU sees it: position, size, rotation, flip, texture rectangle and colour.  <a href="struct_renderer_1_1_sprite_instance.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Renderer_3A_3ASpriteInstanceContainer" id="r_Renderer_3A_3ASpriteInstanceContainer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_renderer_1_1_sprite_instance_container.html">Renderer::SpriteInstanceContainer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A batch of sprites that share one texture, keyed by entity ID.  <a href="struct_renderer_1_1_sprite_instance_container.html#details">More...</a><br /></td></tr>
+<tr class="memitem:Renderer_3A_3ARenderLayer" id="r_Renderer_3A_3ARenderLayer"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_renderer_1_1_render_layer.html">Renderer::RenderLayer</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One render layer: a list of <a class="el" href="struct_renderer_1_1_sprite_instance_container.html" title="A batch of sprites that share one texture, keyed by entity ID.">Renderer::SpriteInstanceContainer</a>, one per texture.  <a href="struct_renderer_1_1_render_layer.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga50fb14a457ce18417eac07ab3de19aef" id="r_ga50fb14a457ce18417eac07ab3de19aef"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> : int { <br />
+&#160;&#160;<a class="el" href="#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> = 0
+, <a class="el" href="#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> = 1
+, <a class="el" href="#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Renderer::Foreground</a>
+, <a class="el" href="#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a>
+, <br />
+&#160;&#160;<a class="el" href="#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a>
+<br />
+ }</td></tr>
+<tr class="memdesc:ga50fb14a457ce18417eac07ab3de19aef"><td class="mdescLeft">&#160;</td><td class="mdescRight">The render layers, drawn in this order.  <a href="#ga50fb14a457ce18417eac07ab3de19aef">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga9394e46f66fc65fa78e082934ae66576" id="r_ga9394e46f66fc65fa78e082934ae66576"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga9394e46f66fc65fa78e082934ae66576">Renderer::Module</a> ()</td></tr>
+<tr class="memdesc:ga9394e46f66fc65fa78e082934ae66576"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the render systems, and registers the sprite components.  <br /></td></tr>
+<tr class="memitem:ga6cf35bc92d99fea05a53fa55b4adab26" id="r_ga6cf35bc92d99fea05a53fa55b4adab26"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga6cf35bc92d99fea05a53fa55b4adab26">Renderer::TeardownModule</a> ()</td></tr>
+<tr class="memdesc:ga6cf35bc92d99fea05a53fa55b4adab26"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts down ImGui's backends and destroys the window.  <br /></td></tr>
+<tr class="memitem:gaa6a288406f43c706dbe7378a282dafa8" id="r_gaa6a288406f43c706dbe7378a282dafa8"><td class="memItemLeft">glm::vec3&#160;</td><td class="memItemRight"><a class="el" href="#gaa6a288406f43c706dbe7378a282dafa8">Renderer::ScreenPosToWorldPos</a> (glm::vec3 ScreenPos)</td></tr>
+<tr class="memdesc:gaa6a288406f43c706dbe7378a282dafa8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a window position in pixels to world units, using the current camera.  <br /></td></tr>
+<tr class="memitem:gade643b8953652451b4ae66e50de0869f" id="r_gade643b8953652451b4ae66e50de0869f"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gade643b8953652451b4ae66e50de0869f">Renderer::LoadTextureToVRam</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_graphics_1_1_s_texture2_d.html">Graphics::STexture2D</a> &gt; &amp;Texture)</td></tr>
+<tr class="memdesc:gade643b8953652451b4ae66e50de0869f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uploads a loaded texture to the GPU and creates its sampler (nearest filtering).  <br /></td></tr>
+<tr class="memitem:ga8b458a67cb24d0cd348afcb0a1dc5685" id="r_ga8b458a67cb24d0cd348afcb0a1dc5685"><td class="memItemLeft">std::vector&lt; SDL_FRect &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685">Renderer::LoadLevel</a> (const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">World::SLevel</a> &gt; &amp;Level)</td></tr>
+<tr class="memdesc:ga8b458a67cb24d0cd348afcb0a1dc5685"><td class="mdescLeft">&#160;</td><td class="mdescRight">Puts a level's tiles on the Background layer and returns the rectangles of its collision cells (IntGrid value 1).  <br /></td></tr>
+<tr class="memitem:gaf0b6ef8bc00e7879941f988affb7c407" id="r_gaf0b6ef8bc00e7879941f988affb7c407"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaf0b6ef8bc00e7879941f988affb7c407">Renderer::AddDebugCollision</a> (const glm::vec4 &amp;Collider, uint32_t ID)</td></tr>
+<tr class="memdesc:gaf0b6ef8bc00e7879941f988affb7c407"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deprecated.  <br /></td></tr>
+<tr class="memitem:ga98c6419591eb44f491126fb555bad106" id="r_ga98c6419591eb44f491126fb555bad106"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_render_layer.html">Renderer::RenderLayer</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga98c6419591eb44f491126fb555bad106">Renderer::GetRenderLayer</a> (<a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef">EInstanceLayer</a> Layer)</td></tr>
+<tr class="memdesc:ga98c6419591eb44f491126fb555bad106"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns a render layer, with one <a class="el" href="struct_renderer_1_1_sprite_instance_container.html" title="A batch of sprites that share one texture, keyed by entity ID.">Renderer::SpriteInstanceContainer</a> per texture used on it.  <br /></td></tr>
+<tr class="memitem:gaa895f686136f33430cb3dc999095e0f2" id="r_gaa895f686136f33430cb3dc999095e0f2"><td class="memItemLeft">std::vector&lt; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_render_layer.html">Renderer::RenderLayer</a> &gt; &gt;&#160;</td><td class="memItemRight"><a class="el" href="#gaa895f686136f33430cb3dc999095e0f2">Renderer::GetRenderLayers</a> ()</td></tr>
+<tr class="memdesc:gaa895f686136f33430cb3dc999095e0f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns all render layers, in drawing order.  <br /></td></tr>
+<tr class="memitem:gafd2e36acbdd6b4f860a76f6834c26143" id="r_gafd2e36acbdd6b4f860a76f6834c26143"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gafd2e36acbdd6b4f860a76f6834c26143">Renderer::RegisterEntity</a> (uint32_t EntityId)</td></tr>
+<tr class="memdesc:gafd2e36acbdd6b4f860a76f6834c26143"><td class="mdescLeft">&#160;</td><td class="mdescRight">Legacy: writes one entity's sprite into its layer immediately, using <span class="tt">FTexture2DComponent::BoundingBox</span> as texture coordinates.  <br /></td></tr>
+<tr class="memitem:gaf21ddb63fd9331115ede4a1c9e25112b" id="r_gaf21ddb63fd9331115ede4a1c9e25112b"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gaf21ddb63fd9331115ede4a1c9e25112b">Renderer::CleanupEntity</a> (uint64_t EntityId)</td></tr>
+<tr class="memdesc:gaf21ddb63fd9331115ede4a1c9e25112b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removes an entity's sprite from its layer's batch.  <br /></td></tr>
+<tr class="memitem:ga63eaa355b52e1ba2453eaa93cf230820" id="r_ga63eaa355b52e1ba2453eaa93cf230820"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#ga63eaa355b52e1ba2453eaa93cf230820">Renderer::Initialize</a> ()</td></tr>
+<tr class="memdesc:ga63eaa355b52e1ba2453eaa93cf230820"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates the render layers and the GPU renderer.  <br /></td></tr>
+<tr class="memitem:gad16e464164f092e01ae4a79d9b1722b5" id="r_gad16e464164f092e01ae4a79d9b1722b5"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gad16e464164f092e01ae4a79d9b1722b5">Renderer::StartRenderFrame</a> ()</td></tr>
+<tr class="memdesc:gad16e464164f092e01ae4a79d9b1722b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Informs the renderer that we're going to start rendering a new frame and initialized required data.  <br /></td></tr>
+<tr class="memitem:gac4692349b6e6ccc20e43aff514b34139" id="r_gac4692349b6e6ccc20e43aff514b34139"><td class="memItemLeft">bool&#160;</td><td class="memItemRight"><a class="el" href="#gac4692349b6e6ccc20e43aff514b34139">Renderer::RenderFrame</a> ()</td></tr>
+<tr class="memdesc:gac4692349b6e6ccc20e43aff514b34139"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws all layers, lighting, debug colliders and ImGui, and presents the frame.  <br /></td></tr>
+<tr class="memitem:ga46f2dc762424ae32ecddf096b7d028c2" id="r_ga46f2dc762424ae32ecddf096b7d028c2"><td class="memItemLeft">glm::mat4x4&#160;</td><td class="memItemRight"><a class="el" href="#ga46f2dc762424ae32ecddf096b7d028c2">Renderer::GetCameraView</a> ()</td></tr>
+<tr class="memdesc:ga46f2dc762424ae32ecddf096b7d028c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current camera's view matrix.  <br /></td></tr>
+<tr class="memitem:gac90576f857c8e63458529c663e2ecd99" id="r_gac90576f857c8e63458529c663e2ecd99"><td class="memItemLeft">glm::mat4x4&#160;</td><td class="memItemRight"><a class="el" href="#gac90576f857c8e63458529c663e2ecd99">Renderer::GetCameraProjectionMatrix</a> ()</td></tr>
+<tr class="memdesc:gac90576f857c8e63458529c663e2ecd99"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current camera's orthographic projection (<span class="tt">0..CameraSize</span>, Y down).  <br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ga3fa5f1ca303d4f0e8aeadd6868fbb7aa" id="r_ga3fa5f1ca303d4f0e8aeadd6868fbb7aa"><td class="memItemLeft"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">World::SLevel</a> &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ga3fa5f1ca303d4f0e8aeadd6868fbb7aa">Renderer::Level</a> = nullptr</td></tr>
+<tr class="memdesc:ga3fa5f1ca303d4f0e8aeadd6868fbb7aa"><td class="mdescLeft">&#160;</td><td class="mdescRight">The level last passed to <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a>, or empty.  <br /></td></tr>
+<tr class="memitem:gaa59c6f0758bb042e1564f083d3e4cd66" id="r_gaa59c6f0758bb042e1564f083d3e4cd66"><td class="memItemLeft"><a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a>&#160;</td><td class="memItemRight"><a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66">Renderer::CollisionInstances</a></td></tr>
+<tr class="memdesc:gaa59c6f0758bb042e1564f083d3e4cd66"><td class="mdescLeft">&#160;</td><td class="mdescRight">The debug-collider overlay: drawn with the <span class="tt">CollisionTexture</span> asset while <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a> is <span class="tt">true</span>.  <br /></td></tr>
+</table>
+<a name="doc-enum-members" id="doc-enum-members"></a><h2 id="header-doc-enum-members" class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga50fb14a457ce18417eac07ab3de19aef" name="ga50fb14a457ce18417eac07ab3de19aef"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga50fb14a457ce18417eac07ab3de19aef">&#9670;&#160;</a></span>EInstanceLayer</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> : int</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>See <a class="el" href="#rendering_layers" title="Layers and draw order">Layers and draw order</a>.</p>
+<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/SpriteInstanceContainer.hpp\#L16-L22" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:16</a>. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70" name="ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"></a>Background&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b" name="ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"></a>Entities&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688" name="ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688"></a>Foreground&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c" name="ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c"></a>Debug&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5" name="ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5"></a>Overlay&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga9394e46f66fc65fa78e082934ae66576" name="ga9394e46f66fc65fa78e082934ae66576"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga9394e46f66fc65fa78e082934ae66576">&#9670;&#160;</a></span>Module()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::Module </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
+<p>Loads the <span class="tt">CollisionTexture</span> asset, so it must be registered before. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L42-L63" class="src-link">src/Rendering/Module.cpp:42</a>. </p>
+
+</div>
+</div>
+<a id="ga6cf35bc92d99fea05a53fa55b4adab26" name="ga6cf35bc92d99fea05a53fa55b4adab26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga6cf35bc92d99fea05a53fa55b4adab26">&#9670;&#160;</a></span>TeardownModule()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::TeardownModule </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L65-L68" class="src-link">src/Rendering/Module.cpp:65</a>. </p>
+
+</div>
+</div>
+<a id="gaa6a288406f43c706dbe7378a282dafa8" name="gaa6a288406f43c706dbe7378a282dafa8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa6a288406f43c706dbe7378a282dafa8">&#9670;&#160;</a></span>ScreenPosToWorldPos()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::vec3 Renderer::ScreenPosToWorldPos </td>
+          <td>(</td>
+          <td class="paramtype">glm::vec3</td>          <td class="paramname"><span class="paramname"><em>ScreenPos</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Assumes a 1920 × 1080 window.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>. <a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a>'s mouse-hover system uses it. </p>
+
+</div>
+</div>
+<a id="gade643b8953652451b4ae66e50de0869f" name="gade643b8953652451b4ae66e50de0869f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gade643b8953652451b4ae66e50de0869f">&#9670;&#160;</a></span>LoadTextureToVRam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::LoadTextureToVRam </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_graphics_1_1_s_texture2_d.html">Graphics::STexture2D</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Texture</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The renderer does this on first use; call it to avoid the one-frame delay.</p>
+<p>Expects 4 bytes per pixel in <span class="tt">Texture-&gt;Surface</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L83-L142" class="src-link">src/Rendering/Vulkan_Renderer.cpp:83</a>. </p>
+
+</div>
+</div>
+<a id="ga8b458a67cb24d0cd348afcb0a1dc5685" name="ga8b458a67cb24d0cd348afcb0a1dc5685"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga8b458a67cb24d0cd348afcb0a1dc5685">&#9670;&#160;</a></span>LoadLevel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; SDL_FRect &gt; Renderer::LoadLevel </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_world_1_1_s_level.html">World::SLevel</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>Level</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Also sets <a class="el" href="#ga3fa5f1ca303d4f0e8aeadd6868fbb7aa" title="The level last passed to Renderer::LoadLevel(), or empty.">Renderer::Level</a>.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>. </p>
+
+</div>
+</div>
+<a id="gaf0b6ef8bc00e7879941f988affb7c407" name="gaf0b6ef8bc00e7879941f988affb7c407"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf0b6ef8bc00e7879941f988affb7c407">&#9670;&#160;</a></span>AddDebugCollision()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Renderer::AddDebugCollision </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec4 &amp;</td>          <td class="paramname"><span class="paramname"><em>Collider</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>ID</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Adds a debug-collider rectangle. Reads <span class="tt">Collider</span> as <span class="tt">(x, y, height, width)</span>.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/Module.hpp\#L81-L96" class="src-link">include/Rendering/Module.hpp:81</a>. Write to <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> instead. </p>
+
+</div>
+</div>
+<a id="ga98c6419591eb44f491126fb555bad106" name="ga98c6419591eb44f491126fb555bad106"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga98c6419591eb44f491126fb555bad106">&#9670;&#160;</a></span>GetRenderLayer()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_render_layer.html">Renderer::RenderLayer</a> &gt; Renderer::GetRenderLayer </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef">EInstanceLayer</a></td>          <td class="paramname"><span class="paramname"><em>Layer</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L52-L54" class="src-link">src/Rendering/RenderingBackend.cpp:52</a>. </p>
+
+</div>
+</div>
+<a id="gaa895f686136f33430cb3dc999095e0f2" name="gaa895f686136f33430cb3dc999095e0f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa895f686136f33430cb3dc999095e0f2">&#9670;&#160;</a></span>GetRenderLayers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt; <a class="el" href="struct_renderer_1_1_render_layer.html">Renderer::RenderLayer</a> &gt; &gt; Renderer::GetRenderLayers </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L56-L60" class="src-link">src/Rendering/RenderingBackend.cpp:56</a>. </p>
+
+</div>
+</div>
+<a id="gafd2e36acbdd6b4f860a76f6834c26143" name="gafd2e36acbdd6b4f860a76f6834c26143"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gafd2e36acbdd6b4f860a76f6834c26143">&#9670;&#160;</a></span>RegisterEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::RegisterEntity </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>EntityId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The render system does this every frame; you don't need it.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L77-L110" class="src-link">src/Rendering/RenderingBackend.cpp:77</a>. </p>
+
+</div>
+</div>
+<a id="gaf21ddb63fd9331115ede4a1c9e25112b" name="gaf21ddb63fd9331115ede4a1c9e25112b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf21ddb63fd9331115ede4a1c9e25112b">&#9670;&#160;</a></span>CleanupEntity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::CleanupEntity </td>
+          <td>(</td>
+          <td class="paramtype">uint64_t</td>          <td class="paramname"><span class="paramname"><em>EntityId</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Useful for entities on the <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Foreground</a></span>, <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Debug</a></span> or <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Overlay</a></span> layers before destroying them.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L62-L75" class="src-link">src/Rendering/RenderingBackend.cpp:62</a>. It has no return statement on success, so don't use its result. </p>
+
+</div>
+</div>
+<a id="ga63eaa355b52e1ba2453eaa93cf230820" name="ga63eaa355b52e1ba2453eaa93cf230820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga63eaa355b52e1ba2453eaa93cf230820">&#9670;&#160;</a></span>Initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::Initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="#ga9394e46f66fc65fa78e082934ae66576" title="Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...">Renderer::Module()</a>; don't call it yourself. </p>
+
+</div>
+</div>
+<a id="gad16e464164f092e01ae4a79d9b1722b5" name="gad16e464164f092e01ae4a79d9b1722b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gad16e464164f092e01ae4a79d9b1722b5">&#9670;&#160;</a></span>StartRenderFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::StartRenderFrame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Starts a new ImGui frame for the SDL backends.</p>
+<p>This allows us to prepare render data before (and outside of) RenderFrame</p>
+<p>Called by <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> every frame. </p>
+
+</div>
+</div>
+<a id="gac4692349b6e6ccc20e43aff514b34139" name="gac4692349b6e6ccc20e43aff514b34139"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac4692349b6e6ccc20e43aff514b34139">&#9670;&#160;</a></span>RenderFrame()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Renderer::RenderFrame </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Called by <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> every frame. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L705-L785" class="src-link">src/Rendering/Vulkan_Renderer.cpp:705</a>. </p>
+
+</div>
+</div>
+<a id="ga46f2dc762424ae32ecddf096b7d028c2" name="ga46f2dc762424ae32ecddf096b7d028c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga46f2dc762424ae32ecddf096b7d028c2">&#9670;&#160;</a></span>GetCameraView()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4x4 Renderer::GetCameraView </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Used by the editor's transform gizmo. </p>
+
+</div>
+</div>
+<a id="gac90576f857c8e63458529c663e2ecd99" name="gac90576f857c8e63458529c663e2ecd99"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac90576f857c8e63458529c663e2ecd99">&#9670;&#160;</a></span>GetCameraProjectionMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">glm::mat4x4 Renderer::GetCameraProjectionMatrix </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ga3fa5f1ca303d4f0e8aeadd6868fbb7aa" name="ga3fa5f1ca303d4f0e8aeadd6868fbb7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga3fa5f1ca303d4f0e8aeadd6868fbb7aa">&#9670;&#160;</a></span>Level</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="class_t_object_ptr.html">TObjectPtr</a>&lt;<a class="el" href="struct_world_1_1_s_level.html">World::SLevel</a>&gt; Renderer::Level = nullptr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="gaa59c6f0758bb042e1564f083d3e4cd66" name="gaa59c6f0758bb042e1564f083d3e4cd66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaa59c6f0758bb042e1564f083d3e4cd66">&#9670;&#160;</a></span>CollisionInstances</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_renderer_1_1_sprite_instance_container.html">SpriteInstanceContainer</a> Renderer::CollisionInstances</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel extern">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Add entries with <span class="tt">AddEntity(id)</span> and fill <span class="tt">Instances[id]</span> (<span class="tt">x</span>, <span class="tt">y</span>, <span class="tt">w</span>, <span class="tt">h</span> in world units; <span class="tt">tex_w = tex_h = 1</span>; colour). Remove them with <span class="tt">RemoveEntity(id)</span>. See <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a>. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,575 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Rendering | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Rendering </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>A tour of the renderer: sprite-sheet cells, the five layers, tint and transparency, rotation, Y-sorting and coloured lights.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" class="src-link">examples/modules/Rendering.cpp</a></span><span><b>Executable</b> <code>RenderingExample</code></span><span><b>Module</b> <a class="el" href="group__rendering.html" title="Renderer">Renderer</a></span></div><div class="image">
+<img src="rendering.png" alt=""/>
+<div class="caption">
+Top left: four cells of one texture. Top right: one square per layer. Bottom: alpha steps, a rotating sprite, and two sprites sorted by Y. A red and a blue light orbit the middle.</div></div>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md125"></a>
+A sprite sheet made in code</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A 2 × 2 atlas</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A 64x64 sprite sheet with four 32x32 cells: a red square, a green circle,</span></div>
+<div class="line"><span class="comment">// a blue diamond and a yellow ring. Each cell&#39;s transparent pixels let the</span></div>
+<div class="line"><span class="comment">// background show through.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterAtlasTexture(<span class="keyword">const</span> std::string&amp; AssetPath) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(64, 64, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 transparent = SDL_MapSurfaceRGBA(surface, 0, 0, 0, 0);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, transparent);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Cell colours, in cell order: 0 1 on the top row, 2 3 on the bottom row</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_Color colors[4] = {</div>
+<div class="line">        {230, 80, 80, 255},     <span class="comment">// red square</span></div>
+<div class="line">        {90, 210, 110, 255},    <span class="comment">// green circle</span></div>
+<div class="line">        {90, 140, 240, 255},    <span class="comment">// blue diamond</span></div>
+<div class="line">        {240, 210, 80, 255},    <span class="comment">// yellow ring</span></div>
+<div class="line">    };</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; 64; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; 64; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">int</span> cell = (y / 32) * 2 + (x / 32);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> dx = (x % 32) - 15.5f;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> dy = (y % 32) - 15.5f;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> distance = std::sqrt(dx * dx + dy * dy);</div>
+<div class="line">            <span class="keywordtype">bool</span> bFilled = <span class="keyword">false</span>;</div>
+<div class="line">            <span class="keywordflow">switch</span> (cell) {</div>
+<div class="line">                <span class="keywordflow">case</span> 0: bFilled = std::abs(dx) &lt; 12 &amp;&amp; std::abs(dy) &lt; 12; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 1: bFilled = distance &lt; 13.f; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 2: bFilled = std::abs(dx) + std::abs(dy) &lt; 15.f; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 3: bFilled = distance &lt; 14.f &amp;&amp; distance &gt; 8.f; <span class="keywordflow">break</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (bFilled) {</div>
+<div class="line">                <span class="keyword">const</span> SDL_Color c = colors[cell];</div>
+<div class="line">                SDL_WriteSurfacePixel(surface, x, y, c.r, c.g, c.b, c.a);</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    RegisterTexture(AssetPath, surface);</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing each cell</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
+<div class="line">    <span class="comment">// both as fractions of the texture (0..1).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> cell = 0; cell &lt; 4; ++cell) {</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 uv {(cell % 2) * 0.5f, (cell / 2) * 0.5f};</div>
+<div class="line">        world.entity()</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {16.f + cell * 36.f, 16.f, 0.f} })</div>
+<div class="line">            .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                .Sprite = {</div>
+<div class="line">                    .SpriteSheet = {<span class="stringliteral">&quot;Atlas&quot;</span>},</div>
+<div class="line">                    .UVCoords = uv,</div>
+<div class="line">                    .WHCoords = {0.5f, 0.5f},</div>
+<div class="line">                },</div>
+<div class="line">                .TextureSize = {32.f, 32.f},</div>
+<div class="line">            })</div>
+<div class="line">            .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md126"></a>
+Layers</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
+<div class="line">    <span class="comment">// Each square overlaps the previous one and is drawn on top of it.</span></div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 square {36.f, 36.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor red {0.9f, 0.35f, 0.35f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor green {0.35f, 0.85f, 0.45f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor blue {0.35f, 0.55f, 0.95f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor white {1.f, 1.f, 1.f, 0.6f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {200.f, 14.f}, square, red, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {216.f, 24.f}, square, green, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Renderer::Foreground</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 34.f}, square, blue, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {248.f, 44.f}, square, white, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a>);</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md127"></a>
+Tint, alpha, rotation and sorting</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Tint and alpha</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> SDL_FColor orange {1.f, 0.75f, 0.3f, 0.2f + i * 0.2f};</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {16.f + i * 22.f, 120.f}, {18.f, 18.f}, orange);</div>
+<div class="line">    }</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="keyword">const</span> SDL_FColor noTint {1.f, 1.f, 1.f, 1.f};</div>
+<div class="line">    flecs::entity spinner =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;Atlas&quot;</span>, {150.f, 112.f}, {32.f, 32.f}, noTint)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Spinner&quot;</span>);</div>
+<div class="line">    <span class="comment">// Show only the red square cell</span></div>
+<div class="line">    spinner.get_mut&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().Sprite.WHCoords = {0.5f, 0.5f};</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Spin&quot;</span>)</div>
+<div class="line">        .each([spinner](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == spinner) {</div>
+<div class="line">                <span class="comment">// Radians per second</span></div>
+<div class="line">                transform.Rotation.x += entity.world().delta_time();</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
+<div class="line">    <span class="comment">// The bobbing square passes in front of and behind the fixed one.</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor grey {0.5f, 0.5f, 0.55f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor pink {0.95f, 0.6f, 0.9f, 1.f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {220.f, 120.f}, {30.f, 30.f}, grey)</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Fixed&quot;</span>);</div>
+<div class="line">    flecs::entity bobber =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 110.f}, {24.f, 24.f}, pink)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Bobber&quot;</span>);</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Bob&quot;</span>)</div>
+<div class="line">        .each([bobber](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == bobber) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> seconds = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(SDL_GetTicks()) / 1000.f;</div>
+<div class="line">                transform.Location.y = 115.f + std::sin(seconds / 0.6f) * 22.f;</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md128"></a>
+Camera and lights</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A soft light over the whole screen,</span></div>
+<div class="line">    <span class="comment">// plus two small coloured lights that orbit the middle.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Fill light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 1.2f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Red light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {1.f, 0.3f, 0.2f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({ .Center = {160.f, 90.f}, .Radius = 70.f, .Speed = 0.8f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Blue light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {0.2f, 0.5f, 1.f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({</div>
+<div class="line">            .Center = {160.f, 90.f},</div>
+<div class="line">            .Radius = 70.f,</div>
+<div class="line">            .Speed = 0.8f,</div>
+<div class="line">            .Angle = 3.14159f,      <span class="comment">// start on the opposite side</span></div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md129"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Rendering.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: rendering.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows:</span></div>
+<div class="line"><span class="comment">//   - the five render layers and the order they are drawn in</span></div>
+<div class="line"><span class="comment">//   - drawing part of a texture (a sprite-sheet cell) with UVCoords / WHCoords</span></div>
+<div class="line"><span class="comment">//   - tinting and transparency with FTexture2DComponent::Color</span></div>
+<div class="line"><span class="comment">//   - rotation (FTransformComponent::Rotation.x)</span></div>
+<div class="line"><span class="comment">//   - automatic depth sorting by Y within a layer</span></div>
+<div class="line"><span class="comment">//   - coloured lights that move</span></div>
+<div class="line"><span class="comment">// Every texture is generated in code; no files are used.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(RenderDemo, debug)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">constexpr</span> <span class="keywordtype">float</span> ScreenW = 320.f, ScreenH = 180.f;</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// Moves an entity in a circle around Center. Used for the lights.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FOrbit,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Center, glm::vec2(0, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Radius, 40.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Speed, 1.f),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Angle, 0.f))</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Textures --------------------------------------------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterTexture(<span class="keyword">const</span> std::string&amp; AssetPath, SDL_Surface* Surface) {</div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = Surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Surface-&gt;w);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Surface-&gt;h);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line">    RegisterTexture(AssetPath, surface);</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// A 64x64 sprite sheet with four 32x32 cells: a red square, a green circle,</span></div>
+<div class="line"><span class="comment">// a blue diamond and a yellow ring. Each cell&#39;s transparent pixels let the</span></div>
+<div class="line"><span class="comment">// background show through.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterAtlasTexture(<span class="keyword">const</span> std::string&amp; AssetPath) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(64, 64, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 transparent = SDL_MapSurfaceRGBA(surface, 0, 0, 0, 0);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, transparent);</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Cell colours, in cell order: 0 1 on the top row, 2 3 on the bottom row</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_Color colors[4] = {</div>
+<div class="line">        {230, 80, 80, 255},     <span class="comment">// red square</span></div>
+<div class="line">        {90, 210, 110, 255},    <span class="comment">// green circle</span></div>
+<div class="line">        {90, 140, 240, 255},    <span class="comment">// blue diamond</span></div>
+<div class="line">        {240, 210, 80, 255},    <span class="comment">// yellow ring</span></div>
+<div class="line">    };</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> y = 0; y &lt; 64; ++y) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> x = 0; x &lt; 64; ++x) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">int</span> cell = (y / 32) * 2 + (x / 32);</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> dx = (x % 32) - 15.5f;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> dy = (y % 32) - 15.5f;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> distance = std::sqrt(dx * dx + dy * dy);</div>
+<div class="line">            <span class="keywordtype">bool</span> bFilled = <span class="keyword">false</span>;</div>
+<div class="line">            <span class="keywordflow">switch</span> (cell) {</div>
+<div class="line">                <span class="keywordflow">case</span> 0: bFilled = std::abs(dx) &lt; 12 &amp;&amp; std::abs(dy) &lt; 12; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 1: bFilled = distance &lt; 13.f; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 2: bFilled = std::abs(dx) + std::abs(dy) &lt; 15.f; <span class="keywordflow">break</span>;</div>
+<div class="line">                <span class="keywordflow">case</span> 3: bFilled = distance &lt; 14.f &amp;&amp; distance &gt; 8.f; <span class="keywordflow">break</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (bFilled) {</div>
+<div class="line">                <span class="keyword">const</span> SDL_Color c = colors[cell];</div>
+<div class="line">                SDL_WriteSurfacePixel(surface, x, y, c.r, c.g, c.b, c.a);</div>
+<div class="line">            }</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">    RegisterTexture(AssetPath, surface);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Scene --------------------------------------------------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnSprite(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, <span class="keyword">const</span> std::string&amp; Texture,</div>
+<div class="line">                                 glm::vec2 Position, glm::vec2 Size, SDL_FColor Color,</div>
+<div class="line">                                 <a class="code hl_enumeration" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> Layer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a>) {</div>
+<div class="line">    <span class="keywordflow">return</span> <a class="code hl_namespace" href="namespace_world.html">World</a>.entity()</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Position.x, Position.y, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {Texture} },</div>
+<div class="line">            .TextureSize = Size,</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = Layer });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>RenderingHud : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Rendering&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Top left: sprite-sheet cells.  Top right: layers.&quot;</span>);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Bottom: alpha, rotation, Y-sorting.&quot;</span>);</div>
+<div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Two coloured lights orbit the middle.&quot;</span>);</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line">    RegisterAtlasTexture(<span class="stringliteral">&quot;Atlas&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FOrbit, world);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A soft light over the whole screen,</span></div>
+<div class="line">    <span class="comment">// plus two small coloured lights that orbit the middle.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Fill light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 1.2f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Red light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {1.f, 0.3f, 0.2f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({ .Center = {160.f, 90.f}, .Radius = 70.f, .Speed = 0.8f });</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Blue light&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FLightComponent&gt;({</div>
+<div class="line">            .Radius = 0.35f,</div>
+<div class="line">            .Intensity = 4.f,</div>
+<div class="line">            .RGB = {0.2f, 0.5f, 1.f, 1.f},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FOrbit&gt;({</div>
+<div class="line">            .Center = {160.f, 90.f},</div>
+<div class="line">            .Radius = 70.f,</div>
+<div class="line">            .Speed = 0.8f,</div>
+<div class="line">            .Angle = 3.14159f,      <span class="comment">// start on the opposite side</span></div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// The Background layer clears the screen every frame,</span></div>
+<div class="line">    <span class="comment">// so it needs a sprite that covers it.</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor backgroundColor {0.16f, 0.17f, 0.2f, 1.f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {0, 0}, {ScreenW, ScreenH}, backgroundColor,</div>
+<div class="line">                <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a>)</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Background&quot;</span>);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
+<div class="line">    <span class="comment">// both as fractions of the texture (0..1).</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> cell = 0; cell &lt; 4; ++cell) {</div>
+<div class="line">        <span class="keyword">const</span> glm::vec2 uv {(cell % 2) * 0.5f, (cell / 2) * 0.5f};</div>
+<div class="line">        world.entity()</div>
+<div class="line">            .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {16.f + cell * 36.f, 16.f, 0.f} })</div>
+<div class="line">            .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">                .Sprite = {</div>
+<div class="line">                    .SpriteSheet = {<span class="stringliteral">&quot;Atlas&quot;</span>},</div>
+<div class="line">                    .UVCoords = uv,</div>
+<div class="line">                    .WHCoords = {0.5f, 0.5f},</div>
+<div class="line">                },</div>
+<div class="line">                .TextureSize = {32.f, 32.f},</div>
+<div class="line">            })</div>
+<div class="line">            .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
+<div class="line">    <span class="comment">// Each square overlaps the previous one and is drawn on top of it.</span></div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 square {36.f, 36.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor red {0.9f, 0.35f, 0.35f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor green {0.35f, 0.85f, 0.45f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor blue {0.35f, 0.55f, 0.95f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor white {1.f, 1.f, 1.f, 0.6f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {200.f, 14.f}, square, red, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {216.f, 24.f}, square, green, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Renderer::Foreground</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 34.f}, square, blue, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a>);</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {248.f, 44.f}, square, white, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a>);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> SDL_FColor orange {1.f, 0.75f, 0.3f, 0.2f + i * 0.2f};</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {16.f + i * 22.f, 120.f}, {18.f, 18.f}, orange);</div>
+<div class="line">    }</div>
+<div class="line"></div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor noTint {1.f, 1.f, 1.f, 1.f};</div>
+<div class="line">    flecs::entity spinner =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;Atlas&quot;</span>, {150.f, 112.f}, {32.f, 32.f}, noTint)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Spinner&quot;</span>);</div>
+<div class="line">    <span class="comment">// Show only the red square cell</span></div>
+<div class="line">    spinner.get_mut&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().Sprite.WHCoords = {0.5f, 0.5f};</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Spin&quot;</span>)</div>
+<div class="line">        .each([spinner](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == spinner) {</div>
+<div class="line">                <span class="comment">// Radians per second</span></div>
+<div class="line">                transform.Rotation.x += entity.world().delta_time();</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
+<div class="line">    <span class="comment">// The bobbing square passes in front of and behind the fixed one.</span></div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor grey {0.5f, 0.5f, 0.55f, 1.f};</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor pink {0.95f, 0.6f, 0.9f, 1.f};</div>
+<div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {220.f, 120.f}, {30.f, 30.f}, grey)</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Fixed&quot;</span>);</div>
+<div class="line">    flecs::entity bobber =</div>
+<div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 110.f}, {24.f, 24.f}, pink)</div>
+<div class="line">            .set_name(<span class="stringliteral">&quot;Bobber&quot;</span>);</div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;Bob&quot;</span>)</div>
+<div class="line">        .each([bobber](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            <span class="keywordflow">if</span> (entity == bobber) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> seconds = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(SDL_GetTicks()) / 1000.f;</div>
+<div class="line">                transform.Location.y = 115.f + std::sin(seconds / 0.6f) * 22.f;</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, FOrbit&gt;(<span class="stringliteral">&quot;Orbit&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 FOrbit&amp; orbit) {</div>
+<div class="line">            orbit.Angle += orbit.Speed * it.delta_time();</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> x = std::cos(orbit.Angle) * orbit.Radius;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> y = std::sin(orbit.Angle) * orbit.Radius * 0.6f;</div>
+<div class="line">            transform.Location.x = orbit.Center.x + x;</div>
+<div class="line">            transform.Location.y = orbit.Center.y + y;</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;RenderingHud&gt;</a>();</div>
+<div class="line">    Log::RenderDemo::Info(<span class="stringliteral">&quot;Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+<div class="ttc" id="agroup__ecs_html_gaaa910f10b526ad0b951fd8f6e70cf66d"><div class="ttname"><a href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a></div><div class="ttdeci">#define ECS_MEMBER(MemberType, MemberName, DefaultValue)</div><div class="ttdoc">One field of a component: its type, name and default value.</div><div class="ttdef"><b>Definition</b> Components.hpp:61</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="agroup__rendering_html_ga50fb14a457ce18417eac07ab3de19aef"><div class="ttname"><a href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a></div><div class="ttdeci">EInstanceLayer</div><div class="ttdoc">The render layers, drawn in this order.</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:16</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Renderer::Foreground</a></div><div class="ttdeci">@ Foreground</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:19</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a></div><div class="ttdeci">@ Overlay</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:21</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a></div><div class="ttdeci">@ Debug</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:20</div></div>
+<div class="ttc" id="anamespace_world_html"><div class="ttname"><a href="namespace_world.html">World</a></div><div class="ttdef"><b>Definition</b> World.hpp:20</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+<div class="ttc" id="astruct_im_g_u_i_wrapper_1_1_i_editor_tool_html"><div class="ttname"><a href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a></div><div class="ttdoc">Base class of editor tools.</div><div class="ttdef"><b>Definition</b> EditorTool.hpp:10</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

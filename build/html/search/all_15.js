@@ -1,0 +1,26 @@
+var searchData=
+[
+  ['padding_0',['Padding',['../struct_graphics_1_1_s_sprite_sheet.html#a1139df16dd53f6f7334c42249a2e4617',1,'Graphics::SSpriteSheet']]],
+  ['paddle_1',['Paddle',['../ex_breakout.html#autotoc_md106',1,'']]],
+  ['page_20types_2',['Page types',['../conventions.html#autotoc_md61',1,'']]],
+  ['pages_20are_20organized_3',['How these pages are organized',['../index.html#autotoc_md137',1,'']]],
+  ['parts_20every_20example_20shares_4',['The parts every example shares',['../examples.html#autotoc_md95',1,'']]],
+  ['paths_5',['Asset paths',['../group__filesystem.html#filesystem_paths',1,'']]],
+  ['phase_6',['Systems and a custom phase',['../ex_queries.html#autotoc_md87',1,'']]],
+  ['phases_7',['Systems and phases',['../essentials.html#autotoc_md142',1,'']]],
+  ['phases_20and_20queries_8',['Systems, phases and queries',['../group__ecs.html#autotoc_md16',1,'']]],
+  ['player_9',['The player',['../ex_movement.html#autotoc_md74',1,'']]],
+  ['playerstart_10',['PlayerStart',['../struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787',1,'World::SLevel']]],
+  ['positions_11',['Screen and world positions',['../group__rendering.html#autotoc_md59',1,'']]],
+  ['postdebugdraw_5ftexturecomp_12',['PostDebugDraw_TextureComp',['../namespace_components.html#a63519fb9cbbbff66ad8a063947aed254',1,'Components']]],
+  ['postdebugdraw_5ftransformcomponent_13',['PostDebugDraw_TransformComponent',['../namespace_components.html#afef81dbc43ace911f5bd9d918ccc21f8',1,'Components']]],
+  ['predebugdraw_5ftexturecomp_14',['PreDebugDraw_TextureComp',['../namespace_components.html#a7ba3c00c5fc8d21ce7601d5eaf41119b',1,'Components']]],
+  ['predebugdraw_5ftransformcomponent_15',['PreDebugDraw_TransformComponent',['../namespace_components.html#a61769102210e9ef96b297887eeb000df',1,'Components']]],
+  ['prefab_16',['PREFAB',['../namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51',1,'Filesystem']]],
+  ['prefab_20for_20sparks_17',['A prefab for sparks',['../ex_spawning.html#autotoc_md78',1,'']]],
+  ['prefixes_20used_20by_20the_20engine_18',['Naming prefixes used by the engine',['../conventions.html#autotoc_md67',1,'']]],
+  ['presentation_19',['Data and presentation',['../ex_snake.html#autotoc_md102',1,'']]],
+  ['press_20',['PRESS',['../namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbaaad8076c7a6ee5a8d90293cd082fd1ea',1,'Input']]],
+  ['project_21',['1. Lay out the project',['../first_game.html#autotoc_md146',1,'']]],
+  ['prompt_22',['Build from a developer prompt',['../getting_started.html#autotoc_md156',1,'']]]
+];

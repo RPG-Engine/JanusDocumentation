@@ -1,0 +1,578 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Snake | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Snake </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>Steer the snake to the red food. Each bite makes it longer and faster; walls and your own tail end the round.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" class="src-link">examples/games/Snake.cpp</a></span><span><b>Executable</b> <code>SnakeGame</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys to turn, <kbd>R</kbd> to restart</span></div><div class="image">
+<img src="snake.png" alt=""/>
+<div class="caption">
+Snake: the head is bright green, the food red</div></div>
+<p><b>Shows:</b> press bindings with the <span class="tt">OVERRIDE</span> operator (<a class="el" href="group__input.html" title="Input">Input</a>), game logic on a fixed time step, keeping game data (grid cells) separate from presentation (transforms), reusing entities instead of destroying them, and changing a sprite's colour at runtime.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
+Actions</h2>
+<p>Four press bindings share one <span class="tt">glm::vec2</span> action. With <span class="tt">OVERRIDE</span>, the action's value is the last binding that triggered this frame, so the result is always one of the four directions (or zero):</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Turning with OVERRIDE</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
+<div class="line"><span class="comment">// OVERRIDE: the action&#39;s value is the value of the last binding that triggered,</span></div>
+<div class="line"><span class="comment">// instead of the sum of all of them. Exactly what a &quot;turn&quot; needs.</span></div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(Turn, glm::vec2, OVERRIDE)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Press bindings trigger once, on the frame the key goes down.</span></div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Turn, {</div>
+<div class="line">        {SDL_SCANCODE_W, {0, -1}}, {SDL_SCANCODE_UP, {0, -1}},</div>
+<div class="line">        {SDL_SCANCODE_S, {0,  1}}, {SDL_SCANCODE_DOWN, {0,  1}},</div>
+<div class="line">        {SDL_SCANCODE_A, {-1, 0}}, {SDL_SCANCODE_LEFT, {-1, 0}},</div>
+<div class="line">        {SDL_SCANCODE_D, {1,  0}}, {SDL_SCANCODE_RIGHT, {1,  0}},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Restart, { {SDL_SCANCODE_R, <span class="keyword">true</span>} });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
+Data and presentation</h2>
+<p>Each body segment has an <span class="tt">FGridCell</span> (a cell on a 32 × 18 grid). The snake's state is a component on one entity; the order of the body segments is kept in a <span class="tt">std::deque</span>:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components and game state</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Components -------------------------------------------------------------</span></div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// Position on the game grid, in cells. A system turns it into a transform.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FGridCell,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Cell, glm::vec2(0, 0)))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FSnake,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Direction, glm::vec2(1, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, NextDirection, glm::vec2(1, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, StepTimer, 0.f))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FFood)</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line"><span class="comment">// ---- Game state -------------------------------------------------------------</span></div>
+<div class="line">constexpr <span class="keywordtype">float</span> CellSize = 10.f;</div>
+<div class="line">constexpr <span class="keywordtype">int</span> GridW = 32;            <span class="comment">// 32 x 10 = 320 world units</span></div>
+<div class="line">constexpr <span class="keywordtype">int</span> GridH = 18;            <span class="comment">// 18 x 10 = 180 world units</span></div>
+<div class="line">constexpr SDL_FColor HeadColor {0.55f, 1.f, 0.45f, 1.f};</div>
+<div class="line"><span class="keyword">constexpr</span> SDL_FColor BodyColor {0.2f, 0.7f, 0.3f, 1.f};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">struct </span>SSnakeState {</div>
+<div class="line">    std::deque&lt;flecs::entity&gt; Body;  <span class="comment">// Body.front() is the head</span></div>
+<div class="line">    <span class="keywordtype">int</span> Score = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> Best = 0;</div>
+<div class="line">    <span class="keywordtype">bool</span> bGameOver = <span class="keyword">false</span>;</div>
+<div class="line">};</div>
+<div class="line"><span class="keyword">static</span> SSnakeState Game;</div>
+<div class="line"><span class="keyword">static</span> std::mt19937 Rng { std::random_device{}() };</div>
+</div><!-- fragment --> <div class="fragment"><div class="line"><span class="comment">// A grid-aligned square. The transform is filled in by the SnapToGrid system.</span></div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnCell(<span class="keyword">const</span> flecs::world&amp; World, glm::vec2 Cell,</div>
+<div class="line">                               SDL_FColor Color) {</div>
+<div class="line">    <span class="keywordflow">return</span> World.entity()</div>
+<div class="line">        .set&lt;FGridCell&gt;({ .Cell = Cell })</div>
+<div class="line">        .set&lt;FTransformComponent&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {CellSize - 1.f, CellSize - 1.f},   <span class="comment">// 1 px gap between cells</span></div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>A separate system turns grid cells into world positions. It runs in <span class="tt">PostUpdate</span>, after the game logic:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Grid to transform</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Presentation: place every grid entity in the world.</span></div>
+<div class="line">    <span class="comment">// Runs after the game logic (PostUpdate).</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FGridCell, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;SnapToGrid&quot;</span>)</div>
+<div class="line">        .kind(flecs::PostUpdate)</div>
+<div class="line">        .each([](<span class="keyword">const</span> FGridCell&amp; grid, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            transform.Location = {grid.Cell.x * CellSize, grid.Cell.y * CellSize, 0.f};</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
+The step</h2>
+<p>The snake system reads turns every frame, but only moves when its timer runs out. Moving reuses the tail entity as the new head; growing creates a new head. <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a> set inside a system are applied after it finishes, which is why <span class="tt">IsOnSnake</span> uses <span class="tt">try_get</span>:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One step of the snake</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Game logic: read turns every frame, move one cell every step.</span></div>
+<div class="line">    world.system&lt;FSnake&gt;(<span class="stringliteral">&quot;SnakeStep&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSnake&amp; snake) {</div>
+<div class="line">            <span class="keywordflow">if</span> (Game.bGameOver) {</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Restart)) {</div>
+<div class="line">                    StartRound(it.world());</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// Turn, but never straight back into yourself.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 turn = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Turn);</div>
+<div class="line">            <span class="keywordflow">if</span> (turn != glm::vec2(0, 0) &amp;&amp; turn != -snake.Direction) {</div>
+<div class="line">                snake.NextDirection = turn;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            snake.StepTimer -= it.delta_time();</div>
+<div class="line">            <span class="keywordflow">if</span> (snake.StepTimer &gt; 0.f) {</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            snake.StepTimer += std::max(0.05f, 0.12f - Game.Score * 0.003f);</div>
+<div class="line">            snake.Direction = snake.NextDirection;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 head = Game.Body.front().get&lt;FGridCell&gt;().Cell;</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 newHead = head + snake.Direction;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bHitWall = newHead.x &lt; 0 || newHead.x &gt;= GridW</div>
+<div class="line">                               || newHead.y &lt; 0 || newHead.y &gt;= GridH;</div>
+<div class="line">            <span class="keywordflow">if</span> (bHitWall || IsOnSnake(newHead)) {</div>
+<div class="line">                Game.bGameOver = <span class="keyword">true</span>;</div>
+<div class="line">                Game.Best = std::max(Game.Best, Game.Score);</div>
+<div class="line">                Log::Snake::Info(<span class="stringliteral">&quot;Crashed with a score of {}&quot;</span>, Game.Score);</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            SetColor(Game.Body.front(), BodyColor);</div>
+<div class="line">            flecs::entity food = it.world().lookup(<span class="stringliteral">&quot;Food&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">if</span> (food.get&lt;FGridCell&gt;().Cell == newHead) {</div>
+<div class="line">                <span class="comment">// Grow: move the food, then add a new head.</span></div>
+<div class="line">                food.set&lt;FGridCell&gt;({ .Cell = RandomFreeCell(newHead) });</div>
+<div class="line">                Game.Body.push_front(SpawnCell(it.world(), newHead, HeadColor));</div>
+<div class="line">                ++Game.Score;</div>
+<div class="line">            } <span class="keywordflow">else</span> {</div>
+<div class="line">                <span class="comment">// Move: reuse the tail segment as the new head,</span></div>
+<div class="line">                <span class="comment">// instead of destroying one entity and creating another.</span></div>
+<div class="line">                flecs::entity tail = Game.Body.back();</div>
+<div class="line">                Game.Body.pop_back();</div>
+<div class="line">                tail.set&lt;FGridCell&gt;({ .Cell = newHead });</div>
+<div class="line">                SetColor(tail, HeadColor);</div>
+<div class="line">                Game.Body.push_front(tail);</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting a round</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> StartRound(<span class="keyword">const</span> flecs::world&amp; World) {</div>
+<div class="line">    <span class="keywordflow">for</span> (flecs::entity segment : Game.Body) {</div>
+<div class="line">        segment.destruct();</div>
+<div class="line">    }</div>
+<div class="line">    Game.Body.clear();</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> SDL_FColor color = (i == 0) ? HeadColor : BodyColor;</div>
+<div class="line">        Game.Body.push_back(SpawnCell(World, {8.f - i, 9.f}, color));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    World.lookup(<span class="stringliteral">&quot;Snake&quot;</span>).set&lt;FSnake&gt;({});</div>
+<div class="line">    World.lookup(<span class="stringliteral">&quot;Food&quot;</span>).set&lt;FGridCell&gt;({ .Cell = {20.f, 9.f} });</div>
+<div class="line">    Game.Score = 0;</div>
+<div class="line">    Game.bGameOver = <span class="keyword">false</span>;</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Snake.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Snake: steer the snake to eat the red food. Each bite makes it longer and faster.</span></div>
+<div class="line"><span class="comment">// Hitting a wall or your own tail ends the round.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Controls: W A S D or arrow keys to turn. R to restart after a crash.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows: press bindings with the OVERRIDE operator, game logic on a fixed time step,</span></div>
+<div class="line"><span class="comment">// keeping game data (grid cells) separate from presentation (a system that copies</span></div>
+<div class="line"><span class="comment">// grid cells into transforms), reusing entities instead of destroying them, and</span></div>
+<div class="line"><span class="comment">// changing a sprite&#39;s colour at runtime. Uses no files.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Input/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;deque&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;random&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Snake, debug)</div>
+<div class="line"> </div>
+<div class="line"></div>
+<div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
+<div class="line"><span class="comment">// OVERRIDE: the action&#39;s value is the value of the last binding that triggered,</span></div>
+<div class="line"><span class="comment">// instead of the sum of all of them. Exactly what a &quot;turn&quot; needs.</span></div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(Turn, glm::vec2, OVERRIDE)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// ---- Components -------------------------------------------------------------</span></div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <span class="comment">// Position on the game grid, in cells. A system turns it into a transform.</span></div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FGridCell,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Cell, glm::vec2(0, 0)))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FSnake,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Direction, glm::vec2(1, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, NextDirection, glm::vec2(1, 0)),</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, StepTimer, 0.f))</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FFood)</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// ---- Game state -------------------------------------------------------------</span></div>
+<div class="line">constexpr <span class="keywordtype">float</span> CellSize = 10.f;</div>
+<div class="line">constexpr <span class="keywordtype">int</span> GridW = 32;            <span class="comment">// 32 x 10 = 320 world units</span></div>
+<div class="line">constexpr <span class="keywordtype">int</span> GridH = 18;            <span class="comment">// 18 x 10 = 180 world units</span></div>
+<div class="line">constexpr SDL_FColor HeadColor {0.55f, 1.f, 0.45f, 1.f};</div>
+<div class="line"><span class="keyword">constexpr</span> SDL_FColor BodyColor {0.2f, 0.7f, 0.3f, 1.f};</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">struct </span>SSnakeState {</div>
+<div class="line">    std::deque&lt;flecs::entity&gt; Body;  <span class="comment">// Body.front() is the head</span></div>
+<div class="line">    <span class="keywordtype">int</span> Score = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> Best = 0;</div>
+<div class="line">    <span class="keywordtype">bool</span> bGameOver = <span class="keyword">false</span>;</div>
+<div class="line">};</div>
+<div class="line"><span class="keyword">static</span> SSnakeState Game;</div>
+<div class="line"><span class="keyword">static</span> std::mt19937 Rng { std::random_device{}() };</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Scene helpers (the same in every example) -------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    TObjectPtr&lt;Graphics::STexture2D&gt; texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    TObjectPtr&lt;Filesystem::SAssetData&gt; assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; World, SDL_FColor Color) {</div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 viewSize {GridW * CellSize, GridH * CellSize};</div>
+<div class="line"> </div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({ .CameraSize = viewSize, .Boundaries = {0, 0, 0, 0} })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = viewSize,</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// A grid-aligned square. The transform is filled in by the SnapToGrid system.</span></div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnCell(<span class="keyword">const</span> flecs::world&amp; World, glm::vec2 Cell,</div>
+<div class="line">                               SDL_FColor Color) {</div>
+<div class="line">    <span class="keywordflow">return</span> World.entity()</div>
+<div class="line">        .set&lt;FGridCell&gt;({ .Cell = Cell })</div>
+<div class="line">        .set&lt;FTransformComponent&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {CellSize - 1.f, CellSize - 1.f},   <span class="comment">// 1 px gap between cells</span></div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> SetColor(flecs::entity Entity, SDL_FColor Color) {</div>
+<div class="line">    Entity.get_mut&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().Color = Color;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> IsOnSnake(glm::vec2 Cell) {</div>
+<div class="line">    <span class="keywordflow">return</span> std::ranges::any_of(Game.Body, [Cell](flecs::entity segment) {</div>
+<div class="line">        <span class="comment">// try_get: a segment created this frame inside a system gets its</span></div>
+<div class="line">        <span class="comment">// components at the end of the frame&#39;s deferred block, so it may not</span></div>
+<div class="line">        <span class="comment">// have an FGridCell yet.</span></div>
+<div class="line">        const FGridCell* grid = segment.try_get&lt;FGridCell&gt;();</div>
+<div class="line">        return grid != nullptr &amp;&amp; grid-&gt;Cell == Cell;</div>
+<div class="line">    });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> glm::vec2 RandomFreeCell(glm::vec2 AlsoAvoid) {</div>
+<div class="line">    std::uniform_int_distribution&lt;int&gt; x(0, GridW - 1), y(0, GridH - 1);</div>
+<div class="line">    glm::vec2 cell;</div>
+<div class="line">    <span class="keywordflow">do</span> {</div>
+<div class="line">        cell = {<span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(x(Rng)), <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(y(Rng))};</div>
+<div class="line">    } <span class="keywordflow">while</span> (cell == AlsoAvoid || IsOnSnake(cell));</div>
+<div class="line">    <span class="keywordflow">return</span> cell;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> StartRound(<span class="keyword">const</span> flecs::world&amp; World) {</div>
+<div class="line">    <span class="keywordflow">for</span> (flecs::entity segment : Game.Body) {</div>
+<div class="line">        segment.destruct();</div>
+<div class="line">    }</div>
+<div class="line">    Game.Body.clear();</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 4; ++i) {</div>
+<div class="line">        <span class="keyword">const</span> SDL_FColor color = (i == 0) ? HeadColor : BodyColor;</div>
+<div class="line">        Game.Body.push_back(SpawnCell(World, {8.f - i, 9.f}, color));</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    World.lookup(<span class="stringliteral">&quot;Snake&quot;</span>).set&lt;FSnake&gt;({});</div>
+<div class="line">    World.lookup(<span class="stringliteral">&quot;Food&quot;</span>).set&lt;FGridCell&gt;({ .Cell = {20.f, 9.f} });</div>
+<div class="line">    Game.Score = 0;</div>
+<div class="line">    Game.bGameOver = <span class="keyword">false</span>;</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
+<div class="line"><span class="keyword">class </span>SnakeHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Snake&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Score %d    Best %d&quot;</span>, Game.Score, Game.Best);</div>
+<div class="line">        <span class="keywordflow">if</span> (Game.bGameOver) {</div>
+<div class="line">            ImGui::TextColored({1.f, 0.4f, 0.4f, 1.f}, <span class="stringliteral">&quot;Crashed! Press R to restart.&quot;</span>);</div>
+<div class="line">        } <span class="keywordflow">else</span> {</div>
+<div class="line">            ImGui::TextDisabled(<span class="stringliteral">&quot;WASD or arrow keys to turn&quot;</span>);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FGridCell, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FSnake, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FFood, world);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Press bindings trigger once, on the frame the key goes down.</span></div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Turn, {</div>
+<div class="line">        {SDL_SCANCODE_W, {0, -1}}, {SDL_SCANCODE_UP, {0, -1}},</div>
+<div class="line">        {SDL_SCANCODE_S, {0,  1}}, {SDL_SCANCODE_DOWN, {0,  1}},</div>
+<div class="line">        {SDL_SCANCODE_A, {-1, 0}}, {SDL_SCANCODE_LEFT, {-1, 0}},</div>
+<div class="line">        {SDL_SCANCODE_D, {1,  0}}, {SDL_SCANCODE_RIGHT, {1,  0}},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Restart, { {SDL_SCANCODE_R, <span class="keyword">true</span>} });</div>
+<div class="line"> </div>
+<div class="line">    CreateCameraAndBackground(world, {0.05f, 0.09f, 0.07f, 1.f});</div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Snake&quot;</span>).set&lt;FSnake&gt;({});</div>
+<div class="line">    SpawnCell(world, {0, 0}, {1.f, 0.3f, 0.3f, 1.f}).set_name(<span class="stringliteral">&quot;Food&quot;</span>).add&lt;FFood&gt;();</div>
+<div class="line">    StartRound(world);</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Game logic: read turns every frame, move one cell every step.</span></div>
+<div class="line">    world.system&lt;FSnake&gt;(<span class="stringliteral">&quot;SnakeStep&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSnake&amp; snake) {</div>
+<div class="line">            <span class="keywordflow">if</span> (Game.bGameOver) {</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Restart)) {</div>
+<div class="line">                    StartRound(it.world());</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// Turn, but never straight back into yourself.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 turn = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Turn);</div>
+<div class="line">            <span class="keywordflow">if</span> (turn != glm::vec2(0, 0) &amp;&amp; turn != -snake.Direction) {</div>
+<div class="line">                snake.NextDirection = turn;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            snake.StepTimer -= it.delta_time();</div>
+<div class="line">            <span class="keywordflow">if</span> (snake.StepTimer &gt; 0.f) {</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            snake.StepTimer += std::max(0.05f, 0.12f - Game.Score * 0.003f);</div>
+<div class="line">            snake.Direction = snake.NextDirection;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 head = Game.Body.front().get&lt;FGridCell&gt;().Cell;</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 newHead = head + snake.Direction;</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bHitWall = newHead.x &lt; 0 || newHead.x &gt;= GridW</div>
+<div class="line">                               || newHead.y &lt; 0 || newHead.y &gt;= GridH;</div>
+<div class="line">            <span class="keywordflow">if</span> (bHitWall || IsOnSnake(newHead)) {</div>
+<div class="line">                Game.bGameOver = <span class="keyword">true</span>;</div>
+<div class="line">                Game.Best = std::max(Game.Best, Game.Score);</div>
+<div class="line">                Log::Snake::Info(<span class="stringliteral">&quot;Crashed with a score of {}&quot;</span>, Game.Score);</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            SetColor(Game.Body.front(), BodyColor);</div>
+<div class="line">            flecs::entity food = it.world().lookup(<span class="stringliteral">&quot;Food&quot;</span>);</div>
+<div class="line">            <span class="keywordflow">if</span> (food.get&lt;FGridCell&gt;().Cell == newHead) {</div>
+<div class="line">                <span class="comment">// Grow: move the food, then add a new head.</span></div>
+<div class="line">                food.set&lt;FGridCell&gt;({ .Cell = RandomFreeCell(newHead) });</div>
+<div class="line">                Game.Body.push_front(SpawnCell(it.world(), newHead, HeadColor));</div>
+<div class="line">                ++Game.Score;</div>
+<div class="line">            } <span class="keywordflow">else</span> {</div>
+<div class="line">                <span class="comment">// Move: reuse the tail segment as the new head,</span></div>
+<div class="line">                <span class="comment">// instead of destroying one entity and creating another.</span></div>
+<div class="line">                flecs::entity tail = Game.Body.back();</div>
+<div class="line">                Game.Body.pop_back();</div>
+<div class="line">                tail.set&lt;FGridCell&gt;({ .Cell = newHead });</div>
+<div class="line">                SetColor(tail, HeadColor);</div>
+<div class="line">                Game.Body.push_front(tail);</div>
+<div class="line">            }</div>
+<div class="line">        });</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Presentation: place every grid entity in the world.</span></div>
+<div class="line">    <span class="comment">// Runs after the game logic (PostUpdate).</span></div>
+<div class="line">    world.system&lt;<span class="keyword">const</span> FGridCell, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;SnapToGrid&quot;</span>)</div>
+<div class="line">        .kind(flecs::PostUpdate)</div>
+<div class="line">        .each([](<span class="keyword">const</span> FGridCell&amp; grid, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform) {</div>
+<div class="line">            transform.Location = {grid.Cell.x * CellSize, grid.Cell.y * CellSize, 0.f};</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SnakeHud&gt;</a>();</div>
+<div class="line">    Log::Snake::Info(<span class="stringliteral">&quot;Snake started. Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__ecs_html_gaaa910f10b526ad0b951fd8f6e70cf66d"><div class="ttname"><a href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a></div><div class="ttdeci">#define ECS_MEMBER(MemberType, MemberName, DefaultValue)</div><div class="ttdoc">One field of a component: its type, name and default value.</div><div class="ttdef"><b>Definition</b> Components.hpp:61</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__input_html_ga02d3523d67343616c2ed3db12b4cd48d"><div class="ttname"><a href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION(InActionName, ValueType)</div><div class="ttdoc">Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:103</div></div>
+<div class="ttc" id="agroup__input_html_ga10f99da27a43c73d2fc8ec238b1db84e"><div class="ttname"><a href="group__input.html#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION_WITH_PARAMS(InActionName, ValueType, Operator)</div><div class="ttdoc">Like DEFINE_INPUT_ACTION, with a chosen Input::EInputModifierOperation (OVERRIDE, ADD,...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:98</div></div>
+<div class="ttc" id="agroup__input_html_ga61a6a4c192b6c90c1f7c15b2841c7d44"><div class="ttname"><a href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a></div><div class="ttdeci">TActionValue GetValue(const SAction&lt; TActionValue &gt; &amp;Action)</div><div class="ttdoc">Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...</div><div class="ttdef"><b>Definition</b> Module.hpp:72</div></div>
+<div class="ttc" id="agroup__input_html_ga73ab4a055d9eee1429fa07130693ae29"><div class="ttname"><a href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a></div><div class="ttdeci">void AddInputBindings_Press(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger on the frame their key goes down (and on key repeat).</div><div class="ttdef"><b>Definition</b> Module.hpp:35</div></div>
+<div class="ttc" id="agroup__input_html_ga96cd377a209587f7494f3357edd5fcec"><div class="ttname"><a href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a></div><div class="ttdeci">bool IsActionTriggered(const SAction&lt; TValueType &gt; &amp;Action)</div><div class="ttdoc">Returns true if any of the action&#39;s bindings triggered this frame.</div><div class="ttdef"><b>Definition</b> Module.hpp:84</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,633 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Breakout | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div><div class="header">
+  <div class="headertitle"><div class="title">Breakout </div></div>
+</div><!--header-->
+<div class="contents">
+<div class="textblock"><p class="lede"></p>
+<p>Bounce the ball off your paddle to clear all fifty bricks. You have three balls.</p>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" class="src-link">examples/games/Breakout.cpp</a></span><span><b>Executable</b> <code>BreakoutGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>Space</kbd> to launch, <kbd>R</kbd> to restart</span></div><div class="image">
+<img src="breakout.png" alt=""/>
+<div class="caption">
+Breakout: one brick gone, the ball back on the paddle after a miss</div></div>
+<p><b>Shows:</b> velocity-based movement, bouncing off walls and rectangles, destroying entities on hit, counting entities with a query to detect a win, and several input actions.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
+Components and bricks</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions and components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(MoveX, <span class="keywordtype">float</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Launch, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FPaddle)</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FBall,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Velocity, glm::vec2(0, 0)))</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FBrick,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Points, 10.f))</div>
+<div class="line">}</div>
+</div><!-- fragment --><p>  </details></p>
+<p>Bricks are ordinary sprites with an <span class="tt">FBrick</span> component holding their score:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Building the wall of bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// 10 columns x 5 rows of bricks. Higher rows are worth more.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> SpawnBricks(<span class="keyword">const</span> flecs::world&amp; World) {</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor rowColors[5] = {</div>
+<div class="line">        {1.f, 0.35f, 0.35f, 1.f}, {1.f, 0.6f, 0.3f, 1.f}, {1.f, 0.85f, 0.3f, 1.f},</div>
+<div class="line">        {0.45f, 0.85f, 0.4f, 1.f}, {0.35f, 0.65f, 1.f, 1.f}};</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row = 0; row &lt; 5; ++row) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> col = 0; col &lt; 10; ++col) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 position {11.f + col * 30.f, 22.f + row * 10.f};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> points = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>((5 - row) * 10);</div>
+<div class="line">            SpawnRect(World, position, {28.f, 8.f}, rowColors[row])</div>
+<div class="line">                .set&lt;FBrick&gt;({ .Points = points });</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+</div><!-- fragment --> <div class="fragment"><div class="line">    CreateCameraAndBackground(world, {0.08f, 0.06f, 0.12f, 1.f});</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 paddleStart {(ScreenW - 40.f) / 2.f, 166.f};</div>
+<div class="line">    SpawnRect(world, paddleStart, {40.f, 5.f}, {0.9f, 0.9f, 1.f, 1.f})</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Paddle&quot;</span>)</div>
+<div class="line">        .add&lt;FPaddle&gt;();</div>
+<div class="line">    SpawnRect(world, {0.f, 0.f}, {BallSize, BallSize}, {1.f, 1.f, 1.f, 1.f})</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Ball&quot;</span>)</div>
+<div class="line">        .set&lt;FBall&gt;({});</div>
+<div class="line">    SpawnBricks(world);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">auto</span> bricks = world.query&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                              <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                              <span class="keyword">const</span> FBrick&gt;();</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
+Paddle</h2>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Paddle: follows the MoveX action.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FPaddle&gt;(<span class="stringliteral">&quot;MovePaddle&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite, <span class="keyword">const</span> FPaddle&amp;) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> moveX = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::MoveX);</div>
+<div class="line">            transform.Location.x += moveX * 180.f * it.delta_time();</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> maxX = ScreenW - sprite.TextureSize.x;</div>
+<div class="line">            transform.Location.x = std::clamp(transform.Location.x, 0.f, maxX);</div>
+<div class="line">        });</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
+Ball</h2>
+<p>The ball waits on the paddle until <kbd>Space</kbd>:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Launching</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="keyword">const</span> flecs::entity paddle = world.lookup(<span class="stringliteral">&quot;Paddle&quot;</span>);</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 paddlePos = PositionOf(paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;());</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 paddleSize = paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().TextureSize;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (Game.bBallOnPaddle) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> x = paddlePos.x + (paddleSize.x - BallSize) / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> y = paddlePos.y - BallSize - 1.f;</div>
+<div class="line">                transform.Location = {x, y, 0.f};</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Launch)) {</div>
+<div class="line">                    ball.Velocity = glm::normalize(glm::vec2(0.5f, -1.f)) * StartSpeed;</div>
+<div class="line">                    Game.bBallOnPaddle = <span class="keyword">false</span>;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+</div><!-- fragment --><p>  </details></p>
+<p>It moves by its velocity, bounces off three walls, and is lost below the screen. Hitting the paddle sends it back up at an angle that depends on where it hit:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Walls and paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Walls</span></div>
+<div class="line">            <span class="keywordflow">if</span> (pos.x &lt; 0.f) {                       <span class="comment">// left wall</span></div>
+<div class="line">                pos.x = 0.f;</div>
+<div class="line">                ball.Velocity.x = std::abs(ball.Velocity.x);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.x &gt; ScreenW - BallSize) {        <span class="comment">// right wall</span></div>
+<div class="line">                pos.x = ScreenW - BallSize;</div>
+<div class="line">                ball.Velocity.x = -std::abs(ball.Velocity.x);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.y &lt; 0.f) {                       <span class="comment">// ceiling</span></div>
+<div class="line">                pos.y = 0.f;</div>
+<div class="line">                ball.Velocity.y = std::abs(ball.Velocity.y);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.y &gt; ScreenH) {                   <span class="comment">// missed: back to the paddle</span></div>
+<div class="line">                Game.bBallOnPaddle = <span class="keyword">true</span>;</div>
+<div class="line">                Game.bLost = --Game.Lives &lt;= 0;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// Paddle: the further from the centre the ball hits, the sharper the angle.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 ballSize {BallSize, BallSize};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bFalling = ball.Velocity.y &gt; 0.f;</div>
+<div class="line">            <span class="keywordflow">if</span> (bFalling &amp;&amp; Overlaps(pos, ballSize, paddlePos, paddleSize)) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> speed = glm::length(ball.Velocity);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> ballCentre = pos.x + BallSize / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> paddleCentre = paddlePos.x + paddleSize.x / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> offset = (ballCentre - paddleCentre) / (paddleSize.x / 2.f);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> sideways = std::clamp(offset, -1.f, 1.f) * 1.2f;</div>
+<div class="line">                ball.Velocity = glm::normalize(glm::vec2(sideways, -1.f)) * speed;</div>
+<div class="line">                pos.y = paddlePos.y - BallSize;</div>
+<div class="line">            }</div>
+</div><!-- fragment --><p>  </details></p>
+<p>For bricks, the overlap tells which side was hit: a narrow horizontal overlap means a side hit. The brick is destroyed, and when the query counts only the brick being destroyed, the board is clear:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Bricks: bounce off the first one hit,</span></div>
+<div class="line">            <span class="comment">// along the axis with the smaller overlap.</span></div>
+<div class="line">            <span class="keywordtype">bool</span> bHitBrick = <span class="keyword">false</span>;</div>
+<div class="line">            bricks.each([&amp;](flecs::entity brick,</div>
+<div class="line">                            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; brickTransform,</div>
+<div class="line">                            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; brickSprite,</div>
+<div class="line">                            <span class="keyword">const</span> FBrick&amp; brickData) {</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 brickPos = PositionOf(brickTransform);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 brickSize = brickSprite.TextureSize;</div>
+<div class="line">                <span class="keywordflow">if</span> (bHitBrick || !Overlaps(pos, ballSize, brickPos, brickSize)) {</div>
+<div class="line">                    <span class="keywordflow">return</span>;</div>
+<div class="line">                }</div>
+<div class="line">                bHitBrick = <span class="keyword">true</span>;</div>
+<div class="line"> </div>
+<div class="line">                <span class="comment">// How far the ball and the brick overlap on each axis</span></div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 overlapMin = glm::max(pos, brickPos);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 overlapMax = glm::min(pos + ballSize,</div>
+<div class="line">                                                      brickPos + brickSize);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> overlapX = overlapMax.x - overlapMin.x;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> overlapY = overlapMax.y - overlapMin.y;</div>
+<div class="line">                <span class="keywordflow">if</span> (overlapX &lt; overlapY) {</div>
+<div class="line">                    ball.Velocity.x = -ball.Velocity.x;</div>
+<div class="line">                } <span class="keywordflow">else</span> {</div>
+<div class="line">                    ball.Velocity.y = -ball.Velocity.y;</div>
+<div class="line">                }</div>
+<div class="line">                ball.Velocity *= 1.02f;   <span class="comment">// speed up a little with every brick</span></div>
+<div class="line"> </div>
+<div class="line">                Game.Score += <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(brickData.Points);</div>
+<div class="line">                brick.destruct();</div>
+<div class="line">            });</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// The destroyed brick is still counted until the deferred destruct</span></div>
+<div class="line">            <span class="comment">// is applied, so compare with 1.</span></div>
+<div class="line">            <span class="keywordflow">if</span> (bHitBrick &amp;&amp; bricks.count() &lt;= 1) {</div>
+<div class="line">                Game.bWon = <span class="keyword">true</span>;</div>
+<div class="line">                Log::Breakout::Info(<span class="stringliteral">&quot;Cleared the board with {} points&quot;</span>, Game.Score);</div>
+<div class="line">            }</div>
+</div><!-- fragment --><p>  </details></p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md108"></a>
+Full source</h2>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Breakout.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Breakout: bounce the ball off your paddle to clear every brick. You have three balls.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Controls: A / D or Left / Right to move, Space to launch the ball, R to restart.</span></div>
+<div class="line"><span class="comment">//</span></div>
+<div class="line"><span class="comment">// Shows: velocity-based movement, bouncing off walls and rectangles, destroying</span></div>
+<div class="line"><span class="comment">// entities on hit, counting entities with a query to detect a win, and several</span></div>
+<div class="line"><span class="comment">// input actions sharing keys. Uses no files.</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Log/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Input/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Editor/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Filesystem/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Types/Graphics.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Module.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="preprocessor">#include &lt;imgui.h&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;glm/geometric.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;glm/common.hpp&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;algorithm&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cmath&gt;</span></div>
+<div class="line"><span class="preprocessor">#include &lt;cstdlib&gt;</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// The engine&#39;s components (FTransformComponent, FTexture2DComponent, ...).</span></div>
+<div class="line"><span class="keyword">using namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a>;</div>
+<div class="line"> </div>
+<div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Breakout, debug)</div>
+<div class="line"> </div>
+<div class="line"></div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(MoveX, <span class="keywordtype">float</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Launch, <span class="keywordtype">bool</span>)</div>
+<div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FPaddle)</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FBall,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Velocity, glm::vec2(0, 0)))</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FBrick,</div>
+<div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Points, 10.f))</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line">constexpr <span class="keywordtype">float</span> ScreenW = 320.f;</div>
+<div class="line">constexpr <span class="keywordtype">float</span> ScreenH = 180.f;</div>
+<div class="line">constexpr <span class="keywordtype">float</span> BallSize = 5.f;</div>
+<div class="line">constexpr <span class="keywordtype">float</span> StartSpeed = 140.f;</div>
+<div class="line"> </div>
+<div class="line">struct SBreakoutState {</div>
+<div class="line">    <span class="keywordtype">int</span> Score = 0;</div>
+<div class="line">    <span class="keywordtype">int</span> Lives = 3;</div>
+<div class="line">    <span class="keywordtype">bool</span> bBallOnPaddle = <span class="keyword">true</span>;</div>
+<div class="line">    <span class="keywordtype">bool</span> bWon = <span class="keyword">false</span>;</div>
+<div class="line">    <span class="keywordtype">bool</span> bLost = <span class="keyword">false</span>;</div>
+<div class="line">};</div>
+<div class="line"><span class="keyword">static</span> SBreakoutState Game;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// ---- Scene helpers (the same in every example) -------------------------------</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
+<div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
+<div class="line">    <span class="keyword">const</span> Uint32 white = SDL_MapSurfaceRGBA(surface, 255, 255, 255, 255);</div>
+<div class="line">    SDL_FillSurfaceRect(surface, <span class="keyword">nullptr</span>, white);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Graphics::STexture2D&gt;</a> texture;</div>
+<div class="line">    texture-&gt;Surface = surface;</div>
+<div class="line">    texture-&gt;Width = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;Height = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>(Size);</div>
+<div class="line">    texture-&gt;AssetPath = AssetPath;</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Filesystem::SAssetData&gt;</a> assetData;</div>
+<div class="line">    assetData-&gt;AssetPath = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetName = AssetPath;</div>
+<div class="line">    assetData-&gt;AssetType = <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>;</div>
+<div class="line">    assetData-&gt;ObjectData = texture;</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a>(assetData);</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> CreateCameraAndBackground(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, SDL_FColor Color) {</div>
+<div class="line">    <a class="code hl_namespace" href="namespace_world.html">World</a>.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({</div>
+<div class="line">            .CameraSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Boundaries = {0, 0, 0, 0},</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    World.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {ScreenW, ScreenH},</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> flecs::entity SpawnRect(<span class="keyword">const</span> flecs::world&amp; World, glm::vec2 Position,</div>
+<div class="line">                               glm::vec2 Size, SDL_FColor Color) {</div>
+<div class="line">    <span class="keywordflow">return</span> World.entity()</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {Position.x, Position.y, 0.f} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = Size,</div>
+<div class="line">            .Color = Color,</div>
+<div class="line">        })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> glm::vec2 PositionOf(<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; Transform) {</div>
+<div class="line">    <span class="keywordflow">return</span> {Transform.Location.x, Transform.Location.y};</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">bool</span> Overlaps(glm::vec2 PosA, glm::vec2 SizeA, glm::vec2 PosB, glm::vec2 SizeB) {</div>
+<div class="line">    <span class="keywordflow">return</span> PosA.x &lt; PosB.x + SizeB.x &amp;&amp; PosB.x &lt; PosA.x + SizeA.x &amp;&amp;</div>
+<div class="line">           PosA.y &lt; PosB.y + SizeB.y &amp;&amp; PosB.y &lt; PosA.y + SizeA.y;</div>
+<div class="line">}</div>
+<div class="line"></div>
+<div class="line"><span class="comment">// 10 columns x 5 rows of bricks. Higher rows are worth more.</span></div>
+<div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> SpawnBricks(<span class="keyword">const</span> flecs::world&amp; World) {</div>
+<div class="line">    <span class="keyword">const</span> SDL_FColor rowColors[5] = {</div>
+<div class="line">        {1.f, 0.35f, 0.35f, 1.f}, {1.f, 0.6f, 0.3f, 1.f}, {1.f, 0.85f, 0.3f, 1.f},</div>
+<div class="line">        {0.45f, 0.85f, 0.4f, 1.f}, {0.35f, 0.65f, 1.f, 1.f}};</div>
+<div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> row = 0; row &lt; 5; ++row) {</div>
+<div class="line">        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> col = 0; col &lt; 10; ++col) {</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 position {11.f + col * 30.f, 22.f + row * 10.f};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> points = <span class="keyword">static_cast&lt;</span><span class="keywordtype">float</span><span class="keyword">&gt;</span>((5 - row) * 10);</div>
+<div class="line">            SpawnRect(World, position, {28.f, 8.f}, rowColors[row])</div>
+<div class="line">                .set&lt;FBrick&gt;({ .Points = points });</div>
+<div class="line">        }</div>
+<div class="line">    }</div>
+<div class="line">}</div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">class </span>BreakoutHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
+<div class="line"><span class="keyword">protected</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
+<div class="line">        ImGui::SetWindowCollapsed(<span class="stringliteral">&quot;Dear ImGui Demo&quot;</span>, <span class="keyword">true</span>, ImGuiCond_Once);</div>
+<div class="line"> </div>
+<div class="line">        <span class="keyword">const</span> ImGuiViewport* viewport = ImGui::GetMainViewport();</div>
+<div class="line">        <span class="keyword">const</span> ImVec2 topRight {viewport-&gt;Pos.x + viewport-&gt;Size.x - 16.f,</div>
+<div class="line">                               viewport-&gt;Pos.y + 16.f};</div>
+<div class="line">        ImGui::SetNextWindowPos(topRight, ImGuiCond_Always, {1.f, 0.f});</div>
+<div class="line">        <span class="keyword">const</span> ImGuiWindowFlags flags = ImGuiWindowFlags_NoDecoration</div>
+<div class="line">                                     | ImGuiWindowFlags_AlwaysAutoResize</div>
+<div class="line">                                     | ImGuiWindowFlags_NoInputs;</div>
+<div class="line">        ImGui::Begin(<span class="stringliteral">&quot;Breakout&quot;</span>, <span class="keyword">nullptr</span>, flags);</div>
+<div class="line">        ImGui::Text(<span class="stringliteral">&quot;Score %d    Balls %d&quot;</span>, Game.Score, Game.Lives);</div>
+<div class="line">        <span class="keyword">const</span> ImVec4 green {0.5f, 1.f, 0.5f, 1.f};</div>
+<div class="line">        <span class="keyword">const</span> ImVec4 red {1.f, 0.4f, 0.4f, 1.f};</div>
+<div class="line">        <span class="keywordflow">if</span> (Game.bWon) {</div>
+<div class="line">            ImGui::TextColored(green, <span class="stringliteral">&quot;Cleared! Press R to play again.&quot;</span>);</div>
+<div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (Game.bLost) {</div>
+<div class="line">            ImGui::TextColored(red, <span class="stringliteral">&quot;Out of balls. Press R to restart.&quot;</span>);</div>
+<div class="line">        } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (Game.bBallOnPaddle) {</div>
+<div class="line">            ImGui::TextDisabled(<span class="stringliteral">&quot;Space to launch&quot;</span>);</div>
+<div class="line">        }</div>
+<div class="line">        ImGui::End();</div>
+<div class="line">    }</div>
+<div class="line">};</div>
+<div class="line"> </div>
+<div class="line"><span class="keywordtype">int</span> main() {</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FPaddle, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FBall, world);</div>
+<div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FBrick, world);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::MoveX, {</div>
+<div class="line">        {SDL_SCANCODE_A, -1.f}, {SDL_SCANCODE_LEFT, -1.f},</div>
+<div class="line">        {SDL_SCANCODE_D,  1.f}, {SDL_SCANCODE_RIGHT, 1.f},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Launch, {</div>
+<div class="line">        {SDL_SCANCODE_SPACE, <span class="keyword">true</span>},</div>
+<div class="line">    });</div>
+<div class="line">    <a class="code hl_function" href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a>(&amp;Input::Actions::Restart, { {SDL_SCANCODE_R, <span class="keyword">true</span>} });</div>
+<div class="line"></div>
+<div class="line">    CreateCameraAndBackground(world, {0.08f, 0.06f, 0.12f, 1.f});</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">const</span> glm::vec2 paddleStart {(ScreenW - 40.f) / 2.f, 166.f};</div>
+<div class="line">    SpawnRect(world, paddleStart, {40.f, 5.f}, {0.9f, 0.9f, 1.f, 1.f})</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Paddle&quot;</span>)</div>
+<div class="line">        .add&lt;FPaddle&gt;();</div>
+<div class="line">    SpawnRect(world, {0.f, 0.f}, {BallSize, BallSize}, {1.f, 1.f, 1.f, 1.f})</div>
+<div class="line">        .set_name(<span class="stringliteral">&quot;Ball&quot;</span>)</div>
+<div class="line">        .set&lt;FBall&gt;({});</div>
+<div class="line">    SpawnBricks(world);</div>
+<div class="line"> </div>
+<div class="line">    <span class="keyword">auto</span> bricks = world.query&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                              <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                              <span class="keyword">const</span> FBrick&gt;();</div>
+<div class="line"></div>
+<div class="line">    <span class="comment">// Paddle: follows the MoveX action.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
+<div class="line">                 <span class="keyword">const</span> FPaddle&gt;(<span class="stringliteral">&quot;MovePaddle&quot;</span>)</div>
+<div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite, <span class="keyword">const</span> FPaddle&amp;) {</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> moveX = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::MoveX);</div>
+<div class="line">            transform.Location.x += moveX * 180.f * it.delta_time();</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">float</span> maxX = ScreenW - sprite.TextureSize.x;</div>
+<div class="line">            transform.Location.x = std::clamp(transform.Location.x, 0.f, maxX);</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Ball: sits on the paddle until launched, then moves and bounces.</span></div>
+<div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, FBall&gt;(<span class="stringliteral">&quot;MoveBall&quot;</span>)</div>
+<div class="line">        .each([bricks](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
+<div class="line">                       FBall&amp; ball) {</div>
+<div class="line">            <span class="keyword">const</span> flecs::world world = it.world();</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Restart)) {</div>
+<div class="line">                bricks.each([](flecs::entity brick, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp;,</div>
+<div class="line">                               <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp;, <span class="keyword">const</span> FBrick&amp;) {</div>
+<div class="line">                    brick.destruct();</div>
+<div class="line">                });</div>
+<div class="line">                SpawnBricks(world);</div>
+<div class="line">                Game = {};</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (Game.bWon || Game.bLost) {</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"></div>
+<div class="line">            <span class="keyword">const</span> flecs::entity paddle = world.lookup(<span class="stringliteral">&quot;Paddle&quot;</span>);</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 paddlePos = PositionOf(paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;());</div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 paddleSize = paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().TextureSize;</div>
+<div class="line"> </div>
+<div class="line">            <span class="keywordflow">if</span> (Game.bBallOnPaddle) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> x = paddlePos.x + (paddleSize.x - BallSize) / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> y = paddlePos.y - BallSize - 1.f;</div>
+<div class="line">                transform.Location = {x, y, 0.f};</div>
+<div class="line">                <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Launch)) {</div>
+<div class="line">                    ball.Velocity = glm::normalize(glm::vec2(0.5f, -1.f)) * StartSpeed;</div>
+<div class="line">                    Game.bBallOnPaddle = <span class="keyword">false</span>;</div>
+<div class="line">                }</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            glm::vec2 pos = PositionOf(transform) + ball.Velocity * it.delta_time();</div>
+<div class="line"></div>
+<div class="line">            <span class="comment">// Walls</span></div>
+<div class="line">            <span class="keywordflow">if</span> (pos.x &lt; 0.f) {                       <span class="comment">// left wall</span></div>
+<div class="line">                pos.x = 0.f;</div>
+<div class="line">                ball.Velocity.x = std::abs(ball.Velocity.x);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.x &gt; ScreenW - BallSize) {        <span class="comment">// right wall</span></div>
+<div class="line">                pos.x = ScreenW - BallSize;</div>
+<div class="line">                ball.Velocity.x = -std::abs(ball.Velocity.x);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.y &lt; 0.f) {                       <span class="comment">// ceiling</span></div>
+<div class="line">                pos.y = 0.f;</div>
+<div class="line">                ball.Velocity.y = std::abs(ball.Velocity.y);</div>
+<div class="line">            }</div>
+<div class="line">            <span class="keywordflow">if</span> (pos.y &gt; ScreenH) {                   <span class="comment">// missed: back to the paddle</span></div>
+<div class="line">                Game.bBallOnPaddle = <span class="keyword">true</span>;</div>
+<div class="line">                Game.bLost = --Game.Lives &lt;= 0;</div>
+<div class="line">                <span class="keywordflow">return</span>;</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// Paddle: the further from the centre the ball hits, the sharper the angle.</span></div>
+<div class="line">            <span class="keyword">const</span> glm::vec2 ballSize {BallSize, BallSize};</div>
+<div class="line">            <span class="keyword">const</span> <span class="keywordtype">bool</span> bFalling = ball.Velocity.y &gt; 0.f;</div>
+<div class="line">            <span class="keywordflow">if</span> (bFalling &amp;&amp; Overlaps(pos, ballSize, paddlePos, paddleSize)) {</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> speed = glm::length(ball.Velocity);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> ballCentre = pos.x + BallSize / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> paddleCentre = paddlePos.x + paddleSize.x / 2.f;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> offset = (ballCentre - paddleCentre) / (paddleSize.x / 2.f);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> sideways = std::clamp(offset, -1.f, 1.f) * 1.2f;</div>
+<div class="line">                ball.Velocity = glm::normalize(glm::vec2(sideways, -1.f)) * speed;</div>
+<div class="line">                pos.y = paddlePos.y - BallSize;</div>
+<div class="line">            }</div>
+<div class="line"></div>
+<div class="line">            <span class="comment">// Bricks: bounce off the first one hit,</span></div>
+<div class="line">            <span class="comment">// along the axis with the smaller overlap.</span></div>
+<div class="line">            <span class="keywordtype">bool</span> bHitBrick = <span class="keyword">false</span>;</div>
+<div class="line">            bricks.each([&amp;](flecs::entity brick,</div>
+<div class="line">                            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; brickTransform,</div>
+<div class="line">                            <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; brickSprite,</div>
+<div class="line">                            <span class="keyword">const</span> FBrick&amp; brickData) {</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 brickPos = PositionOf(brickTransform);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 brickSize = brickSprite.TextureSize;</div>
+<div class="line">                <span class="keywordflow">if</span> (bHitBrick || !Overlaps(pos, ballSize, brickPos, brickSize)) {</div>
+<div class="line">                    <span class="keywordflow">return</span>;</div>
+<div class="line">                }</div>
+<div class="line">                bHitBrick = <span class="keyword">true</span>;</div>
+<div class="line"> </div>
+<div class="line">                <span class="comment">// How far the ball and the brick overlap on each axis</span></div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 overlapMin = glm::max(pos, brickPos);</div>
+<div class="line">                <span class="keyword">const</span> glm::vec2 overlapMax = glm::min(pos + ballSize,</div>
+<div class="line">                                                      brickPos + brickSize);</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> overlapX = overlapMax.x - overlapMin.x;</div>
+<div class="line">                <span class="keyword">const</span> <span class="keywordtype">float</span> overlapY = overlapMax.y - overlapMin.y;</div>
+<div class="line">                <span class="keywordflow">if</span> (overlapX &lt; overlapY) {</div>
+<div class="line">                    ball.Velocity.x = -ball.Velocity.x;</div>
+<div class="line">                } <span class="keywordflow">else</span> {</div>
+<div class="line">                    ball.Velocity.y = -ball.Velocity.y;</div>
+<div class="line">                }</div>
+<div class="line">                ball.Velocity *= 1.02f;   <span class="comment">// speed up a little with every brick</span></div>
+<div class="line"> </div>
+<div class="line">                Game.Score += <span class="keyword">static_cast&lt;</span><span class="keywordtype">int</span><span class="keyword">&gt;</span>(brickData.Points);</div>
+<div class="line">                brick.destruct();</div>
+<div class="line">            });</div>
+<div class="line"> </div>
+<div class="line">            <span class="comment">// The destroyed brick is still counted until the deferred destruct</span></div>
+<div class="line">            <span class="comment">// is applied, so compare with 1.</span></div>
+<div class="line">            <span class="keywordflow">if</span> (bHitBrick &amp;&amp; bricks.count() &lt;= 1) {</div>
+<div class="line">                Game.bWon = <span class="keyword">true</span>;</div>
+<div class="line">                Log::Breakout::Info(<span class="stringliteral">&quot;Cleared the board with {} points&quot;</span>, Game.Score);</div>
+<div class="line">            }</div>
+<div class="line"> </div>
+<div class="line">            transform.Location = {pos.x, pos.y, 0.f};</div>
+<div class="line">        });</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;BreakoutHud&gt;</a>();</div>
+<div class="line">    Log::Breakout::Info(<span class="stringliteral">&quot;Breakout started. Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line">    <span class="comment">// Known issue: avoid the crash in static destructors after teardown.</span></div>
+<div class="line">    std::quick_exit(0);</div>
+<div class="line">}</div>
+<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
+<div class="ttc" id="agroup__ecs_html_gaaa910f10b526ad0b951fd8f6e70cf66d"><div class="ttname"><a href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a></div><div class="ttdeci">#define ECS_MEMBER(MemberType, MemberName, DefaultValue)</div><div class="ttdoc">One field of a component: its type, name and default value.</div><div class="ttdef"><b>Definition</b> Components.hpp:61</div></div>
+<div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
+<div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
+<div class="ttc" id="agroup__ecs_html_gaff08fea3b0c4020dbac4502dc80d7c3e"><div class="ttname"><a href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a></div><div class="ttdeci">#define DEFINE_COMPONENT(ComponentName,...)</div><div class="ttdoc">Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...</div><div class="ttdef"><b>Definition</b> Components.hpp:88</div></div>
+<div class="ttc" id="agroup__editor_html_ga0558e9b9ebed0d54bbd32eb0c4b93ffe"><div class="ttname"><a href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open</a></div><div class="ttdeci">TObjectPtr&lt; TEditorTool &gt; Open()</div><div class="ttdoc">Opens the tool of type TEditorTool, creating and registering it the first time.</div><div class="ttdef"><b>Definition</b> Module.hpp:25</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__engine__core_html_gac50a31fa0c568178e2919918f34b296d"><div class="ttname"><a href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a></div><div class="ttdeci">void TeardownPlugins()</div><div class="ttdoc">Shuts the engine modules down in reverse order and calls SDL_Quit().</div></div>
+<div class="ttc" id="agroup__engine__core_html_gaf4c789fb939a0870426c698a5124a0ee"><div class="ttname"><a href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a></div><div class="ttdeci">void Run()</div><div class="ttdoc">Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga67ef61bdf17c2c5152b74f3c978d9871"><div class="ttname"><a href="group__filesystem.html#ga67ef61bdf17c2c5152b74f3c978d9871">Filesystem::RegisterAssetData</a></div><div class="ttdeci">void RegisterAssetData(const TObjectPtr&lt; SAssetData &gt; &amp;AssetData)</div><div class="ttdoc">Adds an asset to the registry under AssetData-&gt;AssetPath.</div></div>
+<div class="ttc" id="agroup__input_html_ga02d3523d67343616c2ed3db12b4cd48d"><div class="ttname"><a href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a></div><div class="ttdeci">#define DEFINE_INPUT_ACTION(InActionName, ValueType)</div><div class="ttdoc">Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:103</div></div>
+<div class="ttc" id="agroup__input_html_ga2563a145ce13e323f5e0eeb75008e001"><div class="ttname"><a href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a></div><div class="ttdeci">void AddInputBindings_Hold(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger every frame their key (or all their keys) are held down.</div><div class="ttdef"><b>Definition</b> Module.hpp:45</div></div>
+<div class="ttc" id="agroup__input_html_ga61a6a4c192b6c90c1f7c15b2841c7d44"><div class="ttname"><a href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a></div><div class="ttdeci">TActionValue GetValue(const SAction&lt; TActionValue &gt; &amp;Action)</div><div class="ttdoc">Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...</div><div class="ttdef"><b>Definition</b> Module.hpp:72</div></div>
+<div class="ttc" id="agroup__input_html_ga73ab4a055d9eee1429fa07130693ae29"><div class="ttname"><a href="group__input.html#ga73ab4a055d9eee1429fa07130693ae29">Input::AddInputBindings_Press</a></div><div class="ttdeci">void AddInputBindings_Press(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger on the frame their key goes down (and on key repeat).</div><div class="ttdef"><b>Definition</b> Module.hpp:35</div></div>
+<div class="ttc" id="agroup__input_html_ga96cd377a209587f7494f3357edd5fcec"><div class="ttname"><a href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a></div><div class="ttdeci">bool IsActionTriggered(const SAction&lt; TValueType &gt; &amp;Action)</div><div class="ttdoc">Returns true if any of the action&#39;s bindings triggered this frame.</div><div class="ttdef"><b>Definition</b> Module.hpp:84</div></div>
+<div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
+<div class="ttc" id="anamespace_components_html"><div class="ttname"><a href="namespace_components.html">Components</a></div><div class="ttdoc">GLM Includes.</div><div class="ttdef"><b>Definition</b> EntityEditorTool.hpp:12</div></div>
+<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a></div><div class="ttdeci">@ Background</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:17</div></div>
+<div class="ttc" id="anamespace_renderer_html_ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"><div class="ttname"><a href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a></div><div class="ttdeci">@ Entities</div><div class="ttdef"><b>Definition</b> SpriteInstanceContainer.hpp:18</div></div>
+<div class="ttc" id="anamespace_world_html"><div class="ttname"><a href="namespace_world.html">World</a></div><div class="ttdef"><b>Definition</b> World.hpp:20</div></div>
+<div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
+<div class="ttc" id="astruct_components_1_1_f_transform_component_html"><div class="ttname"><a href="struct_components_1_1_f_transform_component.html">Components::FTransformComponent</a></div><div class="ttdoc">Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.</div><div class="ttdef"><b>Definition</b> TransformModule.hpp:20</div></div>
+</div><!-- fragment --><p>  </details> </p>
+</div></div><!-- contents -->
+</div><!-- PageDoc -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

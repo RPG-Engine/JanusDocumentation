@@ -1,0 +1,315 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Engine core | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+</div><!-- top -->
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">Engine core </div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Starts the engine, runs the game loop and shuts the engine down.  
+<a href="#details">More...</a></p>
+<a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
+<div class="textblock"><p>Three functions in <span class="tt">namespace <a class="el" href="namespace_engine.html">Engine</a></span>.</p>
+<table class="markdownTable">
+<tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Module.hpp" class="src-link">include/Module.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp" class="src-link">src/Module.cpp</a></td></tr>
+<tr>
+<td><b>Include</b></td><td><span class="tt">#include &lt;Module.hpp&gt;</span> (also brings in the transform components and the renderer backend)</td></tr>
+<tr>
+<td><b>Namespace</b></td><td><span class="tt"><a class="el" href="namespace_engine.html">Engine</a></span></td></tr>
+<tr>
+<td><b>Examples</b></td><td>Every example; <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> is the shortest</td></tr>
+</table>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md23"></a>
+How to use</h2>
+<p>Call the three functions in this order from <span class="tt">main()</span>:</p>
+<ol type="1">
+<li><b>Before</b> <span class="tt"><a class="el" href="#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a></span>: register anything the engine needs while it starts. At this commit that is a texture asset called <span class="tt">CollisionTexture</span> (see <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>).</li>
+<li><span class="tt"><a class="el" href="#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a></span> starts SDL and the engine modules and opens the window.</li>
+<li>Set up your game: register components, bind input, create entities and systems, open editor tools.</li>
+<li><span class="tt"><a class="el" href="#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a></span> runs the game loop. It returns when the window is closed (or an <span class="tt">SDL_EVENT_QUIT</span> is pushed).</li>
+<li><span class="tt"><a class="el" href="#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a></span> shuts the modules down.</li>
+</ol>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The shape of every Janus program</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<div class="line">    <span class="comment">// so register it first.</span></div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
+<div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a>();</div>
+<div class="line">    flecs::world&amp; world = <a class="code hl_function" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Camera: shows world units (0,0) to (320,180). Boundaries of 0 pin it in place.</span></div>
+<div class="line">    <span class="comment">// The light on the same entity is large enough to light the whole screen.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FCameraComponent&gt;({ .CameraSize = {320, 180}, .Boundaries = {0, 0, 0, 0} })</div>
+<div class="line">        .set&lt;FLightComponent&gt;({ .Radius = 100.f, .Intensity = 2.4f });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Background: a full-screen sprite on the Background layer.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Background&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {320, 180},</div>
+<div class="line">            .Color = {0.10f, 0.12f, 0.18f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70">Renderer::Background</a> });</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// A 32x32 orange square. Location is its top-left corner, in world units.</span></div>
+<div class="line">    world.entity(<span class="stringliteral">&quot;Square&quot;</span>)</div>
+<div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({ .Location = {48, 100, 0} })</div>
+<div class="line">        .set&lt;FTexture2DComponent&gt;({</div>
+<div class="line">            .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;White&quot;</span>} },</div>
+<div class="line">            .TextureSize = {32, 32},</div>
+<div class="line">            .Color = {1.f, 0.55f, 0.1f, 1.f} })</div>
+<div class="line">        .set&lt;FRenderingComponent&gt;({ .RenderLayer = <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b">Renderer::Entities</a> });</div>
+<div class="line"> </div>
+<div class="line">    Log::Hello::Info(<span class="stringliteral">&quot;Hello, Janus! Close the window to quit.&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a>();             <span class="comment">// returns when the window is closed</span></div>
+<div class="line">    <a class="code hl_function" href="#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a>();</div>
+<div class="line"> </div>
+<div class="line">    <span class="comment">// Known issue: returning from main() after TeardownPlugins() crashes in static</span></div>
+<div class="line">    <span class="comment">// destructors.</span></div>
+<div class="line">    <span class="comment">// Exit without running them (the engine has already flushed its logs).</span></div>
+<div class="line">    std::quick_exit(0);</div>
+</div><!-- fragment --><p>  </details></p>
+<dl class="section warning"><dt>Warning</dt><dd>Returning from <span class="tt">main()</span> after <span class="tt"><a class="el" href="#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a></span> crashes in static destructors at this commit. End <span class="tt">main()</span> with <span class="tt">std::quick_exit(0)</span> as the examples do. See <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>.</dd></dl>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md24"></a>
+What each call does</h2>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Call  </th><th class="markdownTableHeadNone">Does  </th><th class="markdownTableHeadNone">Source  </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>  </td><td class="markdownTableBodyNone"><span class="tt">SDL_Init(VIDEO \| AUDIO)</span>, then <span class="tt"><a class="el" href="group__logging.html#ga6e5199d4346a2b55762b647155b4fba7" title="Starts the Log module: sets spdlog&#39;s default level (debug) and line pattern, and flushes all loggers ...">Log::Module()</a></span>, <span class="tt"><a class="el" href="group__filesystem.html#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a></span>, <span class="tt"><a class="el" href="group__imguiwrapper.html#ga8b2e41551324a47f489a67aff497415f" title="Creates the ImGui context and enables docking and multi-viewport.">ImGuiWrapper::Module()</a></span>, <span class="tt"><a class="el" href="group__ecs.html#ga76e41f00afcfc05f1fc8fec835f6f958" title="Starts the ECS module: sets 8 worker threads, registers reflection for std::string,...">ECS::Module()</a></span>, <span class="tt"><a class="el" href="group__rendering.html#ga9394e46f66fc65fa78e082934ae66576" title="Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...">Renderer::Module()</a></span> (creates the window and GPU device), <span class="tt"><a class="el" href="group__editor.html#gaa0ee68d5de18fb9b1cd0b3c96135b4ea" title="Registers the panels for FTransformComponent and FTexture2DComponent and opens the Entity Debugger an...">CoreEditor::ModuleStartup()</a></span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L73-L93" class="src-link">src/Module.cpp:73</a>  </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><a class="el" href="#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a>  </td><td class="markdownTableBodyNone">Every frame: report frame time, <span class="tt"><a class="el" href="group__input.html#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a></span>, stop if <span class="tt"><a class="el" href="group__input.html#ga432f86a22f8805741eb37ed36fcd6bc9" title="true once SDL has reported a quit event.">Input::ShouldQuit()</a></span>, <span class="tt">ECS::UpdateEntities(dt)</span>, start the render frame, draw editor tools, render, wait to cap at 500 FPS  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L30-L71" class="src-link">src/Module.cpp:30</a>  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><a class="el" href="#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>  </td><td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__editor.html#ga6fc0bb96d0335ac712d738d90f0beb29" title="Empty at this commit.">CoreEditor::ModuleTeardown()</a></span>, <span class="tt"><a class="el" href="group__rendering.html#ga6cf35bc92d99fea05a53fa55b4adab26" title="Shuts down ImGui&#39;s backends and destroys the window.">Renderer::TeardownModule()</a></span>, <span class="tt"><a class="el" href="group__ecs.html#gae303bbf402a078ff1926c119f5360f5d" title="Destroys the flecs world (ecs_fini).">ECS::TeardownModule()</a></span>, <span class="tt"><a class="el" href="group__filesystem.html#gabb430616847a501341456706c78f2c72" title="Forgets every registered asset.">Filesystem::TeardownModule()</a></span>, <span class="tt"><a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a></span>, <span class="tt">SDL_Quit()</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L95-L105" class="src-link">src/Module.cpp:95</a>  </td></tr>
+</table>
+<p>The diagrams in <a class="el" href="engine_organization.html" title="How the engine is organized">How the engine is organized</a> show the same thing visually.</p>
+<h2 class="doxsection"><a class="anchor" id="autotoc_md25"></a>
+Things to watch out for</h2>
+<ul>
+<li>Four modules are not started by <span class="tt">InitializePlugins()</span>: <a class="el" href="namespace_memory.html">Memory</a>, <a class="el" href="namespace_core_types.html">CoreTypes</a> and <a class="el" href="namespace_input.html">Input</a> have nothing to start, but <b><a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a></b> registers components, so call <span class="tt"><a class="el" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a" title="Registers Components::FColliderComponent and Components::FMouseState with the ECS world.">GameplayFramework::Module()</a></span> yourself if you use colliders or mouse hover.</li>
+<li>If <span class="tt">SDL_Init</span> fails, <span class="tt">InitializePlugins()</span> logs the SDL error and calls <span class="tt">throw;</span> with no active exception, which terminates the program (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L76-L79" class="src-link">src/Module.cpp:76</a>).</li>
+<li><span class="tt">Run()</span> keeps no state you can reset: call it once.</li>
+<li>The frame time reported for frame <em>N</em> is the time frame <em>N − 1</em> took, including the wait. Read it with <a class="el" href="group__coretypes.html#ga945d13c62e7daa61e5bb6c277aaf2bcd" title="Get the most recently reported DeltaTime for this tick.">Engine::Globals::GetDeltaTime()</a> (<a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>). </li>
+</ul>
+</div><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga41f3ac12a834ce4378adcf8e76242499" id="r_ga41f3ac12a834ce4378adcf8e76242499"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a> ()</td></tr>
+<tr class="memdesc:ga41f3ac12a834ce4378adcf8e76242499"><td class="mdescLeft">&#160;</td><td class="mdescRight">Starts SDL and every engine module that needs starting, in dependency order, and opens the game window.  <br /></td></tr>
+<tr class="memitem:gaf4c789fb939a0870426c698a5124a0ee" id="r_gaf4c789fb939a0870426c698a5124a0ee"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gaf4c789fb939a0870426c698a5124a0ee">Engine::Run</a> ()</td></tr>
+<tr class="memdesc:gaf4c789fb939a0870426c698a5124a0ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the game loop until the window is closed: input, <a class="el" href="namespace_e_c_s.html">ECS</a> systems, editor tools, rendering.  <br /></td></tr>
+<tr class="memitem:gac50a31fa0c568178e2919918f34b296d" id="r_gac50a31fa0c568178e2919918f34b296d"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#gac50a31fa0c568178e2919918f34b296d">Engine::TeardownPlugins</a> ()</td></tr>
+<tr class="memdesc:gac50a31fa0c568178e2919918f34b296d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shuts the engine modules down in reverse order and calls <span class="tt">SDL_Quit()</span>.  <br /></td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="ga41f3ac12a834ce4378adcf8e76242499" name="ga41f3ac12a834ce4378adcf8e76242499"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ga41f3ac12a834ce4378adcf8e76242499">&#9670;&#160;</a></span>InitializePlugins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::InitializePlugins </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Call it once, at the start of <span class="tt">main()</span>, after registering any assets the renderer needs at startup. After it returns, <span class="tt"><a class="el" href="group__ecs.html#gac7e02b1ed2afda7b99ba286f5bb89bb6" title="Returns the engine&#39;s flecs world.">ECS::GetWorld()</a></span> is ready, the window is open, and every file under <span class="tt">Resources/</span> is registered.</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Engine::InitializePlugins()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp#L73-L93" target="_blank">src/Module.cpp:73</a></summary> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="#ga41f3ac12a834ce4378adcf8e76242499">InitializePlugins</a>() {</div>
+<div class="line">    ZoneScoped;</div>
+<div class="line"> </div>
+<div class="line">    <span class="keywordflow">if</span> (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) == <span class="keyword">false</span>) {</div>
+<div class="line">        Log::Engine::Error(SDL_GetError());</div>
+<div class="line">        <span class="keywordflow">throw</span>;</div>
+<div class="line">    }</div>
+<div class="line"> </div>
+<div class="line">    Log::Engine::Info(<span class="stringliteral">&quot;========= Janus Engine Initializing =========&quot;</span>);</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__logging.html#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__filesystem.html#ga6931370076d808aeecee9dfb1e406eb6">Filesystem::InitializeAllResources</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__imguiwrapper.html#ga8b2e41551324a47f489a67aff497415f">ImGuiWrapper::Module</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__ecs.html#ga76e41f00afcfc05f1fc8fec835f6f958">ECS::Module</a>();</div>
+<div class="line">    <a class="code hl_function" href="group__rendering.html#ga9394e46f66fc65fa78e082934ae66576">Renderer::Module</a>();</div>
+<div class="line"> </div>
+<div class="line">    <a class="code hl_function" href="group__editor.html#gaa0ee68d5de18fb9b1cd0b3c96135b4ea">CoreEditor::ModuleStartup</a>();</div>
+<div class="line"> </div>
+<div class="line"> </div>
+<div class="line">    Log::Engine::Info(<span class="stringliteral">&quot;Engine initialization complete!&quot;</span>);</div>
+<div class="line">}</div>
+<div class="ttc" id="agroup__ecs_html_ga76e41f00afcfc05f1fc8fec835f6f958"><div class="ttname"><a href="group__ecs.html#ga76e41f00afcfc05f1fc8fec835f6f958">ECS::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Starts the ECS module: sets 8 worker threads, registers reflection for std::string,...</div></div>
+<div class="ttc" id="agroup__editor_html_gaa0ee68d5de18fb9b1cd0b3c96135b4ea"><div class="ttname"><a href="group__editor.html#gaa0ee68d5de18fb9b1cd0b3c96135b4ea">CoreEditor::ModuleStartup</a></div><div class="ttdeci">void ModuleStartup()</div><div class="ttdoc">Registers the panels for FTransformComponent and FTexture2DComponent and opens the Entity Debugger an...</div></div>
+<div class="ttc" id="agroup__engine__core_html_ga41f3ac12a834ce4378adcf8e76242499"><div class="ttname"><a href="#ga41f3ac12a834ce4378adcf8e76242499">Engine::InitializePlugins</a></div><div class="ttdeci">void InitializePlugins()</div><div class="ttdoc">Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...</div></div>
+<div class="ttc" id="agroup__filesystem_html_ga6931370076d808aeecee9dfb1e406eb6"><div class="ttname"><a href="group__filesystem.html#ga6931370076d808aeecee9dfb1e406eb6">Filesystem::InitializeAllResources</a></div><div class="ttdeci">void InitializeAllResources()</div><div class="ttdoc">Iterates over the entire resources directory and loads the asset data into memory.</div></div>
+<div class="ttc" id="agroup__imguiwrapper_html_ga8b2e41551324a47f489a67aff497415f"><div class="ttname"><a href="group__imguiwrapper.html#ga8b2e41551324a47f489a67aff497415f">ImGuiWrapper::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Creates the ImGui context and enables docking and multi-viewport.</div></div>
+<div class="ttc" id="agroup__logging_html_ga6e5199d4346a2b55762b647155b4fba7"><div class="ttname"><a href="group__logging.html#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Starts the Log module: sets spdlog&#39;s default level (debug) and line pattern, and flushes all loggers ...</div></div>
+<div class="ttc" id="agroup__rendering_html_ga9394e46f66fc65fa78e082934ae66576"><div class="ttname"><a href="group__rendering.html#ga9394e46f66fc65fa78e082934ae66576">Renderer::Module</a></div><div class="ttdeci">void Module()</div><div class="ttdoc">Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...</div></div>
+</div><!-- fragment --><p>  </details> </p>
+
+</div>
+</div>
+<a id="gaf4c789fb939a0870426c698a5124a0ee" name="gaf4c789fb939a0870426c698a5124a0ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gaf4c789fb939a0870426c698a5124a0ee">&#9670;&#160;</a></span>Run()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::Run </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Each frame calls <span class="tt"><a class="el" href="group__input.html#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a></span>, then <span class="tt"><a class="el" href="group__ecs.html#ga8b8816c958e2ace108c9e6a87df4ba13" title="Runs every system once (world.progress(DeltaTime)).">ECS::UpdateEntities()</a></span> with the last frame's duration in seconds, then renders. The loop is capped at 500 frames per second. To quit from code, push an <span class="tt">SDL_EVENT_QUIT</span> event (see <a class="el" href="ex_input.html" title="Input">Input</a>).</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L30-L71" class="src-link">src/Module.cpp:30</a>. The loop body is shown in <a class="el" href="engine_organization.html" title="How the engine is organized">How the engine is organized</a>. </p>
+
+</div>
+</div>
+<a id="gac50a31fa0c568178e2919918f34b296d" name="gac50a31fa0c568178e2919918f34b296d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#gac50a31fa0c568178e2919918f34b296d">&#9670;&#160;</a></span>TeardownPlugins()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Engine::TeardownPlugins </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"><em></em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Call it after <a class="el" href="#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> returns. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L95-L105" class="src-link">src/Module.cpp:95</a>. <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a> runs last, so modules can still log while shutting down.</p>
+<dl class="section warning"><dt>Warning</dt><dd>Returning from <span class="tt">main()</span> afterwards crashes at this commit. See <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>. </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

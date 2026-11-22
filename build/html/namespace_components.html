@@ -1,0 +1,540 @@
+<!-- Janus Engine docs header (Doxygen 1.18). Layout: top bar / sidebar / content / "On this page". -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta name="generator" content="Doxygen 1.18.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Components Namespace Reference | Janus Engine</title>
+<script type="text/javascript">
+/* Apply the saved site theme (dark by default) and code theme (Visual Studio by default) before
+   first paint. Pages shown in the API side panel get both from the URL and hide the site chrome. */
+(function () {
+  var root = document.documentElement;
+  var theme = 'dark', syntax = 'vs', params = null;
+  try { theme = localStorage.getItem('janus-docs-theme') || 'dark'; } catch (e) {}
+  try { syntax = localStorage.getItem('janus-docs-syntax') || 'vs'; } catch (e) {}
+  try { params = new URLSearchParams(location.search); } catch (e) {}
+  if (params && params.get('jd-theme')) theme = params.get('jd-theme');
+  if (params && params.get('jd-syntax')) syntax = params.get('jd-syntax');
+  root.classList.add(theme === 'light' ? 'light-mode' : 'dark-mode');
+  root.setAttribute('data-syntax', syntax);
+  if (window.self !== window.top) root.classList.add('jd-embedded');
+})();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<script type="text/javascript" src="clipboard.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="theme.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="janus-nav.js"></script>
+<script type="text/javascript" src="janus-docs.js"></script>
+<script type="text/javascript" src="janus-code.js"></script>
+</head>
+<body>
+<a class="jd-skip" href="#jd-doc">Skip to content</a>
+<header class="jd-topbar">
+  <button class="jd-iconbtn jd-menu-btn" type="button" aria-label="Toggle navigation" onclick="JanusDocs.toggleMenu()">
+    <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+  </button>
+  <a class="jd-brand" href="index.html">
+    <span class="jd-brand-mark" aria-hidden="true">J</span>
+    <span class="jd-brand-name">Janus Engine</span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+  </a>
+  <div class="jd-topbar-spacer"></div>
+  <div class="jd-search" title="Search (Ctrl K)">
+            <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <span id="MSearchSelect" class="search-icon"><span class="search-icon-dropdown"></span></span>
+          <input type="text" id="MSearchField" value="" placeholder="Search" accesskey="S"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><div id="MSearchCloseImg" class="close-icon"></div></a>
+          </span>
+        </div>
+    <kbd class="jd-search-kbd">Ctrl K</kbd>
+  </div>
+  <nav class="jd-topbar-links">
+    <a class="jd-iconbtn" href="https://github.com/RPG-Engine/RPG-Engine-Core" target="_blank" rel="noopener" aria-label="Source on GitHub" title="Source on GitHub">
+      <svg width="18" height="18" viewBox="0 0 16 16" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+    <label class="jd-syntax" title="Code colour theme">
+      <svg width="15" height="15" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.5 4L1.5 8l4 4M10.5 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <select id="jd-syntax-select" aria-label="Code colour theme">
+        <option value="vs">Visual Studio</option>
+        <option value="rider">JetBrains Rider</option>
+        <option value="vscode">VS Code</option>
+        <option value="dracula">Dracula</option>
+      </select>
+    </label>
+    <button class="jd-iconbtn jd-theme-btn" type="button" aria-label="Toggle light/dark theme" title="Toggle light/dark theme" onclick="JanusDocs.toggleTheme()">
+      <svg class="jd-icon-moon" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
+      <svg class="jd-icon-sun" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3M4.6 4.6l2.1 2.1M17.3 17.3l2.1 2.1M4.6 19.4l2.1-2.1M17.3 6.7l2.1-2.1" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </nav>
+</header>
+<div class="jd-shell">
+  <div class="jd-backdrop" onclick="JanusDocs.toggleMenu(false)"></div>
+  <aside class="jd-sidebar" id="jd-sidebar" aria-label="Documentation navigation"></aside>
+  <div class="jd-main">
+    <main class="jd-doc" id="jd-doc">
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<!-- end header part -->
+<!-- Generated by Doxygen 1.18.0 -->
+<script type="text/javascript">
+let searchBox = new SearchBox("searchBox", "search/",'.html');
+</script>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+</div><!-- top -->
+<div id="doc-content">
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">Components Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>GLM Includes.  
+</p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:ECSDebug_5FDrawFloat" id="r_ECSDebug_5FDrawFloat"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><b>ECSDebug_DrawFloat</b></td></tr>
+<tr class="memitem:ECSDebug_5FDrawTypeBase" id="r_ECSDebug_5FDrawTypeBase"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><b>ECSDebug_DrawTypeBase</b></td></tr>
+<tr class="memitem:ECSDebugFactory" id="r_ECSDebugFactory"><td class="memItemLeft">class &#160;</td><td class="memItemRight"><a class="el" href="class_components_1_1_e_c_s_debug_factory.html">ECSDebugFactory</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Base of the Entity Debugger panel classes the component macros generate.  <a href="class_components_1_1_e_c_s_debug_factory.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FBoundingBoxComponent" id="r_FBoundingBoxComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_bounding_box_component.html">FBoundingBoxComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Component representing a generic bounding box for the entity.  <a href="struct_components_1_1_f_bounding_box_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FCameraComponent" id="r_FCameraComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_camera_component.html">FCameraComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Makes its entity the camera.  <a href="struct_components_1_1_f_camera_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FColliderComponent" id="r_FColliderComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">One collision rectangle, <span class="tt">glm::vec4 ColliderShape</span>, relative to the entity's position.  <a href="struct_components_1_1_f_collider_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FInputComponent" id="r_FInputComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><b>FInputComponent</b></td></tr>
+<tr class="memitem:FLightComponent" id="r_FLightComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_light_component.html">FLightComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A 2D light at the entity's position plus <span class="tt">PositionOffset</span>.  <a href="struct_components_1_1_f_light_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FMouseState" id="r_FMouseState"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_mouse_state.html">FMouseState</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">The mouse position in world units (<span class="tt">MousePosition</span>) and the last entity under the cursor (<span class="tt">HoveredEntityId</span>, 0 if none yet).  <a href="struct_components_1_1_f_mouse_state.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FPhysicsComponent" id="r_FPhysicsComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><b>FPhysicsComponent</b></td></tr>
+<tr class="memitem:FRenderingComponent" id="r_FRenderingComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_rendering_component.html">FRenderingComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Which layer a sprite is drawn on: <span class="tt"><a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a> RenderLayer</span> (default <span class="tt">Entities</span>).  <a href="struct_components_1_1_f_rendering_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FTexture2DComponent" id="r_FTexture2DComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">What a sprite draws: <span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> Sprite</span> (texture path and cell), <span class="tt">glm::vec2 TextureSize</span> (32 × 32), <span class="tt">SDL_FColor Color</span> (white), <span class="tt">glm::vec4 BoundingBox</span> (unused when drawing).  <a href="struct_components_1_1_f_texture2_d_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:FTransformComponent" id="r_FTransformComponent"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Where an entity is: <span class="tt">glm::vec3 Location</span>, <span class="tt">glm::vec3 Rotation</span>, <span class="tt">glm::vec3 Scale</span>.  <a href="struct_components_1_1_f_transform_component.html#details">More...</a><br /></td></tr>
+<tr class="memitem:GlmModule" id="r_GlmModule"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_glm_module.html">GlmModule</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">flecs module that registers reflection data for <span class="tt">glm::vec2</span>, <span class="tt">glm::vec3</span> and <span class="tt">glm::vec4</span>.  <a href="struct_components_1_1_glm_module.html#details">More...</a><br /></td></tr>
+<tr class="memitem:GraphicsModule" id="r_GraphicsModule"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_graphics_module.html">GraphicsModule</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">flecs module that registers <span class="tt">SDL_FColor</span>, <a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a> and <a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a>.  <a href="struct_components_1_1_graphics_module.html#details">More...</a><br /></td></tr>
+<tr class="memitem:TransformModule" id="r_TransformModule"><td class="memItemLeft">struct &#160;</td><td class="memItemRight"><a class="el" href="struct_components_1_1_transform_module.html">TransformModule</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">flecs module that registers <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_bounding_box_component.html" title="Component representing a generic bounding box for the entity.">Components::FBoundingBoxComponent</a>.  <a href="struct_components_1_1_transform_module.html#details">More...</a><br /></td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-func-members" class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a61769102210e9ef96b297887eeb000df" id="r_a61769102210e9ef96b297887eeb000df"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a61769102210e9ef96b297887eeb000df">PreDebugDraw_TransformComponent</a> (<a class="el" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a> *Component)</td></tr>
+<tr class="memitem:afef81dbc43ace911f5bd9d918ccc21f8" id="r_afef81dbc43ace911f5bd9d918ccc21f8"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#afef81dbc43ace911f5bd9d918ccc21f8">PostDebugDraw_TransformComponent</a> (<a class="el" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a> *Component)</td></tr>
+<tr class="memitem:a7ba3c00c5fc8d21ce7601d5eaf41119b" id="r_a7ba3c00c5fc8d21ce7601d5eaf41119b"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a7ba3c00c5fc8d21ce7601d5eaf41119b">PreDebugDraw_TextureComp</a> (struct <a class="el" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a> *Component)</td></tr>
+<tr class="memitem:a63519fb9cbbbff66ad8a063947aed254" id="r_a63519fb9cbbbff66ad8a063947aed254"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a63519fb9cbbbff66ad8a063947aed254">PostDebugDraw_TextureComp</a> (struct <a class="el" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a> *Component)</td></tr>
+<tr class="memitem:gab92c83fec638c7aa8f5ef41d618ff55b" id="r_gab92c83fec638c7aa8f5ef41d618ff55b"><td class="memTemplParams" colspan="2">template&lt;typename TElementType&gt; </td></tr>
+<tr class="memitem:gab92c83fec638c7aa8f5ef41d618ff55b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">ECSDebug_DrawElement</a> (const char *ElementName, TElementType *Element)</td></tr>
+<tr class="memdesc:gab92c83fec638c7aa8f5ef41d618ff55b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws one component member in the Entity Debugger.  <br /></td></tr>
+<tr class="memitem:aaf06a60848a1f30650897e042c630931" id="r_aaf06a60848a1f30650897e042c630931"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:aaf06a60848a1f30650897e042c630931 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aaf06a60848a1f30650897e042c630931">ECSDebug_DrawElement&lt; float &gt;</a> (const char *ElementName, float *Element)</td></tr>
+<tr class="memitem:ad41e0630b42b19cd7369fe5a1f9f15f4" id="r_ad41e0630b42b19cd7369fe5a1f9f15f4"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:ad41e0630b42b19cd7369fe5a1f9f15f4 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ad41e0630b42b19cd7369fe5a1f9f15f4">ECSDebug_DrawElement&lt; glm::vec2 &gt;</a> (const char *ElementName, glm::vec2 *Element)</td></tr>
+<tr class="memitem:add466f6cb0088eb18e78603a20a9cc9b" id="r_add466f6cb0088eb18e78603a20a9cc9b"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:add466f6cb0088eb18e78603a20a9cc9b template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#add466f6cb0088eb18e78603a20a9cc9b">ECSDebug_DrawElement&lt; glm::vec3 &gt;</a> (const char *ElementName, glm::vec3 *Element)</td></tr>
+<tr class="memitem:ab4fb631ff6dccc7e05346330cbfe92d8" id="r_ab4fb631ff6dccc7e05346330cbfe92d8"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:ab4fb631ff6dccc7e05346330cbfe92d8 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#ab4fb631ff6dccc7e05346330cbfe92d8">ECSDebug_DrawElement&lt; glm::vec4 &gt;</a> (const char *ElementName, glm::vec4 *Element)</td></tr>
+<tr class="memitem:acd320dda6ed5cb74544c655238ee6d37" id="r_acd320dda6ed5cb74544c655238ee6d37"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:acd320dda6ed5cb74544c655238ee6d37 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#acd320dda6ed5cb74544c655238ee6d37">ECSDebug_DrawElement&lt; SDL_FColor &gt;</a> (const char *ElementName, SDL_FColor *Element)</td></tr>
+<tr class="memitem:a271c12e76d5aca1f8db9c361db78fa04" id="r_a271c12e76d5aca1f8db9c361db78fa04"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:a271c12e76d5aca1f8db9c361db78fa04 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a271c12e76d5aca1f8db9c361db78fa04">ECSDebug_DrawElement&lt; Filesystem::SSoftAssetPath &gt;</a> (const char *ElementName, <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> *Element)</td></tr>
+<tr class="memitem:a0dc3968df7db32fcd638b3e8a166fa7f" id="r_a0dc3968df7db32fcd638b3e8a166fa7f"><td class="memTemplParams" colspan="2">template&lt;typename TType&gt; <br />
+requires std::is_base_of_v&lt;<a class="el" href="struct_s_asset.html">SAsset</a>, TType&gt;</td></tr>
+<tr class="memitem:a0dc3968df7db32fcd638b3e8a166fa7f template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#a0dc3968df7db32fcd638b3e8a166fa7f">ECSDebug_DrawElementPath</a> (const char *ElementName, <a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html">Filesystem::STypedSoftAssetPath</a>&lt; TType &gt; *Element)</td></tr>
+<tr class="memitem:ga2c2d1f56afc6aa3a3f764f8a2d891d04" id="r_ga2c2d1f56afc6aa3a3f764f8a2d891d04"><td class="memItemLeft">glm::vec2&#160;</td><td class="memItemRight"><a class="el" href="group__ecs.html#ga2c2d1f56afc6aa3a3f764f8a2d891d04">GetCameraMaxDistance</a> (const <a class="el" href="struct_components_1_1_f_camera_component.html">FCameraComponent</a> &amp;Component)</td></tr>
+<tr class="memdesc:ga2c2d1f56afc6aa3a3f764f8a2d891d04"><td class="mdescLeft">&#160;</td><td class="mdescRight">Half the camera size minus half the centre size: how far the followed entity's position is from the view's top-left corner.  <br /></td></tr>
+<tr class="memitem:aef2c7b75d7180b0c1529bf2998c5d493" id="r_aef2c7b75d7180b0c1529bf2998c5d493"><td class="memItemLeft">template&lt;&gt; </td></tr>
+<tr class="memitem:aef2c7b75d7180b0c1529bf2998c5d493 template"><td class="memItemLeft">void&#160;</td><td class="memItemRight"><a class="el" href="#aef2c7b75d7180b0c1529bf2998c5d493">ECSDebug_DrawElement&lt; Renderer::EInstanceLayer &gt;</a> (const char *ElementName, <a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> *Element)</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 id="header-var-members" class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad59fba0e47cf80272eaea769e9953db8" id="r_ad59fba0e47cf80272eaea769e9953db8"><td class="memItemLeft">static std::vector&lt; const char * &gt;&#160;</td><td class="memItemRight"><a class="el" href="#ad59fba0e47cf80272eaea769e9953db8">options</a> {&quot;Background&quot;, &quot;Entities&quot;, &quot;Foreground&quot;, &quot;Debug&quot;, &quot;Overlay&quot;}</td></tr>
+</table>
+<a name="doc-func-members" id="doc-func-members"></a><h2 id="header-doc-func-members" class="groupheader">Function Documentation</h2>
+<a id="a61769102210e9ef96b297887eeb000df" name="a61769102210e9ef96b297887eeb000df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61769102210e9ef96b297887eeb000df">&#9670;&#160;</a></span>PreDebugDraw_TransformComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Components::PreDebugDraw_TransformComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a> *</td>          <td class="paramname"><span class="paramname"><em>Component</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="afef81dbc43ace911f5bd9d918ccc21f8" name="afef81dbc43ace911f5bd9d918ccc21f8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afef81dbc43ace911f5bd9d918ccc21f8">&#9670;&#160;</a></span>PostDebugDraw_TransformComponent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Components::PostDebugDraw_TransformComponent </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a> *</td>          <td class="paramname"><span class="paramname"><em>Component</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7ba3c00c5fc8d21ce7601d5eaf41119b" name="a7ba3c00c5fc8d21ce7601d5eaf41119b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ba3c00c5fc8d21ce7601d5eaf41119b">&#9670;&#160;</a></span>PreDebugDraw_TextureComp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Components::PreDebugDraw_TextureComp </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a> *</td>          <td class="paramname"><span class="paramname"><em>Component</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a63519fb9cbbbff66ad8a063947aed254" name="a63519fb9cbbbff66ad8a063947aed254"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63519fb9cbbbff66ad8a063947aed254">&#9670;&#160;</a></span>PostDebugDraw_TextureComp()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Components::PostDebugDraw_TextureComp </td>
+          <td>(</td>
+          <td class="paramtype">struct <a class="el" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a> *</td>          <td class="paramname"><span class="paramname"><em>Component</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaf06a60848a1f30650897e042c630931" name="aaf06a60848a1f30650897e042c630931"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf06a60848a1f30650897e042c630931">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; float &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; float &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad41e0630b42b19cd7369fe5a1f9f15f4" name="ad41e0630b42b19cd7369fe5a1f9f15f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad41e0630b42b19cd7369fe5a1f9f15f4">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; glm::vec2 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; glm::vec2 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec2 *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="add466f6cb0088eb18e78603a20a9cc9b" name="add466f6cb0088eb18e78603a20a9cc9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add466f6cb0088eb18e78603a20a9cc9b">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; glm::vec3 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; glm::vec3 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec3 *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ab4fb631ff6dccc7e05346330cbfe92d8" name="ab4fb631ff6dccc7e05346330cbfe92d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab4fb631ff6dccc7e05346330cbfe92d8">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; glm::vec4 &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; glm::vec4 &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">glm::vec4 *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="acd320dda6ed5cb74544c655238ee6d37" name="acd320dda6ed5cb74544c655238ee6d37"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd320dda6ed5cb74544c655238ee6d37">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; SDL_FColor &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; SDL_FColor &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">SDL_FColor *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a271c12e76d5aca1f8db9c361db78fa04" name="a271c12e76d5aca1f8db9c361db78fa04"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271c12e76d5aca1f8db9c361db78fa04">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; Filesystem::SSoftAssetPath &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html">Filesystem::SSoftAssetPath</a> *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a0dc3968df7db32fcd638b3e8a166fa7f" name="a0dc3968df7db32fcd638b3e8a166fa7f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0dc3968df7db32fcd638b3e8a166fa7f">&#9670;&#160;</a></span>ECSDebug_DrawElementPath()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TType&gt; <br />
+requires std::is_base_of_v&lt;<a class="el" href="struct_s_asset.html">SAsset</a>, TType&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Components::ECSDebug_DrawElementPath </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="struct_filesystem_1_1_s_typed_soft_asset_path.html">Filesystem::STypedSoftAssetPath</a>&lt; TType &gt; *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aef2c7b75d7180b0c1529bf2998c5d493" name="aef2c7b75d7180b0c1529bf2998c5d493"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aef2c7b75d7180b0c1529bf2998c5d493">&#9670;&#160;</a></span>ECSDebug_DrawElement&lt; Renderer::EInstanceLayer &gt;()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="group__ecs.html#gab92c83fec638c7aa8f5ef41d618ff55b">Components::ECSDebug_DrawElement</a>&lt; <a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> &gt; </td>
+          <td>(</td>
+          <td class="paramtype">const char *</td>          <td class="paramname"><span class="paramname"><em>ElementName</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef">Renderer::EInstanceLayer</a> *</td>          <td class="paramname"><span class="paramname"><em>Element</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel inline">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a name="doc-var-members" id="doc-var-members"></a><h2 id="header-doc-var-members" class="groupheader">Variable Documentation</h2>
+<a id="ad59fba0e47cf80272eaea769e9953db8" name="ad59fba0e47cf80272eaea769e9953db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad59fba0e47cf80272eaea769e9953db8">&#9670;&#160;</a></span>options</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;const char*&gt; Components::options {&quot;Background&quot;, &quot;Entities&quot;, &quot;Foreground&quot;, &quot;Debug&quot;, &quot;Overlay&quot;}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel static">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+</div><!-- contents -->
+<!-- start footer part -->
+<footer class="jd-footer">
+  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+</footer>
+</div><!-- doc-content (opened by doxygen) -->
+    </main>
+    <aside class="jd-toc" id="jd-toc" aria-label="On this page"></aside>
+  </div>
+</div>
+</body>
+</html>

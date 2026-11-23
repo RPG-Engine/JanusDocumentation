@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -116,14 +116,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="textblock"><p><a class="anchor" id="mainpage"></a></p>
 <p class="lede"></p>
 <p>Janus is a C++26 engine for 2D games. Games are built from entities and components with <a href="https://www.flecs.dev/flecs/">flecs</a>, drawn by a batched sprite renderer on SDL3's GPU API, and inspected live with Dear ImGui editor tools. It compiles into a single static library that your game links.</p>
-<div class="jd-meta"><span><b>Documents engine commit</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/824ee2043e545a75c0510187f5c7ca53b5aa21c4" class="src-link"><code>824ee20</code></a></span><span><b>Updated</b> 2026-11-22</span><span><a class="el" href="docs_version.html" title="Documentation version">How this is kept up to date</a></span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md133"></a>
+<div class="jd-meta"><span><b>Documents engine commit</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/02fd6c2454ea67f96d38295400c5e2a88619f43e" class="src-link"><code>02fd6c2</code></a></span><span><b>Updated</b> 2026-11-23</span><span><a class="el" href="docs_version.html" title="Documentation version">How this is kept up to date</a></span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md133"></a>
 Start here</h1>
 <div class="jd-cards"> <a href="getting_started.html" class="jd-card"><span class="jd-card-title">Install and build</span><span class="jd-card-text">Requirements, vcpkg, building the engine and the examples.</span></a> <a href="first_game.html" class="jd-card"><span class="jd-card-title">Your first game</span><span class="jd-card-text">Set up a game project and put a sprite on screen, step by step.</span></a> <a href="essentials.html" class="jd-card"><span class="jd-card-title">Things to know</span><span class="jd-card-text">The rules every Janus game follows: camera, lights, layers, assets, input.</span></a> <a href="examples.html" class="jd-card"><span class="jd-card-title">Examples</span><span class="jd-card-text">Three small games and focused examples for the ECS and every module.</span></a> </div><h1 class="doxsection"><a class="anchor" id="autotoc_md134"></a>
 The manual</h1>
 <div class="jd-cards"> <a href="engine_organization.html" class="jd-card"><span class="jd-card-title">How the engine is organized</span><span class="jd-card-text">Startup, the game loop, shutdown and how modules depend on each other.</span></a> <a href="modules_overview.html" class="jd-card"><span class="jd-card-title">Engine modules</span><span class="jd-card-text">One page per module, each starting with how to use it.</span></a> <a href="known_issues.html" class="jd-card"><span class="jd-card-title">Known issues</span><span class="jd-card-text">Engine behaviour that may surprise you, with workarounds.</span></a> <a href="annotated.html" class="jd-card"><span class="jd-card-title">API reference</span><span class="jd-card-text">Every class, function and macro. Or press <kbd>Ctrl</kbd> <kbd>K</kbd> to search.</span></a> </div><h1 class="doxsection"><a class="anchor" id="autotoc_md135"></a>
 What a Janus game looks like</h1>
 <p>A game is an ordinary <span class="tt">main()</span> that starts the engine, creates entities, adds systems and runs the loop. This is the whole of the <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> example, minus the texture helper:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Hello Janus: main()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Hello Janus: main()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
 <div class="line">    <span class="comment">// so register it first.</span></div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
@@ -166,7 +166,7 @@ What a Janus game looks like</h1>
 <div class="line">    <span class="comment">// Exit without running them (the engine has already flushed its logs).</span></div>
 <div class="line">    std::quick_exit(0);</div>
 </div><!-- fragment --><p>  </details></p>
-<div class="jd-meta"><span>From <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" class="src-link">examples/modules/HelloJanus.cpp</a>, which is compiled and run against the documented commit.</span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md136"></a>
+<div class="jd-meta"><span>From <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" class="src-link">examples/modules/HelloJanus.cpp</a>, which is compiled and run against the documented commit.</span></div><h1 class="doxsection"><a class="anchor" id="autotoc_md136"></a>
 What the engine gives you</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -201,7 +201,7 @@ How these pages are organized</h1>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

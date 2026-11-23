@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,7 +115,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>What the <a class="el" href="namespace_filesystem.html">Filesystem</a> module finds, how to load and cache assets, how to add your own asset type, how to make a texture in code, and how <a class="el" href="class_t_object_ptr.html" title="A reference-counted owning pointer.">TObjectPtr</a> behaves.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" class="src-link">examples/modules/AssetsAndMemory.cpp</a></span><span><b>Executable</b> <code>AssetsExample</code></span><span><b>Modules</b> <a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a>, <a class="el" href="group__memory.html" title="Memory">Memory</a></span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" class="src-link">examples/modules/AssetsAndMemory.cpp</a></span><span><b>Executable</b> <code>AssetsExample</code></span><span><b>Modules</b> <a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a>, <a class="el" href="group__memory.html" title="Memory">Memory</a></span></div><div class="image">
 <img src="assets.png" alt=""/>
 <div class="caption">
 The Asset Browser tool lists every registered asset; the checkerboard is a texture generated at runtime</div></div>
@@ -135,7 +135,7 @@ The Asset Browser tool lists every registered asset; the checkerboard is a textu
 <div class="ttc" id="agroup__memory_html_gaaf47cf205f2dd836de6039cc31fc4c56"><div class="ttname"><a href="group__memory.html#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo</a></div><div class="ttdeci">TObjectPtr&lt; TCastType &gt; CastTo(const TObjectPtr&lt; TBaseType &gt; &amp;Ptr)</div><div class="ttdoc">Returns a pointer of another type to the same object, sharing its use count.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:125</div></div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="autotoc_md119"></a>
 Finding assets</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing and looking up</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing and looking up</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
 <div class="line">    <span class="comment">// its path relative to Resources/, without the extension.</span></div>
 <div class="line">    <span class="keyword">const</span> std::vector&lt;std::string&gt; allPaths = <a class="code hl_function" href="group__filesystem.html#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>();</div>
 <div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} assets registered&quot;</span>, allPaths.size());</div>
@@ -157,7 +157,7 @@ Finding assets</h2>
 <p>Note <span class="tt">Extension: .dxil</span>: the shader has three files with the same name, and only the first one found is registered (<a class="el" href="group__filesystem.html#filesystem_paths" title="Asset paths">Asset paths</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md120"></a>
 Loading</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading text, and the cache</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading text, and the cache</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
 <div class="line">    <span class="comment">// The file is Resources/Shaders/FragmentShaderSrc.frag.hlsl</span></div>
 <div class="line">    <span class="keyword">const</span> std::string shaderPath = <span class="stringliteral">&quot;Shaders/FragmentShaderSrc.frag&quot;</span>;</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__filesystem.html#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists&lt;STextFileAsset&gt;</a>(shaderPath)) {</div>
@@ -175,7 +175,7 @@ Loading</h2>
 <div class="line">        Log::Assets::Info(<span class="stringliteral">&quot;Cached: {}&quot;</span>, again == source);</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
 <div class="line"><span class="comment">// that builds one from the file. DEFINE_ASSET_LOADER declares the specialization</span></div>
 <div class="line"><span class="comment">// (put it in a header if other files use it).</span></div>
 <div class="line"><span class="keyword">struct </span>SLineCountAsset : <a class="code hl_struct" href="struct_s_asset.html">SAsset</a> {</div>
@@ -203,7 +203,7 @@ Loading</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md121"></a>
 Generated assets</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A checkerboard texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A checkerboard texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
 <div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
 <div class="line"><span class="comment">// the same format image files are converted to.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
@@ -246,7 +246,7 @@ Generated assets</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md122"></a>
 TObjectPtr</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Sharing, clearing and casting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Sharing, clearing and casting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
 <div class="line"><span class="comment">// Types derived from SAsset can also be loaded by the Filesystem module.</span></div>
 <div class="line"><span class="keyword">struct </span>SInventory {</div>
 <div class="line">    std::vector&lt;std::string&gt; Items;</div>
@@ -277,7 +277,7 @@ TObjectPtr</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md123"></a>
 An asset browser tool</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets in an ImGui window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor window that lists every registered asset, with a filter box.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets in an ImGui window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor window that lists every registered asset, with a filter box.</span></div>
 <div class="line"><span class="keyword">class </span>AssetBrowser : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
 <div class="line"><span class="keyword">protected</span>:</div>
 <div class="line">    <span class="keywordtype">void</span> Draw_Internal()<span class="keyword"> override </span>{</div>
@@ -303,7 +303,7 @@ An asset browser tool</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md124"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">AssetsAndMemory.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: assets (Filesystem) and TObjectPtr (Memory).</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">AssetsAndMemory.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: assets (Filesystem) and TObjectPtr (Memory).</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Prints what the Filesystem module found under Resources/, loads a text asset that</span></div>
 <div class="line"><span class="comment">// ships with the engine (a shader source), shows TObjectPtr in use, and displays a</span></div>
@@ -595,7 +595,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

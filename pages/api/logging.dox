@@ -61,7 +61,7 @@ The same steps in a game, with every level and the other ways to create a logger
 
 ## What it does
 
-Every engine module gets its own *named* logger. Messages are tagged with that name, so the output shows where each line came from. For example, the line written by \src{src/Filesystem/Module.cpp,28} looks like this (an illustration of the format set at \src{src/Log/Module.cpp,30}; your date, time and path will differ):
+Every engine module gets its own *named* logger. Messages are tagged with that name, so the output shows where each line came from. For example, the line written by \src{src/Filesystem/Module.cpp,28} looks like this (an illustration of the format set at \src{src/Log/Module.cpp,19}; your date, time and path will differ):
 
 ```
 [11/22/26 15:10:02] [LogFilesystem] info: Loading config files in .../Config...
@@ -82,7 +82,7 @@ The Log module:
 | #DECLARE_LOGGER_WITH_PARAMS | Chosen with Log::ELogOutputOptions | `<exe dir>/Logs/<LogFile>.log` |
 | The generic logger (`Log::Generic::*(message)`) | Yes | `<exe dir>/Logs/JanusEngine.log` |
 
-Every line uses the pattern `[date time] [LoggerName] level: message`, set at \src{src/Log/Module.cpp,30}.
+Every line uses the pattern `[date time] [LoggerName] level: message`, set at \src{src/Log/Module.cpp,19}.
 
 ## Lifecycle
 
@@ -108,10 +108,9 @@ Log::TeardownModule();
 ## Things to watch out for
 
 - **Declare loggers in source files, not headers.** #DECLARE_LOGGER defines `static` functions and a `static` logger. In a header, every file that includes it gets its own copy, and other modules can use what was meant to be a private logger.
-- **A logger's name is registered once.** If two files declare the same name (Filesystem does, in \src{src/Filesystem/Module.cpp,10} and \src{src/Filesystem/FilesystemTypes.cpp,12}), the second one reuses the spdlog logger the first one created (\src{src/Log/Module.cpp,81,84}). Its own output settings are ignored, but its level filter still applies.
+- **A logger's name is registered once.** If two files declare the same name (Filesystem does, in \src{src/Filesystem/Module.cpp,10} and \src{src/Filesystem/FilesystemTypes.cpp,12}), the second one reuses the spdlog logger the first one created (\src{src/Log/Module.cpp,82,85}). Its own output settings are ignored, but its level filter still applies.
 - **A default Log::SLoggerConfiguration has no outputs.** Its `LogOptions` is `LOG_NONE`, so a logger built from it discards every message. Set `LogOptions` explicitly when you build a configuration yourself.
-- **`Verbose` (trace) messages don't appear by default.** Log::Module() calls `spdlog::set_level(debug)` (\src{src/Log/Module.cpp,53}), which spdlog applies to every registered logger. Trace-level messages are dropped even for a logger declared with `trace`.
-- **Loggers are created during static initialization.** Log::RegisterLogger() reads the default pattern and log folder from `static std::string` variables in \src{src/Log/Module.cpp,27,30}. C++ does not define the order in which statics in different source files are initialized, so a logger declared in another file may be constructed before those strings are set.
+- **`Verbose` (trace) messages don't appear by default.** Log::Module() calls `spdlog::set_level(debug)` (\src{src/Log/Module.cpp,54}), which spdlog applies to every registered logger. Trace-level messages are dropped even for a logger declared with `trace`.
 */
 
 /**
@@ -154,11 +153,11 @@ static SLogger Logger = SLogger({ \
 ## Lifecycle
 
 1. **Construction** copies the configuration and calls Log::RegisterLogger() (\src{src/Log/LogTypes.cpp,10,14}).
-2. **Registration** creates an spdlog logger named `Config.LoggerNamespace`. It gets a file sink if `LogOptions` includes `LOG_FILE` and a colored console sink if it includes `LOG_CONSOLE`. If a logger with that name already exists, it is reused instead (\src{src/Log/Module.cpp,78,97}).
+2. **Registration** creates an spdlog logger named `Config.LoggerNamespace`. It gets a file sink if `LogOptions` includes `LOG_FILE` and a colored console sink if it includes `LOG_CONSOLE`. If a logger with that name already exists, it is reused instead (\src{src/Log/Module.cpp,79,98}).
 3. **Logging** looks the spdlog logger up by name on every call and writes the message only if its level is at least `Config.LogLevel` (\src{src/Log/Log.cpp,19,27}).
 4. **Shutdown:** Log::TeardownModule() drops all spdlog loggers. The `SLogger` objects themselves stay alive until the program exits.
 
-\engex{src/Log/Module.cpp,78,97,What registration does}
+\engex{src/Log/Module.cpp,79,98,What registration does}
 ```cpp
 void RegisterLogger(const SLogger* Logger) {
     const SLoggerConfiguration& config = Logger->Config;
@@ -179,7 +178,7 @@ void RegisterLogger(const SLogger* Logger) {
 
     if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_CONSOLE)) {
         logger.sinks().push_back(std::move(
-            CreateSink<LogSinks::stdout_color_sink_mt>(_Internal::DefaultLogPattern,
+            CreateSink<LogSinks::stdout_color_sink_mt>(DefaultLogPattern.data(),
                                                        config.LogLevel)));
     }
 
@@ -275,7 +274,7 @@ Write nothing.
 \ingroup logging
 \brief Returns `true` if `LogOptions` contains at least one of the flags in `HasAny`.
 
-\engex{src/Log/Module.cpp,87,89,Checking for file output}
+\engex{src/Log/Module.cpp,88,90,Checking for file output}
 ```cpp
 if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_FILE)) {
     logger.sinks().push_back(_Internal::GetSinkForFile(config));
@@ -327,7 +326,7 @@ Defined at \src{include/Log/Module.hpp,9,27}. The engine itself only uses it thr
 \ingroup logging
 \brief Starts the Log module: sets spdlog's default level (`debug`) and line pattern, and flushes all loggers every 3 seconds.
 
-Called first by \srclink{src/Module.cpp,83,Engine::InitializePlugins()}. Defined at \src{src/Log/Module.cpp,52,56}.
+Called first by \srclink{src/Module.cpp,83,Engine::InitializePlugins()}. Defined at \src{src/Log/Module.cpp,53,57}.
 */
 
 /**
@@ -335,14 +334,14 @@ Called first by \srclink{src/Module.cpp,83,Engine::InitializePlugins()}. Defined
 \ingroup logging
 \brief Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logger.
 
-Called last by \srclink{src/Module.cpp,103,Engine::TeardownPlugins()}. Defined at \src{src/Log/Module.cpp,58,70}. Nothing can be logged after this.
+Called last by \srclink{src/Module.cpp,103,Engine::TeardownPlugins()}. Defined at \src{src/Log/Module.cpp,59,71}. Nothing can be logged after this.
 */
 
 /**
 \fn void Log::Flush()
 \ingroup logging
 
-Defined at \src{src/Log/Module.cpp,72,76}. Log::TeardownModule() calls it before copying the log files.
+Defined at \src{src/Log/Module.cpp,73,77}. Log::TeardownModule() calls it before copying the log files.
 */
 
 /**
@@ -350,7 +349,7 @@ Defined at \src{src/Log/Module.cpp,72,76}. Log::TeardownModule() calls it before
 \ingroup logging
 \brief Creates and registers the spdlog logger for a Log::SLogger. Called by the Log::SLogger constructor; you don't need to call it yourself.
 
-If a logger with the same name is already registered, it is reused and nothing new is created. Defined at \src{src/Log/Module.cpp,78,97}.
+If a logger with the same name is already registered, it is reused and nothing new is created. Defined at \src{src/Log/Module.cpp,79,98}.
 */
 
 /**

@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -126,7 +126,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="textblock"><p>You declare an action, bind keys to it (on press, while held, or on release), and read its value from your systems.</p>
 <table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input" class="src-link">include/Input/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input" class="src-link">src/Input/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input" class="src-link">include/Input/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input" class="src-link">src/Input/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Input/Module.hpp&gt;</span></td></tr>
 <tr>
@@ -139,7 +139,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <h2 class="doxsection"><a class="anchor" id="autotoc_md39"></a>
 How to use</h2>
 <p><b>1. Declare an action</b> at global scope with <a class="el" href="#ga02d3523d67343616c2ed3db12b4cd48d" title="Declares Input::Actions::InActionName, an Input::SAction&lt;ValueType&gt; whose bindings&#39; values are added ...">DEFINE_INPUT_ACTION</a>: a name and the type of value it produces. It becomes <span class="tt">Input::Actions::&lt;Name&gt;</span>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Declaring actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Declaring actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
 <div class="line"><span class="comment">// Its bindings&#39; values are added up (ADD).</span></div>
 <div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
 <div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpacePressed, <span class="keywordtype">bool</span>)</div>
@@ -154,7 +154,7 @@ How to use</h2>
 <div class="line"><a class="code hl_define" href="#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(SpeedBoost, <span class="keywordtype">float</span>, OVERRIDE)</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>2. Bind keys</b> with <span class="tt">AddInputBindings_Press</span>, <span class="tt">AddInputBindings_Hold</span> or <span class="tt">AddInputBindings_Release</span>. Each binding is a key (an <span class="tt">SDL_Scancode</span>) and the value it contributes:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Hold: active every frame the key is down.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Hold: active every frame the key is down.</span></div>
 <div class="line">    <a class="code hl_function" href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move, {</div>
 <div class="line">        {SDL_SCANCODE_UP, {0, -1}}, {SDL_SCANCODE_DOWN, {0, 1}},</div>
 <div class="line">        {SDL_SCANCODE_LEFT, {-1, 0}}, {SDL_SCANCODE_RIGHT, {1, 0}},</div>
@@ -192,7 +192,7 @@ How to use</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">Input::GetValue(Input::Actions::Move)</span>  </td><td class="markdownTableBodyNone">The combined value of the bindings that triggered (see <em>Values and operators</em>)  </td></tr>
 </table>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Polling actions in a system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Most game code polls actions from a system.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Polling actions in a system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Most game code polls actions from a system.</span></div>
 <div class="line">    <span class="comment">// Input is read before the systems run each frame.</span></div>
 <div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PollInput&quot;</span>)</div>
 <div class="line">        .each([](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
@@ -237,7 +237,7 @@ How to use</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>Or register a callback</b> that runs when the action triggers:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A callback</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A callback runs during Input::UpdateInputs() on every frame the action triggers.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A callback</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A callback runs during Input::UpdateInputs() on every frame the action triggers.</span></div>
 <div class="line">    <span class="comment">// Register one callback per action: each extra one makes all of them run again.</span></div>
 <div class="line">    <a class="code hl_function" href="#ga8372a1f4b0896466885d360d25891c8b">Input::RegisterActionCallback&lt;bool&gt;</a>(&amp;Input::Actions::Confirm, [](<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp;) {</div>
 <div class="line">        ++ConfirmCount;</div>
@@ -263,10 +263,10 @@ When a binding triggers</h2>
 <div class="line">});</div>
 <div class="ttc" id="agroup__input_html_ga2563a145ce13e323f5e0eeb75008e001"><div class="ttname"><a href="#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a></div><div class="ttdeci">void AddInputBindings_Hold(SAction&lt; TValueType &gt; *Action, std::initializer_list&lt; SInputBinding&lt; TValueType &gt; &gt; InputBindings)</div><div class="ttdoc">Adds bindings that trigger every frame their key (or all their keys) are held down.</div><div class="ttdef"><b>Definition</b> Module.hpp:45</div></div>
 <div class="ttc" id="astruct_input_1_1_s_input_binding_html"><div class="ttname"><a href="struct_input_1_1_s_input_binding.html">Input::SInputBinding</a></div><div class="ttdoc">One binding: the key(s) that trigger it, when (Input::EInputType) and the value it contributes.</div><div class="ttdef"><b>Definition</b> InputTypes.hpp:48</div></div>
-</div><!-- fragment --><p>For <span class="tt">PRESS</span> and <span class="tt">RELEASE</span> bindings, multi-key combinations never trigger (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L65-L98" class="src-link">src/Input/Module.cpp:65</a>). Use one key per binding.</p>
+</div><!-- fragment --><p>For <span class="tt">PRESS</span> and <span class="tt">RELEASE</span> bindings, multi-key combinations never trigger (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L65-L98" class="src-link">src/Input/Module.cpp:65</a>). Use one key per binding.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md41"></a>
 Values and operators</h2>
-<p><span class="tt">GetValue</span> starts from a zero value (<span class="tt">TValueType{}</span>) and applies the value of every triggered binding, in the order they were added, using the action's operator (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>):</p>
+<p><span class="tt">GetValue</span> starts from a zero value (<span class="tt">TValueType{}</span>) and applies the value of every triggered binding, in the order they were added, using the action's operator (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>):</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Operator  </th><th class="markdownTableHeadNone">Result  </th><th class="markdownTableHeadNone">Declare with  </th></tr>
@@ -286,15 +286,15 @@ Actions the engine declares</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Action  </th><th class="markdownTableHeadNone">Type  </th><th class="markdownTableHeadNone">Declared in  </th><th class="markdownTableHeadNone">Used by  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">Input::Actions::Move2D</span>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec2</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/Module.hpp\#L12" class="src-link">include/Gameplay/Module.hpp:12</a>  </td><td class="markdownTableBodyNone">Nothing in the engine; ProtoRPG and <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> use it for movement  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">Input::Actions::Move2D</span>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec2</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/Module.hpp\#L12" class="src-link">include/Gameplay/Module.hpp:12</a>  </td><td class="markdownTableBodyNone">Nothing in the engine; ProtoRPG and <a class="el" href="ex_collision.html" title="Collision and mouse hover">Collision and mouse hover</a> use it for movement  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt">Input::Actions::ToggleDebugColliders</span>  </td><td class="markdownTableBodyNone"><span class="tt">bool</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Types/Module.hpp\#L6" class="src-link">include/Types/Module.hpp:6</a>  </td><td class="markdownTableBodyNone">Meant to toggle <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a>; your game does the toggling  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">Input::Actions::ToggleDebugColliders</span>  </td><td class="markdownTableBodyNone"><span class="tt">bool</span>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Types/Module.hpp\#L6" class="src-link">include/Types/Module.hpp:6</a>  </td><td class="markdownTableBodyNone">Meant to toggle <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a>; your game does the toggling  </td></tr>
 </table>
 <p>The engine binds no keys to them.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md43"></a>
 Quitting</h2>
 <p><a class="el" href="#ga146ca4dedb07368ad44fe3509ef47bfa" title="Reads this frame&#39;s SDL events, records pressed and released keys, passes events to ImGui and runs act...">Input::UpdateInputs()</a> sets the quit flag when SDL reports a quit event (closing the window), and <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> then stops. To quit from your own code, push that event:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Quit on Escape</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input::ShouldQuit() becomes true when SDL sees a quit event (closing the window).</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Quit on Escape</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input::ShouldQuit() becomes true when SDL sees a quit event (closing the window).</span></div>
 <div class="line">    <span class="comment">// To quit from code, push one yourself; Engine::Run() returns on the next frame.</span></div>
 <div class="line">    world.system(<span class="stringliteral">&quot;QuitOnEscape&quot;</span>).run([](flecs::iter&amp; it) {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Quit)) {</div>
@@ -308,9 +308,9 @@ Quitting</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md44"></a>
 Things to watch out for</h2>
 <ul>
-<li><b>Keyboard only.</b> Gamepad buttons can be added to bindings, but they are never checked (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>).</li>
-<li><b>Typing in an ImGui text field also triggers game actions.</b> The engine passes events to ImGui but does not check whether ImGui wants the keyboard (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L44" class="src-link">src/Input/Module.cpp:44</a>).</li>
-<li><b>Register one callback per action.</b> Each callback runs once for every callback registered on the same action: with two callbacks, both run twice (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>).</li>
+<li><b>Keyboard only.</b> Gamepad buttons can be added to bindings, but they are never checked (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>).</li>
+<li><b>Typing in an ImGui text field also triggers game actions.</b> The engine passes events to ImGui but does not check whether ImGui wants the keyboard (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L44" class="src-link">src/Input/Module.cpp:44</a>).</li>
+<li><b>Register one callback per action.</b> Each callback runs once for every callback registered on the same action: with two callbacks, both run twice (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>).</li>
 <li>Callbacks are checked every frame for every registered callback, triggered or not.</li>
 <li><span class="tt">PRESS</span> repeats while the key is held (operating-system key repeat). Track the previous state yourself if you need exactly one trigger per press. </li>
 </ul>
@@ -415,8 +415,8 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use at global scope, in one source file or in a header shared by several. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L103" class="src-link">include/Input/InputTypes.hpp:103</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
+<p>Use at global scope, in one source file or in a header shared by several. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/InputTypes.hpp\#L103" class="src-link">include/Input/InputTypes.hpp:103</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
 <div class="line"><span class="comment">// Its bindings&#39; values are added up (ADD).</span></div>
 <div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
 <div class="line"><a class="code hl_define" href="#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpacePressed, <span class="keywordtype">bool</span>)</div>
@@ -456,7 +456,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L98-L101" class="src-link">include/Input/InputTypes.hpp:98</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/InputTypes.hpp\#L98-L101" class="src-link">include/Input/InputTypes.hpp:98</a>. </p>
 
 </div>
 </div>
@@ -487,7 +487,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d">NONE</a></span> never triggers. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L19-L24" class="src-link">include/Input/InputTypes.hpp:19</a>. </p>
+<p><span class="tt"><a class="el" href="namespace_input.html#gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d">NONE</a></span> never triggers. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/InputTypes.hpp\#L19-L24" class="src-link">include/Input/InputTypes.hpp:19</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d" name="gad9b92b4f2accebfd99f0ffb8442a13dbac27e2e633e6394c7b38434b8167b237d"></a>NONE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350" name="gad9b92b4f2accebfd99f0ffb8442a13dba67bb03d00062ca10e4dd78ff0d317350"></a>HOLD&#160;</td><td class="fielddoc"></td></tr>
@@ -508,7 +508,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>See <a class="el" href="group__input.html" title="Input">Input</a>. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/InputTypes.hpp\#L26-L32" class="src-link">include/Input/InputTypes.hpp:26</a>. </p>
+<p>See <a class="el" href="group__input.html" title="Input">Input</a>. Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/InputTypes.hpp\#L26-L32" class="src-link">include/Input/InputTypes.hpp:26</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faa380a0b0b2f8b04e2adff632e79a0acb5" name="gabcb03adbefc2817cf6a5329c0c4f86faa380a0b0b2f8b04e2adff632e79a0acb5"></a>OVERRIDE&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="gabcb03adbefc2817cf6a5329c0c4f86faae156e9d19819ae6c1d474b151f3d905f" name="gabcb03adbefc2817cf6a5329c0c4f86faae156e9d19819ae6c1d474b151f3d905f"></a>ADD&#160;</td><td class="fielddoc"></td></tr>
@@ -547,7 +547,7 @@ template&lt;typename TValueType&gt; </div>
   </table>
   </dd>
 </dl>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L34-L37" class="src-link">include/Input/Module.hpp:34</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L34-L37" class="src-link">include/Input/Module.hpp:34</a>. </p>
 
 </div>
 </div>
@@ -571,7 +571,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L44-L47" class="src-link">include/Input/Module.hpp:44</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L44-L47" class="src-link">include/Input/Module.hpp:44</a>. </p>
 
 </div>
 </div>
@@ -595,7 +595,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L39-L42" class="src-link">include/Input/Module.hpp:39</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L39-L42" class="src-link">include/Input/Module.hpp:39</a>. </p>
 
 </div>
 </div>
@@ -624,7 +624,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The <span class="tt">_Press</span>, <span class="tt">_Hold</span> and <span class="tt">_Release</span> versions call this. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L23-L32" class="src-link">include/Input/Module.hpp:23</a>. </p>
+<p>The <span class="tt">_Press</span>, <span class="tt">_Hold</span> and <span class="tt">_Release</span> versions call this. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L23-L32" class="src-link">include/Input/Module.hpp:23</a>. </p>
 
 </div>
 </div>
@@ -644,7 +644,7 @@ template&lt;typename TActionValue&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L71-L81" class="src-link">include/Input/Module.hpp:71</a>. </p>
 
 </div>
 </div>
@@ -664,7 +664,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L83-L92" class="src-link">include/Input/Module.hpp:83</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L83-L92" class="src-link">include/Input/Module.hpp:83</a>. </p>
 
 </div>
 </div>
@@ -688,7 +688,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Register at most one callback per action (see <a class="el" href="group__input.html" title="Input">Input</a>). Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>. </p>
+<p>Register at most one callback per action (see <a class="el" href="group__input.html" title="Input">Input</a>). Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L96-L107" class="src-link">include/Input/Module.hpp:96</a>. </p>
 
 </div>
 </div>
@@ -707,7 +707,7 @@ template&lt;typename TValueType&gt; </div>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L35-L63" class="src-link">src/Input/Module.cpp:35</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L35-L63" class="src-link">src/Input/Module.cpp:35</a>. </p>
 
 </div>
 </div>
@@ -725,7 +725,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> stops when it is. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L31-L33" class="src-link">src/Input/Module.cpp:31</a>. </p>
+<p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> stops when it is. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L31-L33" class="src-link">src/Input/Module.cpp:31</a>. </p>
 
 </div>
 </div>
@@ -743,7 +743,7 @@ template&lt;typename TValueType&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Used by <a class="el" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44" title="Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...">Input::GetValue()</a> and <a class="el" href="#ga96cd377a209587f7494f3357edd5fcec" title="Returns true if any of the action&#39;s bindings triggered this frame.">Input::IsActionTriggered()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>. </p>
+<p>Used by <a class="el" href="#ga61a6a4c192b6c90c1f7c15b2841c7d44" title="Returns the action&#39;s value this frame: its triggered bindings&#39; values combined with its operator,...">Input::GetValue()</a> and <a class="el" href="#ga96cd377a209587f7494f3357edd5fcec" title="Returns true if any of the action&#39;s bindings triggered this frame.">Input::IsActionTriggered()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Input/Module.cpp\#L100-L122" class="src-link">src/Input/Module.cpp:100</a>. </p>
 
 </div>
 </div>
@@ -851,7 +851,7 @@ template&lt;typename TActionValue&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

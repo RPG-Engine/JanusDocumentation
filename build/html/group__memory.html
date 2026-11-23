@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -122,7 +122,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp" class="src-link">include/Memory/Janitors.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Memory" class="src-link">src/Memory/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp" class="src-link">include/Memory/Janitors.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Memory" class="src-link">src/Memory/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Memory/Module.hpp&gt;</span> (or <span class="tt">&lt;Memory/Janitors.hpp&gt;</span>)</td></tr>
 <tr>
@@ -135,7 +135,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <h2 class="doxsection"><a class="anchor" id="autotoc_md53"></a>
 How to use</h2>
 <p><span class="tt"><a class="el" href="class_t_object_ptr.html" title="A reference-counted owning pointer.">TObjectPtr</a>&lt;T&gt;</span> owns a heap-allocated <span class="tt">T</span> together with a use count. Copies share the object; when the last copy goes away, the object is deleted. In Debug builds each allocation is reported to the Tracy profiler's memory view.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">TObjectPtr in practice</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">TObjectPtr in practice</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Any type can live in a TObjectPtr.</span></div>
 <div class="line"><span class="comment">// Types derived from SAsset can also be loaded by the Filesystem module.</span></div>
 <div class="line"><span class="keyword">struct </span>SInventory {</div>
 <div class="line">    std::vector&lt;std::string&gt; Items;</div>
@@ -193,10 +193,10 @@ How to use</h2>
 Things to watch out for</h2>
 <ul>
 <li><b><span class="tt"><a class="el" href="class_t_object_ptr.html" title="A reference-counted owning pointer.">TObjectPtr</a>&lt;T&gt; x;</span> allocates.</b> Write <span class="tt">= nullptr</span> when you want an empty pointer, for example for a member that is filled in later.</li>
-<li><b>Assigning over a pointer that already holds an object does not release that object</b> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L95-L111" class="src-link">include/Memory/Janitors.hpp:95</a>). The old object is never deleted. Call <span class="tt">Clear()</span> first if the pointer may already hold something you want released.</li>
-<li>Constructing from a <span class="tt">T&amp;&amp;</span> copies the object instead of moving it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L40" class="src-link">include/Memory/Janitors.hpp:40</a>).</li>
-<li><span class="tt"><a class="el" href="#gaaf47cf205f2dd836de6039cc31fc4c56" title="Returns a pointer of another type to the same object, sharing its use count.">CastTo</a></span> on an empty pointer crashes: it increments the use count without checking (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L124-L132" class="src-link">include/Memory/Janitors.hpp:124</a>).</li>
-<li><span class="tt">operator*</span> does not compile if you use it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L120" class="src-link">include/Memory/Janitors.hpp:120</a>). Use <span class="tt">-&gt;</span> or <span class="tt">Raw()</span>.</li>
+<li><b>Assigning over a pointer that already holds an object does not release that object</b> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp\#L95-L111" class="src-link">include/Memory/Janitors.hpp:95</a>). The old object is never deleted. Call <span class="tt">Clear()</span> first if the pointer may already hold something you want released.</li>
+<li>Constructing from a <span class="tt">T&amp;&amp;</span> copies the object instead of moving it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp\#L40" class="src-link">include/Memory/Janitors.hpp:40</a>).</li>
+<li><span class="tt"><a class="el" href="#gaaf47cf205f2dd836de6039cc31fc4c56" title="Returns a pointer of another type to the same object, sharing its use count.">CastTo</a></span> on an empty pointer crashes: it increments the use count without checking (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp\#L124-L132" class="src-link">include/Memory/Janitors.hpp:124</a>).</li>
+<li><span class="tt">operator*</span> does not compile if you use it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp\#L120" class="src-link">include/Memory/Janitors.hpp:120</a>). Use <span class="tt">-&gt;</span> or <span class="tt">Raw()</span>.</li>
 <li>The use count is a plain <span class="tt">int</span>: don't share one <span class="tt"><a class="el" href="class_t_object_ptr.html" title="A reference-counted owning pointer.">TObjectPtr</a></span> object between threads. </li>
 </ul>
 </div><table class="memberdecls">
@@ -233,8 +233,8 @@ template&lt;typename TCastType, typename TBaseType&gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Unchecked: the object must really be a <span class="tt">TCastType</span>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Memory/Janitors.hpp\#L124-L132" class="src-link">include/Memory/Janitors.hpp:124</a>. <span class="tt">Ptr</span> must not be empty.</p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Returning a cached asset as the requested type</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp#L67-L69" target="_blank">include/Filesystem/Importers/Importer.hpp:67</a></summary> </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Asset-&gt;ObjectData.IsValid()) {</div>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Memory/Janitors.hpp\#L124-L132" class="src-link">include/Memory/Janitors.hpp:124</a>. <span class="tt">Ptr</span> must not be empty.</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Returning a cached asset as the requested type</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp#L67-L69" target="_blank">include/Filesystem/Importers/Importer.hpp:67</a></summary> </p><div class="fragment"><div class="line"><span class="keywordflow">if</span> (Asset-&gt;ObjectData.IsValid()) {</div>
 <div class="line">    <span class="keywordflow">return</span> <a class="code hl_function" href="#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo&lt;TAssetType&gt;</a>(Asset-&gt;ObjectData);</div>
 <div class="line">}</div>
 <div class="ttc" id="agroup__memory_html_gaaf47cf205f2dd836de6039cc31fc4c56"><div class="ttname"><a href="#gaaf47cf205f2dd836de6039cc31fc4c56">CastTo</a></div><div class="ttdeci">TObjectPtr&lt; TCastType &gt; CastTo(const TObjectPtr&lt; TBaseType &gt; &amp;Ptr)</div><div class="ttdoc">Returns a pointer of another type to the same object, sharing its use count.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:125</div></div>
@@ -281,7 +281,7 @@ template&lt;typename TCastType, typename TBaseType&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

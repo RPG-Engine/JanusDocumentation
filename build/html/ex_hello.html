@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,14 +115,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>The smallest program that puts something on screen: a camera, a light, a background and one sprite.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" class="src-link">examples/modules/HelloJanus.cpp</a></span><span><b>Executable</b> <code>HelloJanus</code></span><span><b>Module</b> <a class="el" href="group__engine__core.html" title="Engine core">Engine core</a></span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" class="src-link">examples/modules/HelloJanus.cpp</a></span><span><b>Executable</b> <code>HelloJanus</code></span><span><b>Module</b> <a class="el" href="group__engine__core.html" title="Engine core">Engine core</a></span></div><div class="image">
 <img src="hello-janus.png" alt=""/>
 <div class="caption">
 The orange square, with the engine's FPS Counter, Entity Debugger and Dear ImGui Demo windows</div></div>
 <p>This is the program walked through in <a class="el" href="first_game.html" title="Your first game">Your first game</a>. It shows the four things every Janus game needs before anything is visible (<a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>) and the order of the engine calls (<a class="el" href="group__engine__core.html" title="Engine core">Engine core</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md109"></a>
 Textures without files</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering a texture made in code</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Creates a square, solid-white texture in memory and registers it with the</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering a texture made in code</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Creates a square, solid-white texture in memory and registers it with the</span></div>
 <div class="line"><span class="comment">// Filesystem module under AssetPath, as if it were an image file in Resources/.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
 <div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
@@ -145,7 +145,7 @@ Textures without files</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md110"></a>
 main()</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">main()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">main()</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
 <div class="line">    <span class="comment">// so register it first.</span></div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
@@ -193,7 +193,7 @@ main()</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

@@ -29,7 +29,7 @@ DECLARE_LOGGER(Filesystem, debug)
 
 ### AI-generated examples
 
-Example blocks without a label contain code written for this documentation by AI, not taken from the engine. Pages that contain them start with an <b>AI-generated content</b> notice. Each block comes from a program in `Engine/Documentation/examples`, named and linked in the block's header. The documentation build pulls the code straight from those files, so what you read is what was compiled. All of them were compiled and run against the documented commit (\ref docs_version), but they are not part of the engine and have not been reviewed by its authors.
+Example blocks without a label contain code written for this documentation by AI, not taken from the engine. Pages that contain them start with an <b>AI-generated content</b> notice. Each block comes from a program in the `examples` folder of the JanusDocumentation repository, named and linked in the block's header. The documentation build pulls the code straight from those files, so what you read is what was compiled. All of them were compiled and run against the documented commit (\ref docs_version), but they are not part of the engine and have not been reviewed by its authors.
 
 \genexopen{modules/HelloJanus.cpp,A generated example}
 \snippet modules/HelloJanus.cpp solid_texture

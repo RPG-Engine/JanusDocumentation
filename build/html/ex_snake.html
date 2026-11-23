@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,7 +115,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Steer the snake to the red food. Each bite makes it longer and faster; walls and your own tail end the round.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" class="src-link">examples/games/Snake.cpp</a></span><span><b>Executable</b> <code>SnakeGame</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys to turn, <kbd>R</kbd> to restart</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" class="src-link">examples/games/Snake.cpp</a></span><span><b>Executable</b> <code>SnakeGame</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys to turn, <kbd>R</kbd> to restart</span></div><div class="image">
 <img src="snake.png" alt=""/>
 <div class="caption">
 Snake: the head is bright green, the food red</div></div>
@@ -123,7 +123,7 @@ Snake: the head is bright green, the food red</div></div>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md101"></a>
 Actions</h2>
 <p>Four press bindings share one <span class="tt">glm::vec2</span> action. With <span class="tt">OVERRIDE</span>, the action's value is the last binding that triggered this frame, so the result is always one of the four directions (or zero):</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Turning with OVERRIDE</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Turning with OVERRIDE</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
 <div class="line"><span class="comment">// OVERRIDE: the action&#39;s value is the value of the last binding that triggered,</span></div>
 <div class="line"><span class="comment">// instead of the sum of all of them. Exactly what a &quot;turn&quot; needs.</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(Turn, glm::vec2, OVERRIDE)</div>
@@ -140,7 +140,7 @@ Actions</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md102"></a>
 Data and presentation</h2>
 <p>Each body segment has an <span class="tt">FGridCell</span> (a cell on a 32 × 18 grid). The snake's state is a component on one entity; the order of the body segments is kept in a <span class="tt">std::deque</span>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components and game state</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Components -------------------------------------------------------------</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components and game state</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Components -------------------------------------------------------------</span></div>
 <div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// Position on the game grid, in cells. A system turns it into a transform.</span></div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FGridCell,</div>
@@ -183,7 +183,7 @@ Data and presentation</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
 <p>A separate system turns grid cells into world positions. It runs in <span class="tt">PostUpdate</span>, after the game logic:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Grid to transform</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Presentation: place every grid entity in the world.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Grid to transform</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Presentation: place every grid entity in the world.</span></div>
 <div class="line">    <span class="comment">// Runs after the game logic (PostUpdate).</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> FGridCell, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;(<span class="stringliteral">&quot;SnapToGrid&quot;</span>)</div>
 <div class="line">        .kind(flecs::PostUpdate)</div>
@@ -194,7 +194,7 @@ Data and presentation</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md103"></a>
 The step</h2>
 <p>The snake system reads turns every frame, but only moves when its timer runs out. Moving reuses the tail entity as the new head; growing creates a new head. <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a> set inside a system are applied after it finishes, which is why <span class="tt">IsOnSnake</span> uses <span class="tt">try_get</span>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One step of the snake</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Game logic: read turns every frame, move one cell every step.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One step of the snake</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Game logic: read turns every frame, move one cell every step.</span></div>
 <div class="line">    world.system&lt;FSnake&gt;(<span class="stringliteral">&quot;SnakeStep&quot;</span>)</div>
 <div class="line">        .each([](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSnake&amp; snake) {</div>
 <div class="line">            <span class="keywordflow">if</span> (Game.bGameOver) {</div>
@@ -246,7 +246,7 @@ The step</h2>
 <div class="line">            }</div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting a round</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> StartRound(<span class="keyword">const</span> flecs::world&amp; World) {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting a round</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> StartRound(<span class="keyword">const</span> flecs::world&amp; World) {</div>
 <div class="line">    <span class="keywordflow">for</span> (flecs::entity segment : Game.Body) {</div>
 <div class="line">        segment.destruct();</div>
 <div class="line">    }</div>
@@ -264,7 +264,7 @@ The step</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md104"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Snake.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Snake: steer the snake to eat the red food. Each bite makes it longer and faster.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Snake.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Snake.cpp" target="_blank">examples/games/Snake.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Snake: steer the snake to eat the red food. Each bite makes it longer and faster.</span></div>
 <div class="line"><span class="comment">// Hitting a wall or your own tail ends the round.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: W A S D or arrow keys to turn. R to restart after a crash.</span></div>
@@ -567,7 +567,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

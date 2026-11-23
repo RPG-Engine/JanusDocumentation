@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -113,23 +113,23 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
   <div class="headertitle"><div class="title">Documentation version </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2about_2docs-version"></a></p>
+<div class="textblock"><p><a class="anchor" id="md__f_1_2projects_2_janus_documentation_2pages_2about_2docs-version"></a></p>
 <p class="lede"></p>
 <p>Which engine commit these pages describe, and how to bring them up to date from the engine's changes instead of re-reading the whole engine.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone"></th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b><a class="el" href="namespace_engine.html">Engine</a> commit documented</b>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/824ee2043e545a75c0510187f5c7ca53b5aa21c4" class="src-link"><code>824ee20</code></a>  </td></tr>
+<td class="markdownTableBodyNone"><b><a class="el" href="namespace_engine.html">Engine</a> commit documented</b>  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/02fd6c2454ea67f96d38295400c5e2a88619f43e" class="src-link"><code>02fd6c2</code></a>  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Documented on</b>  </td><td class="markdownTableBodyNone">2026-11-22  </td></tr>
+<td class="markdownTableBodyNone"><b>Documented on</b>  </td><td class="markdownTableBodyNone">2026-11-23  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Examples verified</b>  </td><td class="markdownTableBodyNone">Compiled with MSVC 14.51 (C++26, Release) and run against the same commit, with the one-line fix described in <a class="el" href="known_issues.html" title="Known issues">Known issues</a>  </td></tr>
 </table>
 <p>Every GitHub link marked ↗ points at this commit, so line numbers always match the code they describe, even after the engine moves on.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md0"></a>
 Where the version lives</h1>
-<p><span class="tt">Documentation/docs-version.json</span> is the single source of truth:</p>
+<p><span class="tt">docs-version.json</span> is the single source of truth:</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Field  </th><th class="markdownTableHeadNone">Used for  </th></tr>
@@ -140,16 +140,18 @@ Where the version lives</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">engineRepository</span>  </td><td class="markdownTableBodyNone">Base URL for source links.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt">examplesRef</span>  </td><td class="markdownTableBodyNone">The branch whose <span class="tt">Documentation/examples</span> folder the example links point at (default <span class="tt">main</span>).  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">docsRepository</span>  </td><td class="markdownTableBodyNone">Base URL of the JanusDocumentation repository; example links point into its <span class="tt">examples/</span> folder.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">examplesVerified</span>  </td><td class="markdownTableBodyNone">Which commit the examples were last compiled and run against.  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">examplesRef</span>  </td><td class="markdownTableBodyNone">The JanusDocumentation branch the example links point at (default <span class="tt">master</span>).  </td></tr>
 <tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><span class="tt">examplesVerified</span>  </td><td class="markdownTableBodyNone">Which commit the examples were last compiled and run against.  </td></tr>
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">coverage</span>  </td><td class="markdownTableBodyNone">Which page documents which engine files. The delta tool uses it to tell you which pages a change affects.  </td></tr>
 </table>
 <p><span class="tt">build.ps1</span> reads this file and passes the values to Doxygen as environment variables, which the <span class="tt">Doxyfile</span> uses in its link aliases. Nothing else in the docs contains a commit hash.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md1"></a>
 Updating the docs after engine changes</h1>
-<p>Run these from <span class="tt">Engine/Documentation</span> in PowerShell.</p>
+<p>Run these from the JanusDocumentation folder in PowerShell. The engine is a separate repository: pass <span class="tt">-EngineDir &lt;path&gt;</span> to <span class="tt">docs-delta.ps1</span> or set <span class="tt">JANUS_ENGINE_DIR</span>.</p>
 <p><b>1. See what changed</b> since the documented commit:</p>
 <div class="fragment"><div class="line">.\tools\docs-delta.ps1</div>
 </div><!-- fragment --><p>It prints the commits since then, every changed engine file, the pages that document those files (from <span class="tt">coverage</span>), and every source link that points into a changed file, since their line numbers may have moved. Add <span class="tt">-WorkingTree</span> to include uncommitted changes, or <span class="tt">-Ref &lt;commit&gt;</span> to compare with a specific commit.</p>
@@ -164,9 +166,9 @@ Updating the docs after engine changes</h1>
 <p><b>New engine files</b> that no <span class="tt">coverage</span> entry matches are reported as such: decide which page covers them and add an entry.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md2"></a>
 Building these docs</h1>
-<p>The site is generated by <a href="https://www.doxygen.nl">Doxygen</a> 1.18 with <a href="https://graphviz.org">Graphviz</a> from <span class="tt">Engine/Documentation</span>:</p>
-<div class="fragment"><div class="line">powershell -File Engine\Documentation\build.ps1</div>
-</div><!-- fragment --><p>Then open <span class="tt">Engine/Documentation/build/html/index.html</span>. The build aims for zero warnings; they are written to <span class="tt">build/warnings.log</span>.</p>
+<p>The site is generated by <a href="https://www.doxygen.nl">Doxygen</a> 1.18 with <a href="https://graphviz.org">Graphviz</a> from the JanusDocumentation repository:</p>
+<div class="fragment"><div class="line">powershell -File JanusDocumentation\build.ps1</div>
+</div><!-- fragment --><p>Then open <span class="tt">JanusDocumentation/build/html/index.html</span>. The build aims for zero warnings; they are written to <span class="tt">build/warnings.log</span>.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Folder or file  </th><th class="markdownTableHeadNone">Contains  </th></tr>
@@ -189,7 +191,7 @@ Building these docs</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

@@ -1,12 +1,13 @@
-{
+﻿{
   "description": "Which engine commit these docs describe. build.ps1 pins every GitHub source link to engineCommit. tools/docs-delta.ps1 lists what changed in the engine since then and which pages need a look. After updating the docs for newer code, run tools/docs-delta.ps1 -Pin to move engineCommit forward.",
   "engineRepository": "https://github.com/RPG-Engine/RPG-Engine-Core",
-  "engineCommit": "824ee2043e545a75c0510187f5c7ca53b5aa21c4",
-  "documentedOn": "2026-11-22",
-  "examplesRef": "main",
+  "engineCommit": "02fd6c2454ea67f96d38295400c5e2a88619f43e",
+  "documentedOn": "2026-11-23",
+  "docsRepository": "https://github.com/RPG-Engine/JanusDocumentation",
+  "examplesRef": "master",
   "examplesVerified": {
     "commit": "824ee2043e545a75c0510187f5c7ca53b5aa21c4",
-    "note": "All examples were compiled (MSVC 14.51, C++26, Release) and run. 824ee20 needs include/Module.hpp to use ENGINE_EXPORT instead of ENGINE_ENGINE_EXPORT to compile."
+    "note": "Examples were compiled (MSVC 14.51, C++26, Release) and run against 824ee20, which needed ENGINE_EXPORT instead of ENGINE_ENGINE_EXPORT in include/Module.hpp. 02fd6c2 contains that fix. They have not been rebuilt against 02fd6c2 yet."
   },
   "coverage": {
     "CMakeLists.txt":               ["pages/using-janus/getting-started.md", "pages/engine-organization.md"],

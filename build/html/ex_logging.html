@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,9 +115,9 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>A console program that declares loggers in three different ways and writes messages at each level. It opens no window and starts only the <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a> module.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" class="src-link">examples/modules/Logging.cpp</a></span><span><b>Executable</b> <code>LoggingExample</code></span><span><b>Module</b> <a class="el" href="group__logging.html" title="Log">Log</a></span></div><h2 class="doxsection"><a class="anchor" id="autotoc_md111"></a>
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Logging.cpp" class="src-link">examples/modules/Logging.cpp</a></span><span><b>Executable</b> <code>LoggingExample</code></span><span><b>Module</b> <a class="el" href="group__logging.html" title="Log">Log</a></span></div><h2 class="doxsection"><a class="anchor" id="autotoc_md111"></a>
 Declaring loggers</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three ways to get a logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// One logger per source file (or per module). Messages below &quot;debug&quot; are dropped.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three ways to get a logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// One logger per source file (or per module). Messages below &quot;debug&quot; are dropped.</span></div>
 <div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(Inventory, debug)</div>
 </div><!-- fragment --> <div class="fragment"><div class="line"><span class="comment">// File only, info and above, written to &lt;exe dir&gt;/Logs/Network.log.</span></div>
 <div class="line"><a class="code hl_define" href="group__logging.html#ga57bbe107f43fc70a8c0087bd5619a4ac">DECLARE_LOGGER_WITH_PARAMS</a>(Network, info, <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a957b3db3f6c69ff73379f3fdc8e446f6">Log::ELogOutputOptions::LOG_FILE</a>, <span class="stringliteral">&quot;Network&quot;</span>)</div>
@@ -131,7 +131,7 @@ Declaring loggers</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md112"></a>
 Logging</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting the module and logging at every level</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Engine::InitializePlugins() normally does this.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting the module and logging at every level</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Engine::InitializePlugins() normally does this.</span></div>
 <div class="line">    <span class="comment">// A program that only logs can call it directly.</span></div>
 <div class="line">    <a class="code hl_function" href="group__logging.html#ga6e5199d4346a2b55762b647155b4fba7">Log::Module</a>();</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    Log::Inventory::Error(<span class="stringliteral">&quot;Item {} is missing from the database&quot;</span>, 42);</div>
@@ -165,7 +165,7 @@ Output</h2>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md114"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Logging.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: logging.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Logging.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: logging.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// A console program: it opens no window and does not start the rest of the engine.</span></div>
 <div class="line"><span class="comment">// Output goes to the console and to &lt;exe dir&gt;/Logs/.</span></div>
@@ -227,7 +227,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,7 +115,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Move a player with the keyboard through a world larger than the screen, among wanderers that bounce off the edges. The camera and a light follow the player.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" class="src-link">examples/ecs/Movement.cpp</a></span><span><b>Executable</b> <code>EcsMovement</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" class="src-link">examples/ecs/Movement.cpp</a></span><span><b>Executable</b> <code>EcsMovement</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> or arrow keys</span></div><div class="image">
 <img src="ecs-movement.png" alt=""/>
 <div class="caption">
 The player (cyan) carries the camera and a light; wanderers bounce around a 640 × 360 world</div></div>
@@ -123,7 +123,7 @@ The player (cyan) carries the camera and a light; wanderers bounce around a 640 
 <h2 class="doxsection"><a class="anchor" id="autotoc_md72"></a>
 Components</h2>
 <p><span class="tt">FVelocity</span> is shared by everything that moves. <span class="tt">FPlayer</span> and <span class="tt">FBounceInWorld</span> are markers that decide which systems affect an entity:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// World units per second.</span></div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
 <div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Value, glm::vec2(0, 0)))</div>
@@ -139,7 +139,7 @@ Components</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md73"></a>
 Input</h2>
 <p>Every held binding adds its value, so diagonals come for free:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A 2D action</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A 2D action. Every binding that is held adds its value, so W + D gives (1, -1).</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A 2D action</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A 2D action. Every binding that is held adds its value, so W + D gives (1, -1).</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move, {</div>
 <div class="line">        {SDL_SCANCODE_W, {0, -1}}, {SDL_SCANCODE_UP,    {0, -1}},</div>
@@ -151,7 +151,7 @@ Input</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md74"></a>
 The player</h2>
 <p>The player entity carries the camera and a light. <span class="tt">Boundaries</span> stops the camera at the world's edges:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Player, camera and light</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Player, camera and light</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
 <div class="line">    <span class="comment">// Camera Boundaries are (minX, maxX, minY, maxY) for the camera&#39;s top-left corner.</span></div>
 <div class="line">    <span class="keyword">const</span> glm::vec2 worldCentre {WorldW / 2.f, WorldH / 2.f};</div>
 <div class="line">    SpawnRect(world, worldCentre, {ActorSize, ActorSize}, {0.4f, 0.9f, 1.f, 1.f})</div>
@@ -171,7 +171,7 @@ The player</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md75"></a>
 Systems</h2>
 <p>Three systems, each doing one thing. The first only matches the player; the second moves everything with a velocity; the third, in <span class="tt">PostUpdate</span>, keeps everything inside the world:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Input, velocity and bounds</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Player input -&gt; velocity. Only matches the entity with FPlayer.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Input, velocity and bounds</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Player input -&gt; velocity. Only matches the entity with FPlayer.</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> FPlayer, FVelocity&gt;(<span class="stringliteral">&quot;PlayerInput&quot;</span>)</div>
 <div class="line">        .each([](<span class="keyword">const</span> FPlayer&amp; player, FVelocity&amp; velocity) {</div>
 <div class="line">            glm::vec2 direction = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Move);</div>
@@ -212,7 +212,7 @@ Systems</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md76"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Movement.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: moving entities.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Movement.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: moving entities.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: W A S D or arrow keys to move.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -459,7 +459,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

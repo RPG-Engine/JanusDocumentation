@@ -8,7 +8,6 @@ These are descriptions of the engine as it is, not of how it should be. When one
 
 | Issue | Workaround |
 | --- | --- |
-| **The pinned commit does not compile.** `Engine::InitializePlugins` and `TeardownPlugins` are declared with `ENGINE_ENGINE_EXPORT`, which is not defined (\src{include/Module.hpp,17,18}). | Change both to `ENGINE_EXPORT`. |
 | If `SDL_Init` fails, `InitializePlugins()` executes `throw;` with no active exception, which terminates the program without a message box (\src{src/Module.cpp,76,79}). | Check the log for the SDL error. |
 | The post-build step copies `TracyClient.dll` from the `x64-windows` triplet folder (\src{CMakeLists.txt,75,81}). | Use the `x64-windows` triplet. |
 
@@ -89,6 +88,5 @@ These are descriptions of the engine as it is, not of how it should be. When one
 
 | Issue | Workaround |
 | --- | --- |
-| Trace (`Verbose`) messages are always dropped: Log::Module() sets spdlog's global level to debug (\src{src/Log/Module.cpp,53}). | — |
-| Timestamped copies of log files are named with the UTC time (\src{src/Log/Module.cpp,62,63}). | — |
-| Logger settings are read from statics whose initialization order across files is undefined. See \ref logging. | — |
+| Trace (`Verbose`) messages are always dropped: Log::Module() sets spdlog's global level to debug (\src{src/Log/Module.cpp,54}). | — |
+| Timestamped copies of log files are named with the UTC time (\src{src/Log/Module.cpp,63,64}). | — |

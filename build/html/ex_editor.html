@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,13 +115,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Write your own ImGui tool window that spawns entities, open and close it from code, and reopen the engine's built-in tools.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" class="src-link">examples/modules/EditorTools.cpp</a></span><span><b>Executable</b> <code>EditorExample</code></span><span><b>Controls</b> <kbd>F2</kbd> shows or hides the Spawner tool</span><span><b>Modules</b> <a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>, <a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>, <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a></span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" class="src-link">examples/modules/EditorTools.cpp</a></span><span><b>Executable</b> <code>EditorExample</code></span><span><b>Controls</b> <kbd>F2</kbd> shows or hides the Spawner tool</span><span><b>Modules</b> <a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>, <a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>, <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a></span></div><div class="image">
 <img src="editor.png" alt=""/>
 <div class="caption">
 The Spawner tool after pressing Spawn once</div></div>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md130"></a>
 The tool</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">SpawnerTool</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">SpawnerTool</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
 <div class="line"><span class="comment">// every frame while the tool is open, between ImGui::NewFrame() and rendering,</span></div>
 <div class="line"><span class="comment">// so any ImGui call works here.</span></div>
 <div class="line"><span class="keyword">class </span>SpawnerTool : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
@@ -207,7 +207,7 @@ The tool</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md131"></a>
 Opening and toggling</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open once, toggle with F2</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open once, toggle with F2</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
 <div class="line">    <span class="comment">// and returns the same instance afterwards.</span></div>
 <div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SpawnerTool&gt;</a> spawner = <a class="code hl_function" href="group__editor.html#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SpawnerTool&gt;</a>();</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Tools can be closed and reopened from game code. A closed tool keeps its state.</span></div>
@@ -224,7 +224,7 @@ Opening and toggling</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md132"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">EditorTools.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: editor tools and ImGui.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">EditorTools.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: editor tools and ImGui.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: F2 shows or hides the &quot;Spawner&quot; tool. Use its widgets to create entities.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -448,7 +448,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

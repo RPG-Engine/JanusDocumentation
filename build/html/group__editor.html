@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -122,21 +122,21 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor" class="src-link">include/Editor/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor" class="src-link">src/Editor/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Editor" class="src-link">include/Editor/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor" class="src-link">src/Editor/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Editor/Module.hpp&gt;</span> (tools, <span class="tt">Open</span>) · <span class="tt">#include &lt;Editor/DebugStatsEditor.hpp&gt;</span>, <span class="tt">&lt;Editor/EntityEditorTool.hpp&gt;</span>, <span class="tt">&lt;Editor/SpriteSheetEditor.hpp&gt;</span> (built-in tools)</td></tr>
 <tr>
 <td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_core_editor.html" title="Put all your includes here that you want to be accessible through a single header include.">CoreEditor</a></span>; the tool base class is <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a></td></tr>
 <tr>
-<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L89" class="src-link">Engine::InitializePlugins()</a>, last</td></tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Module.cpp\#L89" class="src-link">Engine::InitializePlugins()</a>, last</td></tr>
 <tr>
 <td><b>Examples</b></td><td><a class="el" href="ex_editor.html" title="Editor tools">Editor tools</a> · the HUD in every game</td></tr>
 </table>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md19"></a>
 How to use</h2>
-<p>An <b>editor tool</b> is a class derived from <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a> with a <span class="tt">Draw_Internal()</span> function full of ImGui calls. Every frame, between <span class="tt">ImGui::NewFrame()</span> and rendering, the engine calls <span class="tt">Draw_Internal()</span> on each open tool (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>). That makes tools the place for debug windows <b>and</b> for game UI such as a score display.</p>
+<p>An <b>editor tool</b> is a class derived from <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a> with a <span class="tt">Draw_Internal()</span> function full of ImGui calls. Every frame, between <span class="tt">ImGui::NewFrame()</span> and rendering, the engine calls <span class="tt">Draw_Internal()</span> on each open tool (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>). That makes tools the place for debug windows <b>and</b> for game UI such as a score display.</p>
 <p><b>1. Write the tool:</b></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A tool with buttons, sliders and a colour picker</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A tool with buttons, sliders and a colour picker</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
 <div class="line"><span class="comment">// every frame while the tool is open, between ImGui::NewFrame() and rendering,</span></div>
 <div class="line"><span class="comment">// so any ImGui call works here.</span></div>
 <div class="line"><span class="keyword">class </span>SpawnerTool : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
@@ -221,12 +221,12 @@ How to use</h2>
 <div class="line">};</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>2. Open it</b> once, after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>. <a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open&lt;T&gt;()</a> creates the tool the first time and returns the same instance on later calls:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
 <div class="line">    <span class="comment">// and returns the same instance afterwards.</span></div>
 <div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SpawnerTool&gt;</a> spawner = <a class="code hl_function" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SpawnerTool&gt;</a>();</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>3. Close and reopen it</b> from game code with <span class="tt">Close()</span> and <span class="tt">Open()</span>; a closed tool keeps its state. Passing <span class="tt">&amp;bOpen</span> to <span class="tt">ImGui::Begin</span> gives the window a close button that does the same:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Toggling a tool with a key</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Tools can be closed and reopened from game code. A closed tool keeps its state.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Toggling a tool with a key</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Tools can be closed and reopened from game code. A closed tool keeps its state.</span></div>
 <div class="line">    world.system(<span class="stringliteral">&quot;ToggleSpawner&quot;</span>).run([spawner](flecs::iter&amp; it) {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToggleSpawner)) {</div>
 <div class="line">            <span class="keywordflow">if</span> (spawner-&gt;bOpen) {</div>
@@ -245,25 +245,25 @@ Built-in tools</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Tool  </th><th class="markdownTableHeadNone">Opens  </th><th class="markdownTableHeadNone">Shows  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>Entity Debugger</b> (<a class="el" href="class_core_editor_1_1_entity_editor_tool.html" title="The Entity Debugger window: create, browse, inspect and edit entities and their components.">CoreEditor::EntityEditorTool</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Create entities; <em>Entity Outliner</em> lists entities that have an <span class="tt">FTransformComponent</span>, click one to select it; the selected entity's components with editable fields; <em>Add Component</em> for any registered component; <em>Save Entity</em> writes it as a flecs script to <span class="tt">Resources/Output/ECS/&lt;name&gt;</span>; <em>Global Entity</em> shows <a class="el" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150" title="Returns an entity for game-wide components, created on first use.">ECS::GetGlobalSystemsEntity()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L223-L243" class="src-link">src/Editor/EntityEditorTool.cpp:223</a>)  </td></tr>
+<td class="markdownTableBodyNone"><b>Entity Debugger</b> (<a class="el" href="class_core_editor_1_1_entity_editor_tool.html" title="The Entity Debugger window: create, browse, inspect and edit entities and their components.">CoreEditor::EntityEditorTool</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Create entities; <em>Entity Outliner</em> lists entities that have an <span class="tt">FTransformComponent</span>, click one to select it; the selected entity's components with editable fields; <em>Add Component</em> for any registered component; <em>Save Entity</em> writes it as a flecs script to <span class="tt">Resources/Output/ECS/&lt;name&gt;</span>; <em>Global Entity</em> shows <a class="el" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150" title="Returns an entity for game-wide components, created on first use.">ECS::GetGlobalSystemsEntity()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/EntityEditorTool.cpp\#L223-L243" class="src-link">src/Editor/EntityEditorTool.cpp:223</a>)  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>FPS Counter</b> (<a class="el" href="class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window.">CoreEditor::DebugStatsEditor</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Frame rate and frame time (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/DebugStatsEditor.cpp\#L11-L19" class="src-link">src/Editor/DebugStatsEditor.cpp:11</a>)  </td></tr>
+<td class="markdownTableBodyNone"><b>FPS Counter</b> (<a class="el" href="class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window.">CoreEditor::DebugStatsEditor</a>)  </td><td class="markdownTableBodyNone">At startup  </td><td class="markdownTableBodyNone">Frame rate and frame time (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/DebugStatsEditor.cpp\#L11-L19" class="src-link">src/Editor/DebugStatsEditor.cpp:11</a>)  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>Sprite Sheet</b> (<a class="el" href="class_core_editor_1_1_sprite_sheet_editor.html" title="The Sprite Sheet window: a zoomable view of a texture with a grid.">CoreEditor::SpriteSheetEditor</a>)  </td><td class="markdownTableBodyNone">From a sprite's <em>Open Sprite Sheet</em> button  </td><td class="markdownTableBodyNone">A zoomable view of the sprite's texture with a grid  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><b>Dear ImGui Demo</b>  </td><td class="markdownTableBodyNone">Always (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L44" class="src-link">src/Editor/Module.cpp:44</a>)  </td><td class="markdownTableBodyNone">ImGui's own demo; collapse it with ▼  </td></tr>
+<td class="markdownTableBodyNone"><b>Dear ImGui Demo</b>  </td><td class="markdownTableBodyNone">Always (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/Module.cpp\#L44" class="src-link">src/Editor/Module.cpp:44</a>)  </td><td class="markdownTableBodyNone">ImGui's own demo; collapse it with ▼  </td></tr>
 </table>
 <p>Component panels in the Entity Debugger:</p>
 <ul>
-<li><span class="tt">FTransformComponent</span> has a move gizmo drawn over the game: drag it to move the entity (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L61-L80" class="src-link">src/Editor/EntityEditorTool.cpp:61</a>).</li>
-<li><span class="tt">FTexture2DComponent</span> has a texture drop-down, its UV fields, <em>Open Sprite Sheet</em>, and <em>Update</em> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/EntityEditorTool.cpp\#L82-L107" class="src-link">src/Editor/EntityEditorTool.cpp:82</a>).</li>
+<li><span class="tt">FTransformComponent</span> has a move gizmo drawn over the game: drag it to move the entity (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/EntityEditorTool.cpp\#L61-L80" class="src-link">src/Editor/EntityEditorTool.cpp:61</a>).</li>
+<li><span class="tt">FTexture2DComponent</span> has a texture drop-down, its UV fields, <em>Open Sprite Sheet</em>, and <em>Update</em> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/EntityEditorTool.cpp\#L82-L107" class="src-link">src/Editor/EntityEditorTool.cpp:82</a>).</li>
 <li>Your own components get a panel from the <span class="tt"><a class="el" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros (<a class="el" href="group__ecs.html#ecs_components" title="Defining components">Defining components</a>).</li>
 </ul>
 <p>Reopen a built-in tool you closed with <span class="tt"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open</a>&lt;<a class="el" href="class_core_editor_1_1_debug_stats_editor.html" title="The FPS Counter window.">CoreEditor::DebugStatsEditor</a>&gt;()</span> (or <span class="tt">EntityEditorTool</span>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md21"></a>
 Game UI with tools</h2>
 <p>The examples' HUDs are tools that draw a small window with no title bar and no input, anchored to a corner of the game window. They also collapse the ImGui demo window once:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The Dodge HUD</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The Dodge HUD</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">// Editor tools are drawn every frame between ImGui::NewFrame() and the render, so</span></div>
 <div class="line"><span class="comment">// they are the place for game UI too. Open it once with CoreEditor::Open&lt;DodgeHud&gt;().</span></div>
 <div class="line"><span class="keyword">class </span>DodgeHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
@@ -299,7 +299,7 @@ Things to watch out for</h2>
 <li><span class="tt"><a class="el" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe" title="Opens the tool of type TEditorTool, creating and registering it the first time.">CoreEditor::Open</a>&lt;T&gt;()</span> keeps one instance per tool type; you cannot open two windows of the same tool class.</li>
 <li>Tools are never destroyed or unregistered; closing only hides them.</li>
 <li>With multi-viewport on, place windows relative to <span class="tt">ImGui::GetMainViewport()-&gt;Pos</span>; see <a class="el" href="group__imguiwrapper.html" title="ImGuiWrapper">ImGuiWrapper</a>.</li>
-<li>The Entity Debugger's component headers cannot be collapsed (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L43" class="src-link">include/Gameplay/ECS/Components.hpp:43</a>). </li>
+<li>The Entity Debugger's component headers cannot be collapsed (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L43" class="src-link">include/Gameplay/ECS/Components.hpp:43</a>). </li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -347,8 +347,8 @@ template&lt;typename TEditorTool&gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Returns the tool instance.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor/Module.hpp\#L24-L38" class="src-link">include/Editor/Module.hpp:24</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Editor/Module.hpp\#L24-L38" class="src-link">include/Editor/Module.hpp:24</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Open</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Open&lt;T&gt;() creates the tool the first time,</span></div>
 <div class="line">    <span class="comment">// and returns the same instance afterwards.</span></div>
 <div class="line">    <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SpawnerTool&gt;</a> spawner = <a class="code hl_function" href="#ga0558e9b9ebed0d54bbd32eb0c4b93ffe">CoreEditor::Open&lt;SpawnerTool&gt;</a>();</div>
 </div><!-- fragment --><p>  </details> </p>
@@ -370,7 +370,7 @@ template&lt;typename TEditorTool&gt; </div>
       </table>
 </div><div class="memdoc">
 <p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L22-L31" class="src-link">src/Editor/Module.cpp:22</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/Module.cpp\#L22-L31" class="src-link">src/Editor/Module.cpp:22</a>. </p>
 
 </div>
 </div>
@@ -426,7 +426,7 @@ template&lt;typename TEditorTool&gt; </div>
 </div><div class="memdoc">
 <p>Starts the ImGui frame and draws every open tool.</p>
 <p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame, before the renderer.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/Module.cpp\#L41-L51" class="src-link">src/Editor/Module.cpp:41</a>. </p>
 
 </div>
 </div>
@@ -452,7 +452,7 @@ template&lt;typename TEditorTool&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

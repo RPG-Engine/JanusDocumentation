@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -123,7 +123,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Types" class="src-link">include/Types/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types" class="src-link">src/Types/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Types" class="src-link">include/Types/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types" class="src-link">src/Types/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Types/Graphics.hpp&gt;</span> (textures, sprites) · <span class="tt">&lt;Types/World.hpp&gt;</span> (levels) · <span class="tt">&lt;Types/EngineGlobals.hpp&gt;</span> (frame timing) · <span class="tt">&lt;Types/Module.hpp&gt;</span> (debug-collider switch)</td></tr>
 <tr>
@@ -138,7 +138,7 @@ How to use</h2>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md9"></a>
 Frame timing</h3>
 <p><a class="el" href="#ga945d13c62e7daa61e5bb6c277aaf2bcd" title="Get the most recently reported DeltaTime for this tick.">Engine::Globals::GetDeltaTime()</a> returns how long the last frame took, in seconds, and <a class="el" href="#ga147fa8f4fd507487dd9bd4e8419b8531" title="Get the most recently reported framerate for this tick.">Engine::Globals::GetFPS()</a> the matching frame rate. Inside a flecs system, <span class="tt">it.delta_time()</span> gives the same value.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Showing the frame rate in a tool window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Showing the frame rate in a tool window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/EditorTools.cpp" target="_blank">examples/modules/EditorTools.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// An editor tool is a class with a Draw_Internal() function. The engine calls it</span></div>
 <div class="line"><span class="comment">// every frame while the tool is open, between ImGui::NewFrame() and rendering,</span></div>
 <div class="line"><span class="comment">// so any ImGui call works here.</span></div>
 <div class="line"><span class="keyword">class </span>SpawnerTool : <span class="keyword">public</span> <a class="code hl_struct" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html">ImGUIWrapper::IEditorTool</a> {</div>
@@ -225,7 +225,7 @@ Frame timing</h3>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md10"></a>
 Textures</h3>
 <p>A <a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a> holds an image in memory (<span class="tt">Surface</span>, an <span class="tt">SDL_Surface</span> in RGBA byte order) and, once uploaded, on the GPU (<span class="tt">LoadedGPUTexture</span>). Get one by loading an image file, or build one in code:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A texture generated in code</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A texture generated in code</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
 <div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
 <div class="line"><span class="comment">// the same format image files are converted to.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
@@ -268,7 +268,7 @@ Levels</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">levelName</span>  </td><td class="markdownTableBodyNone"><span class="tt">"Level_0"</span>  </td><td class="markdownTableBodyNone"><span class="tt">Resources/Levels/MyWorld/MyWorld/Level_0.ldtkl</span>  </td></tr>
 </table>
-<p>For each LDtk layer it records the tiles (auto-layer and grid tiles), loads the layer's tileset image as a <a class="el" href="struct_graphics_1_1_s_tilemap.html" title="A tileset: a texture plus its tile size (GridX, GridY) and tile count (Columns, Rows).">Graphics::STilemap</a>, and turns IntGrid values into <a class="el" href="struct_world_1_1_s_grid_tile.html" title="One IntGrid cell: its value (GridType) and its rectangle in world units.">World::SGridTile</a> cells. An entity named <span class="tt">PlayerStart</span> sets <a class="el" href="struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787">World::SLevel::PlayerStart</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>).</p>
+<p>For each LDtk layer it records the tiles (auto-layer and grid tiles), loads the layer's tileset image as a <a class="el" href="struct_graphics_1_1_s_tilemap.html" title="A tileset: a texture plus its tile size (GridX, GridY) and tile count (Columns, Rows).">Graphics::STilemap</a>, and turns IntGrid values into <a class="el" href="struct_world_1_1_s_grid_tile.html" title="One IntGrid cell: its value (GridType) and its rectangle in world units.">World::SGridTile</a> cells. An entity named <span class="tt">PlayerStart</span> sets <a class="el" href="struct_world_1_1_s_level.html#af1c780beb981f5735ee3a602c1eb9787">World::SLevel::PlayerStart</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>).</p>
 <p>Then draw it and get its collision rectangles with <a class="el" href="group__rendering.html#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a>, and remember it with <a class="el" href="#gaf97bd596d71b13b29efc8cfff8fd896e" title="Remembers a level as the current one.">World::SetCurrentLevel()</a>. ProtoRPG loads its level this way:</p>
 <div class="fragment"><div class="line"><span class="keyword">auto</span> level = <a class="code hl_function" href="#ga43481861a4cbba431c3fcf866f9a28dd">World::GenerateLevel</a>(<span class="stringliteral">&quot;Levels/PoutineDetective/PoutineDetectiveWorld&quot;</span>,</div>
 <div class="line">                                  <span class="stringliteral">&quot;Diner&quot;</span>);</div>
@@ -355,7 +355,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Frames per second, from the last frame's duration.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/EngineGlobals.cpp\#L17" class="src-link">src/Types/EngineGlobals.cpp:17</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/EngineGlobals.cpp\#L17" class="src-link">src/Types/EngineGlobals.cpp:17</a>. </p>
 
 </div>
 </div>
@@ -374,7 +374,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The last frame's duration in seconds (0 on the first frame).</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/EngineGlobals.cpp\#L18" class="src-link">src/Types/EngineGlobals.cpp:18</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/EngineGlobals.cpp\#L18" class="src-link">src/Types/EngineGlobals.cpp:18</a>. </p>
 
 </div>
 </div>
@@ -456,7 +456,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L34-L46" class="src-link">src/Types/Graphics.cpp:34</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/Graphics.cpp\#L34-L46" class="src-link">src/Types/Graphics.cpp:34</a>. </p>
 
 </div>
 </div>
@@ -478,7 +478,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>. See <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a> for the file layout it expects. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/World.cpp\#L14-L126" class="src-link">src/Types/World.cpp:14</a>. See <a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a> for the file layout it expects. </p>
 
 </div>
 </div>
@@ -544,7 +544,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

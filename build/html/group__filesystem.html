@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -125,13 +125,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem" class="src-link">include/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem" class="src-link">src/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Config/filesystem.json" class="src-link">Config/filesystem.json</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem" class="src-link">include/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem" class="src-link">src/Filesystem/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/Config/filesystem.json" class="src-link">Config/filesystem.json</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Filesystem/Module.hpp&gt;</span> (registry) · <span class="tt">#include &lt;Filesystem/Importers/Importer.hpp&gt;</span> (loading)</td></tr>
 <tr>
 <td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_filesystem.html">Filesystem</a></span>, <span class="tt"><a class="el" href="namespace_filesystem_1_1_importers.html" title="Graphics importers.">Filesystem::Importers</a></span>; the base asset types <span class="tt"><a class="el" href="struct_s_asset.html" title="Base type of everything the Filesystem module can load.">SAsset</a></span>, <span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span> and <span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span> are global</td></tr>
 <tr>
-<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L84" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>, second after <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a></td></tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Module.cpp\#L84" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>, second after <a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a></td></tr>
 <tr>
 <td><b>Example</b></td><td><a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a></td></tr>
 </table>
@@ -144,7 +144,7 @@ How to use</h2>
 <li><b>Load it</b> with <span class="tt"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">Filesystem::Importers::LoadFile</a>&lt;T&gt;(path)</span>. <span class="tt">T</span> is the asset type you want: <span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span>, <span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span>, <span class="tt"><a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a></span>, or your own. The result is cached, so loading again is cheap.</li>
 <li><b>Store references</b> in components as a <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> (just the path string), not as loaded objects.</li>
 </ol>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets and reading one</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Listing assets and reading one</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Every file under Resources/ has an asset path:</span></div>
 <div class="line">    <span class="comment">// its path relative to Resources/, without the extension.</span></div>
 <div class="line">    <span class="keyword">const</span> std::vector&lt;std::string&gt; allPaths = <a class="code hl_function" href="#gab7f2db5d0766acf15c288ae7a6e450e6">Filesystem::GetAllAssetPaths</a>();</div>
 <div class="line">    Log::Assets::Info(<span class="stringliteral">&quot;{} assets registered&quot;</span>, allPaths.size());</div>
@@ -163,7 +163,7 @@ How to use</h2>
 <div class="line">                          data-&gt;AssetFilePathRaw.string());</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading a text file</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Loading a text file</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// LoadFile&lt;T&gt; reads the file once and caches the result on the asset&#39;s SAssetData.</span></div>
 <div class="line">    <span class="comment">// The file is Resources/Shaders/FragmentShaderSrc.frag.hlsl</span></div>
 <div class="line">    <span class="keyword">const</span> std::string shaderPath = <span class="stringliteral">&quot;Shaders/FragmentShaderSrc.frag&quot;</span>;</div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="#gac7ffafed7c7a8a6f3505d55b899c1500">Filesystem::Importers::AssetExists&lt;STextFileAsset&gt;</a>(shaderPath)) {</div>
@@ -201,16 +201,16 @@ Asset paths</h2>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">Resources/Config/filesystem.json</span>  </td><td class="markdownTableBodyNone"><span class="tt">Config\<a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a></span>  </td><td class="markdownTableBodyNone"><span class="tt"><a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a></span>  </td></tr>
 </table>
-<p>The asset path is computed by <a class="el" href="#ga4c0added2427c1f414db14dc89a83f56" title="Converts a full file path into an asset path: relative to Resources/, without the extension.">Filesystem::FilePathToAssetPath()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>): the path relative to <span class="tt">Resources/</span>, with the last extension removed.</p>
+<p>The asset path is computed by <a class="el" href="#ga4c0added2427c1f414db14dc89a83f56" title="Converts a full file path into an asset path: relative to Resources/, without the extension.">Filesystem::FilePathToAssetPath()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>): the path relative to <span class="tt">Resources/</span>, with the last extension removed.</p>
 <ul>
-<li><a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">Filesystem::GetAssetData()</a> converts <span class="tt">/</span> to <span class="tt">\\endiskip</span> before looking up (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>), so <span class="tt">"Images/Player"</span> works there.</li>
-<li><a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a> does <b>not</b> convert (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>), and the renderer uses it to decide whether to draw a sprite. <b>Always use <span class="tt">\\</span> in paths you store in components.</b> For paths built at runtime, <span class="tt">std::filesystem::path(p).make_preferred().string()</span> gives the right form.</li>
+<li><a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">Filesystem::GetAssetData()</a> converts <span class="tt">/</span> to <span class="tt">\\endiskip</span> before looking up (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>), so <span class="tt">"Images/Player"</span> works there.</li>
+<li><a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a> does <b>not</b> convert (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>), and the renderer uses it to decide whether to draw a sprite. <b>Always use <span class="tt">\\</span> in paths you store in components.</b> For paths built at runtime, <span class="tt">std::filesystem::path(p).make_preferred().string()</span> gives the right form.</li>
 <li>Two files that differ only in their extension get the same asset path. Only the first one found is registered. That is why the three compiled forms of each shader (<span class="tt">.dxil</span>, <span class="tt">.msl</span>, <span class="tt">.spv</span>) share one asset: the renderer picks the right file itself.</li>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md27"></a>
 Asset types</h2>
-<p><span class="tt">Resources/Config/filesystem.json</span> maps file extensions to <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1" title="The kind of file an asset is, set from its extension by filesystem.json.">Filesystem::EAssetType</a> values. Each file's type is set when it is registered (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>):</p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The engine's extension table</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Config/filesystem.json#L1-L9" target="_blank">Config/filesystem.json:1</a></summary> </p><div class="fragment"><div class="line">{</div>
+<p><span class="tt">Resources/Config/filesystem.json</span> maps file extensions to <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1" title="The kind of file an asset is, set from its extension by filesystem.json.">Filesystem::EAssetType</a> values. Each file's type is set when it is registered (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>):</p>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The engine's extension table</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/Config/filesystem.json#L1-L9" target="_blank">Config/filesystem.json:1</a></summary> </p><div class="fragment"><div class="line">{</div>
 <div class="line">  <span class="stringliteral">&quot;AssetTypes&quot;</span> : {</div>
 <div class="line">    <span class="stringliteral">&quot;TEXTURE&quot;</span>: [<span class="stringliteral">&quot;.png&quot;</span>, <span class="stringliteral">&quot;.jpg&quot;</span>],</div>
 <div class="line">    <span class="stringliteral">&quot;SHADER&quot;</span>: [<span class="stringliteral">&quot;.dxil&quot;</span>, <span class="stringliteral">&quot;.spv&quot;</span>, <span class="stringliteral">&quot;.msl&quot;</span>],</div>
@@ -221,29 +221,29 @@ Asset types</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
 <p>The type is only a label. <span class="tt">LoadFile&lt;T&gt;</span> decides how to read a file from <span class="tt">T</span>, not from the asset type. The type is used by Filesystem::GetAllAssetPaths(EAssetType) and by editor drop-downs that list, for example, only textures.</p>
-<dl class="section note"><dt>Note</dt><dd>The engine copies its own <span class="tt">Config/</span> folder to <span class="tt">&lt;output&gt;/Config/Resources</span>, not to <span class="tt">&lt;output&gt;/Resources/Config</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/MoveConfigFiles.cmake\#L9-L16" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). Copy <span class="tt">filesystem.json</span> into your game's <span class="tt">Resources/Config/</span> yourself, as described in <a class="el" href="first_game.html" title="Your first game">Your first game</a>.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The engine copies its own <span class="tt">Config/</span> folder to <span class="tt">&lt;output&gt;/Config/Resources</span>, not to <span class="tt">&lt;output&gt;/Resources/Config</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/MoveConfigFiles.cmake\#L9-L16" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). Copy <span class="tt">filesystem.json</span> into your game's <span class="tt">Resources/Config/</span> yourself, as described in <a class="el" href="first_game.html" title="Your first game">Your first game</a>.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md28"></a>
 Loading and caching</h2>
-<p><span class="tt">LoadFile&lt;T&gt;(path)</span> finds the asset's <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> and returns <span class="tt">SAssetData::ObjectData</span> if it is already loaded. Otherwise it calls the loader for <span class="tt">T</span>, stores the result in <span class="tt">ObjectData</span>, sets the asset's <span class="tt">AssetPath</span> and name, and returns it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>).</p>
+<p><span class="tt">LoadFile&lt;T&gt;(path)</span> finds the asset's <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> and returns <span class="tt">SAssetData::ObjectData</span> if it is already loaded. Otherwise it calls the loader for <span class="tt">T</span>, stores the result in <span class="tt">ObjectData</span>, sets the asset's <span class="tt">AssetPath</span> and name, and returns it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Loader for  </th><th class="markdownTableHeadNone">Reads the file as  </th><th class="markdownTableHeadNone">Defined in  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span>  </td><td class="markdownTableBodyNone">Text, in <span class="tt">Data</span> (<span class="tt">std::string</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L40-L50" class="src-link">src/Filesystem/Importers/Importer.cpp:40</a>  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_text_file_asset.html" title="A file loaded as text.">STextFileAsset</a></span>  </td><td class="markdownTableBodyNone">Text, in <span class="tt">Data</span> (<span class="tt">std::string</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Importers/Importer.cpp\#L40-L50" class="src-link">src/Filesystem/Importers/Importer.cpp:40</a>  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span>  </td><td class="markdownTableBodyNone">Bytes, in <span class="tt">Data</span> (<span class="tt">std::vector&lt;uint8_t&gt;</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L27-L38" class="src-link">src/Filesystem/Importers/Importer.cpp:27</a>  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_s_raw_file_asset.html" title="A file loaded as bytes.">SRawFileAsset</a></span>  </td><td class="markdownTableBodyNone">Bytes, in <span class="tt">Data</span> (<span class="tt">std::vector&lt;uint8_t&gt;</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Importers/Importer.cpp\#L27-L38" class="src-link">src/Filesystem/Importers/Importer.cpp:27</a>  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a></span>  </td><td class="markdownTableBodyNone">An image (SDL_image), converted to RGBA  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L51-L73" class="src-link">src/Types/Graphics.cpp:51</a>  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_texture2_d.html" title="ASSETS.">Graphics::STexture2D</a></span>  </td><td class="markdownTableBodyNone">An image (SDL_image), converted to RGBA  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/Graphics.cpp\#L51-L73" class="src-link">src/Types/Graphics.cpp:51</a>  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite_sheet.html" title="END ASSETS.">Graphics::SSpriteSheet</a></span>  </td><td class="markdownTableBodyNone">Same as a texture  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Types/Graphics.cpp\#L75-L98" class="src-link">src/Types/Graphics.cpp:75</a>  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="struct_graphics_1_1_s_sprite_sheet.html" title="END ASSETS.">Graphics::SSpriteSheet</a></span>  </td><td class="markdownTableBodyNone">Same as a texture  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Types/Graphics.cpp\#L75-L98" class="src-link">src/Types/Graphics.cpp:75</a>  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">LDtk project and level types  </td><td class="markdownTableBodyNone">JSON, via nlohmann  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Importers/Importer.cpp\#L9-L25" class="src-link">src/Filesystem/Importers/Importer.cpp:9</a>  </td></tr>
+<td class="markdownTableBodyNone">LDtk project and level types  </td><td class="markdownTableBodyNone">JSON, via nlohmann  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Importers/Importer.cpp\#L9-L25" class="src-link">src/Filesystem/Importers/Importer.cpp:9</a>  </td></tr>
 </table>
 <dl class="section warning"><dt>Warning</dt><dd>An asset is cached once, for the first type it is loaded as. Loading the same path again as a <em>different</em> type returns the cached object cast to the new type, which is wrong. Load each file as one type only.</dd></dl>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md29"></a>
 Your own asset types</h3>
 <p>Derive from <span class="tt"><a class="el" href="struct_s_asset.html" title="Base type of everything the Filesystem module can load.">SAsset</a></span>, then specialize <a class="el" href="#ga750cb9a8723a9af7aa4f328925313ee0" title="Loads an asset directly from the provided AssetData This should never be called directly,...">Filesystem::Importers::LoadAsset</a> for your type. <a class="el" href="#gad808ab80fc1f63d3b1328d4a65451555" title="Declares the Filesystem::Importers::LoadAsset&lt;AssetType&gt; specialization for a custom asset type.">DEFINE_ASSET_LOADER</a> declares the specialization:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type and its loader</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom asset type and its loader</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A custom asset type: derive from SAsset, then give LoadAsset&lt;T&gt; a specialization</span></div>
 <div class="line"><span class="comment">// that builds one from the file. DEFINE_ASSET_LOADER declares the specialization</span></div>
 <div class="line"><span class="comment">// (put it in a header if other files use it).</span></div>
 <div class="line"><span class="keyword">struct </span>SLineCountAsset : <a class="code hl_struct" href="struct_s_asset.html">SAsset</a> {</div>
@@ -272,7 +272,7 @@ Your own asset types</h3>
 <h3 class="doxsection"><a class="anchor" id="autotoc_md30"></a>
 Assets made in code</h3>
 <p>Register a <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> whose <span class="tt">ObjectData</span> is already set. <span class="tt">LoadFile</span> then returns that object without touching the disk, and the renderer can draw it like any image. This is how every example creates its textures:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering a texture generated at runtime</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering a texture generated at runtime</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
 <div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
 <div class="line"><span class="comment">// the same format image files are converted to.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
@@ -317,7 +317,7 @@ Assets made in code</h3>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md31"></a>
 Config files</h2>
 <p><a class="el" href="struct_filesystem_1_1_s_config.html" title="Base for JSON settings files in Resources/Config.">Filesystem::SConfig</a> is a small helper for JSON settings files under <span class="tt">Resources/Config/</span>. A config type derives from <span class="tt">SConfig&lt;Self&gt;</span>, says where its file is, and lists its fields for nlohmann/json. The engine's own <a class="el" href="struct_filesystem_1_1_s_filesystem_config.html" title="The asset-type table read from Resources/Config/filesystem.json.">Filesystem::SFilesystemConfig</a> reads <span class="tt">filesystem.json</span>:</p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">SFilesystemConfig</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Config.hpp#L57-L65" target="_blank">include/Filesystem/Config.hpp:57</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">struct </span>SFilesystemConfig : SConfig&lt;SFilesystemConfig&gt; {</div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">SFilesystemConfig</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Config.hpp#L57-L65" target="_blank">include/Filesystem/Config.hpp:57</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">struct </span>SFilesystemConfig : SConfig&lt;SFilesystemConfig&gt; {</div>
 <div class="line">    std::map&lt;std::string, std::vector&lt;std::string&gt;&gt; AssetTypes;</div>
 <div class="line"> </div>
 <div class="line">    std::filesystem::path GetConfigPath()<span class="keyword"> override </span>{</div>
@@ -327,7 +327,7 @@ Config files</h2>
 <div class="line">    NLOHMANN_DEFINE_TYPE_INTRUSIVE(SFilesystemConfig, AssetTypes)</div>
 <div class="line">};</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Reading it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp#L29-L31" target="_blank">src/Filesystem/FilesystemTypes.cpp:29</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SFilesystemConfig&gt;</a> config = SFilesystemConfig::Get();</div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Reading it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/FilesystemTypes.cpp#L29-L31" target="_blank">src/Filesystem/FilesystemTypes.cpp:29</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SFilesystemConfig&gt;</a> config = SFilesystemConfig::Get();</div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; assetType: config-&gt;AssetTypes) {</div>
 <div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
@@ -336,7 +336,7 @@ Config files</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md32"></a>
 Things to watch out for</h2>
 <ul>
-<li><span class="tt">Resources/Config</span> must exist in the working directory, or <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a> throws (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L27-L29" class="src-link">src/Filesystem/Module.cpp:27</a>).</li>
+<li><span class="tt">Resources/Config</span> must exist in the working directory, or <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a> throws (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L27-L29" class="src-link">src/Filesystem/Module.cpp:27</a>).</li>
 <li>At startup the log shows <span class="tt">Could not find asset [Config\<a class="el" href="group__filesystem.html" title="Finds every file under Resources/, gives each one an asset path, and loads files into typed asset obj...">Filesystem</a>]</span> once, even when the file is there: the file's own type is looked up before it is registered. It is harmless.</li>
 <li><span class="tt">LoadFile(path)</span> throws <span class="tt">AssetCouldNotLoadException</span> when the path is unknown. <span class="tt">TryLoadFile(path)</span> throws <span class="tt">nullptr</span> instead; it does not return an empty pointer. Check with <span class="tt">AssetExists&lt;T&gt;(path)</span> or <a class="el" href="#ga093d508bcb42f5b3eec44ad6a1d63824" title="Returns true if Path is a registered asset path.">Filesystem::IsValid()</a> first.</li>
 <li><a class="el" href="#ga70baa267c86fe3795214c8bd2cf74191" title="Declared but not defined at this commit.">Filesystem::Module()</a> is declared but not defined. Don't call it; the engine calls <a class="el" href="#ga6931370076d808aeecee9dfb1e406eb6" title="Iterates over the entire resources directory and loads the asset data into memory.">Filesystem::InitializeAllResources()</a>.</li>
@@ -452,7 +452,7 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 <p>Pass nothing for <span class="tt">Export</span> in game code.</p>
 <p>You still have to define the specialization in one source file. See <a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L15-L18" class="src-link">include/Filesystem/Importers/Importer.hpp:15</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L15-L18" class="src-link">include/Filesystem/Importers/Importer.hpp:15</a>. </p>
 
 </div>
 </div>
@@ -469,7 +469,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p><span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">UNDEFINED</a></span> when the extension is not listed.</p>
-<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/FilesystemTypes.hpp\#L18-L26" class="src-link">include/Filesystem/FilesystemTypes.hpp:18</a>. <span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a></span> is never assigned at this commit; config files get their type from their extension like any other file. </p>
+<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/FilesystemTypes.hpp\#L18-L26" class="src-link">include/Filesystem/FilesystemTypes.hpp:18</a>. <span class="tt"><a class="el" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a></span> is never assigned at this commit; config files get their type from their extension like any other file. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c"></a>UNDEFINED&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85" name="ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"></a>TEXTURE&#160;</td><td class="fielddoc"></td></tr>
@@ -500,7 +500,7 @@ Variables</h2></td></tr>
 <p>Scans <span class="tt">Resources/Config</span>, then all of <span class="tt">Resources/</span>, and registers every file as an asset.</p>
 <p>This allows us to load the assets when we need them without having to do a new IO operation</p>
 <p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Files are not read yet: only an <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> is created for each. A file whose asset path is already registered is skipped. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L24-L50" class="src-link">src/Filesystem/Module.cpp:24</a>. </p>
+<p>Files are not read yet: only an <a class="el" href="struct_filesystem_1_1_s_asset_data.html" title="Everything the registry knows about one file: where it is, its asset path, name, extension,...">Filesystem::SAssetData</a> is created for each. A file whose asset path is already registered is skipped. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L24-L50" class="src-link">src/Filesystem/Module.cpp:24</a>. </p>
 
 </div>
 </div>
@@ -519,8 +519,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Use it for assets made in code.</p>
-<p>If <span class="tt">AssetData-&gt;ObjectData</span> is set, <span class="tt">LoadFile</span> returns that object instead of reading a file. Registering a path that already exists keeps the existing entry. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L52-L65" class="src-link">src/Filesystem/Module.cpp:52</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Generated texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
+<p>If <span class="tt">AssetData-&gt;ObjectData</span> is set, <span class="tt">LoadFile</span> returns that object instead of reading a file. Registering a path that already exists keeps the existing entry. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L52-L65" class="src-link">src/Filesystem/Module.cpp:52</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Generated texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/AssetsAndMemory.cpp" target="_blank">examples/modules/AssetsAndMemory.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Builds a texture in code and registers it like a file.</span></div>
 <div class="line"><span class="comment">// SDL_PIXELFORMAT_ABGR8888 is the byte order (R, G, B, A) the renderer uploads,</span></div>
 <div class="line"><span class="comment">// the same format image files are converted to.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterCheckerTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size,</div>
@@ -568,7 +568,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Accepts <span class="tt">/</span> or <span class="tt">\\endiskip</span> separators. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>. </p>
+<p>Accepts <span class="tt">/</span> or <span class="tt">\\endiskip</span> separators. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L67-L76" class="src-link">src/Filesystem/Module.cpp:67</a>. </p>
 
 </div>
 </div>
@@ -586,7 +586,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Looks the asset up by its <em>name</em> (<span class="tt">Asset-&gt;GetName()</span>), not its path (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L78-L81" class="src-link">src/Filesystem/Module.cpp:78</a>), so it only finds assets stored directly under <span class="tt">Resources/</span>. Prefer <span class="tt">Asset-&gt;<a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">GetAssetData()</a></span>, which uses the path. </p>
+<p>Looks the asset up by its <em>name</em> (<span class="tt">Asset-&gt;GetName()</span>), not its path (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L78-L81" class="src-link">src/Filesystem/Module.cpp:78</a>), so it only finds assets stored directly under <span class="tt">Resources/</span>. Prefer <span class="tt">Asset-&gt;<a class="el" href="#ga7b08bf8a24a334fe7a267a5224c62b04" title="Returns the registered asset with this asset path, or an empty pointer (and an error in the log) if t...">GetAssetData()</a></span>, which uses the path. </p>
 
 </div>
 </div>
@@ -604,7 +604,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L83-L105" class="src-link">src/Filesystem/Module.cpp:83</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L83-L105" class="src-link">src/Filesystem/Module.cpp:83</a>. </p>
 
 </div>
 </div>
@@ -622,7 +622,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L107-L109" class="src-link">src/Filesystem/Module.cpp:107</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L107-L109" class="src-link">src/Filesystem/Module.cpp:107</a>. </p>
 
 </div>
 </div>
@@ -640,7 +640,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L111-L113" class="src-link">src/Filesystem/Module.cpp:111</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L111-L113" class="src-link">src/Filesystem/Module.cpp:111</a>. </p>
 
 </div>
 </div>
@@ -658,7 +658,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L115-L117" class="src-link">src/Filesystem/Module.cpp:115</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L115-L117" class="src-link">src/Filesystem/Module.cpp:115</a>. </p>
 
 </div>
 </div>
@@ -677,7 +677,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The comparison is exact: use the platform's separators.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>. The renderer skips sprites whose texture path is not valid. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L119-L129" class="src-link">src/Filesystem/Module.cpp:119</a>. The renderer skips sprites whose texture path is not valid. </p>
 
 </div>
 </div>
@@ -713,7 +713,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp\#L20-L22" class="src-link">src/Filesystem/Module.cpp:20</a>. </p>
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp\#L20-L22" class="src-link">src/Filesystem/Module.cpp:20</a>. </p>
 
 </div>
 </div>
@@ -731,7 +731,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/FilesystemTypes.cpp\#L24-L43" class="src-link">src/Filesystem/FilesystemTypes.cpp:24</a>. </p>
 
 </div>
 </div>
@@ -749,7 +749,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/FilesystemTypes.cpp\#L49-L53" class="src-link">src/Filesystem/FilesystemTypes.cpp:49</a>. </p>
 
 </div>
 </div>
@@ -770,7 +770,7 @@ template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetT
       </table>
 </div><div class="memdoc">
 <p>Loads the asset at <span class="tt">AssetPath</span> as a <span class="tt">TAssetType</span>, or returns the cached object if it was loaded before.</p>
-<p>Throws <a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_could_not_load_exception.html">Filesystem::Importers::Exceptions::AssetCouldNotLoadException</a> if the path is not registered. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L89-L98" class="src-link">include/Filesystem/Importers/Importer.hpp:89</a>. </p>
+<p>Throws <a class="el" href="class_filesystem_1_1_importers_1_1_exceptions_1_1_asset_could_not_load_exception.html">Filesystem::Importers::Exceptions::AssetCouldNotLoadException</a> if the path is not registered. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L89-L98" class="src-link">include/Filesystem/Importers/Importer.hpp:89</a>. </p>
 
 </div>
 </div>
@@ -790,7 +790,7 @@ template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetT
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L63-L76" class="src-link">include/Filesystem/Importers/Importer.hpp:63</a>. </p>
 
 </div>
 </div>
@@ -811,7 +811,7 @@ template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetT
       </table>
 </div><div class="memdoc">
 <p>Like <span class="tt"><a class="el" href="#gab5cabc4342be3707fd29b29bec7f4dd5" title="Loads an asset you already looked up, or returns its cached object.">LoadFile</a></span>, but throws <span class="tt">nullptr</span> (not an exception object) when the path is not registered.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L101-L110" class="src-link">include/Filesystem/Importers/Importer.hpp:101</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L101-L110" class="src-link">include/Filesystem/Importers/Importer.hpp:101</a>. </p>
 
 </div>
 </div>
@@ -831,7 +831,7 @@ template&lt;<a class="el" href="concept_c_is___asset.html">CIs_Asset</a> TAssetT
         </tr>
       </table>
 </div><div class="memdoc">
-<p><span class="tt">TAssetType</span> is not checked. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L78-L86" class="src-link">include/Filesystem/Importers/Importer.hpp:78</a>. </p>
+<p><span class="tt">TAssetType</span> is not checked. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Filesystem/Importers/Importer.hpp\#L78-L86" class="src-link">include/Filesystem/Importers/Importer.hpp:78</a>. </p>
 
 </div>
 </div>
@@ -882,7 +882,7 @@ template&lt;typename TAssetType&gt; </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

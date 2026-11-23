@@ -47,7 +47,7 @@ main()
 - At startup it scans `Resources/Config` first, then all of `Resources/`, and registers every file (\src{src/Filesystem/Module.cpp,24,50}). **`Resources/Config` must exist**, or startup throws a `std::filesystem::filesystem_error`.
 - Put `filesystem.json` (from `Engine/Config`) in `Resources/Config`. It maps file extensions to asset types. Without it every asset's type is `UNDEFINED`. Loading by path still works, but editor drop-downs that filter by type stay empty.
 - An asset is found by its *asset path*: the file's path under `Resources/` without the extension, with the platform's separators. `Resources/Images/Player.png` is `"Images\\Player"` on Windows. Use `\\` in component values: `Filesystem::IsValid()` and the renderer compare paths exactly (\src{src/Filesystem/Module.cpp,119,129}).
-- Log files go to `<executable folder>/Logs` (\src{src/Log/Module.cpp,35}).
+- Log files go to `<executable folder>/Logs` (\src{src/Log/Module.cpp,36}).
 
 \ref filesystem explains asset paths, loading and registering assets made in code.
 

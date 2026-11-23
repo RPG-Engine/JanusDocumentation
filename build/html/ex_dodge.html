@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,7 +115,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Move left and right to avoid falling blocks. The longer you survive, the faster they come.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" class="src-link">examples/games/Dodge.cpp</a></span><span><b>Executable</b> <code>DodgeGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>R</kbd> to restart</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" class="src-link">examples/games/Dodge.cpp</a></span><span><b>Executable</b> <code>DodgeGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>R</kbd> to restart</span></div><div class="image">
 <img src="dodge.png" alt=""/>
 <div class="caption">
 Dodge: the player (cyan) dodges falling blocks; the HUD is in the top-right corner</div></div>
@@ -123,7 +123,7 @@ Dodge: the player (cyan) dodges falling blocks; the HUD is in the top-right corn
 <h2 class="doxsection"><a class="anchor" id="autotoc_md96"></a>
 Actions and components</h2>
 <p>Two input actions: a <span class="tt">float</span> for left/right, whose bindings add up, and a <span class="tt">bool</span> for restarting. Three components: a marker for the player, a speed for falling blocks, and a timer for the spawner.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions and components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions and components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- Input actions ----------------------------------------------------------</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(MoveX, <span class="keywordtype">float</span>)       <span class="comment">// -1 = left, +1 = right</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
 </div><!-- fragment --> <div class="fragment"><div class="line"><span class="comment">// ---- Components -------------------------------------------------------------</span></div>
@@ -139,7 +139,7 @@ Actions and components</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md97"></a>
 Setting up</h2>
 <p>Textures first, then the engine, then registration, key bindings and the starting entities. The spawner is an entity too: its timer is a component, so a system can update it.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">main(): setup</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Textures must exist before the engine starts:</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">main(): setup</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Textures must exist before the engine starts:</span></div>
 <div class="line">    <span class="comment">//    the renderer loads &quot;CollisionTexture&quot; during startup.</span></div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
@@ -176,7 +176,7 @@ Setting up</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md98"></a>
 Systems</h2>
 <p>The player system moves the player with the <span class="tt">MoveX</span> action, then checks every falling block for an overlap. It uses a query built once in <span class="tt">main()</span>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Query and player system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A cached query over every falling block, used by the collision check below.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Query and player system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A cached query over every falling block, used by the collision check below.</span></div>
 <div class="line">    <span class="keyword">auto</span> fallingBlocks = world.query&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
 <div class="line">                                     <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
 <div class="line">                                     <span class="keyword">const</span> FFalling&gt;();</div>
@@ -214,7 +214,7 @@ Systems</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p>Falling blocks move down and destroy themselves below the screen. <span class="tt">destruct()</span> inside a system is deferred until the system has finished, so it is safe while iterating:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Falling</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Move falling blocks down and destroy them once they leave the screen.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Falling</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Move falling blocks down and destroy them once they leave the screen.</span></div>
 <div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> FFalling&gt;(<span class="stringliteral">&quot;Fall&quot;</span>)</div>
 <div class="line">        .each([](flecs::entity block, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
 <div class="line">                 <span class="keyword">const</span> FFalling&amp; falling) {</div>
@@ -229,7 +229,7 @@ Systems</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p>The spawner counts down and creates a block when it reaches zero. The interval shrinks as the round goes on. After a hit, it waits for <kbd>R</kbd> and clears the board:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Spawning and restarting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Spawn blocks on a timer that speeds up the longer you survive.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Spawning and restarting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Spawn blocks on a timer that speeds up the longer you survive.</span></div>
 <div class="line">    <span class="comment">// Also handles restarting.</span></div>
 <div class="line">    world.system&lt;FSpawner&gt;(<span class="stringliteral">&quot;Spawn&quot;</span>)</div>
 <div class="line">        .each([fallingBlocks](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSpawner&amp; spawner) {</div>
@@ -265,7 +265,7 @@ Systems</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md99"></a>
 HUD</h2>
 <p>Game UI is an editor tool. It also collapses the Dear ImGui demo window, which the engine always shows:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The HUD</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The HUD</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">// Editor tools are drawn every frame between ImGui::NewFrame() and the render, so</span></div>
 <div class="line"><span class="comment">// they are the place for game UI too. Open it once with CoreEditor::Open&lt;DodgeHud&gt;().</span></div>
 <div class="line"><span class="keyword">class </span>DodgeHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
@@ -296,7 +296,7 @@ HUD</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md100"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Dodge.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Dodge: move left and right to avoid the falling blocks. Survive as long as you can.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Dodge.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Dodge: move left and right to avoid the falling blocks. Survive as long as you can.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: A / D or Left / Right to move. R to restart after you are hit.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -609,7 +609,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

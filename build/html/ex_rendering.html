@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,13 +115,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>A tour of the renderer: sprite-sheet cells, the five layers, tint and transparency, rotation, Y-sorting and coloured lights.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" class="src-link">examples/modules/Rendering.cpp</a></span><span><b>Executable</b> <code>RenderingExample</code></span><span><b>Module</b> <a class="el" href="group__rendering.html" title="Renderer">Renderer</a></span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" class="src-link">examples/modules/Rendering.cpp</a></span><span><b>Executable</b> <code>RenderingExample</code></span><span><b>Module</b> <a class="el" href="group__rendering.html" title="Renderer">Renderer</a></span></div><div class="image">
 <img src="rendering.png" alt=""/>
 <div class="caption">
 Top left: four cells of one texture. Top right: one square per layer. Bottom: alpha steps, a rotating sprite, and two sprites sorted by Y. A red and a blue light orbit the middle.</div></div>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md125"></a>
 A sprite sheet made in code</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A 2 × 2 atlas</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A 64x64 sprite sheet with four 32x32 cells: a red square, a green circle,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A 2 × 2 atlas</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A 64x64 sprite sheet with four 32x32 cells: a red square, a green circle,</span></div>
 <div class="line"><span class="comment">// a blue diamond and a yellow ring. Each cell&#39;s transparent pixels let the</span></div>
 <div class="line"><span class="comment">// background show through.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterAtlasTexture(<span class="keyword">const</span> std::string&amp; AssetPath) {</div>
@@ -158,7 +158,7 @@ A sprite sheet made in code</h2>
 <div class="line">    RegisterTexture(AssetPath, surface);</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing each cell</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing each cell</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
 <div class="line">    <span class="comment">// both as fractions of the texture (0..1).</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> cell = 0; cell &lt; 4; ++cell) {</div>
 <div class="line">        <span class="keyword">const</span> glm::vec2 uv {(cell % 2) * 0.5f, (cell / 2) * 0.5f};</div>
@@ -177,7 +177,7 @@ A sprite sheet made in code</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md126"></a>
 Layers</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
 <div class="line">    <span class="comment">// Each square overlaps the previous one and is drawn on top of it.</span></div>
 <div class="line">    <span class="keyword">const</span> glm::vec2 square {36.f, 36.f};</div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor red {0.9f, 0.35f, 0.35f, 1.f};</div>
@@ -191,13 +191,13 @@ Layers</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md127"></a>
 Tint, alpha, rotation and sorting</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Tint and alpha</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Tint and alpha</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line">        <span class="keyword">const</span> SDL_FColor orange {1.f, 0.75f, 0.3f, 0.2f + i * 0.2f};</div>
 <div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {16.f + i * 22.f, 120.f}, {18.f, 18.f}, orange);</div>
 <div class="line">    }</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="keyword">const</span> SDL_FColor noTint {1.f, 1.f, 1.f, 1.f};</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="keyword">const</span> SDL_FColor noTint {1.f, 1.f, 1.f, 1.f};</div>
 <div class="line">    flecs::entity spinner =</div>
 <div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;Atlas&quot;</span>, {150.f, 112.f}, {32.f, 32.f}, noTint)</div>
 <div class="line">            .set_name(<span class="stringliteral">&quot;Spinner&quot;</span>);</div>
@@ -211,7 +211,7 @@ Tint, alpha, rotation and sorting</h2>
 <div class="line">            }</div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
 <div class="line">    <span class="comment">// The bobbing square passes in front of and behind the fixed one.</span></div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor grey {0.5f, 0.5f, 0.55f, 1.f};</div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor pink {0.95f, 0.6f, 0.9f, 1.f};</div>
@@ -230,7 +230,7 @@ Tint, alpha, rotation and sorting</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md128"></a>
 Camera and lights</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
 <div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
 <div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
 <div class="line">        .set&lt;FCameraComponent&gt;({</div>
@@ -267,7 +267,7 @@ Camera and lights</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md129"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Rendering.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: rendering.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Rendering.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: rendering.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Shows:</span></div>
 <div class="line"><span class="comment">//   - the five render layers and the order they are drawn in</span></div>
@@ -564,7 +564,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

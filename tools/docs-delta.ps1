@@ -25,6 +25,10 @@
   the line must be in range. For \engex blocks, the first code line must match the source line.
   Checks against the pinned commit, or against -Ref when it is given.
 
+
+.PARAMETER EngineDir
+  Path of the engine checkout (RPG-Engine-Core). Default: $env:JANUS_ENGINE_DIR, else ..\ProtoRPG\Engine.
+
 .PARAMETER Pin
   Set engineCommit in docs-version.json to -Ref (default HEAD) and documentedOn to today.
   Do this only after the pages are up to date.
@@ -33,12 +37,15 @@ param(
     [string]$Ref = '',
     [switch]$WorkingTree,
     [switch]$CheckLinks,
-    [switch]$Pin
+    [switch]$Pin,
+    [string]$EngineDir = ''
 )
 
 $ErrorActionPreference = 'Stop'
 $docsDir   = Split-Path -Parent $PSScriptRoot
-$engineDir = Split-Path -Parent $docsDir
+# The engine lives in its own repository (RPG-Engine-Core). Pass -EngineDir or set JANUS_ENGINE_DIR.
+$engineDir = if ($EngineDir) { $EngineDir } elseif ($env:JANUS_ENGINE_DIR) { $env:JANUS_ENGINE_DIR } else { Join-Path (Split-Path -Parent $docsDir) 'ProtoRPG\Engine' }
+if (-not (Test-Path (Join-Path $engineDir '.git'))) { throw "Engine repository not found at $engineDir. Pass -EngineDir <path> or set JANUS_ENGINE_DIR." }
 $versionFile = Join-Path $docsDir 'docs-version.json'
 $version = Get-Content $versionFile -Raw | ConvertFrom-Json
 $pinned = $version.engineCommit
@@ -53,6 +60,12 @@ if ($Pin) {
     $json = $json -replace '"engineCommit":\s*"[0-9a-f]{40}"', ('"engineCommit": "' + $target + '"')
     $json = $json -replace '"documentedOn":\s*"[^"]*"', ('"documentedOn": "' + (Get-Date -Format 'yyyy-MM-dd') + '"')
     Set-Content -Path $versionFile -Value $json -NoNewline -Encoding utf8
+    # Raw HTML (the architecture SVG) can't use the link aliases, so it embeds the hash: keep it in step.
+    Get-ChildItem (Join-Path $docsDir 'pages') -Recurse -Include *.md, *.dox | ForEach-Object {
+        $text = [IO.File]::ReadAllText($_.FullName)
+        $new = $text.Replace($pinned, $target)
+        if ($new -ne $text) { [IO.File]::WriteAllText($_.FullName, $new, (New-Object Text.UTF8Encoding $false)) }
+    }
     Write-Host "docs-version.json now pins $($target.Substring(0,7)). Rebuild with build.ps1."
     return
 }
@@ -130,15 +143,15 @@ if ($CheckLinks) {
 Write-Host "Docs describe:  $($pinned.Substring(0,7))  (documented $($version.documentedOn))"
 if ($WorkingTree) {
     Write-Host "Comparing with: working tree"
-    $diff = Invoke-Git diff --name-status $pinned -- . ':(exclude)Documentation'
-    $untracked = Invoke-Git ls-files --others --exclude-standard -- . ':(exclude)Documentation'
+    $diff = Invoke-Git diff --name-status $pinned -- .
+    $untracked = Invoke-Git ls-files --others --exclude-standard -- .
     $diff = @($diff) + @($untracked | ForEach-Object { "A`t$_" })
 } else {
     Write-Host "Comparing with: $($target.Substring(0,7))"
     Write-Host ''
     Write-Host 'Commits:'
     Invoke-Git log --oneline "$pinned..$target" | ForEach-Object { Write-Host "  $_" }
-    $diff = Invoke-Git diff --name-status $pinned $target -- . ':(exclude)Documentation'
+    $diff = Invoke-Git diff --name-status $pinned $target -- .
 }
 
 $changes = @($diff | Where-Object { $_ } | ForEach-Object {

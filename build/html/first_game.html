@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -113,7 +113,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
   <div class="headertitle"><div class="title">Your first game </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2using-janus_2first-game"></a></p>
+<div class="textblock"><p><a class="anchor" id="md__f_1_2projects_2_janus_documentation_2pages_2using-janus_2first-game"></a></p>
 <p class="lede"></p>
 <p>Set up a game project next to the engine, build it, and put a sprite on screen. The code is the <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> example; the project files below were built and run against the documented commit.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md146"></a>
@@ -132,7 +132,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <li><span class="tt">vcpkg.json</span> must be in the top-level folder so vcpkg installs the engine's dependencies (<a class="el" href="getting_started.html" title="Installing and building">Installing and building</a>).</li>
 <li><span class="tt">Game/src/</span> holds your game's code. Add more <span class="tt">.cpp</span> files there and list them in <span class="tt">add_executable()</span>.</li>
 <li>Everything in <span class="tt">Resources/</span> is copied to <span class="tt">Build/&lt;config&gt;/bin/Resources</span> after each build, and the engine registers every file in it as an asset.</li>
-<li><span class="tt">Config/</span> is created by the build if it is missing and copied to <span class="tt">Build/&lt;config&gt;/bin/Config/Resources</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). At the documented commit the engine does not read from that folder.</li>
+<li><span class="tt">Config/</span> is created by the build if it is missing and copied to <span class="tt">Build/&lt;config&gt;/bin/Config/Resources</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). At the documented commit the engine does not read from that folder.</li>
 <li>The engine reads its settings from <b><span class="tt">Resources/Config</span></b> instead. Create that folder and put a copy of <span class="tt">Engine/Config/filesystem.json</span> in it: the file tells the engine which file extensions are textures, shaders, and so on. The folder must exist even if it is empty, or the engine stops at startup (see <a class="el" href="essentials.html#essentials_resources" title="Files and the working directory">Files and the working directory</a>).</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md147"></a>
@@ -155,8 +155,8 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="line">include(MoveConfigFiles)</div>
 </div><!-- fragment --><p>This is the same setup as ProtoRPG's root <span class="tt">CMakeLists.txt</span>. Two engine CMake helpers do the work:</p>
 <ul>
-<li><b>DetermineOutputDir</b> sets <span class="tt">CMAKE_RUNTIME_OUTPUT_DIRECTORY</span> to <span class="tt">Build/&lt;config&gt;/bin</span> under your game folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/DetermineOutputDir.cmake\#L3-L7" class="src-link">cmake_modules/DetermineOutputDir.cmake:3</a>). The engine uses the same folder, so its <span class="tt">Resources/Shaders</span> end up next to your game.</li>
-<li><b>MoveConfigFiles</b> adds a post-build step to the target named like the project, which is why <span class="tt">project()</span> and <span class="tt">add_executable()</span> use the same name (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>).</li>
+<li><b>DetermineOutputDir</b> sets <span class="tt">CMAKE_RUNTIME_OUTPUT_DIRECTORY</span> to <span class="tt">Build/&lt;config&gt;/bin</span> under your game folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/DetermineOutputDir.cmake\#L3-L7" class="src-link">cmake_modules/DetermineOutputDir.cmake:3</a>). The engine uses the same folder, so its <span class="tt">Resources/Shaders</span> end up next to your game.</li>
+<li><b>MoveConfigFiles</b> adds a post-build step to the target named like the project, which is why <span class="tt">project()</span> and <span class="tt">add_executable()</span> use the same name (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>).</li>
 </ul>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md148"></a>
 3. Write main.cpp</h1>
@@ -170,7 +170,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <li>End with <span class="tt">std::quick_exit(0)</span> rather than returning, to avoid a known crash after shutdown (<a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>).</li>
 </ol>
 <p>Here is the complete <a class="el" href="ex_hello.html" title="Hello Janus">Hello Janus</a> example. It generates its textures in code, so it needs no image files:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Hello Janus: a camera, a light, a background and one sprite</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Hello Janus: the smallest program that puts something on screen.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Hello Janus: a camera, a light, a background and one sprite</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Hello Janus: the smallest program that puts something on screen.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// It shows the four things every Janus program needs before anything is visible:</span></div>
 <div class="line"><span class="comment">//   1. a texture for the debug-collider overlay, registered as &quot;CollisionTexture&quot;</span></div>
@@ -332,7 +332,7 @@ Where to go next</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

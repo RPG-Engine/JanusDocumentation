@@ -2,7 +2,7 @@
 
 <p class="lede">Complete programs that use only Janus. Each is a single <code>.cpp</code> file, needs no image or data files (textures are generated in code), and was compiled and run against the documented engine commit.</p>
 
-Build them all at once from `Engine/Documentation/examples`; see \ref getting_started_examples. Each page shows a screenshot, explains the important parts, and ends with the full source.
+Build them all at once from the `examples` folder of the JanusDocumentation repository; see \ref getting_started_examples. Each page shows a screenshot, explains the important parts, and ends with the full source.
 
 The examples start with `using namespace Components;`, so the engine's components are written without their namespace: `FTransformComponent` is `Components::FTransformComponent`. Lines are kept to 88 characters so the code fits the page without wrapping.
 

@@ -71,17 +71,16 @@ The result is the static library `Engine.lib`. The build also:
 - generates `Build/Generated/EngineExport.h` inside the engine folder (\src{cmake_modules/CreateLibrary.cmake,24,28}). It defines `ENGINE_EXPORT`, which is empty for this static library.
 - copies the engine's `Config/` and `Resources/` folders next to the output folder (\src{cmake_modules/MoveConfigFiles.cmake,9,24}). `Resources/Shaders` holds the compiled shaders the renderer needs.
 
-\warning **Commit 824ee20 does not compile as-is.** \src{include/Module.hpp,17,18} uses `ENGINE_ENGINE_EXPORT`, which is not defined. Replace both with `ENGINE_EXPORT`. See \ref known_issues.
-
 ### Build and run the examples {#getting_started_examples}
 
-The examples have their own CMake project in `Engine/Documentation/examples`. It adds the engine as a subdirectory and builds one executable per example:
+The examples have their own CMake project in the `examples` folder of the [JanusDocumentation](https://github.com/RPG-Engine/JanusDocumentation) repository. It adds the engine as a subdirectory and builds one executable per example:
 
 ```
-cmake -S Engine/Documentation/examples -B build-examples -G Ninja ^
+cmake -S JanusDocumentation/examples -B build-examples -G Ninja ^
       -DCMAKE_BUILD_TYPE=Release ^
       -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
-      -DVCPKG_MANIFEST_DIR=Engine
+      -DVCPKG_MANIFEST_DIR=Engine ^
+      -DJANUS_ENGINE_DIR=Engine
 cmake --build build-examples
 ```
 
@@ -112,7 +111,6 @@ DodgeGame.exe
 
 | Symptom | Cause and fix |
 | --- | --- |
-| `'ENGINE_ENGINE_EXPORT': undeclared identifier` or a syntax error in `Module.hpp` | See the warning above: use `ENGINE_EXPORT`. |
 | CMake: *Compatibility with CMake < 4.2* or similar | Your CMake is too old. CLion and Visual Studio bundle their own; check which one runs. |
 | `filesystem_error` ... `Resources\Config` when the game starts | The working directory has no `Resources/Config` folder. Run from the output folder, and see \ref essentials_resources. |
 | `Asset CollisionTexture could not be loaded` | The renderer needs a texture named `CollisionTexture`. See \ref essentials_minimum. |

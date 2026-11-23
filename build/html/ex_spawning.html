@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,14 +115,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>A fountain of sparks: spawn entities on a timer or in bursts, fade them out, and destroy them when their time is up.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" class="src-link">examples/ecs/Spawning.cpp</a></span><span><b>Executable</b> <code>EcsSpawning</code></span><span><b>Controls</b> <kbd>Space</kbd> for a burst of 100, hold <kbd>E</kbd> to spray</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" class="src-link">examples/ecs/Spawning.cpp</a></span><span><b>Executable</b> <code>EcsSpawning</code></span><span><b>Controls</b> <kbd>Space</kbd> for a burst of 100, hold <kbd>E</kbd> to spray</span></div><div class="image">
 <img src="ecs-spawning.png" alt=""/>
 <div class="caption">
 Sparks fading out as their lifetime runs down; the HUD counts live sparks</div></div>
 <p><b>Shows:</b> a spawner component, a flecs prefab, a lifetime component that fades and destroys entities, and counting entities with a query.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md77"></a>
 Components</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Spawner, lifetime and velocity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Creates Rate entities per second while Active is above zero.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Spawner, lifetime and velocity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Creates Rate entities per second while Active is above zero.</span></div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FSpawner,</div>
 <div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Rate, 60.f),</div>
 <div class="line">        <a class="code hl_define" href="group__ecs.html#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(<span class="keywordtype">float</span>, Active, 0.f),</div>
@@ -139,7 +139,7 @@ Components</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md78"></a>
 A prefab for sparks</h2>
 <p>Every spark starts with the same sprite, layer and lifetime, so those live on a prefab. <span class="tt">is_a(prefab)</span> gives each new spark its own copy, which it can then change:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Prefab and spawn function</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Prefab and spawn function</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
 <div class="line">    <span class="comment">// is_a(prefab) get their own copy of each one, so they can be changed per spark.</span></div>
 <div class="line">    flecs::entity sparkPrefab = world.prefab(<span class="stringliteral">&quot;Spark&quot;</span>)</div>
 <div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;({</div>
@@ -165,7 +165,7 @@ A prefab for sparks</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md79"></a>
 Spawning</h2>
 <p>The spawner turns elapsed time into whole sparks, so the rate stays correct at any frame rate:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The spawner system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The spawner system: turns elapsed time into a whole number of new sparks.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The spawner system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The spawner system: turns elapsed time into a whole number of new sparks.</span></div>
 <div class="line">    world.system&lt;FSpawner&gt;(<span class="stringliteral">&quot;Spawn&quot;</span>)</div>
 <div class="line">        .each([spawnSpark](flecs::iter&amp; it, <span class="keywordtype">size_t</span>, FSpawner&amp; spawner) {</div>
 <div class="line">            <span class="keyword">const</span> glm::vec2 origin {ScreenW / 2.f, ScreenH / 2.f};</div>
@@ -190,7 +190,7 @@ Spawning</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md80"></a>
 Lifetime</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Fading out and destroying</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count down, fade out, and destroy when the time is up.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Fading out and destroying</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count down, fade out, and destroy when the time is up.</span></div>
 <div class="line">    world.system&lt;FLifetime, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;Lifetime&quot;</span>)</div>
 <div class="line">        .each([](flecs::entity entity, FLifetime&amp; lifetime,</div>
 <div class="line">                 <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&amp; sprite) {</div>
@@ -205,7 +205,7 @@ Lifetime</h2>
 <p>Destroyed sparks disappear from the screen at once because they are on the <span class="tt">Entities</span> layer, which is rebuilt every frame (<a class="el" href="group__rendering.html#rendering_layers" title="Layers and draw order">Layers and draw order</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md81"></a>
 Counting</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Counting live sparks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count live sparks for the HUD. A query matches instances, not the prefab itself.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Counting live sparks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Count live sparks for the HUD. A query matches instances, not the prefab itself.</span></div>
 <div class="line">    flecs::query&lt;const FLifetime&gt; sparks = world.query&lt;<span class="keyword">const</span> FLifetime&gt;();</div>
 <div class="line">    world.system(<span class="stringliteral">&quot;CountSparks&quot;</span>)</div>
 <div class="line">        .kind(flecs::PostUpdate)</div>
@@ -216,7 +216,7 @@ Counting</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md82"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Spawning.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: spawning and destroying entities.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Spawning.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: spawning and destroying entities.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: Space for a burst of 100 sparks. Hold E to spray sparks continuously.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -460,7 +460,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

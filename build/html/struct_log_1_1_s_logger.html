@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -127,7 +127,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 
 <p><code>#include &lt;Log/LogTypes.hpp&gt;</code></p>
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
-<div class="textblock"><p>Its outputs and minimum level come from its <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a>. Declared in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/LogTypes.hpp\#L43-L46" class="src-link">include/Log/LogTypes.hpp:43</a>. Part of the <a class="el" href="group__logging.html" title="Log">Log</a> module.</p>
+<div class="textblock"><p>Its outputs and minimum level come from its <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a>. Declared in <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Log/LogTypes.hpp\#L43-L46" class="src-link">include/Log/LogTypes.hpp:43</a>. Part of the <a class="el" href="group__logging.html" title="Log">Log</a> module.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md50"></a>
 How to use</h2>
 <p>You rarely construct an <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> yourself. <a class="el" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> creates one for you, together with the <span class="tt"><a class="el" href="namespace_log.html" title="This is a core library type declaration file You should never include other headers from this library...">Log</a>::&lt;Name&gt;::Info(...)</span> family of functions that log through it:</p>
@@ -136,11 +136,11 @@ How to use</h2>
 <li>Call <span class="tt">Log::MyModule::Info("Loaded {} items", count)</span>, or <span class="tt">Error</span>, <span class="tt">Warning</span>, <span class="tt">Debug</span> and <span class="tt">Verbose</span>.</li>
 </ol>
 <p>Construct an <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> directly only when you need a logger that is not tied to a namespace. Then pass it to the <span class="tt"><a class="el" href="namespace_log_1_1_generic.html">Log::Generic</a></span> functions yourself, e.g. <span class="tt"><a class="el" href="group__logging.html#ga92120bdeaa9bca10136598f29b04a86c" title="Logs an info message through Logger, formatting Args into LogMessage.">Log::Generic::Info</a>(myLogger, "...")</span>.</p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The usual way: let the macro create it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">The usual way: let the macro create it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
 <div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
 <div class="ttc" id="anamespace_filesystem_html"><div class="ttname"><a href="namespace_filesystem.html">Filesystem</a></div><div class="ttdef"><b>Definition</b> Config.hpp:14</div></div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Constructing one directly (the engine's generic logger)</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp#L13-L17" target="_blank">src/Log/Log.cpp:13</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a> Logger = <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>({ \</div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">Constructing one directly (the engine's generic logger)</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Log.cpp#L13-L17" target="_blank">src/Log/Log.cpp:13</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">static</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a> Logger = <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>({ \</div>
 <div class="line">        .LoggerNamespace = (<span class="stringliteral">&quot;LogGeneric&quot;</span>), \</div>
 <div class="line">        .LogLevel = LogLevel::debug, \</div>
 <div class="line">        .LogFile = <span class="stringliteral">&quot;JanusEngine&quot;</span>, \</div>
@@ -148,7 +148,7 @@ How to use</h2>
 <div class="ttc" id="agroup__logging_html_gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656"><div class="ttname"><a href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a04663f4946a82d9cfed81dd96a6f2656">Log::ELogOutputOptions::LOG_ALL</a></div><div class="ttdeci">@ LOG_ALL</div><div class="ttdoc">Write to both.</div><div class="ttdef"><b>Definition</b> LogTypes.hpp:28</div></div>
 <div class="ttc" id="astruct_log_1_1_s_logger_html_a03724948a232b56bea0cc08b119cb272"><div class="ttname"><a href="#a03724948a232b56bea0cc08b119cb272">Log::SLogger::SLogger</a></div><div class="ttdeci">SLogger(const SLoggerConfiguration &amp;InConfig)</div><div class="ttdoc">Creates the logger and registers it with spdlog.</div></div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">A console-only logger built by hand</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A logger that is not tied to a namespace.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">A console-only logger built by hand</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Logging.cpp" target="_blank">examples/modules/Logging.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A logger that is not tied to a namespace.</span></div>
 <div class="line"><span class="comment">// Log through it with the Log::Generic functions.</span></div>
 <div class="line">static <a class="code hl_namespace" href="namespace_log.html">Log</a>::SLogger AudioLogger({</div>
 <div class="line">    .LoggerNamespace = <span class="stringliteral">&quot;LogAudio&quot;</span>,</div>
@@ -165,12 +165,12 @@ How to use</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md51"></a>
 Lifecycle</h2>
 <ol type="1">
-<li><b>Construction</b> copies the configuration and calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</li>
-<li><b>Registration</b> creates an spdlog logger named <span class="tt">Config.LoggerNamespace</span>. It gets a file sink if <span class="tt">LogOptions</span> includes <span class="tt">LOG_FILE</span> and a colored console sink if it includes <span class="tt">LOG_CONSOLE</span>. If a logger with that name already exists, it is reused instead (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp\#L78-L97" class="src-link">src/Log/Module.cpp:78</a>).</li>
-<li><b>Logging</b> looks the spdlog logger up by name on every call and writes the message only if its level is at least <span class="tt">Config.LogLevel</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>).</li>
+<li><b>Construction</b> copies the configuration and calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</li>
+<li><b>Registration</b> creates an spdlog logger named <span class="tt">Config.LoggerNamespace</span>. It gets a file sink if <span class="tt">LogOptions</span> includes <span class="tt">LOG_FILE</span> and a colored console sink if it includes <span class="tt">LOG_CONSOLE</span>. If a logger with that name already exists, it is reused instead (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Module.cpp\#L79-L98" class="src-link">src/Log/Module.cpp:79</a>).</li>
+<li><b>Logging</b> looks the spdlog logger up by name on every call and writes the message only if its level is at least <span class="tt">Config.LogLevel</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>).</li>
 <li><b>Shutdown:</b> <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a> drops all spdlog loggers. The <span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> objects themselves stay alive until the program exits.</li>
 </ol>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">What registration does</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp#L78-L97" target="_blank">src/Log/Module.cpp:78</a></summary> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">RegisterLogger</a>(<span class="keyword">const</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>* Logger) {</div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">What registration does</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Module.cpp#L79-L98" target="_blank">src/Log/Module.cpp:79</a></summary> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">RegisterLogger</a>(<span class="keyword">const</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>* Logger) {</div>
 <div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a>&amp; config = Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>;</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (std::shared_ptr&lt;spdlog::logger&gt; existingLogger =</div>
@@ -189,7 +189,7 @@ Lifecycle</h2>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">HasAnyOptions</a>(config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a069b9c55b71232e6cf9fc71ada1afe7c">LogOptions</a>, <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">ELogOutputOptions::LOG_CONSOLE</a>)) {</div>
 <div class="line">        logger.sinks().push_back(std::move(</div>
-<div class="line">            CreateSink&lt;LogSinks::stdout_color_sink_mt&gt;(_Internal::DefaultLogPattern,</div>
+<div class="line">            CreateSink&lt;LogSinks::stdout_color_sink_mt&gt;(DefaultLogPattern.data(),</div>
 <div class="line">                                                       config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a2640b5ef36dbdc65abefb72ab531f145">LogLevel</a>)));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -210,7 +210,7 @@ Lifecycle</h2>
 Notes</h2>
 <ul>
 <li><span class="tt"><a class="el" href="struct_log_1_1_s_logger.html" title="A named logger that registers itself with spdlog when it is constructed.">SLogger</a></span> has no destructor of its own and no way to unregister. Treat loggers as objects that live for the whole program, the way <a class="el" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f" title="Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.">DECLARE_LOGGER</a> uses them.</li>
-<li>If a message's logger name was never registered, or was dropped by <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a>, the message is replaced by an spdlog error <span class="tt">Could not find logger &lt;name&gt;!</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L26" class="src-link">src/Log/Log.cpp:26</a>). </li>
+<li>If a message's logger name was never registered, or was dropped by <a class="el" href="group__logging.html#ga928d2b3a4c91332fa154b8cff8ee5938" title="Shuts the Log module down: flushes, copies each log file to a timestamped name, then drops every logg...">Log::TeardownModule()</a>, the message is replaced by an spdlog error <span class="tt">Could not find logger &lt;name&gt;!</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Log.cpp\#L26" class="src-link">src/Log/Log.cpp:26</a>). </li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-pub-methods" class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -246,14 +246,14 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Copies <span class="tt">InConfig</span> into <a class="el" href="#a677abd5f9985a2fac3c2e9d799df9e8a" title="The configuration this logger was created with.">Config</a>, then calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</p>
+<p>Copies <span class="tt">InConfig</span> into <a class="el" href="#a677abd5f9985a2fac3c2e9d799df9e8a" title="The configuration this logger was created with.">Config</a>, then calls <a class="el" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6" title="Creates and registers the spdlog logger for a Log::SLogger.">Log::RegisterLogger()</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/LogTypes.cpp\#L10-L14" class="src-link">src/Log/LogTypes.cpp:10</a>).</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">InConfig</td><td>Name, minimum level, log file and outputs for the logger. See <a class="el" href="struct_log_1_1_s_logger_configuration.html" title="Settings for a Log::SLogger: its name, minimum level, log file and outputs.">Log::SLoggerConfiguration</a>.</td></tr>
   </table>
   </dd>
 </dl>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">How DECLARE_LOGGER_WITH_PARAMS calls it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Log/Module.hpp#L9-L15" target="_blank">include/Log/Module.hpp:9</a></summary> </p><div class="fragment"><div class="line"><span class="preprocessor">#define DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile) \</span></div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">How DECLARE_LOGGER_WITH_PARAMS calls it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Log/Module.hpp#L9-L15" target="_blank">include/Log/Module.hpp:9</a></summary> </p><div class="fragment"><div class="line"><span class="preprocessor">#define DECLARE_LOGGER_WITH_PARAMS(Namespace, InLogLevel, InLogOutputs, InLogFile) \</span></div>
 <div class="line"><span class="preprocessor">    namespace Log::Namespace { \</span></div>
 <div class="line"><span class="preprocessor">        static SLogger Logger = SLogger({ \</span></div>
 <div class="line"><span class="preprocessor">            .LoggerNamespace = (&quot;Log&quot;#Namespace), \</span></div>
@@ -276,14 +276,14 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Every log call reads <span class="tt">Config.LoggerNamespace</span> to find the spdlog logger and <span class="tt">Config.LogLevel</span> to decide whether to write the message (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>). Raising <span class="tt">LogLevel</span> after construction filters out more messages from the next call. Lowering it, or changing anything else, has no effect, because the sinks keep the settings they were created with at registration. </p>
+<p>Every log call reads <span class="tt">Config.LoggerNamespace</span> to find the spdlog logger and <span class="tt">Config.LogLevel</span> to decide whether to write the message (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Log/Log.cpp\#L19-L27" class="src-link">src/Log/Log.cpp:19</a>). Raising <span class="tt">LogLevel</span> after construction filters out more messages from the next call. Lowering it, or changing anything else, has no effect, because the sinks keep the settings they were created with at registration. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

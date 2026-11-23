@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -113,7 +113,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
   <div class="headertitle"><div class="title">How to read these docs </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2conventions"></a></p>
+<div class="textblock"><p><a class="anchor" id="md__f_1_2projects_2_janus_documentation_2pages_2conventions"></a></p>
 <p class="lede"></p>
 <p>How the pages are laid out, how code examples are marked, and how source links work.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md61"></a>
@@ -132,14 +132,14 @@ Code examples</h1>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md63"></a>
 Engine examples</h2>
 <p>Green blocks contain real code from the engine. The header names the file and line, linked to GitHub. Snippets may be trimmed with <span class="tt">// ...</span>, but the code that remains is unchanged.</p>
-<p> <details class="jd-example jd-engine" open><summary><span class="jd-label">Engine example</span><span class="jd-title">The Filesystem module declares its logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
+<p> <details class="jd-example jd-engine" open><summary><span class="jd-label">Engine example</span><span class="jd-title">The Filesystem module declares its logger</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Filesystem/Module.cpp#L10-L10" target="_blank">src/Filesystem/Module.cpp:10</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a>(<a class="code hl_namespace" href="namespace_filesystem.html">Filesystem</a>, debug)</div>
 <div class="ttc" id="agroup__logging_html_gac99e4e609df089a34d2fa7adf696343f"><div class="ttname"><a href="group__logging.html#gac99e4e609df089a34d2fa7adf696343f">DECLARE_LOGGER</a></div><div class="ttdeci">#define DECLARE_LOGGER(Namespace, InLogLevel)</div><div class="ttdoc">Same as DECLARE_LOGGER_WITH_PARAMS with LOG_ALL outputs and the shared JanusEngine log file.</div><div class="ttdef"><b>Definition</b> Module.hpp:41</div></div>
 <div class="ttc" id="anamespace_filesystem_html"><div class="ttname"><a href="namespace_filesystem.html">Filesystem</a></div><div class="ttdef"><b>Definition</b> Config.hpp:14</div></div>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md64"></a>
 AI-generated examples</h2>
-<p>Example blocks without a label contain code written for this documentation by AI, not taken from the engine. Pages that contain them start with an <b>AI-generated content</b> notice. Each block comes from a program in <span class="tt">Engine/Documentation/examples</span>, named and linked in the block's header. The documentation build pulls the code straight from those files, so what you read is what was compiled. All of them were compiled and run against the documented commit (<a class="el" href="docs_version.html" title="Documentation version">Documentation version</a>), but they are not part of the engine and have not been reviewed by its authors.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A generated example</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Creates a square, solid-white texture in memory and registers it with the</span></div>
+<p>Example blocks without a label contain code written for this documentation by AI, not taken from the engine. Pages that contain them start with an <b>AI-generated content</b> notice. Each block comes from a program in the <span class="tt">examples</span> folder of the JanusDocumentation repository, named and linked in the block's header. The documentation build pulls the code straight from those files, so what you read is what was compiled. All of them were compiled and run against the documented commit (<a class="el" href="docs_version.html" title="Documentation version">Documentation version</a>), but they are not part of the engine and have not been reviewed by its authors.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A generated example</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Creates a square, solid-white texture in memory and registers it with the</span></div>
 <div class="line"><span class="comment">// Filesystem module under AssetPath, as if it were an image file in Resources/.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterSolidTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
 <div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
@@ -166,7 +166,7 @@ Other code</h2>
 <p>Short fragments without a header (one or two lines in a guide, command lines, CMake files, file layouts) are written for these pages. The CMake project in <a class="el" href="first_game.html" title="Your first game">Your first game</a> was built and run like the examples.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md66"></a>
 Source links</h1>
-<p>Links marked ↗ open the code on GitHub, at the exact line or line range where possible. They all point at one pinned commit, <a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/824ee2043e545a75c0510187f5c7ca53b5aa21c4" class="src-link"><code>824ee20</code></a>, so line numbers always match the code they describe. <a class="el" href="docs_version.html" title="Documentation version">Documentation version</a> explains how the pin is moved when the docs are updated.</p>
+<p>Links marked ↗ open the code on GitHub, at the exact line or line range where possible. They all point at one pinned commit, <a href="https://github.com/RPG-Engine/RPG-Engine-Core/commit/02fd6c2454ea67f96d38295400c5e2a88619f43e" class="src-link"><code>02fd6c2</code></a>, so line numbers always match the code they describe. <a class="el" href="docs_version.html" title="Documentation version">Documentation version</a> explains how the pin is moved when the docs are updated.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md67"></a>
 Naming prefixes used by the engine</h1>
 <table class="markdownTable">
@@ -191,7 +191,7 @@ Naming prefixes used by the engine</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

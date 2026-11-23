@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,14 +115,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Thirty units on two teams wander around. Keys move units between teams and damage the blue team; observers recolour units and report defeats.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" class="src-link">examples/ecs/ComponentsAndQueries.cpp</a></span><span><b>Executable</b> <code>EcsQueries</code></span><span><b>Controls</b> <kbd>1</kbd> red → blue, <kbd>2</kbd> blue → red, <kbd>H</kbd> hurt every blue unit</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" class="src-link">examples/ecs/ComponentsAndQueries.cpp</a></span><span><b>Executable</b> <code>EcsQueries</code></span><span><b>Controls</b> <kbd>1</kbd> red → blue, <kbd>2</kbd> blue → red, <kbd>H</kbd> hurt every blue unit</span></div><div class="image">
 <img src="ecs-queries.png" alt=""/>
 <div class="caption">
 Red and blue units; the HUD shows the team counts from two queries</div></div>
 <p><b>Shows:</b> the three <span class="tt"><a class="el" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> variants, plain flecs tags, queries that filter on tags, observers, a custom pipeline phase, settings on the global entity, and selecting an entity for the Entity Debugger. See <a class="el" href="group__ecs.html" title="ECS">ECS</a>.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md83"></a>
 Components and tags</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Defining components and tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Defining components and tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// 1. DEFINE_COMPONENT: a struct with reflection data</span></div>
 <div class="line">    <span class="comment">//    and an automatic Entity Debugger panel.</span></div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FHealth,</div>
@@ -155,7 +155,7 @@ Components and tags</h2>
 <div class="line"><span class="keyword">struct </span>BlueTeam {};</div>
 </div><!-- fragment --><p>  </details></p>
 <p><span class="tt">FUnit</span> uses <span class="tt"><a class="el" href="group__ecs.html#gabd119f037de795b5946602433ed34da3" title="Like DEFINE_COMPONENT, but the Entity Debugger panel calls PreDebugDraw(ComponentName*) before and Po...">DEFINE_COMPONENT_OVERRIDE_DEBUG</a></span>, so its Entity Debugger panel gets extra content. Select a unit in <em>Entity Debugger → Entity Outliner</em> to see it:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Custom panel functions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Custom panel functions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
 <div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit) {</div>
 <div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Custom panel drawn by PreDrawUnit&quot;</span>);</div>
 <div class="line">    }</div>
@@ -166,14 +166,14 @@ Components and tags</h2>
 <div class="line">    }</div>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FHealth, world);</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Registering</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FHealth, world);</div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#ga2b693423b2113999c18ec9144a2a4f95">ECS_REGISTER_COMPONENT_NO_DEBUG</a>(FWander, world);</div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FUnit, world);</div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FTeamSettings, world);</div>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md84"></a>
 Global settings</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Settings on the global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Settings on the global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
 <div class="line">    <span class="comment">// so these settings can be edited live.</span></div>
 <div class="line">    flecs::entity settingsEntity = <a class="code hl_function" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>();</div>
 <div class="line">    settingsEntity.set&lt;FTeamSettings&gt;({});</div>
@@ -181,7 +181,7 @@ Global settings</h2>
 <p>Open <em>Entity Debugger → Global Entity</em> and change <span class="tt">RedColor</span> or <span class="tt">DamagePerHit</span> while the example runs.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md85"></a>
 Queries</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Queries that filter on tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Queries that filter on tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; RedUnits;</div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; BlueUnits;</div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;FHealth&gt; BlueHealth;</div>
@@ -192,7 +192,7 @@ Queries</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md86"></a>
 Observers</h2>
 <p>Units get their colour when a team tag is added, not every frame. The third observer fires when a unit's health component is removed, which also happens when the unit is destroyed:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Observers</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Observers</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
 <div class="line">    <span class="comment">// instead of every frame.</span></div>
 <div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintRed&quot;</span>)</div>
 <div class="line">        .with&lt;RedTeam&gt;()</div>
@@ -218,11 +218,11 @@ Observers</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md87"></a>
 Systems and a custom phase</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
 <div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
 <div class="line"><a class="code hl_define" href="group__ecs.html#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Systems</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input: act on the queries.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Systems</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input: act on the queries.</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> FTeamSettings&gt;(<span class="stringliteral">&quot;TeamInput&quot;</span>)</div>
 <div class="line">        .each([](<span class="keyword">const</span> FTeamSettings&amp; settings) {</div>
 <div class="line">            <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::ToBlue)) {</div>
@@ -271,7 +271,7 @@ Systems and a custom phase</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md88"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">ComponentsAndQueries.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: components, tags, queries, observers and phases.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">ComponentsAndQueries.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: components, tags, queries, observers and phases.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Thirty units wander around, each on the red or the blue team.</span></div>
 <div class="line"><span class="comment">// Controls: 1 moves a red unit to the blue team, 2 does the opposite,</span></div>
@@ -598,7 +598,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

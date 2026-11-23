@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -122,7 +122,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/Module.hpp" class="src-link">include/Gameplay/Module.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/Components.hpp" class="src-link">include/Gameplay/Components.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp" class="src-link">src/Gameplay/Module.cpp</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/Module.hpp" class="src-link">include/Gameplay/Module.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/Components.hpp" class="src-link">include/Gameplay/Components.hpp</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp" class="src-link">src/Gameplay/Module.cpp</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Gameplay/Module.hpp&gt;</span> · <span class="tt">#include &lt;Gameplay/Components.hpp&gt;</span> (for <a class="el" href="struct_components_1_1_f_mouse_state.html" title="The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...">Components::FMouseState</a>)</td></tr>
 <tr>
@@ -135,14 +135,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <h2 class="doxsection"><a class="anchor" id="autotoc_md34"></a>
 How to use</h2>
 <p><b>1. Start the module</b> after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>. It registers <a class="el" href="struct_components_1_1_f_collider_component.html" title="One collision rectangle, glm::vec4 ColliderShape, relative to the entity&#39;s position.">Components::FColliderComponent</a> and <a class="el" href="struct_components_1_1_f_mouse_state.html" title="The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...">Components::FMouseState</a>, so they get reflection data and Entity Debugger panels:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting GameplayFramework</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting GameplayFramework</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
 <div class="line">    <span class="comment">// using FColliderComponent or FMouseState, so they get reflection data and</span></div>
 <div class="line">    <span class="comment">// Entity Debugger panels.</span></div>
 <div class="line">    <a class="code hl_function" href="#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework::Module</a>();</div>
 <div class="line">    <a class="code hl_define" href="group__ecs.html#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FPlayer, world);</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>2. Give entities colliders.</b> <a class="el" href="struct_components_1_1_f_collider_component.html" title="One collision rectangle, glm::vec4 ColliderShape, relative to the entity&#39;s position.">Components::FColliderComponent</a> holds one rectangle, <span class="tt">ColliderShape</span>, relative to the entity's position. The engine stores it but does no collision checks itself, so you decide what the four numbers mean and test overlaps in your own systems. The example uses <span class="tt">(x offset, y offset, width, height)</span>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Blocks with colliders, and movement that stops at them</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Blocks with colliders, and movement that stops at them</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
 <div class="line"><span class="comment">// both covering the whole sprite.</span></div>
 <div class="line"><span class="comment">// This example stores ColliderShape as (x offset, y offset, width, height).</span></div>
 <div class="line"><span class="keyword">static</span> flecs::entity SpawnSolidBlock(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, glm::vec2 Position,</div>
@@ -195,7 +195,7 @@ How to use</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>3. Use mouse hover.</b> <a class="el" href="#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf" title="Adds Components::FMouseState to ECS::GetGlobalSystemsEntity() and starts a system that tracks the mou...">GameplayFramework::ActivateMouseStateSystem()</a> adds an <a class="el" href="struct_components_1_1_f_mouse_state.html" title="The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...">Components::FMouseState</a> to <a class="el" href="group__ecs.html#ga9229592f5849039955e79d6b9e492150" title="Returns an entity for game-wide components, created on first use.">ECS::GetGlobalSystemsEntity()</a> and a system that, every frame, stores the mouse position in world units and the entity under the cursor. It checks entities with <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_bounding_box_component.html" title="Component representing a generic bounding box for the entity.">Components::FBoundingBoxComponent</a>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Highlighting the hovered block</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Highlighting the hovered block</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
 <div class="line">    <span class="comment">// FMouseState component on ECS::GetGlobalSystemsEntity(). It checks entities</span></div>
 <div class="line">    <span class="comment">// with FTransformComponent and FBoundingBoxComponent.</span></div>
 <div class="line">    <a class="code hl_function" href="#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework::ActivateMouseStateSystem</a>();</div>
@@ -225,14 +225,14 @@ How to use</h2>
 <div class="line">            }</div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p><b>4. Move with Move2D.</b> <span class="tt">Input::Actions::Move2D</span> is a <span class="tt">glm::vec2</span> action declared by this module (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/Module.hpp\#L12" class="src-link">include/Gameplay/Module.hpp:12</a>). Bind keys to it as with any action (<a class="el" href="group__input.html" title="Input">Input</a>).</p>
+<p><b>4. Move with Move2D.</b> <span class="tt">Input::Actions::Move2D</span> is a <span class="tt">glm::vec2</span> action declared by this module (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/Module.hpp\#L12" class="src-link">include/Gameplay/Module.hpp:12</a>). Bind keys to it as with any action (<a class="el" href="group__input.html" title="Input">Input</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md35"></a>
 Things to watch out for</h2>
 <ul>
-<li><span class="tt">HoveredEntityId</span> keeps the last hovered entity when the cursor moves off it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp\#L62-L65" class="src-link">src/Gameplay/Module.cpp:62</a>). Check <span class="tt">MousePosition</span> against the entity's box yourself, as the example does.</li>
+<li><span class="tt">HoveredEntityId</span> keeps the last hovered entity when the cursor moves off it (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp\#L62-L65" class="src-link">src/Gameplay/Module.cpp:62</a>). Check <span class="tt">MousePosition</span> against the entity's box yourself, as the example does.</li>
 <li>The hover system runs in <span class="tt">ECS::Phase::OnPreRender()</span>, so systems in earlier phases see the previous frame's result.</li>
 <li>The mouse position assumes a 1920 × 1080 window (see <a class="el" href="group__rendering.html#gaa6a288406f43c706dbe7378a282dafa8" title="Converts a window position in pixels to world units, using the current camera.">Renderer::ScreenPosToWorldPos()</a>).</li>
-<li>The module links box2d, but the physics code is commented out (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp\#L18-L27" class="src-link">src/Gameplay/Module.cpp:18</a>). <span class="tt">Components::FPhysicsComponent</span> is empty. </li>
+<li>The module links box2d, but the physics code is commented out (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp\#L18-L27" class="src-link">src/Gameplay/Module.cpp:18</a>). <span class="tt">Components::FPhysicsComponent</span> is empty. </li>
 </ul>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 id="header-nested-classes" class="groupheader"><a id="nested-classes" name="nested-classes"></a>
@@ -267,7 +267,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Not called by the engine: call it after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp\#L18-L23" class="src-link">src/Gameplay/Module.cpp:18</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp\#L18-L23" class="src-link">src/Gameplay/Module.cpp:18</a>. </p>
 
 </div>
 </div>
@@ -303,14 +303,14 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Call once.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp\#L72-L78" class="src-link">src/Gameplay/Module.cpp:72</a>; the system itself is <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/Module.cpp\#L29-L70" class="src-link">src/Gameplay/Module.cpp:29</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp\#L72-L78" class="src-link">src/Gameplay/Module.cpp:72</a>; the system itself is <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/Module.cpp\#L29-L70" class="src-link">src/Gameplay/Module.cpp:29</a>. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

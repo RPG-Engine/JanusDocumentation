@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,14 +115,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Bounce the ball off your paddle to clear all fifty bricks. You have three balls.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" class="src-link">examples/games/Breakout.cpp</a></span><span><b>Executable</b> <code>BreakoutGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>Space</kbd> to launch, <kbd>R</kbd> to restart</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" class="src-link">examples/games/Breakout.cpp</a></span><span><b>Executable</b> <code>BreakoutGame</code></span><span><b>Controls</b> <kbd>A</kbd> <kbd>D</kbd> or arrow keys to move, <kbd>Space</kbd> to launch, <kbd>R</kbd> to restart</span></div><div class="image">
 <img src="breakout.png" alt=""/>
 <div class="caption">
 Breakout: one brick gone, the ball back on the paddle after a miss</div></div>
 <p><b>Shows:</b> velocity-based movement, bouncing off walls and rectangles, destroying entities on hit, counting entities with a query to detect a win, and several input actions.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md105"></a>
 Components and bricks</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions and components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(MoveX, <span class="keywordtype">float</span>)</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions and components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(MoveX, <span class="keywordtype">float</span>)</div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Launch, <span class="keywordtype">bool</span>)</div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Restart, <span class="keywordtype">bool</span>)</div>
 <div class="line"> </div>
@@ -135,7 +135,7 @@ Components and bricks</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
 <p>Bricks are ordinary sprites with an <span class="tt">FBrick</span> component holding their score:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Building the wall of bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// 10 columns x 5 rows of bricks. Higher rows are worth more.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Building the wall of bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// 10 columns x 5 rows of bricks. Higher rows are worth more.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> SpawnBricks(<span class="keyword">const</span> flecs::world&amp; World) {</div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor rowColors[5] = {</div>
 <div class="line">        {1.f, 0.35f, 0.35f, 1.f}, {1.f, 0.6f, 0.3f, 1.f}, {1.f, 0.85f, 0.3f, 1.f},</div>
@@ -166,7 +166,7 @@ Components and bricks</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md106"></a>
 Paddle</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Paddle: follows the MoveX action.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">The paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Paddle: follows the MoveX action.</span></div>
 <div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
 <div class="line">                 <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>,</div>
 <div class="line">                 <span class="keyword">const</span> FPaddle&gt;(<span class="stringliteral">&quot;MovePaddle&quot;</span>)</div>
@@ -181,7 +181,7 @@ Paddle</h2>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md107"></a>
 Ball</h2>
 <p>The ball waits on the paddle until <kbd>Space</kbd>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Launching</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="keyword">const</span> flecs::entity paddle = world.lookup(<span class="stringliteral">&quot;Paddle&quot;</span>);</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Launching</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="keyword">const</span> flecs::entity paddle = world.lookup(<span class="stringliteral">&quot;Paddle&quot;</span>);</div>
 <div class="line">            <span class="keyword">const</span> glm::vec2 paddlePos = PositionOf(paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;());</div>
 <div class="line">            <span class="keyword">const</span> glm::vec2 paddleSize = paddle.get&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;().TextureSize;</div>
 <div class="line"> </div>
@@ -197,7 +197,7 @@ Ball</h2>
 <div class="line">            }</div>
 </div><!-- fragment --><p>  </details></p>
 <p>It moves by its velocity, bounces off three walls, and is lost below the screen. Hitting the paddle sends it back up at an angle that depends on where it hit:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Walls and paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Walls</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Walls and paddle</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Walls</span></div>
 <div class="line">            <span class="keywordflow">if</span> (pos.x &lt; 0.f) {                       <span class="comment">// left wall</span></div>
 <div class="line">                pos.x = 0.f;</div>
 <div class="line">                ball.Velocity.x = std::abs(ball.Velocity.x);</div>
@@ -230,7 +230,7 @@ Ball</h2>
 <div class="line">            }</div>
 </div><!-- fragment --><p>  </details></p>
 <p>For bricks, the overlap tells which side was hit: a narrow horizontal overlap means a side hit. The brick is destroyed, and when the query counts only the brick being destroyed, the board is clear:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Bricks: bounce off the first one hit,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Bricks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line">            <span class="comment">// Bricks: bounce off the first one hit,</span></div>
 <div class="line">            <span class="comment">// along the axis with the smaller overlap.</span></div>
 <div class="line">            <span class="keywordtype">bool</span> bHitBrick = <span class="keyword">false</span>;</div>
 <div class="line">            bricks.each([&amp;](flecs::entity brick,</div>
@@ -270,7 +270,7 @@ Ball</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md108"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Breakout.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Breakout: bounce the ball off your paddle to clear every brick. You have three balls.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Breakout.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Breakout.cpp" target="_blank">examples/games/Breakout.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Breakout: bounce the ball off your paddle to clear every brick. You have three balls.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: A / D or Left / Right to move, Space to launch the ball, R to restart.</span></div>
 <div class="line"><span class="comment">//</span></div>
@@ -622,7 +622,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

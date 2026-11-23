@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -124,13 +124,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS" class="src-link">include/Gameplay/ECS/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS" class="src-link">src/Gameplay/ECS/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS" class="src-link">include/Gameplay/ECS/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS" class="src-link">src/Gameplay/ECS/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Gameplay/ECS/Module.hpp&gt;</span> (world) · <span class="tt">#include &lt;Gameplay/ECS/Components.hpp&gt;</span> (component macros) · <span class="tt">#include &lt;Gameplay/ECS/Modules/TransformModule.hpp&gt;</span>, <span class="tt">&lt;Gameplay/ECS/Modules/GraphicsModule.hpp&gt;</span> (built-in components)</td></tr>
 <tr>
 <td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_e_c_s.html">ECS</a></span> (world, phases), <span class="tt"><a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span> (all components)</td></tr>
 <tr>
-<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L86" class="src-link">Engine::InitializePlugins()</a>, after <a class="el" href="namespace_filesystem.html">Filesystem</a> and <a class="el" href="namespace_im_gui_wrapper.html">ImGuiWrapper</a></td></tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Module.cpp\#L86" class="src-link">Engine::InitializePlugins()</a>, after <a class="el" href="namespace_filesystem.html">Filesystem</a> and <a class="el" href="namespace_im_gui_wrapper.html">ImGuiWrapper</a></td></tr>
 <tr>
 <td><b>Built on</b></td><td><a href="https://www.flecs.dev/flecs/">flecs 4</a> — the <a href="https://www.flecs.dev/flecs/md_docs_2Docs.html">flecs manual</a> applies to everything here</td></tr>
 <tr>
@@ -143,7 +143,7 @@ How to use</h2>
 <div class="fragment"><div class="line">flecs::world&amp; world = <a class="code hl_function" href="#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a>();</div>
 <div class="ttc" id="agroup__ecs_html_gac7e02b1ed2afda7b99ba286f5bb89bb6"><div class="ttname"><a href="#gac7e02b1ed2afda7b99ba286f5bb89bb6">ECS::GetWorld</a></div><div class="ttdeci">flecs::world &amp; GetWorld()</div><div class="ttdoc">Returns the engine&#39;s flecs world.</div></div>
 </div><!-- fragment --><p><b>2. Define components</b> with <a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a>, inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span>. Each member is an <a class="el" href="#gaaa910f10b526ad0b951fd8f6e70cf66d" title="One field of a component: its type, name and default value.">ECS_MEMBER</a> with a type, a name and a default value:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// World units per second.</span></div>
 <div class="line">    <a class="code hl_define" href="#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
 <div class="line">        <a class="code hl_define" href="#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Value, glm::vec2(0, 0)))</div>
@@ -160,7 +160,7 @@ How to use</h2>
 <div class="fragment"><div class="line"><a class="code hl_define" href="#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a>(FVelocity, world);</div>
 <div class="ttc" id="agroup__ecs_html_gaf362f78c6d7d9fc7ac88045ea12b664a"><div class="ttname"><a href="#gaf362f78c6d7d9fc7ac88045ea12b664a">ECS_REGISTER_COMPONENT</a></div><div class="ttdeci">#define ECS_REGISTER_COMPONENT(ComponentName, World)</div><div class="ttdoc">Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.</div><div class="ttdef"><b>Definition</b> Components.hpp:54</div></div>
 </div><!-- fragment --><p><b>4. Create entities</b> and give them components with <span class="tt">set</span> (with a value) or <span class="tt">add</span> (default value):</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">An entity with engine and game components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">An entity with engine and game components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
 <div class="line">    <span class="comment">// Camera Boundaries are (minX, maxX, minY, maxY) for the camera&#39;s top-left corner.</span></div>
 <div class="line">    <span class="keyword">const</span> glm::vec2 worldCentre {WorldW / 2.f, WorldH / 2.f};</div>
 <div class="line">    SpawnRect(world, worldCentre, {ActorSize, ActorSize}, {0.4f, 0.9f, 1.f, 1.f})</div>
@@ -178,7 +178,7 @@ How to use</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>5. Add systems.</b> A system lists the components it needs; its function runs once per matching entity, every frame:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three systems</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Player input -&gt; velocity. Only matches the entity with FPlayer.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Three systems</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// 1. Player input -&gt; velocity. Only matches the entity with FPlayer.</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> FPlayer, FVelocity&gt;(<span class="stringliteral">&quot;PlayerInput&quot;</span>)</div>
 <div class="line">        .each([](<span class="keyword">const</span> FPlayer&amp; player, FVelocity&amp; velocity) {</div>
 <div class="line">            glm::vec2 direction = <a class="code hl_function" href="group__input.html#ga61a6a4c192b6c90c1f7c15b2841c7d44">Input::GetValue</a>(Input::Actions::Move);</div>
@@ -224,13 +224,13 @@ Built-in components</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Component  </th><th class="markdownTableHeadNone">Members (default)  </th><th class="markdownTableHeadNone">What uses it  </th><th class="markdownTableHeadNone">Defined  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec3 Location (0,0,0)</span>, <span class="tt">glm::vec3 Rotation (0,0,0)</span>, <span class="tt">glm::vec3 Scale (0,0,0)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a> (position; <span class="tt">Rotation.x</span> in radians), camera, lights, Entity Debugger, mouse hover  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Modules/TransformModule.hpp\#L16-L20" class="src-link">include/Gameplay/ECS/Modules/TransformModule.hpp:16</a>  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec3 Location (0,0,0)</span>, <span class="tt">glm::vec3 Rotation (0,0,0)</span>, <span class="tt">glm::vec3 Scale (0,0,0)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a> (position; <span class="tt">Rotation.x</span> in radians), camera, lights, Entity Debugger, mouse hover  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Modules/TransformModule.hpp\#L16-L20" class="src-link">include/Gameplay/ECS/Modules/TransformModule.hpp:16</a>  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_bounding_box_component.html" title="Component representing a generic bounding box for the entity.">Components::FBoundingBoxComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec4 Bounds (0,32,0,32)</span>, <span class="tt">float Height 32</span>, <span class="tt">float Width 32</span>, <span class="tt">glm::vec2 Offset (0,0)</span>  </td><td class="markdownTableBodyNone">Mouse hover (<span class="tt">Width</span>, <span class="tt">Height</span>, <span class="tt">Offset</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Modules/TransformModule.hpp\#L28-L33" class="src-link">include/Gameplay/ECS/Modules/TransformModule.hpp:28</a>  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_bounding_box_component.html" title="Component representing a generic bounding box for the entity.">Components::FBoundingBoxComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec4 Bounds (0,32,0,32)</span>, <span class="tt">float Height 32</span>, <span class="tt">float Width 32</span>, <span class="tt">glm::vec2 Offset (0,0)</span>  </td><td class="markdownTableBodyNone">Mouse hover (<span class="tt">Width</span>, <span class="tt">Height</span>, <span class="tt">Offset</span>)  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Modules/TransformModule.hpp\#L28-L33" class="src-link">include/Gameplay/ECS/Modules/TransformModule.hpp:28</a>  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec2 CameraSize (30,15)</span>, <span class="tt">glm::vec2 CenterSize (32,32)</span>, <span class="tt">glm::vec4 Boundaries (0,2000,0,2000)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a>: the view  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Modules/GraphicsModule.hpp\#L23-L27" class="src-link">include/Gameplay/ECS/Modules/GraphicsModule.hpp:23</a>  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">glm::vec2 CameraSize (30,15)</span>, <span class="tt">glm::vec2 CenterSize (32,32)</span>, <span class="tt">glm::vec4 Boundaries (0,2000,0,2000)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a>: the view  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Modules/GraphicsModule.hpp\#L23-L27" class="src-link">include/Gameplay/ECS/Modules/GraphicsModule.hpp:23</a>  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">float Radius 0.15</span>, <span class="tt">float Falloff -0.3</span>, <span class="tt">float Intensity 1</span>, <span class="tt">glm::vec2 PositionOffset (0,0)</span>, <span class="tt">SDL_FColor RGB (1,1,1,1)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a>: lighting  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Modules/GraphicsModule.hpp\#L15-L21" class="src-link">include/Gameplay/ECS/Modules/GraphicsModule.hpp:15</a>  </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a>  </td><td class="markdownTableBodyNone"><span class="tt">float Radius 0.15</span>, <span class="tt">float Falloff -0.3</span>, <span class="tt">float Intensity 1</span>, <span class="tt">glm::vec2 PositionOffset (0,0)</span>, <span class="tt">SDL_FColor RGB (1,1,1,1)</span>  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a>: lighting  </td><td class="markdownTableBodyNone"><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Modules/GraphicsModule.hpp\#L15-L21" class="src-link">include/Gameplay/ECS/Modules/GraphicsModule.hpp:15</a>  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_texture2_d_component.html" title="What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...">Components::FTexture2DComponent</a>  </td><td class="markdownTableBodyNone">Sprite, size, colour  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_renderer.html">Renderer</a>: sprites  </td><td class="markdownTableBodyNone"><a class="el" href="group__rendering.html" title="Renderer">Renderer</a>  </td></tr>
 <tr class="markdownTableRowEven">
@@ -238,7 +238,7 @@ Built-in components</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="struct_components_1_1_f_collider_component.html" title="One collision rectangle, glm::vec4 ColliderShape, relative to the entity&#39;s position.">Components::FColliderComponent</a>, <a class="el" href="struct_components_1_1_f_mouse_state.html" title="The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...">Components::FMouseState</a>  </td><td class="markdownTableBodyNone">Collider shape; mouse position and hovered entity  </td><td class="markdownTableBodyNone"><a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a>  </td><td class="markdownTableBodyNone"><a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>  </td></tr>
 </table>
-<p>The camera and light are explained in <a class="el" href="group__rendering.html" title="Renderer">Renderer</a>. The engine registers reflection data for <span class="tt">glm::vec2</span>, <span class="tt">glm::vec3</span>, <span class="tt">glm::vec4</span>, <span class="tt">SDL_FColor</span>, <span class="tt">std::string</span> and <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a>, so components can use those as member types (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L39-L55" class="src-link">src/Gameplay/ECS/Module.cpp:39</a>).</p>
+<p>The camera and light are explained in <a class="el" href="group__rendering.html" title="Renderer">Renderer</a>. The engine registers reflection data for <span class="tt">glm::vec2</span>, <span class="tt">glm::vec3</span>, <span class="tt">glm::vec4</span>, <span class="tt">SDL_FColor</span>, <span class="tt">std::string</span> and <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a>, so components can use those as member types (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L39-L55" class="src-link">src/Gameplay/ECS/Module.cpp:39</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="ecs_components"></a>
 Defining components</h2>
 <table class="markdownTable">
@@ -251,7 +251,7 @@ Defining components</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><a class="el" href="#gabd119f037de795b5946602433ed34da3" title="Like DEFINE_COMPONENT, but the Entity Debugger panel calls PreDebugDraw(ComponentName*) before and Po...">DEFINE_COMPONENT_OVERRIDE_DEBUG</a> <span class="tt">(Name, Pre, Post, members...)</span>  </td><td class="markdownTableBodyNone">Like <a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a>, but calls your <span class="tt">Pre(Name*)</span> and <span class="tt">Post(Name*)</span> around the automatic widgets  </td><td class="markdownTableBodyNone"><a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a>  </td></tr>
 </table>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">All three variants, and plain flecs tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">All three variants, and plain flecs tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// 1. DEFINE_COMPONENT: a struct with reflection data</span></div>
 <div class="line">    <span class="comment">//    and an automatic Entity Debugger panel.</span></div>
 <div class="line">    <a class="code hl_define" href="#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FHealth,</div>
@@ -301,7 +301,7 @@ Defining components</h2>
 <ul>
 <li>Use the macros <b>inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span></b>; the registration macros refer to <span class="tt">Components::Name</span>.</li>
 <li>A component with no members (<span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT(FPlayer)</a></span>) works as a marker. Plain empty structs also work as flecs <em>tags</em>, without registration, but don't appear in the Entity Debugger.</li>
-<li>The Entity Debugger draws members of type <span class="tt">float</span>, <span class="tt">glm::vec2/3/4</span>, <span class="tt">SDL_FColor</span>, <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> and <a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L125-L170" class="src-link">include/Gameplay/ECS/Components.hpp:125</a>). Members of other types (<span class="tt">int</span>, <span class="tt">bool</span>, ...) are stored and reflected but not shown. To draw another type, specialize <span class="tt"><a class="el" href="#gab92c83fec638c7aa8f5ef41d618ff55b" title="Draws one component member in the Entity Debugger.">Components::ECSDebug_DrawElement</a>&lt;T&gt;</span> the way <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/SpriteInstanceContainer.hpp\#L28-L34" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:28</a> does for render layers.</li>
+<li>The Entity Debugger draws members of type <span class="tt">float</span>, <span class="tt">glm::vec2/3/4</span>, <span class="tt">SDL_FColor</span>, <a class="el" href="struct_filesystem_1_1_s_soft_asset_path.html" title="A reference to an asset by its path.">Filesystem::SSoftAssetPath</a> and <a class="el" href="group__rendering.html#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L125-L170" class="src-link">include/Gameplay/ECS/Components.hpp:125</a>). Members of other types (<span class="tt">int</span>, <span class="tt">bool</span>, ...) are stored and reflected but not shown. To draw another type, specialize <span class="tt"><a class="el" href="#gab92c83fec638c7aa8f5ef41d618ff55b" title="Draws one component member in the Entity Debugger.">Components::ECSDebug_DrawElement</a>&lt;T&gt;</span> the way <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Rendering/SpriteInstanceContainer.hpp\#L28-L34" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:28</a> does for render layers.</li>
 <li>Member types must be known to flecs reflection: built-in types, or one of the types listed above.</li>
 </ul>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md16"></a>
@@ -311,14 +311,14 @@ Systems, phases and queries</h2>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Phase  </th><th class="markdownTableHeadNone">Runs after  </th><th class="markdownTableHeadNone">Used for  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">ECS::Phase::OnInput()</span>  </td><td class="markdownTableBodyNone"><span class="tt">PostUpdate</span>  </td><td class="markdownTableBodyNone">Defined by the <a class="el" href="namespace_input.html">Input</a> module (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Input/Module.hpp\#L9" class="src-link">include/Input/Module.hpp:9</a>); ProtoRPG moves its player here  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">ECS::Phase::OnInput()</span>  </td><td class="markdownTableBodyNone"><span class="tt">PostUpdate</span>  </td><td class="markdownTableBodyNone">Defined by the <a class="el" href="namespace_input.html">Input</a> module (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Input/Module.hpp\#L9" class="src-link">include/Input/Module.hpp:9</a>); ProtoRPG moves its player here  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="#ga232b6d5bc6e9914cc08c5397a6fd2fa0" title="A pipeline phase that runs after flecs::PostUpdate, meant for collision checks.">ECS::Phase::OnCollision</a></span>  </td><td class="markdownTableBodyNone"><span class="tt">PostUpdate</span>  </td><td class="markdownTableBodyNone">Defined at startup for collision checks (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L58" class="src-link">src/Gameplay/ECS/Module.cpp:58</a>)  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt"><a class="el" href="#ga232b6d5bc6e9914cc08c5397a6fd2fa0" title="A pipeline phase that runs after flecs::PostUpdate, meant for collision checks.">ECS::Phase::OnCollision</a></span>  </td><td class="markdownTableBodyNone"><span class="tt">PostUpdate</span>  </td><td class="markdownTableBodyNone">Defined at startup for collision checks (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L58" class="src-link">src/Gameplay/ECS/Module.cpp:58</a>)  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">ECS::Phase::OnPreRender()</span>  </td><td class="markdownTableBodyNone"><span class="tt">OnStore</span>  </td><td class="markdownTableBodyNone">The renderer gathers sprites, lights and the camera here (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/Module.hpp\#L18" class="src-link">include/Rendering/Module.hpp:18</a>)  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">ECS::Phase::OnPreRender()</span>  </td><td class="markdownTableBodyNone"><span class="tt">OnStore</span>  </td><td class="markdownTableBodyNone">The renderer gathers sprites, lights and the camera here (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Rendering/Module.hpp\#L18" class="src-link">include/Rendering/Module.hpp:18</a>)  </td></tr>
 </table>
 <p>Add your own with <a class="el" href="#gaf4b0b6fc47160f097ee5a26ebe345250" title="Defines ECS::Phase::PhaseName(), a pipeline phase that runs after the flecs phase flecs::AfterPhase.">DEFINE_NEW_ECS_PHASE</a>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom phase and systems that use it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A custom phase and systems that use it</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
 <div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
 <div class="line"><a class="code hl_define" href="#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
 </div><!-- fragment --> <div class="fragment"><div class="line">    <span class="comment">// Input: act on the queries.</span></div>
@@ -369,7 +369,7 @@ Systems, phases and queries</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>Queries</b> find entities outside a system's own match, for collision checks or counting. Build them once and keep them:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Queries filtered by tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Queries filtered by tags</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Queries are created once and reused. These two filter on the team tags.</span></div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; RedUnits;</div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;const FUnit&gt; BlueUnits;</div>
 <div class="line"><span class="keyword">static</span> flecs::query&lt;FHealth&gt; BlueHealth;</div>
@@ -378,7 +378,7 @@ Systems, phases and queries</h2>
 <div class="line">    BlueHealth = world.query_builder&lt;FHealth&gt;().with&lt;BlueTeam&gt;().build();</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>Observers</b> run as soon as something happens to an entity (a component added, set or removed) instead of every frame:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Observers</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Observers</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Observers run immediately when something happens to an entity,</span></div>
 <div class="line">    <span class="comment">// instead of every frame.</span></div>
 <div class="line">    world.observer&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PaintRed&quot;</span>)</div>
 <div class="line">        .with&lt;RedTeam&gt;()</div>
@@ -403,7 +403,7 @@ Systems, phases and queries</h2>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
 <p><b>Prefabs</b> hold components that many entities start with:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A prefab and its instances</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A prefab and its instances</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Spawning.cpp" target="_blank">examples/ecs/Spawning.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A prefab holds the components every spark starts with. Instances created with</span></div>
 <div class="line">    <span class="comment">// is_a(prefab) get their own copy of each one, so they can be changed per spark.</span></div>
 <div class="line">    flecs::entity sparkPrefab = world.prefab(<span class="stringliteral">&quot;Spark&quot;</span>)</div>
 <div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;({</div>
@@ -433,7 +433,7 @@ The global entity and selection</h2>
 <li><a class="el" href="#ga9229592f5849039955e79d6b9e492150" title="Returns an entity for game-wide components, created on first use.">ECS::GetGlobalSystemsEntity()</a> returns one entity created on first use. Store game-wide settings on it as components; the Entity Debugger shows them under <b>Global Entity</b>. The mouse-hover system keeps its <a class="el" href="struct_components_1_1_f_mouse_state.html" title="The mouse position in world units (MousePosition) and the last entity under the cursor (HoveredEntity...">Components::FMouseState</a> there.</li>
 <li><a class="el" href="#ga8d1a9506430300f676b73b96ab6d64c5" title="Makes Entity the one the Entity Debugger shows.">ECS::SelectEntity()</a> chooses which entity the Entity Debugger shows; <a class="el" href="#ga89e389505c8938705c383efab7164307" title="Returns the entity selected in the Entity Debugger (or with ECS::SelectEntity()).">ECS::GetSelectedEntity()</a> returns it.</li>
 </ul>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Settings on the global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Settings on the global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
 <div class="line">    <span class="comment">// so these settings can be edited live.</span></div>
 <div class="line">    flecs::entity settingsEntity = <a class="code hl_function" href="#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>();</div>
 <div class="line">    settingsEntity.set&lt;FTeamSettings&gt;({});</div>
@@ -443,7 +443,7 @@ Things to watch out for</h2>
 <ul>
 <li>Changes made inside a system (creating, destroying, <span class="tt">set</span>, <span class="tt">add</span>, <span class="tt">remove</span>) are <b>deferred</b> until the system finishes. Reading a component you just <span class="tt">set</span> on another entity in the same system returns the old value, and an entity created in the system has no components yet (use <span class="tt">try_get</span>).</li>
 <li>Outside systems (for example in an editor tool's ImGui code), changes are immediate. Wrap loops that destroy entities in <span class="tt">world.defer(...)</span>.</li>
-<li><a class="el" href="#ga76e41f00afcfc05f1fc8fec835f6f958" title="Starts the ECS module: sets 8 worker threads, registers reflection for std::string,...">ECS::Module()</a> gives flecs 8 worker threads (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L34" class="src-link">src/Gameplay/ECS/Module.cpp:34</a>), but systems only use them if you add <span class="tt">.multi_threaded()</span>. <a class="el" href="namespace_engine.html">Engine</a> and example systems are single-threaded.</li>
+<li><a class="el" href="#ga76e41f00afcfc05f1fc8fec835f6f958" title="Starts the ECS module: sets 8 worker threads, registers reflection for std::string,...">ECS::Module()</a> gives flecs 8 worker threads (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L34" class="src-link">src/Gameplay/ECS/Module.cpp:34</a>), but systems only use them if you add <span class="tt">.multi_threaded()</span>. <a class="el" href="namespace_engine.html">Engine</a> and example systems are single-threaded.</li>
 <li>The Entity Outliner only lists entities that have an <span class="tt">FTransformComponent</span>.</li>
 <li>The Entity Debugger's <b>Save Entity</b> button writes a flecs script to <span class="tt">Resources/Output/ECS/&lt;name&gt;</span>, which must already exist. Load such a file with <span class="tt">world.script_run(name, text)</span>.</li>
 <li><a class="el" href="#gae303bbf402a078ff1926c119f5360f5d" title="Destroys the flecs world (ecs_fini).">ECS::TeardownModule()</a> destroys the world, which then is destroyed again at exit; see <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>. </li>
@@ -535,8 +535,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><span class="tt">AfterPhase</span> is a flecs phase name without the <span class="tt">flecs::</span> prefix, such as <span class="tt">PostUpdate</span> or <span class="tt">OnStore</span>. The phase is created the first time the function is called. Use it at global scope, then pass <span class="tt">ECS::Phase::PhaseName()</span> to a system's <span class="tt">.kind()</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Module.hpp\#L5-L14" class="src-link">include/Gameplay/ECS/Module.hpp:5</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
+<p><span class="tt">AfterPhase</span> is a flecs phase name without the <span class="tt">flecs::</span> prefix, such as <span class="tt">PostUpdate</span> or <span class="tt">OnStore</span>. The phase is created the first time the function is called. Use it at global scope, then pass <span class="tt">ECS::Phase::PhaseName()</span> to a system's <span class="tt">.kind()</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Module.hpp\#L5-L14" class="src-link">include/Gameplay/ECS/Module.hpp:5</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
 <div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
 <div class="line"><a class="code hl_define" href="#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
 </div><!-- fragment --><p>  </details> </p>
@@ -561,8 +561,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span>, then register it with <a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L88-L93" class="src-link">include/Gameplay/ECS/Components.hpp:88</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
+<p>Use inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span>, then register it with <a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L88-L93" class="src-link">include/Gameplay/ECS/Components.hpp:88</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// World units per second.</span></div>
 <div class="line">    <a class="code hl_define" href="#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
 <div class="line">        <a class="code hl_define" href="#gaaa910f10b526ad0b951fd8f6e70cf66d">ECS_MEMBER</a>(glm::vec2, Value, glm::vec2(0, 0)))</div>
@@ -596,7 +596,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Register it with <a class="el" href="#ga2b693423b2113999c18ec9144a2a4f95" title="Registers a component&#39;s reflection data only.">ECS_REGISTER_COMPONENT_NO_DEBUG</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L100-L102" class="src-link">include/Gameplay/ECS/Components.hpp:100</a>. </p>
+<p>Register it with <a class="el" href="#ga2b693423b2113999c18ec9144a2a4f95" title="Registers a component&#39;s reflection data only.">ECS_REGISTER_COMPONENT_NO_DEBUG</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L100-L102" class="src-link">include/Gameplay/ECS/Components.hpp:100</a>. </p>
 
 </div>
 </div>
@@ -628,8 +628,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Declare both functions (and forward-declare the struct) before the macro. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L95-L98" class="src-link">include/Gameplay/ECS/Components.hpp:95</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Debug draw</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
+<p>Declare both functions (and forward-declare the struct) before the macro. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L95-L98" class="src-link">include/Gameplay/ECS/Components.hpp:95</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Debug draw</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
 <div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit) {</div>
 <div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Custom panel drawn by PreDrawUnit&quot;</span>);</div>
 <div class="line">    }</div>
@@ -667,7 +667,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Only valid inside the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L61" class="src-link">include/Gameplay/ECS/Components.hpp:61</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L61" class="src-link">include/Gameplay/ECS/Components.hpp:61</a>. </p>
 
 </div>
 </div>
@@ -690,7 +690,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Call after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L54-L56" class="src-link">include/Gameplay/ECS/Components.hpp:54</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L54-L56" class="src-link">include/Gameplay/ECS/Components.hpp:54</a>. </p>
 
 </div>
 </div>
@@ -712,7 +712,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Use it for <a class="el" href="#ga6a4188d2969d3b937527ccde338182a0" title="Like DEFINE_COMPONENT, without the Entity Debugger panel.">DEFINE_COMPONENT_NO_DEBUG</a> components. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L58-L59" class="src-link">include/Gameplay/ECS/Components.hpp:58</a>. </p>
+<p>Use it for <a class="el" href="#ga6a4188d2969d3b937527ccde338182a0" title="Like DEFINE_COMPONENT, without the Entity Debugger panel.">DEFINE_COMPONENT_NO_DEBUG</a> components. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L58-L59" class="src-link">include/Gameplay/ECS/Components.hpp:58</a>. </p>
 
 </div>
 </div>
@@ -731,7 +731,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a> does this for you.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L21-L22" class="src-link">include/Gameplay/ECS/Components.hpp:21</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp\#L21-L22" class="src-link">include/Gameplay/ECS/Components.hpp:21</a>. </p>
 
 </div>
 </div>
@@ -759,7 +759,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>void PostOrPreDrawFunc(ComponentClass* VarName) const { DrawCalls }</p>
-<p>Used by the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros; the editor uses it directly to give <span class="tt">FTransformComponent</span> a move gizmo (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor/EntityEditorTool.hpp\#L16" class="src-link">include/Editor/EntityEditorTool.hpp:16</a>). </p>
+<p>Used by the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros; the editor uses it directly to give <span class="tt">FTransformComponent</span> a move gizmo (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Editor/EntityEditorTool.hpp\#L16" class="src-link">include/Editor/EntityEditorTool.hpp:16</a>). </p>
 
 </div>
 </div>
@@ -787,7 +787,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Created on first use; there is only one.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L66-L69" class="src-link">src/Gameplay/ECS/Module.cpp:66</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L66-L69" class="src-link">src/Gameplay/ECS/Module.cpp:66</a>. </p>
 
 </div>
 </div>
@@ -806,8 +806,8 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The Entity Debugger shows it under <em>Global Entity</em>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L71-L77" class="src-link">src/Gameplay/ECS/Module.cpp:71</a>.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L71-L77" class="src-link">src/Gameplay/ECS/Module.cpp:71</a>.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Global entity</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The global entity is listed under &quot;Global Entity&quot; in the Entity Debugger,</span></div>
 <div class="line">    <span class="comment">// so these settings can be edited live.</span></div>
 <div class="line">    flecs::entity settingsEntity = <a class="code hl_function" href="#ga9229592f5849039955e79d6b9e492150">ECS::GetGlobalSystemsEntity</a>();</div>
 <div class="line">    settingsEntity.set&lt;FTeamSettings&gt;({});</div>
@@ -830,7 +830,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L31-L59" class="src-link">src/Gameplay/ECS/Module.cpp:31</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L31-L59" class="src-link">src/Gameplay/ECS/Module.cpp:31</a>. </p>
 
 </div>
 </div>
@@ -848,7 +848,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L61-L64" class="src-link">src/Gameplay/ECS/Module.cpp:61</a>. </p>
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L61-L64" class="src-link">src/Gameplay/ECS/Module.cpp:61</a>. </p>
 
 </div>
 </div>
@@ -867,7 +867,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> calls it every frame; you don't need to.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L79-L82" class="src-link">src/Gameplay/ECS/Module.cpp:79</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L79-L82" class="src-link">src/Gameplay/ECS/Module.cpp:79</a>. </p>
 
 </div>
 </div>
@@ -885,7 +885,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L84-L86" class="src-link">src/Gameplay/ECS/Module.cpp:84</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L84-L86" class="src-link">src/Gameplay/ECS/Module.cpp:84</a>. </p>
 
 </div>
 </div>
@@ -903,7 +903,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L88-L90" class="src-link">src/Gameplay/ECS/Module.cpp:88</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L88-L90" class="src-link">src/Gameplay/ECS/Module.cpp:88</a>. </p>
 
 </div>
 </div>
@@ -977,14 +977,14 @@ template&lt;typename TElementType&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>Valid after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>. Created at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Gameplay/ECS/Module.cpp\#L58" class="src-link">src/Gameplay/ECS/Module.cpp:58</a>. </p>
+<p>Valid after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>. Created at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Gameplay/ECS/Module.cpp\#L58" class="src-link">src/Gameplay/ECS/Module.cpp:58</a>. </p>
 
 </div>
 </div>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

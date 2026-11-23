@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -113,7 +113,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
   <div class="headertitle"><div class="title">Installing and building </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md__documentation_2pages_2using-janus_2getting-started"></a></p>
+<div class="textblock"><p><a class="anchor" id="md__f_1_2projects_2_janus_documentation_2pages_2using-janus_2getting-started"></a></p>
 <p class="lede"></p>
 <p>What to install, how the engine builds, and how to compile and run the examples. By the end you will have a working engine and thirteen example programs on your machine.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md152"></a>
@@ -122,24 +122,24 @@ What you need</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Tool  </th><th class="markdownTableHeadNone">Version  </th><th class="markdownTableHeadNone">Why  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Windows  </td><td class="markdownTableBodyNone">10 or 11, 64-bit  </td><td class="markdownTableBodyNone">The engine has only been built and run on Windows. The build copies a DLL from the <span class="tt">x64-windows</span> vcpkg folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L75-L81" class="src-link">CMakeLists.txt:75</a>).  </td></tr>
+<td class="markdownTableBodyNone">Windows  </td><td class="markdownTableBodyNone">10 or 11, 64-bit  </td><td class="markdownTableBodyNone">The engine has only been built and run on Windows. The build copies a DLL from the <span class="tt">x64-windows</span> vcpkg folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L75-L81" class="src-link">CMakeLists.txt:75</a>).  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Visual Studio (MSVC)  </td><td class="markdownTableBodyNone">A version with C++26 support. These docs were verified with MSVC 14.51 (Visual Studio 2026).  </td><td class="markdownTableBodyNone">The engine sets <span class="tt">CMAKE_CXX_STANDARD 26</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L8" class="src-link">CMakeLists.txt:8</a>).  </td></tr>
+<td class="markdownTableBodyNone">Visual Studio (MSVC)  </td><td class="markdownTableBodyNone">A version with C++26 support. These docs were verified with MSVC 14.51 (Visual Studio 2026).  </td><td class="markdownTableBodyNone">The engine sets <span class="tt">CMAKE_CXX_STANDARD 26</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L8" class="src-link">CMakeLists.txt:8</a>).  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">CMake  </td><td class="markdownTableBodyNone">4.2 or newer  </td><td class="markdownTableBodyNone"><span class="tt">cmake_minimum_required(VERSION 4.2)</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L1" class="src-link">CMakeLists.txt:1</a>).  </td></tr>
+<td class="markdownTableBodyNone">CMake  </td><td class="markdownTableBodyNone">4.2 or newer  </td><td class="markdownTableBodyNone"><span class="tt">cmake_minimum_required(VERSION 4.2)</span> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L1" class="src-link">CMakeLists.txt:1</a>).  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Ninja  </td><td class="markdownTableBodyNone">Any recent version  </td><td class="markdownTableBodyNone">Recommended generator. Visual Studio's own generator also works.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">vcpkg  </td><td class="markdownTableBodyNone">Recent  </td><td class="markdownTableBodyNone">Installs every third-party library from <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/vcpkg.json" class="src-link">vcpkg.json</a>.  </td></tr>
+<td class="markdownTableBodyNone">vcpkg  </td><td class="markdownTableBodyNone">Recent  </td><td class="markdownTableBodyNone">Installs every third-party library from <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/vcpkg.json" class="src-link">vcpkg.json</a>.  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Git  </td><td class="markdownTableBodyNone">Any  </td><td class="markdownTableBodyNone">To get the code.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">A GPU with Vulkan drivers  </td><td class="markdownTableBodyNone">Vulkan 1.x  </td><td class="markdownTableBodyNone">The renderer asks SDL for a Vulkan GPU device (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L476" class="src-link">src/Rendering/Vulkan_Renderer.cpp:476</a>).  </td></tr>
+<td class="markdownTableBodyNone">A GPU with Vulkan drivers  </td><td class="markdownTableBodyNone">Vulkan 1.x  </td><td class="markdownTableBodyNone">The renderer asks SDL for a Vulkan GPU device (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L476" class="src-link">src/Rendering/Vulkan_Renderer.cpp:476</a>).  </td></tr>
 </table>
-<p>The Vulkan SDK is <b>not</b> needed to build or run: vcpkg builds the Vulkan headers and loader. You only need it to recompile the shaders in <span class="tt">Resources/Shaders</span> (see <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Tools/CompileShaders.sh" class="src-link">Tools/CompileShaders.sh</a>).</p>
+<p>The Vulkan SDK is <b>not</b> needed to build or run: vcpkg builds the Vulkan headers and loader. You only need it to recompile the shaders in <span class="tt">Resources/Shaders</span> (see <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/Tools/CompileShaders.sh" class="src-link">Tools/CompileShaders.sh</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md153"></a>
 Libraries the engine uses</h2>
-<p>vcpkg installs these for you. All of them are linked publicly, so your game can use them too (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L52-L69" class="src-link">CMakeLists.txt:52</a>).</p>
+<p>vcpkg installs these for you. All of them are linked publicly, so your game can use them too (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L52-L69" class="src-link">CMakeLists.txt:52</a>).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Library  </th><th class="markdownTableHeadNone">Used for  </th></tr>
@@ -185,17 +185,17 @@ Build the engine on its own</h2>
 <div class="line">cmake --build Engine/build</div>
 </div><!-- fragment --><p>The result is the static library <span class="tt">Engine.lib</span>. The build also:</p>
 <ul>
-<li>generates <span class="tt">Build/Generated/EngineExport.h</span> inside the engine folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/CreateLibrary.cmake\#L24-L28" class="src-link">cmake_modules/CreateLibrary.cmake:24</a>). It defines <span class="tt">ENGINE_EXPORT</span>, which is empty for this static library.</li>
-<li>copies the engine's <span class="tt">Config/</span> and <span class="tt">Resources/</span> folders next to the output folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). <span class="tt">Resources/Shaders</span> holds the compiled shaders the renderer needs.</li>
+<li>generates <span class="tt">Build/Generated/EngineExport.h</span> inside the engine folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/CreateLibrary.cmake\#L24-L28" class="src-link">cmake_modules/CreateLibrary.cmake:24</a>). It defines <span class="tt">ENGINE_EXPORT</span>, which is empty for this static library.</li>
+<li>copies the engine's <span class="tt">Config/</span> and <span class="tt">Resources/</span> folders next to the output folder (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/cmake_modules/MoveConfigFiles.cmake\#L9-L24" class="src-link">cmake_modules/MoveConfigFiles.cmake:9</a>). <span class="tt">Resources/Shaders</span> holds the compiled shaders the renderer needs.</li>
 </ul>
-<dl class="section warning"><dt>Warning</dt><dd><b>Commit 824ee20 does not compile as-is.</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Module.hpp\#L17-L18" class="src-link">include/Module.hpp:17</a> uses <span class="tt">ENGINE_ENGINE_EXPORT</span>, which is not defined. Replace both with <span class="tt">ENGINE_EXPORT</span>. See <a class="el" href="known_issues.html" title="Known issues">Known issues</a>.</dd></dl>
 <h2 class="doxsection"><a class="anchor" id="getting_started_examples"></a>
 Build and run the examples</h2>
-<p>The examples have their own CMake project in <span class="tt">Engine/Documentation/examples</span>. It adds the engine as a subdirectory and builds one executable per example:</p>
-<div class="fragment"><div class="line">cmake -S Engine/Documentation/examples -B build-examples -G Ninja ^</div>
+<p>The examples have their own CMake project in the <span class="tt">examples</span> folder of the <a href="https://github.com/RPG-Engine/JanusDocumentation">JanusDocumentation</a> repository. It adds the engine as a subdirectory and builds one executable per example:</p>
+<div class="fragment"><div class="line">cmake -S JanusDocumentation/examples -B build-examples -G Ninja ^</div>
 <div class="line">      -DCMAKE_BUILD_TYPE=Release ^</div>
 <div class="line">      -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^</div>
-<div class="line">      -DVCPKG_MANIFEST_DIR=Engine</div>
+<div class="line">      -DVCPKG_MANIFEST_DIR=Engine ^</div>
+<div class="line">      -DJANUS_ENGINE_DIR=Engine</div>
 <div class="line">cmake --build build-examples</div>
 </div><!-- fragment --><p>Every executable lands in <span class="tt">build-examples/bin</span>, together with the engine's <span class="tt">Resources/</span> folder and a <span class="tt">Resources/Config/filesystem.json</span> the examples project puts there. <b>Run the examples from that folder</b>, because the engine reads <span class="tt">Resources/</span> from the current working directory:</p>
 <div class="fragment"><div class="line">cd build-examples\bin</div>
@@ -216,7 +216,7 @@ Debug and Release builds</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone"></th><th class="markdownTableHeadNone">Debug  </th><th class="markdownTableHeadNone">Release  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Defines (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L83-L86" class="src-link">CMakeLists.txt:83</a>)  </td><td class="markdownTableBodyNone"><span class="tt">WITH_DEBUG</span>, <span class="tt">TRACY_ENABLE</span>  </td><td class="markdownTableBodyNone"><span class="tt">WITH_RELEASE</span>  </td></tr>
+<td class="markdownTableBodyNone">Defines (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L83-L86" class="src-link">CMakeLists.txt:83</a>)  </td><td class="markdownTableBodyNone"><span class="tt">WITH_DEBUG</span>, <span class="tt">TRACY_ENABLE</span>  </td><td class="markdownTableBodyNone"><span class="tt">WITH_RELEASE</span>  </td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Tracy profiler  </td><td class="markdownTableBodyNone">On: connect the <a href="https://github.com/wolfpld/tracy">Tracy profiler</a> to see frame timings and engine zones  </td><td class="markdownTableBodyNone">Off  </td></tr>
 <tr class="markdownTableRowOdd">
@@ -229,28 +229,26 @@ If it doesn't work</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Symptom  </th><th class="markdownTableHeadNone">Cause and fix  </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><span class="tt">'ENGINE_ENGINE_EXPORT': undeclared identifier</span> or a syntax error in <span class="tt">Module.hpp</span>  </td><td class="markdownTableBodyNone">See the warning above: use <span class="tt">ENGINE_EXPORT</span>.  </td></tr>
-<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">CMake: <em>Compatibility with CMake &lt; 4.2</em> or similar  </td><td class="markdownTableBodyNone">Your CMake is too old. CLion and Visual Studio bundle their own; check which one runs.  </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone"><span class="tt">filesystem_error</span> ... <span class="tt">Resources\Config</span> when the game starts  </td><td class="markdownTableBodyNone">The working directory has no <span class="tt">Resources/Config</span> folder. Run from the output folder, and see <a class="el" href="essentials.html#essentials_resources" title="Files and the working directory">Files and the working directory</a>.  </td></tr>
-<tr class="markdownTableRowEven">
+<tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Asset CollisionTexture could not be loaded</span>  </td><td class="markdownTableBodyNone">The renderer needs a texture named <span class="tt">CollisionTexture</span>. See <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>.  </td></tr>
-<tr class="markdownTableRowOdd">
+<tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">The window opens but stays black  </td><td class="markdownTableBodyNone">No light, or no camera. See <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>.  </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Moving sprites leave trails  </td><td class="markdownTableBodyNone">Nothing on the Background layer clears the screen. See <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>.  </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">The program exits with code <span class="tt">0xC0000005</span> after closing the window  </td><td class="markdownTableBodyNone">A known crash after shutdown. See <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>.  </td></tr>
+<td class="markdownTableBodyNone">Moving sprites leave trails  </td><td class="markdownTableBodyNone">Nothing on the Background layer clears the screen. See <a class="el" href="essentials.html#essentials_minimum" title="The minimum for a visible game">The minimum for a visible game</a>.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Copying <span class="tt">TracyClient.dll</span> fails after building  </td><td class="markdownTableBodyNone">The post-build step expects the <span class="tt">x64-windows</span> vcpkg triplet (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/CMakeLists.txt\#L75-L81" class="src-link">CMakeLists.txt:75</a>).  </td></tr>
+<td class="markdownTableBodyNone">The program exits with code <span class="tt">0xC0000005</span> after closing the window  </td><td class="markdownTableBodyNone">A known crash after shutdown. See <a class="el" href="known_issues.html#known_issues_shutdown" title="Shutdown">Shutdown</a>.  </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">Copying <span class="tt">TracyClient.dll</span> fails after building  </td><td class="markdownTableBodyNone">The post-build step expects the <span class="tt">x64-windows</span> vcpkg triplet (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/CMakeLists.txt\#L75-L81" class="src-link">CMakeLists.txt:75</a>).  </td></tr>
 </table>
 <p>Next: <a class="el" href="first_game.html" title="Your first game">Your first game</a>. </p>
 </div></div><!-- contents -->
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

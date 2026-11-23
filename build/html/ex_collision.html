@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,14 +115,14 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Walk around a walled room with pillars. The player slides along walls, <kbd>F1</kbd> shows the colliders, and blocks light up under the mouse.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" class="src-link">examples/ecs/CollisionAndHover.cpp</a></span><span><b>Executable</b> <code>EcsCollision</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> to move, <kbd>F1</kbd> collider overlay, click a hovered block to select it</span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" class="src-link">examples/ecs/CollisionAndHover.cpp</a></span><span><b>Executable</b> <code>EcsCollision</code></span><span><b>Controls</b> <kbd>W</kbd> <kbd>A</kbd> <kbd>S</kbd> <kbd>D</kbd> to move, <kbd>F1</kbd> collider overlay, click a hovered block to select it</span></div><div class="image">
 <img src="ecs-collision.png" alt=""/>
 <div class="caption">
 The collider overlay is on (red outlines); the mouse is over the highlighted pillar; the player is stopped by the top wall</div></div>
 <p><b>Shows:</b> <a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a> (<a class="el" href="group__gameplay.html" title="GameplayFramework">GameplayFramework</a>): colliders, the engine's <span class="tt">Move2D</span> and <span class="tt">ToggleDebugColliders</span> actions, mouse hover; plus the renderer's debug-collider overlay (<a class="el" href="group__rendering.html" title="Renderer">Renderer</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md89"></a>
 Setup</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting GameplayFramework and binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Starting GameplayFramework and binding keys</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine does not call GameplayFramework::Module(). Call it yourself before</span></div>
 <div class="line">    <span class="comment">// using FColliderComponent or FMouseState, so they get reflection data and</span></div>
 <div class="line">    <span class="comment">// Entity Debugger panels.</span></div>
 <div class="line">    <a class="code hl_function" href="group__gameplay.html#ga73015ea59b5c3e9a52ca1ea1007a250a">GameplayFramework::Module</a>();</div>
@@ -138,7 +138,7 @@ Setup</h2>
 <div class="line">    });</div>
 </div><!-- fragment --><p>  </details></p>
 <p>The overlay draws colliders with the <span class="tt">CollisionTexture</span> asset, so this example generates an outline for it:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">An outline texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// The debug-collider overlay draws every collider with the &quot;CollisionTexture&quot; asset.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">An outline texture</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// The debug-collider overlay draws every collider with the &quot;CollisionTexture&quot; asset.</span></div>
 <div class="line"><span class="comment">// Generate an outline: an opaque 1-pixel border around a faint interior.</span></div>
 <div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> RegisterOutlineTexture(<span class="keyword">const</span> std::string&amp; AssetPath, <span class="keywordtype">int</span> Size) {</div>
 <div class="line">    SDL_Surface* surface = SDL_CreateSurface(Size, Size, SDL_PIXELFORMAT_ABGR8888);</div>
@@ -164,7 +164,7 @@ Setup</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md90"></a>
 Colliders and blocking</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Solid blocks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Solid blocks</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A visible block with a collider and a bounding box (for mouse hover),</span></div>
 <div class="line"><span class="comment">// both covering the whole sprite.</span></div>
 <div class="line"><span class="comment">// This example stores ColliderShape as (x offset, y offset, width, height).</span></div>
 <div class="line"><span class="keyword">static</span> flecs::entity SpawnSolidBlock(<span class="keyword">const</span> flecs::world&amp; <a class="code hl_namespace" href="namespace_world.html">World</a>, glm::vec2 Position,</div>
@@ -182,7 +182,7 @@ Colliders and blocking</h2>
 <div class="line">}</div>
 </div><!-- fragment --><p>  </details></p>
 <p>Moving one axis at a time and undoing only the blocked axis lets the player slide along walls instead of sticking to them:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Movement that stops at colliders</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Move one axis at a time, and undo the move on an axis that would overlap</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Movement that stops at colliders</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Move one axis at a time, and undo the move on an axis that would overlap</span></div>
 <div class="line">    <span class="comment">// a collider. That lets the player slide along walls.</span></div>
 <div class="line">    <span class="comment">// F1 (ToggleDebugColliders) switches the overlay.</span></div>
 <div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>,</div>
@@ -220,7 +220,7 @@ Colliders and blocking</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md91"></a>
 The collider overlay</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Filling the debug-collider container</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Filling the debug-collider container</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
 <div class="line">    <span class="comment">// while CoreTypes::bShouldDisplayDebugColliders is true (toggled here by the</span></div>
 <div class="line">    <span class="comment">// ToggleDebugColliders action).</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;(<span class="stringliteral">&quot;DebugColliders&quot;</span>)</div>
@@ -243,7 +243,7 @@ The collider overlay</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md92"></a>
 Mouse hover</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Highlighting and selecting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Highlighting and selecting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The engine&#39;s mouse-hover system writes the entity under the cursor into the</span></div>
 <div class="line">    <span class="comment">// FMouseState component on ECS::GetGlobalSystemsEntity(). It checks entities</span></div>
 <div class="line">    <span class="comment">// with FTransformComponent and FBoundingBoxComponent.</span></div>
 <div class="line">    <a class="code hl_function" href="group__gameplay.html#gaa343b5f39bfc5a1ad0eb20a04a2e0ddf">GameplayFramework::ActivateMouseStateSystem</a>();</div>
@@ -275,7 +275,7 @@ Mouse hover</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md93"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">CollisionAndHover.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: colliders, the debug-collider overlay, and mouse hover.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">CollisionAndHover.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ECS example: colliders, the debug-collider overlay, and mouse hover.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls: W A S D to move. F1 toggles the collider overlay.</span></div>
 <div class="line"><span class="comment">//           Hover a block with the mouse to highlight it;</span></div>
@@ -627,7 +627,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

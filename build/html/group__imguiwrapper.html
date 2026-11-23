@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -122,13 +122,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <a name="details" id="details"></a><h2 id="header-details" class="groupheader">Overview</h2>
 <div class="textblock"><table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor/ImGuiWrapper" class="src-link">include/Editor/ImGuiWrapper/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/ImGuiWrapper" class="src-link">src/Editor/ImGuiWrapper/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Editor/ImGuiWrapper" class="src-link">include/Editor/ImGuiWrapper/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/ImGuiWrapper" class="src-link">src/Editor/ImGuiWrapper/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Editor/ImGuiWrapper/Module.hpp&gt;</span> (also includes <span class="tt">imgui.h</span>, <span class="tt">imgui_stdlib.h</span> and the SDL3 / SDL_GPU backends)</td></tr>
 <tr>
 <td><b>Namespaces</b></td><td><span class="tt"><a class="el" href="namespace_im_gui_wrapper.html">ImGuiWrapper</a></span>; note that <a class="el" href="struct_im_g_u_i_wrapper_1_1_i_editor_tool.html" title="Base class of editor tools.">ImGUIWrapper::IEditorTool</a> uses a different spelling, <span class="tt"><a class="el" href="namespace_im_g_u_i_wrapper.html">ImGUIWrapper</a></span></td></tr>
 <tr>
-<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L85" class="src-link">Engine::InitializePlugins()</a>, third, before <a class="el" href="namespace_e_c_s.html">ECS</a></td></tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Module.cpp\#L85" class="src-link">Engine::InitializePlugins()</a>, third, before <a class="el" href="namespace_e_c_s.html">ECS</a></td></tr>
 <tr>
 <td><b>Built on</b></td><td><a href="https://github.com/ocornut/imgui">Dear ImGui</a> (docking branch) and <a href="https://github.com/CedricGuillemet/ImGuizmo">ImGuizmo</a></td></tr>
 <tr>
@@ -141,8 +141,8 @@ How to use</h2>
 <li><b>Draw ImGui from an editor tool.</b> ImGui calls are valid between <span class="tt">ImGui::NewFrame()</span> and <span class="tt">ImGui::Render()</span>. In Janus that is inside an editor tool's <span class="tt">Draw_Internal()</span>, not inside <a class="el" href="namespace_e_c_s.html">ECS</a> systems, which run before the ImGui frame starts. See <a class="el" href="group__editor.html" title="CoreEditor">CoreEditor</a>.</li>
 <li><b>Use the shared context</b> if you call ImGui from code that may have its own ImGui globals (a separate DLL, for example): call <span class="tt">ImGui::SetCurrentContext(ImGuiWrapper::GetCurrentContext())</span> first. Code linked into the same executable as the engine shares the context automatically.</li>
 </ol>
-<p>On start, the module turns on ImGui docking and multi-viewport (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/ImGuiWrapper/Module.cpp\#L49-L52" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:49</a>). With multi-viewport, window positions are in screen coordinates, and a window moved outside the game window becomes its own OS window. Place windows relative to <span class="tt">ImGui::GetMainViewport()-&gt;Pos</span>:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A HUD window anchored to the top-right of the game window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
+<p>On start, the module turns on ImGui docking and multi-viewport (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/ImGuiWrapper/Module.cpp\#L49-L52" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:49</a>). With multi-viewport, window positions are in screen coordinates, and a window moved outside the game window becomes its own OS window. Place windows relative to <span class="tt">ImGui::GetMainViewport()-&gt;Pos</span>:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A HUD window anchored to the top-right of the game window</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/games/Dodge.cpp" target="_blank">examples/games/Dodge.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// ---- HUD ----------------------------------------------------------------------</span></div>
 <div class="line"><span class="comment">// Editor tools are drawn every frame between ImGui::NewFrame() and the render, so</span></div>
 <div class="line"><span class="comment">// they are the place for game UI too. Open it once with CoreEditor::Open&lt;DodgeHud&gt;().</span></div>
 <div class="line"><span class="keyword">class </span>DodgeHud : <span class="keyword">public</span> ImGUIWrapper::IEditorTool {</div>
@@ -175,7 +175,7 @@ How to use</h2>
 Debug factories</h2>
 <p>A <em>debug factory</em> is an object with a <span class="tt">DrawDebug(void*)</span> function, registered under a name with <a class="el" href="#ga140cfe6607dd8fd5dbfe9384e683c204" title="Registers (or replaces) the debug factory used to draw data named Name.">ImGuiWrapper::RegisterFactory()</a>. ImGuiWrapper::DrawFactory_Container(name, pointer) then draws the data at <span class="tt">pointer</span> with the factory registered under <span class="tt">name</span>.</p>
 <p>The Entity Debugger uses this to draw components: for each component on the selected entity, it calls <span class="tt">DrawFactory_Container</span> with the component's name. The component macros register a factory per component for you (<a class="el" href="group__ecs.html#ga105864a19b817d990ab38e299cfded8b" title="Registers a component&#39;s Entity Debugger panel.">REGISTER_COMPONENT_DEBUGGER</a>):</p>
-<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">How a component's panel is registered</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp#L21-L22" target="_blank">include/Gameplay/ECS/Components.hpp:21</a></summary> </p><div class="fragment"><div class="line"><span class="preprocessor">#define REGISTER_COMPONENT_DEBUGGER(ComponentClass) \</span></div>
+<p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">How a component's panel is registered</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Gameplay/ECS/Components.hpp#L21-L22" target="_blank">include/Gameplay/ECS/Components.hpp:21</a></summary> </p><div class="fragment"><div class="line"><span class="preprocessor">#define REGISTER_COMPONENT_DEBUGGER(ComponentClass) \</span></div>
 <div class="line"><span class="preprocessor">    ImGuiWrapper::RegisterFactory(#ComponentClass, \</span></div>
 <div class="line"><span class="preprocessor">        TObjectPtr&lt;Components::ComponentClass##Debug&gt;())</span></div>
 </div><!-- fragment --><p>  </details></p>
@@ -225,7 +225,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/ImGuiWrapper/Module.cpp\#L18-L24" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:18</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/ImGuiWrapper/Module.cpp\#L18-L24" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:18</a>. </p>
 
 </div>
 </div>
@@ -247,7 +247,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/ImGuiWrapper/Module.cpp\#L26-L28" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:26</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/ImGuiWrapper/Module.cpp\#L26-L28" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:26</a>. </p>
 
 </div>
 </div>
@@ -269,7 +269,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Does nothing if there is none or the pointer is null. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Editor/ImGuiWrapper/Module.cpp\#L30-L38" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:30</a>. </p>
+<p>Does nothing if there is none or the pointer is null. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Editor/ImGuiWrapper/Module.cpp\#L30-L38" class="src-link">src/Editor/ImGuiWrapper/Module.cpp:30</a>. </p>
 
 </div>
 </div>
@@ -346,7 +346,7 @@ Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

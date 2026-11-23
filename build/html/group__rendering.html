@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -125,13 +125,13 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="textblock"><p>Sprites are entities with three components.</p>
 <table class="markdownTable">
 <tr>
-<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering" class="src-link">include/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering" class="src-link">src/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Resources/Shaders" class="src-link">Resources/Shaders/</a></td></tr>
+<td><b>Source</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Rendering" class="src-link">include/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering" class="src-link">src/Rendering/</a> · <a href="https://github.com/RPG-Engine/RPG-Engine-Core/tree/02fd6c2454ea67f96d38295400c5e2a88619f43e/Resources/Shaders" class="src-link">Resources/Shaders/</a></td></tr>
 <tr>
 <td><b>Include</b></td><td><span class="tt">#include &lt;Rendering/Components/RenderingComponent.hpp&gt;</span> (sprite components; includes <span class="tt">&lt;Rendering/Module.hpp&gt;</span>) · <span class="tt">#include &lt;Rendering/RenderingBackend.hpp&gt;</span> (layers, low-level calls)</td></tr>
 <tr>
 <td><b>Namespace</b></td><td><span class="tt"><a class="el" href="namespace_renderer.html">Renderer</a></span>; components in <span class="tt"><a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span></td></tr>
 <tr>
-<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L87" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga9394e46f66fc65fa78e082934ae66576" title="Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...">Renderer::Module()</a>, which opens the window</td></tr>
+<td><b>Started by</b></td><td><a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Module.cpp\#L87" class="src-link">Engine::InitializePlugins()</a> calls <a class="el" href="#ga9394e46f66fc65fa78e082934ae66576" title="Starts the renderer: creates the window, the GPU device and pipelines, the render layers and the rend...">Renderer::Module()</a>, which opens the window</td></tr>
 <tr>
 <td><b>Built on</b></td><td><a href="https://wiki.libsdl.org/SDL3/CategoryGPU">SDL3 GPU API</a> with the Vulkan backend, SDL_shadercross for shaders</td></tr>
 <tr>
@@ -144,7 +144,7 @@ How to use</h2>
 <li><b>Make a sprite</b>: give an entity an <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> (where), an <a class="el" href="struct_components_1_1_f_texture2_d_component.html" title="What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...">Components::FTexture2DComponent</a> (which texture, how big, what colour) and an <a class="el" href="struct_components_1_1_f_rendering_component.html" title="Which layer a sprite is drawn on: Renderer::EInstanceLayer RenderLayer (default Entities).">Components::FRenderingComponent</a> (which layer).</li>
 <li><b>Move it</b> by changing <span class="tt">FTransformComponent::Location</span> in a system. The renderer picks up the new position every frame.</li>
 </ol>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Camera, light, background and a sprite</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Camera, light, background and a sprite</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/HelloJanus.cpp" target="_blank">examples/modules/HelloJanus.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The renderer loads &quot;CollisionTexture&quot; while the engine starts,</span></div>
 <div class="line">    <span class="comment">// so register it first.</span></div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;CollisionTexture&quot;</span>, 8);</div>
 <div class="line">    RegisterSolidTexture(<span class="stringliteral">&quot;White&quot;</span>, 8);</div>
@@ -187,7 +187,7 @@ How to use</h2>
 <div class="line">    <span class="comment">// Exit without running them (the engine has already flushed its logs).</span></div>
 <div class="line">    std::quick_exit(0);</div>
 </div><!-- fragment --><p>  </details></p>
-<p>The renderer's own systems run in the <span class="tt">ECS::Phase::OnPreRender()</span> phase, after all game systems (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L425-L445" class="src-link">src/Rendering/Vulkan_Renderer.cpp:425</a>):</p>
+<p>The renderer's own systems run in the <span class="tt">ECS::Phase::OnPreRender()</span> phase, after all game systems (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L425-L445" class="src-link">src/Rendering/Vulkan_Renderer.cpp:425</a>):</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">System  </th><th class="markdownTableHeadNone">Reads  </th><th class="markdownTableHeadNone">Does  </th></tr>
@@ -216,7 +216,7 @@ Sprites</h2>
 <td class="markdownTableBodyNone"><span class="tt">BoundingBox</span>  </td><td class="markdownTableBodyNone">Not used when drawing (only by the legacy <a class="el" href="#gafd2e36acbdd6b4f860a76f6834c26143" title="Legacy: writes one entity&#39;s sprite into its layer immediately, using FTexture2DComponent::BoundingBox...">Renderer::RegisterEntity()</a>).  </td></tr>
 </table>
 <p>To draw one cell of a sprite sheet, set <span class="tt">UVCoords</span> and <span class="tt">WHCoords</span>. A 64 × 64 texture with four 32 × 32 cells has cells at <span class="tt">(0,0)</span>, <span class="tt">(0.5,0)</span>, <span class="tt">(0,0.5)</span> and <span class="tt">(0.5,0.5)</span>, each <span class="tt">(0.5,0.5)</span> in size:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing sprite-sheet cells</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing sprite-sheet cells</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// UVCoords is the top-left of the cell and WHCoords its size,</span></div>
 <div class="line">    <span class="comment">// both as fractions of the texture (0..1).</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> cell = 0; cell &lt; 4; ++cell) {</div>
 <div class="line">        <span class="keyword">const</span> glm::vec2 uv {(cell % 2) * 0.5f, (cell / 2) * 0.5f};</div>
@@ -234,7 +234,7 @@ Sprites</h2>
 <div class="line">    }</div>
 </div><!-- fragment --><p>  </details></p>
 <p>Tint, transparency and rotation:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Colour, alpha and rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Colour, alpha and rotation</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Color multiplies the texture. Alpha below 1 is see-through.</span></div>
 <div class="line">    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; 5; ++i) {</div>
 <div class="line">        <span class="keyword">const</span> SDL_FColor orange {1.f, 0.75f, 0.3f, 0.2f + i * 0.2f};</div>
 <div class="line">        SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {16.f + i * 22.f, 120.f}, {18.f, 18.f}, orange);</div>
@@ -253,7 +253,7 @@ Sprites</h2>
 <div class="line">            }</div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p>Textures are uploaded to the GPU the first time a sprite uses them; that sprite appears one frame later (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L589-L593" class="src-link">src/Rendering/Vulkan_Renderer.cpp:589</a>). Upload earlier with <a class="el" href="#gade643b8953652451b4ae66e50de0869f" title="Uploads a loaded texture to the GPU and creates its sampler (nearest filtering).">Renderer::LoadTextureToVRam()</a> if that matters.</p>
+<p>Textures are uploaded to the GPU the first time a sprite uses them; that sprite appears one frame later (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L589-L593" class="src-link">src/Rendering/Vulkan_Renderer.cpp:589</a>). Upload earlier with <a class="el" href="#gade643b8953652451b4ae66e50de0869f" title="Uploads a loaded texture to the GPU and creates its sampler (nearest filtering).">Renderer::LoadTextureToVRam()</a> if that matters.</p>
 <h2 class="doxsection"><a class="anchor" id="rendering_layers"></a>
 Layers and draw order</h2>
 <p><a class="el" href="struct_components_1_1_f_rendering_component.html" title="Which layer a sprite is drawn on: Renderer::EInstanceLayer RenderLayer (default Entities).">Components::FRenderingComponent</a> chooses the layer (<a class="el" href="#ga50fb14a457ce18417eac07ab3de19aef" title="The render layers, drawn in this order.">Renderer::EInstanceLayer</a>). Layers are drawn in this order, each on top of the previous:</p>
@@ -263,7 +263,7 @@ Layers and draw order</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Background</span>  </td><td class="markdownTableBodyNone">The backdrop; level tiles from <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a>  </td><td class="markdownTableBodyNone">Drawing it clears the screen. Every texture group on this layer clears again, so use <b>one</b> texture here.  </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><span class="tt">Entities</span> (default)  </td><td class="markdownTableBodyNone">Everything that moves, appears or disappears  </td><td class="markdownTableBodyNone">Emptied and rebuilt (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L783" class="src-link">src/Rendering/Vulkan_Renderer.cpp:783</a>)  </td></tr>
+<td class="markdownTableBodyNone"><span class="tt">Entities</span> (default)  </td><td class="markdownTableBodyNone">Everything that moves, appears or disappears  </td><td class="markdownTableBodyNone">Emptied and rebuilt (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L783" class="src-link">src/Rendering/Vulkan_Renderer.cpp:783</a>)  </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Foreground</span>  </td><td class="markdownTableBodyNone">Static things in front of entities  </td><td class="markdownTableBodyNone">Kept. Destroyed entities stay visible.  </td></tr>
 <tr class="markdownTableRowEven">
@@ -271,7 +271,7 @@ Layers and draw order</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Overlay</span>  </td><td class="markdownTableBodyNone">Static things on top of everything  </td><td class="markdownTableBodyNone">Kept  </td></tr>
 </table>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">One square per layer</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Layers are drawn in order: Background, Entities, Foreground, Debug, Overlay.</span></div>
 <div class="line">    <span class="comment">// Each square overlaps the previous one and is drawn on top of it.</span></div>
 <div class="line">    <span class="keyword">const</span> glm::vec2 square {36.f, 36.f};</div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor red {0.9f, 0.35f, 0.35f, 1.f};</div>
@@ -283,8 +283,8 @@ Layers and draw order</h2>
 <div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {232.f, 34.f}, square, blue, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Renderer::Debug</a>);</div>
 <div class="line">    SpawnSprite(world, <span class="stringliteral">&quot;White&quot;</span>, {248.f, 44.f}, square, white, <a class="code hl_enumvalue" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Renderer::Overlay</a>);</div>
 </div><!-- fragment --><p>  </details></p>
-<p>Inside a layer, sprites are batched by texture. Batches are drawn in the order each texture was first used on that layer, and inside a batch sprites are sorted by <span class="tt">Location.y</span>, so lower sprites are drawn over higher ones (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L553-L555" class="src-link">src/Rendering/Vulkan_Renderer.cpp:553</a>). Sprites with different textures on one layer are therefore <b>not</b> sorted against each other.</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
+<p>Inside a layer, sprites are batched by texture. Batches are drawn in the order each texture was first used on that layer, and inside a batch sprites are sorted by <span class="tt">Location.y</span>, so lower sprites are drawn over higher ones (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L553-L555" class="src-link">src/Rendering/Vulkan_Renderer.cpp:553</a>). Sprites with different textures on one layer are therefore <b>not</b> sorted against each other.</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Y-sorting</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Within a layer, sprites lower on the screen (larger Y) are drawn on top.</span></div>
 <div class="line">    <span class="comment">// The bobbing square passes in front of and behind the fixed one.</span></div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor grey {0.5f, 0.5f, 0.55f, 1.f};</div>
 <div class="line">    <span class="keyword">const</span> SDL_FColor pink {0.95f, 0.6f, 0.9f, 1.f};</div>
@@ -303,7 +303,7 @@ Layers and draw order</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="rendering_camera"></a>
 Camera</h2>
-<p>The entity with <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a> is the camera (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L293-L315" class="src-link">src/Rendering/Vulkan_Renderer.cpp:293</a>). With several, the last one processed wins.</p>
+<p>The entity with <a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a> and <a class="el" href="struct_components_1_1_f_camera_component.html" title="Makes its entity the camera.">Components::FCameraComponent</a> is the camera (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L293-L315" class="src-link">src/Rendering/Vulkan_Renderer.cpp:293</a>). With several, the last one processed wins.</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Member  </th><th class="markdownTableHeadNone">Meaning  </th></tr>
@@ -315,7 +315,7 @@ Camera</h2>
 <td class="markdownTableBodyNone"><span class="tt">Boundaries</span>  </td><td class="markdownTableBodyNone">Limits for the view's top-left corner: <span class="tt">(minX, maxX, minY, maxY)</span>. <span class="tt">{0, 0, 0, 0}</span> fixes the camera at the origin. For a world <span class="tt">W × H</span> wide, use <span class="tt">{0, W - CameraSize.x, 0, H - CameraSize.y}</span> to stop at the edges.  </td></tr>
 </table>
 <p>Put the camera component on the player to follow it:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A camera that follows the player and stops at the world's edges</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A camera that follows the player and stops at the world's edges</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// The player carries the camera and a light, so both follow it.</span></div>
 <div class="line">    <span class="comment">// Camera Boundaries are (minX, maxX, minY, maxY) for the camera&#39;s top-left corner.</span></div>
 <div class="line">    <span class="keyword">const</span> glm::vec2 worldCentre {WorldW / 2.f, WorldH / 2.f};</div>
 <div class="line">    SpawnRect(world, worldCentre, {ActorSize, ActorSize}, {0.4f, 0.9f, 1.f, 1.f})</div>
@@ -334,7 +334,7 @@ Camera</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="rendering_lights"></a>
 Lights</h2>
-<p>After all layers are drawn, the image is lit: each pixel is its colour × 0.3 (a fixed ambient level, <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L680-L683" class="src-link">src/Rendering/Vulkan_Renderer.cpp:680</a>), plus the contribution of every light. <b>With no light at all, the lit image is never drawn and the screen stays black</b> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L625-L627" class="src-link">src/Rendering/Vulkan_Renderer.cpp:625</a>).</p>
+<p>After all layers are drawn, the image is lit: each pixel is its colour × 0.3 (a fixed ambient level, <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L680-L683" class="src-link">src/Rendering/Vulkan_Renderer.cpp:680</a>), plus the contribution of every light. <b>With no light at all, the lit image is never drawn and the screen stays black</b> (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L625-L627" class="src-link">src/Rendering/Vulkan_Renderer.cpp:625</a>).</p>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Member of <a class="el" href="struct_components_1_1_f_light_component.html" title="A 2D light at the entity&#39;s position plus PositionOffset.">Components::FLightComponent</a>  </th><th class="markdownTableHeadNone">Meaning  </th></tr>
@@ -349,7 +349,7 @@ Lights</h2>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><span class="tt">Falloff</span>  </td><td class="markdownTableBodyNone">Not used by the shader at this commit.  </td></tr>
 </table>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A fill light and two coloured lights</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Rendering.cpp" target="_blank">examples/modules/Rendering.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A fixed camera. Without at least one light the screen stays black.</span></div>
 <div class="line">    world.entity(<span class="stringliteral">&quot;Camera&quot;</span>)</div>
 <div class="line">        .set&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&gt;({})</div>
 <div class="line">        .set&lt;FCameraComponent&gt;({</div>
@@ -384,11 +384,11 @@ Lights</h2>
 <div class="line">            .Angle = 3.14159f,      <span class="comment">// start on the opposite side</span></div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p>The lighting shader is <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/Resources/Shaders/Compiled/LightShader.frag.hlsl" class="src-link">Resources/Shaders/Compiled/LightShader.frag.hlsl</a>.</p>
+<p>The lighting shader is <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/Resources/Shaders/Compiled/LightShader.frag.hlsl" class="src-link">Resources/Shaders/Compiled/LightShader.frag.hlsl</a>.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md57"></a>
 Debug colliders</h2>
-<p>While <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a> is <span class="tt">true</span>, the renderer draws <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> on top of the lit image, using the <span class="tt">CollisionTexture</span> asset (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L748-L754" class="src-link">src/Rendering/Vulkan_Renderer.cpp:748</a>). Fill that container yourself, one entry per collider, keyed by an ID:</p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing collider outlines</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
+<p>While <a class="el" href="group__coretypes.html#ga11979497e152d7aef17df0d06e8755c2" title="When true, the renderer draws Renderer::CollisionInstances on top of the scene.">CoreTypes::bShouldDisplayDebugColliders</a> is <span class="tt">true</span>, the renderer draws <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> on top of the lit image, using the <span class="tt">CollisionTexture</span> asset (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L748-L754" class="src-link">src/Rendering/Vulkan_Renderer.cpp:748</a>). Fill that container yourself, one entry per collider, keyed by an ID:</p>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Drawing collider outlines</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/ecs/CollisionAndHover.cpp" target="_blank">examples/ecs/CollisionAndHover.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Fill the renderer&#39;s debug-collider container. It is drawn on top of everything</span></div>
 <div class="line">    <span class="comment">// while CoreTypes::bShouldDisplayDebugColliders is true (toggled here by the</span></div>
 <div class="line">    <span class="comment">// ToggleDebugColliders action).</span></div>
 <div class="line">    world.system&lt;<span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <span class="keyword">const</span> <a class="code hl_struct" href="struct_components_1_1_f_collider_component.html">FColliderComponent</a>&gt;(<span class="stringliteral">&quot;DebugColliders&quot;</span>)</div>
@@ -412,17 +412,17 @@ Debug colliders</h2>
 <p>Entries stay until you remove them with <span class="tt">Renderer::CollisionInstances.RemoveEntity(id)</span>. <a class="el" href="#gaf0b6ef8bc00e7879941f988affb7c407" title="Deprecated.">Renderer::AddDebugCollision()</a> does the same as the snippet but is deprecated and reads its rectangle as <span class="tt">(x, y, height, width)</span>.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md58"></a>
 Levels from LDtk</h2>
-<p><span class="tt"><a class="el" href="group__coretypes.html#ga43481861a4cbba431c3fcf866f9a28dd" title="Builds a World::SLevel from an LDtk project (LevelAssetName, an asset path) and one of its separately...">World::GenerateLevel()</a></span> (<a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>) loads a level from an <a href="https://ldtk.io">LDtk</a> project. <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a> then puts its tiles on the <span class="tt">Background</span> layer and returns a rectangle for every IntGrid cell with value 1, to use as collision (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>). Layers whose name contains <span class="tt">Grass</span> or <span class="tt">Ground_Base</span> are drawn below the others.</p>
+<p><span class="tt"><a class="el" href="group__coretypes.html#ga43481861a4cbba431c3fcf866f9a28dd" title="Builds a World::SLevel from an LDtk project (LevelAssetName, an asset path) and one of its separately...">World::GenerateLevel()</a></span> (<a class="el" href="group__coretypes.html" title="CoreTypes">CoreTypes</a>) loads a level from an <a href="https://ldtk.io">LDtk</a> project. <a class="el" href="#ga8b458a67cb24d0cd348afcb0a1dc5685" title="Puts a level&#39;s tiles on the Background layer and returns the rectangles of its collision cells (IntGr...">Renderer::LoadLevel()</a> then puts its tiles on the <span class="tt">Background</span> layer and returns a rectangle for every IntGrid cell with value 1, to use as collision (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>). Layers whose name contains <span class="tt">Grass</span> or <span class="tt">Ground_Base</span> are drawn below the others.</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md59"></a>
 Screen and world positions</h2>
-<p><a class="el" href="#gaa6a288406f43c706dbe7378a282dafa8" title="Converts a window position in pixels to world units, using the current camera.">Renderer::ScreenPosToWorldPos()</a> converts a window position (for example from <span class="tt">SDL_GetMouseState</span>) to world units. It assumes a 1920 × 1080 window (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>).</p>
+<p><a class="el" href="#gaa6a288406f43c706dbe7378a282dafa8" title="Converts a window position in pixels to world units, using the current camera.">Renderer::ScreenPosToWorldPos()</a> converts a window position (for example from <span class="tt">SDL_GetMouseState</span>) to world units. It assumes a 1920 × 1080 window (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>).</p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md60"></a>
 Things to watch out for</h2>
 <ul>
-<li>The window and the render target are fixed at 1920 × 1080 (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L58" class="src-link">src/Rendering/Vulkan_Renderer.cpp:58</a>). Resizing stretches the image.</li>
-<li>If the <em>first</em> sprite in a batch has an invalid texture path, the whole batch is skipped that frame (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L233-L235" class="src-link">src/Rendering/Vulkan_Renderer.cpp:233</a>).</li>
-<li>At most 50 000 sprites fit in a batch (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L37" class="src-link">src/Rendering/Vulkan_Renderer.cpp:37</a>).</li>
-<li>flecs prints <span class="tt">computed size (64) for 'SSprite' is larger than actual type (48)</span> at shutdown: the reflection data registered for <a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> doesn't match the struct (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L55-L59" class="src-link">src/Rendering/Module.cpp:55</a>). Drawing is not affected, but editing or saving a sprite's fields in the Entity Debugger may be wrong.</li>
+<li>The window and the render target are fixed at 1920 × 1080 (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L58" class="src-link">src/Rendering/Vulkan_Renderer.cpp:58</a>). Resizing stretches the image.</li>
+<li>If the <em>first</em> sprite in a batch has an invalid texture path, the whole batch is skipped that frame (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L233-L235" class="src-link">src/Rendering/Vulkan_Renderer.cpp:233</a>).</li>
+<li>At most 50 000 sprites fit in a batch (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L37" class="src-link">src/Rendering/Vulkan_Renderer.cpp:37</a>).</li>
+<li>flecs prints <span class="tt">computed size (64) for 'SSprite' is larger than actual type (48)</span> at shutdown: the reflection data registered for <a class="el" href="struct_graphics_1_1_s_sprite.html" title="Which texture a sprite uses (SpriteSheet, an asset path) and which part of it: UVCoords (top-left) an...">Graphics::SSprite</a> doesn't match the struct (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Module.cpp\#L55-L59" class="src-link">src/Rendering/Module.cpp:55</a>). Drawing is not affected, but editing or saving a sprite's fields in the Entity Debugger may be wrong.</li>
 <li>More in <a class="el" href="known_issues.html#known_issues_rendering" title="Rendering">Rendering</a>. </li>
 </ul>
 </div><table class="memberdecls">
@@ -505,7 +505,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>See <a class="el" href="#rendering_layers" title="Layers and draw order">Layers and draw order</a>.</p>
-<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/SpriteInstanceContainer.hpp\#L16-L22" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:16</a>. </p>
+<p>Declared at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Rendering/SpriteInstanceContainer.hpp\#L16-L22" class="src-link">include/Rendering/SpriteInstanceContainer.hpp:16</a>. </p>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70" name="ga50fb14a457ce18417eac07ab3de19aefa44fe414dc404b61f20fdb61f692d0c70"></a>Background&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b" name="ga50fb14a457ce18417eac07ab3de19aefa46d8351d37906800cd897b044aa0746b"></a>Entities&#160;</td><td class="fielddoc"></td></tr>
@@ -532,7 +532,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Called by <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
-<p>Loads the <span class="tt">CollisionTexture</span> asset, so it must be registered before. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L42-L63" class="src-link">src/Rendering/Module.cpp:42</a>. </p>
+<p>Loads the <span class="tt">CollisionTexture</span> asset, so it must be registered before. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Module.cpp\#L42-L63" class="src-link">src/Rendering/Module.cpp:42</a>. </p>
 
 </div>
 </div>
@@ -550,7 +550,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L65-L68" class="src-link">src/Rendering/Module.cpp:65</a>. </p>
+<p>Called by <a class="el" href="group__engine__core.html#gac50a31fa0c568178e2919918f34b296d" title="Shuts the engine modules down in reverse order and calls SDL_Quit().">Engine::TeardownPlugins()</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Module.cpp\#L65-L68" class="src-link">src/Rendering/Module.cpp:65</a>. </p>
 
 </div>
 </div>
@@ -569,7 +569,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Assumes a 1920 × 1080 window.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>. <a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a>'s mouse-hover system uses it. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L795-L798" class="src-link">src/Rendering/Vulkan_Renderer.cpp:795</a>. <a class="el" href="namespace_gameplay_framework.html">GameplayFramework</a>'s mouse-hover system uses it. </p>
 
 </div>
 </div>
@@ -588,7 +588,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The renderer does this on first use; call it to avoid the one-frame delay.</p>
-<p>Expects 4 bytes per pixel in <span class="tt">Texture-&gt;Surface</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L83-L142" class="src-link">src/Rendering/Vulkan_Renderer.cpp:83</a>. </p>
+<p>Expects 4 bytes per pixel in <span class="tt">Texture-&gt;Surface</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L83-L142" class="src-link">src/Rendering/Vulkan_Renderer.cpp:83</a>. </p>
 
 </div>
 </div>
@@ -607,7 +607,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Also sets <a class="el" href="#ga3fa5f1ca303d4f0e8aeadd6868fbb7aa" title="The level last passed to Renderer::LoadLevel(), or empty.">Renderer::Level</a>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Module.cpp\#L74-L152" class="src-link">src/Rendering/Module.cpp:74</a>. </p>
 
 </div>
 </div>
@@ -638,7 +638,7 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <p>Adds a debug-collider rectangle. Reads <span class="tt">Collider</span> as <span class="tt">(x, y, height, width)</span>.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Rendering/Module.hpp\#L81-L96" class="src-link">include/Rendering/Module.hpp:81</a>. Write to <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> instead. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/include/Rendering/Module.hpp\#L81-L96" class="src-link">include/Rendering/Module.hpp:81</a>. Write to <a class="el" href="#gaa59c6f0758bb042e1564f083d3e4cd66" title="The debug-collider overlay: drawn with the CollisionTexture asset while CoreTypes::bShouldDisplayDebu...">Renderer::CollisionInstances</a> instead. </p>
 
 </div>
 </div>
@@ -656,7 +656,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L52-L54" class="src-link">src/Rendering/RenderingBackend.cpp:52</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/RenderingBackend.cpp\#L52-L54" class="src-link">src/Rendering/RenderingBackend.cpp:52</a>. </p>
 
 </div>
 </div>
@@ -674,7 +674,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L56-L60" class="src-link">src/Rendering/RenderingBackend.cpp:56</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/RenderingBackend.cpp\#L56-L60" class="src-link">src/Rendering/RenderingBackend.cpp:56</a>. </p>
 
 </div>
 </div>
@@ -693,7 +693,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>The render system does this every frame; you don't need it.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L77-L110" class="src-link">src/Rendering/RenderingBackend.cpp:77</a>. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/RenderingBackend.cpp\#L77-L110" class="src-link">src/Rendering/RenderingBackend.cpp:77</a>. </p>
 
 </div>
 </div>
@@ -712,7 +712,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>Useful for entities on the <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefa7056bd645f0a5d51a2f8a588b7b4e688">Foreground</a></span>, <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefaf2e1e44caa9b2c8454ba9211be913c2c">Debug</a></span> or <span class="tt"><a class="el" href="namespace_renderer.html#ga50fb14a457ce18417eac07ab3de19aefae97a3a61e15fe4ca9082659e1590a8b5">Overlay</a></span> layers before destroying them.</p>
-<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/RenderingBackend.cpp\#L62-L75" class="src-link">src/Rendering/RenderingBackend.cpp:62</a>. It has no return statement on success, so don't use its result. </p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/RenderingBackend.cpp\#L62-L75" class="src-link">src/Rendering/RenderingBackend.cpp:62</a>. It has no return statement on success, so don't use its result. </p>
 
 </div>
 </div>
@@ -768,7 +768,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Called by <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> every frame. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Rendering/Vulkan_Renderer.cpp\#L705-L785" class="src-link">src/Rendering/Vulkan_Renderer.cpp:705</a>. </p>
+<p>Called by <a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a> every frame. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/02fd6c2454ea67f96d38295400c5e2a88619f43e/src/Rendering/Vulkan_Renderer.cpp\#L705-L785" class="src-link">src/Rendering/Vulkan_Renderer.cpp:705</a>. </p>
 
 </div>
 </div>
@@ -856,7 +856,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

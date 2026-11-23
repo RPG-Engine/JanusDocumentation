@@ -45,7 +45,7 @@
   <a class="jd-brand" href="index.html">
     <span class="jd-brand-mark" aria-hidden="true">J</span>
     <span class="jd-brand-name">Janus Engine</span>
-    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>824ee20</code></span>
+    <span class="jd-brand-version" title="Engine commit these docs describe">docs · <code>02fd6c2</code></span>
   </a>
   <div class="jd-topbar-spacer"></div>
   <div class="jd-search" title="Search (Ctrl K)">
@@ -115,7 +115,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <div class="contents">
 <div class="textblock"><p class="lede"></p>
 <p>Every kind of input binding in one place: a square you move with the arrow keys, three lights for Space's press, hold and release bindings, a key combination, a callback and quitting with Escape.</p>
-<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" class="src-link">examples/modules/Input.cpp</a></span><span><b>Executable</b> <code>InputExample</code></span><span><b>Module</b> <a class="el" href="group__input.html" title="Input">Input</a></span></div><div class="image">
+<div class="jd-meta"><span><b>Source</b> <a href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" class="src-link">examples/modules/Input.cpp</a></span><span><b>Executable</b> <code>InputExample</code></span><span><b>Module</b> <a class="el" href="group__input.html" title="Input">Input</a></span></div><div class="image">
 <img src="input.png" alt=""/>
 <div class="caption">
 The release light (right) glows just after Space was let go; the HUD shows the action values</div></div>
@@ -137,7 +137,7 @@ The release light (right) glows just after Space was let go; the HUD shows the a
 </table>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md115"></a>
 Declaring and binding</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Actions</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// DEFINE_INPUT_ACTION(Name, Type) creates Input::Actions::Name.</span></div>
 <div class="line"><span class="comment">// Its bindings&#39; values are added up (ADD).</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(Move, glm::vec2)</div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga02d3523d67343616c2ed3db12b4cd48d">DEFINE_INPUT_ACTION</a>(SpacePressed, <span class="keywordtype">bool</span>)</div>
@@ -151,7 +151,7 @@ Declaring and binding</h2>
 <div class="line"><span class="comment">// Untriggered: 0.</span></div>
 <div class="line"><a class="code hl_define" href="group__input.html#ga10f99da27a43c73d2fc8ec238b1db84e">DEFINE_INPUT_ACTION_WITH_PARAMS</a>(SpeedBoost, <span class="keywordtype">float</span>, OVERRIDE)</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Bindings</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Hold: active every frame the key is down.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Bindings</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Hold: active every frame the key is down.</span></div>
 <div class="line">    <a class="code hl_function" href="group__input.html#ga2563a145ce13e323f5e0eeb75008e001">Input::AddInputBindings_Hold</a>(&amp;Input::Actions::Move, {</div>
 <div class="line">        {SDL_SCANCODE_UP, {0, -1}}, {SDL_SCANCODE_DOWN, {0, 1}},</div>
 <div class="line">        {SDL_SCANCODE_LEFT, {-1, 0}}, {SDL_SCANCODE_RIGHT, {1, 0}},</div>
@@ -182,7 +182,7 @@ Declaring and binding</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md116"></a>
 Reading actions</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Polling in a system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Most game code polls actions from a system.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Polling in a system</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Most game code polls actions from a system.</span></div>
 <div class="line">    <span class="comment">// Input is read before the systems run each frame.</span></div>
 <div class="line">    world.system&lt;<a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>, <a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">FTexture2DComponent</a>&gt;(<span class="stringliteral">&quot;PollInput&quot;</span>)</div>
 <div class="line">        .each([](flecs::entity entity, <a class="code hl_struct" href="struct_components_1_1_f_transform_component.html">FTransformComponent</a>&amp; transform,</div>
@@ -226,7 +226,7 @@ Reading actions</h2>
 <div class="line">            }</div>
 <div class="line">        });</div>
 </div><!-- fragment --><p>  </details></p>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A callback</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A callback runs during Input::UpdateInputs() on every frame the action triggers.</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">A callback</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// A callback runs during Input::UpdateInputs() on every frame the action triggers.</span></div>
 <div class="line">    <span class="comment">// Register one callback per action: each extra one makes all of them run again.</span></div>
 <div class="line">    <a class="code hl_function" href="group__input.html#ga8372a1f4b0896466885d360d25891c8b">Input::RegisterActionCallback&lt;bool&gt;</a>(&amp;Input::Actions::Confirm, [](<span class="keyword">const</span> <span class="keywordtype">bool</span>&amp;) {</div>
 <div class="line">        ++ConfirmCount;</div>
@@ -235,7 +235,7 @@ Reading actions</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md117"></a>
 Quitting from code</h2>
-<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Escape pushes a quit event</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input::ShouldQuit() becomes true when SDL sees a quit event (closing the window).</span></div>
+<p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Escape pushes a quit event</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line">    <span class="comment">// Input::ShouldQuit() becomes true when SDL sees a quit event (closing the window).</span></div>
 <div class="line">    <span class="comment">// To quit from code, push one yourself; Engine::Run() returns on the next frame.</span></div>
 <div class="line">    world.system(<span class="stringliteral">&quot;QuitOnEscape&quot;</span>).run([](flecs::iter&amp; it) {</div>
 <div class="line">        <span class="keywordflow">if</span> (<a class="code hl_function" href="group__input.html#ga96cd377a209587f7494f3357edd5fcec">Input::IsActionTriggered</a>(Input::Actions::Quit)) {</div>
@@ -248,7 +248,7 @@ Quitting from code</h2>
 </div><!-- fragment --><p>  </details></p>
 <h2 class="doxsection"><a class="anchor" id="autotoc_md118"></a>
 Full source</h2>
-<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Input.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: input actions.</span></div>
+<p> <details class="jd-example jd-generated"><summary><span class="jd-title">Input.cpp</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/JanusDocumentation/blob/master/examples/modules/Input.cpp" target="_blank">examples/modules/Input.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// Module example: input actions.</span></div>
 <div class="line"><span class="comment">//</span></div>
 <div class="line"><span class="comment">// Controls:</span></div>
 <div class="line"><span class="comment">//   Arrow keys      move the square (hold bindings, values added up)</span></div>
@@ -522,7 +522,7 @@ Full source</h2>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <footer class="jd-footer">
-  Documents engine commit <code>824ee20</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
+  Documents engine commit <code>02fd6c2</code> · <a href="docs_version.html">Documentation version</a> · <a href="conventions.html">How to read these docs</a> · Generated by <a href="https://www.doxygen.org/index.html" target="_blank" rel="noopener">Doxygen</a> 1.18.0
 </footer>
 </div><!-- doc-content (opened by doxygen) -->
     </main>

@@ -11,8 +11,8 @@ PROJECT_NUMBER         = $(JANUS_DOCS_COMMIT_SHORT)
 PROJECT_BRIEF          = "C++26 2D game engine"
 OUTPUT_DIRECTORY       = build
 CREATE_SUBDIRS         = NO
-STRIP_FROM_PATH        = ..
-STRIP_FROM_INC_PATH    = ../include
+STRIP_FROM_PATH        = $(JANUS_ENGINE_DIR)
+STRIP_FROM_INC_PATH    = $(JANUS_ENGINE_DIR)/include
 FULL_PATH_NAMES        = YES
 JAVADOC_AUTOBRIEF      = YES
 REPEAT_BRIEF           = NO
@@ -37,16 +37,16 @@ WARN_LOGFILE           = build/warnings.log
 # Input
 #
 # pages/      guides, module pages (.dox) and example pages
-# ../include  the engine's public headers
+# $(JANUS_ENGINE_DIR)/include  the engine's public headers
 # examples/   compiled example programs, shown with \snippet / \include
 # images/     screenshots of the examples
 #---------------------------------------------------------------------
 INPUT                  = pages \
-                         ../include
+                         $(JANUS_ENGINE_DIR)/include
 FILE_PATTERNS          = *.hpp *.h *.md *.dox
 RECURSIVE              = YES
-EXCLUDE                = ../include/Filesystem/Importers/Ldtk/LdtkTypes.hpp \
-                         ../include/Gameplay/ECS/MapInc.hpp
+EXCLUDE                = $(JANUS_ENGINE_DIR)/include/Filesystem/Importers/Ldtk/LdtkTypes.hpp \
+                         $(JANUS_ENGINE_DIR)/include/Gameplay/ECS/MapInc.hpp
 EXCLUDE_PATTERNS       = */cmake-build-*/* \
                          */Build/*
 USE_MDFILE_AS_MAINPAGE = pages/index.md
@@ -147,13 +147,13 @@ ALIASES += "src{2}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_
 ALIASES += "src{3}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\#L\2-L\3\">\1:\2</a>"
 ALIASES += "srcdir{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/tree/$(JANUS_DOCS_COMMIT)/\1\">\1/</a>"
 ALIASES += "srclink{3}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1\#L\2\">\3</a>"
-ALIASES += "exsrc{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\">examples/\1</a>"
+ALIASES += "exsrc{1}=<a class=\"src-link\" href=\"$(JANUS_DOCS_OWN_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/examples/\1\">examples/\1</a>"
 ALIASES += "docscommit=<a class=\"src-link\" href=\"$(JANUS_DOCS_REPO)/commit/$(JANUS_DOCS_COMMIT)\"><code>$(JANUS_DOCS_COMMIT_SHORT)</code></a>"
 ALIASES += "docsdate=$(JANUS_DOCS_DATE)"
 ALIASES += "engex{4}=\htmlonly<details class=\"jd-example jd-engine\"><summary><span class=\"jd-label\">Engine example</span><span class=\"jd-title\">\4</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1#L\2-L\3\" target=\"_blank\">\1:\2</a></summary>\endhtmlonly"
 ALIASES += "engexopen{4}=\htmlonly<details class=\"jd-example jd-engine\" open><summary><span class=\"jd-label\">Engine example</span><span class=\"jd-title\">\4</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_COMMIT)/\1#L\2-L\3\" target=\"_blank\">\1:\2</a></summary>\endhtmlonly"
-ALIASES += "genex{2}=\htmlonly<details class=\"jd-example jd-generated\"><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
-ALIASES += "genexopen{2}=\htmlonly<details class=\"jd-example jd-generated\" open><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/Documentation/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
+ALIASES += "genex{2}=\htmlonly<details class=\"jd-example jd-generated\"><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_OWN_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
+ALIASES += "genexopen{2}=\htmlonly<details class=\"jd-example jd-generated\" open><summary><span class=\"jd-title\">\2</span><a class=\"src-link jd-source\" href=\"$(JANUS_DOCS_OWN_REPO)/blob/$(JANUS_DOCS_EXAMPLES_REF)/examples/\1\" target=\"_blank\">examples/\1</a></summary>\endhtmlonly"
 ALIASES += "endex=\htmlonly</details>\endhtmlonly"
 
 #---------------------------------------------------------------------

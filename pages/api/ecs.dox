@@ -246,6 +246,8 @@ Declare both functions (and forward-declare the struct) before the macro. Define
 \def ECS_MEMBER(MemberType, MemberName, DefaultValue)
 \ingroup ecs
 \brief One field of a component: its type, name and default value. Only valid inside the `DEFINE_COMPONENT` macros.
+
+Defined at \src{include/Gameplay/ECS/Components.hpp,61}.
 */
 
 /**
@@ -266,6 +268,8 @@ Defined at \src{include/Gameplay/ECS/Components.hpp,54,56}.
 \def REGISTER_COMPONENT_DEBUGGER(ComponentClass)
 \ingroup ecs
 \brief Registers a component's Entity Debugger panel. #ECS_REGISTER_COMPONENT does this for you.
+
+Defined at \src{include/Gameplay/ECS/Components.hpp,21,22}.
 */
 
 /**

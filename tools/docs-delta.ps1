@@ -112,7 +112,9 @@ if ($CheckLinks) {
         if ($r.FirstCode -and $r.From -gt 0 -and $r.From -le $content.Count) {
             $expected = ($content[$r.From - 1] -replace '\s+', ' ').Trim().TrimStart([char]0xFEFF)
             $actual = ($r.FirstCode -replace '\s+', ' ').Trim()
-            if ($expected -ne $actual) {
+            # Quoted engine code may be reflowed to fit the page (88 columns), so a page
+            # line that is the start of the engine line also matches.
+            if ($expected -ne $actual -and -not $expected.StartsWith($actual)) {
                 Write-Host "  SNIPPET  $where  $($r.File):$($r.From)"
                 Write-Host "           page:   $actual"
                 Write-Host "           source: $expected"

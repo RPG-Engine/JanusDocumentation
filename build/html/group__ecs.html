@@ -535,17 +535,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_e_c_s_1_1_phase.html">ECS::Phase</a> { \</div>
-<div class="line">    ENGINE_EXPORT <span class="keyword">inline</span> flecs::entity PhaseName() { \</div>
-<div class="line">        <span class="keyword">static</span> flecs::entity phase; \</div>
-<div class="line">        if (!phase.is_alive()) { \</div>
-<div class="line">            phase = GetWorld().entity(#PhaseName).add(flecs::Phase).depends_on(flecs::AfterPhase); \</div>
-<div class="line">        } \</div>
-<div class="line">        <span class="keywordflow">return</span> phase; \</div>
-<div class="line">    } \</div>
-<div class="line">}</div>
-<div class="ttc" id="anamespace_e_c_s_1_1_phase_html"><div class="ttname"><a href="namespace_e_c_s_1_1_phase.html">ECS::Phase</a></div><div class="ttdef"><b>Definition</b> Module.hpp:21</div></div>
-</div><!-- fragment --><p><span class="tt">AfterPhase</span> is a flecs phase name without the <span class="tt">flecs::</span> prefix, such as <span class="tt">PostUpdate</span> or <span class="tt">OnStore</span>. The phase is created the first time the function is called. Use it at global scope, then pass <span class="tt">ECS::Phase::PhaseName()</span> to a system's <span class="tt">.kind()</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Module.hpp\#L5-L14" class="src-link">include/Gameplay/ECS/Module.hpp:5</a>.</p>
+<p><span class="tt">AfterPhase</span> is a flecs phase name without the <span class="tt">flecs::</span> prefix, such as <span class="tt">PostUpdate</span> or <span class="tt">OnStore</span>. The phase is created the first time the function is called. Use it at global scope, then pass <span class="tt">ECS::Phase::PhaseName()</span> to a system's <span class="tt">.kind()</span>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Module.hpp\#L5-L14" class="src-link">include/Gameplay/ECS/Module.hpp:5</a>.</p>
 <p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Phase</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="comment">// A new pipeline phase that runs after flecs::PostUpdate.</span></div>
 <div class="line"><span class="comment">// Use it with .kind(ECS::Phase::OnLateGameplay()).</span></div>
 <div class="line"><a class="code hl_define" href="#gaf4b0b6fc47160f097ee5a26ebe345250">DEFINE_NEW_ECS_PHASE</a>(OnLateGameplay, PostUpdate)</div>
@@ -571,12 +561,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">__ECS_COMPONENT_STRUCT(ComponentName, __VA_ARGS__) \</div>
-<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> __DefaultPreDebugDraw(ComponentName* Obj) {}; \</div>
-<div class="line"><span class="keyword">inline</span> <span class="keywordtype">void</span> __DefaultPostDebugDraw(ComponentName* Obj) {}; \</div>
-<div class="line">DEFINE_COMPONENT_DEBUGGER(ComponentName, __DefaultPreDebugDraw, __DefaultPostDebugDraw) \</div>
-<div class="line">__ECS_COMPONENT_REGISTER_FUNC(ComponentName, __VA_ARGS__)</div>
-</div><!-- fragment --><p>Use inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span>, then register it with <a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L88-L93" class="src-link">include/Gameplay/ECS/Components.hpp:88</a>.</p>
+<p>Use inside <span class="tt">namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a></span>, then register it with <a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L88-L93" class="src-link">include/Gameplay/ECS/Components.hpp:88</a>.</p>
 <p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Components</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/Movement.cpp" target="_blank">examples/ecs/Movement.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_components.html">Components</a> {</div>
 <div class="line">    <span class="comment">// World units per second.</span></div>
 <div class="line">    <a class="code hl_define" href="#gaff08fea3b0c4020dbac4502dc80d7c3e">DEFINE_COMPONENT</a>(FVelocity,</div>
@@ -611,9 +596,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">__ECS_COMPONENT_STRUCT(ComponentName, __VA_ARGS__) \</div>
-<div class="line">__ECS_COMPONENT_REGISTER_FUNC(ComponentName, __VA_ARGS__)</div>
-</div><!-- fragment --><p>Register it with <a class="el" href="#ga2b693423b2113999c18ec9144a2a4f95" title="Registers a component&#39;s reflection data only.">ECS_REGISTER_COMPONENT_NO_DEBUG</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L100-L102" class="src-link">include/Gameplay/ECS/Components.hpp:100</a>. </p>
+<p>Register it with <a class="el" href="#ga2b693423b2113999c18ec9144a2a4f95" title="Registers a component&#39;s reflection data only.">ECS_REGISTER_COMPONENT_NO_DEBUG</a>. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L100-L102" class="src-link">include/Gameplay/ECS/Components.hpp:100</a>. </p>
 
 </div>
 </div>
@@ -645,10 +628,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">__ECS_COMPONENT_STRUCT(ComponentName, __VA_ARGS__) \</div>
-<div class="line">DEFINE_COMPONENT_DEBUGGER(ComponentName, PreDebugDraw, PostDebugDraw) \</div>
-<div class="line">__ECS_COMPONENT_REGISTER_FUNC(ComponentName, __VA_ARGS__)</div>
-</div><!-- fragment --><p>Declare both functions (and forward-declare the struct) before the macro. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L95-L98" class="src-link">include/Gameplay/ECS/Components.hpp:95</a>.</p>
+<p>Declare both functions (and forward-declare the struct) before the macro. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L95-L98" class="src-link">include/Gameplay/ECS/Components.hpp:95</a>.</p>
 <p> <details class="jd-example jd-generated" open><summary><span class="jd-title">Debug draw</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/main/Documentation/examples/ecs/ComponentsAndQueries.cpp" target="_blank">examples/ecs/ComponentsAndQueries.cpp</a></summary> </p><div class="fragment"><div class="line"><span class="keyword">namespace </span>Components {</div>
 <div class="line">    <span class="keywordtype">void</span> PreDrawUnit(FUnit* Unit) {</div>
 <div class="line">        ImGui::TextDisabled(<span class="stringliteral">&quot;Custom panel drawn by PreDrawUnit&quot;</span>);</div>
@@ -686,8 +666,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">(MemberType, MemberName, DefaultValue)</div>
-</div><!-- fragment --><p>Only valid inside the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros. </p>
+<p>Only valid inside the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L61" class="src-link">include/Gameplay/ECS/Components.hpp:61</a>. </p>
 
 </div>
 </div>
@@ -709,10 +689,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">Components::__REGISTER_##ComponentName(<a class="code hl_namespace" href="namespace_world.html">World</a>); \</div>
-<div class="line">REGISTER_COMPONENT_DEBUGGER(ComponentName)</div>
-<div class="ttc" id="anamespace_world_html"><div class="ttname"><a href="namespace_world.html">World</a></div><div class="ttdef"><b>Definition</b> World.hpp:20</div></div>
-</div><!-- fragment --><p>Call after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
+<p>Call after <a class="el" href="group__engine__core.html#ga41f3ac12a834ce4378adcf8e76242499" title="Starts SDL and every engine module that needs starting, in dependency order, and opens the game windo...">Engine::InitializePlugins()</a>.</p>
 <p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L54-L56" class="src-link">include/Gameplay/ECS/Components.hpp:54</a>. </p>
 
 </div>
@@ -735,8 +712,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">Components::__REGISTER_##ComponentName(<a class="code hl_namespace" href="namespace_world.html">World</a>);</div>
-</div><!-- fragment --><p>Use it for <a class="el" href="#ga6a4188d2969d3b937527ccde338182a0" title="Like DEFINE_COMPONENT, without the Entity Debugger panel.">DEFINE_COMPONENT_NO_DEBUG</a> components. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L58-L59" class="src-link">include/Gameplay/ECS/Components.hpp:58</a>. </p>
+<p>Use it for <a class="el" href="#ga6a4188d2969d3b937527ccde338182a0" title="Like DEFINE_COMPONENT, without the Entity Debugger panel.">DEFINE_COMPONENT_NO_DEBUG</a> components. Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L58-L59" class="src-link">include/Gameplay/ECS/Components.hpp:58</a>. </p>
 
 </div>
 </div>
@@ -754,10 +730,8 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><a class="code hl_function" href="group__imguiwrapper.html#ga140cfe6607dd8fd5dbfe9384e683c204">ImGuiWrapper::RegisterFactory</a>(#ComponentClass, <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;Components::ComponentClass##Debug&gt;</a>())</div>
-<div class="ttc" id="aclass_t_object_ptr_html"><div class="ttname"><a href="class_t_object_ptr.html">TObjectPtr</a></div><div class="ttdoc">A reference-counted owning pointer.</div><div class="ttdef"><b>Definition</b> Janitors.hpp:11</div></div>
-<div class="ttc" id="agroup__imguiwrapper_html_ga140cfe6607dd8fd5dbfe9384e683c204"><div class="ttname"><a href="group__imguiwrapper.html#ga140cfe6607dd8fd5dbfe9384e683c204">ImGuiWrapper::RegisterFactory</a></div><div class="ttdeci">void RegisterFactory(const std::string &amp;Name, const TObjectPtr&lt; ImGuiWrapper::DebugFactoryBase &gt; &amp;DebugFactory)</div><div class="ttdoc">Registers (or replaces) the debug factory used to draw data named Name.</div></div>
-</div><!-- fragment --><p><a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a> does this for you. </p>
+<p><a class="el" href="#gaf362f78c6d7d9fc7ac88045ea12b664a" title="Registers a DEFINE_COMPONENT component with World: its reflection data and its Entity Debugger panel.">ECS_REGISTER_COMPONENT</a> does this for you.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Gameplay/ECS/Components.hpp\#L21-L22" class="src-link">include/Gameplay/ECS/Components.hpp:21</a>. </p>
 
 </div>
 </div>
@@ -784,25 +758,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line">    <span class="keyword">class </span>ComponentClass##Debug : <span class="keyword">public</span> ECSDebugFactory { \</div>
-<div class="line">    <span class="keyword">public</span>: \</div>
-<div class="line">        <span class="keywordtype">void</span> CreateComponentOnEntity(flecs::entity Entity)<span class="keyword"> override </span>{ \</div>
-<div class="line">            Entity.set&lt;Components::ComponentClass&gt;({}); \</div>
-<div class="line">        }; \</div>
-<div class="line">        <span class="keywordtype">void</span> DrawDebug(<span class="keywordtype">void</span>* Container)<span class="keyword"> const override </span>{ \</div>
-<div class="line">            ImGui::SetCurrentContext(<a class="code hl_function" href="group__imguiwrapper.html#ga531e896db04de51b6f407385149bb651">ImGuiWrapper::GetCurrentContext</a>()); \</div>
-<div class="line">            if (ImGui::CollapsingHeader(#ComponentClass), ImGuiTreeNodeFlags_DefaultOpen ) { \</div>
-<div class="line">                ImGui::Separator(); \</div>
-<div class="line">                ComponentClass* Comp = <span class="keyword">static_cast&lt;</span>ComponentClass*<span class="keyword">&gt;</span>(Container); \</div>
-<div class="line">                PreDrawFunction(Comp); \</div>
-<div class="line">                Comp-&gt;DebugDraw(); \</div>
-<div class="line">                PostDrawFunction(Comp); \</div>
-<div class="line">                ImGui::Spacing(); \</div>
-<div class="line">            } \</div>
-<div class="line">        } \</div>
-<div class="line">};</div>
-<div class="ttc" id="agroup__imguiwrapper_html_ga531e896db04de51b6f407385149bb651"><div class="ttname"><a href="group__imguiwrapper.html#ga531e896db04de51b6f407385149bb651">ImGuiWrapper::GetCurrentContext</a></div><div class="ttdeci">ImGuiContext * GetCurrentContext()</div><div class="ttdoc">Returns the engine&#39;s ImGui context, creating it on first use.</div></div>
-</div><!-- fragment --><p>void PostOrPreDrawFunc(ComponentClass* VarName) const { DrawCalls }</p>
+<p>void PostOrPreDrawFunc(ComponentClass* VarName) const { DrawCalls }</p>
 <p>Used by the <span class="tt"><a class="el" href="#gaff08fea3b0c4020dbac4502dc80d7c3e" title="Defines struct Components::ComponentName with the given ECS_MEMBER fields, its reflection data,...">DEFINE_COMPONENT</a></span> macros; the editor uses it directly to give <span class="tt">FTransformComponent</span> a move gizmo (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Editor/EntityEditorTool.hpp\#L16" class="src-link">include/Editor/EntityEditorTool.hpp:16</a>). </p>
 
 </div>

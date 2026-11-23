@@ -26,9 +26,11 @@ A light with a very large radius lights the whole screen evenly. `Radius = 100, 
 ```
 main()
  ├─ register CollisionTexture (and anything else needed during startup)
- ├─ Engine::InitializePlugins()   SDL, Log, Filesystem, ImGui, ECS, Renderer (opens the window), Editor
+ ├─ Engine::InitializePlugins()   SDL, Log, Filesystem, ImGui, ECS,
+ │                                Renderer (opens the window), Editor
  ├─ create entities, systems, input bindings, editor tools
- ├─ Engine::Run()                  every frame: input → ECS systems → render, until the window closes
+ ├─ Engine::Run()                 every frame: input → ECS systems → render,
+ │                                until the window closes
  └─ Engine::TeardownPlugins()
 ```
 

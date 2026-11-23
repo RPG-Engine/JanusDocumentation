@@ -30,7 +30,10 @@
 Sprites use asset paths directly. The renderer loads and uploads the texture the first time it draws it:
 
 ```cpp
-.set<Components::FTexture2DComponent>({ .Sprite = { .SpriteSheet = {"Images\\Player"} }, .TextureSize = {32, 32} })
+.set<Components::FTexture2DComponent>({
+    .Sprite = { .SpriteSheet = {"Images\\Player"} },
+    .TextureSize = {32, 32},
+})
 ```
 
 ## Asset paths {#filesystem_paths}
@@ -332,6 +335,8 @@ The Entity Debugger uses the type to list only matching assets. Graphics::SSprit
 \brief Declares the `Filesystem::Importers::LoadAsset<AssetType>` specialization for a custom asset type. Pass nothing for `Export` in game code.
 
 You still have to define the specialization in one source file. See \ref ex_assets.
+
+Defined at \src{include/Filesystem/Importers/Importer.hpp,15,18}.
 */
 
 /**

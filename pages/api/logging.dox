@@ -33,7 +33,8 @@ Log::Filesystem::Info("Loading config files in {}...", configRoot.string());
 
 \engex{src/Filesystem/Module.cpp,59,59,Several arguments}
 ```cpp
-Log::Filesystem::Info("Asset {} registered at path {}", assetPathStr, AssetData->AssetFilePathRaw.string());
+Log::Filesystem::Info("Asset {} registered at path {}",
+                      assetPathStr, AssetData->AssetFilePathRaw.string());
 ```
 \endex
 
@@ -162,8 +163,12 @@ static SLogger Logger = SLogger({ \
 void RegisterLogger(const SLogger* Logger) {
     const SLoggerConfiguration& config = Logger->Config;
 
-    if (std::shared_ptr<spdlog::logger> existingLogger = spdlog::get(Logger->Config.LoggerNamespace); existingLogger != nullptr) {
-        spdlog::trace(std::format("Logger {} found - Using existing logger instead of redefining...", config.LoggerNamespace));
+    if (std::shared_ptr<spdlog::logger> existingLogger =
+            spdlog::get(Logger->Config.LoggerNamespace);
+        existingLogger != nullptr) {
+        spdlog::trace(std::format(
+            "Logger {} found - Using existing logger instead of redefining...",
+            config.LoggerNamespace));
         return;
     }
 
@@ -173,7 +178,9 @@ void RegisterLogger(const SLogger* Logger) {
     }
 
     if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_CONSOLE)) {
-        logger.sinks().push_back(std::move(CreateSink<LogSinks::stdout_color_sink_mt>(_Internal::DefaultLogPattern, config.LogLevel)));
+        logger.sinks().push_back(std::move(
+            CreateSink<LogSinks::stdout_color_sink_mt>(_Internal::DefaultLogPattern,
+                                                       config.LogLevel)));
     }
 
     logger.info("Logger initialized");
@@ -281,7 +288,7 @@ if (HasAnyOptions(config.LogOptions, ELogOutputOptions::LOG_FILE)) {
 \def DECLARE_LOGGER(Namespace, InLogLevel)
 \ingroup logging
 
-Same as #DECLARE_LOGGER_WITH_PARAMS with `LOG_ALL` outputs and the shared `JanusEngine` log file. Use it once per module, in a source file.
+Same as #DECLARE_LOGGER_WITH_PARAMS with `LOG_ALL` outputs and the shared `JanusEngine` log file. Use it once per module, in a source file. Defined at \src{include/Log/Module.hpp,41,42}.
 
 \engexopen{src/Module.cpp,25,25,The engine core's logger}
 ```cpp
@@ -291,7 +298,8 @@ DECLARE_LOGGER(Engine, debug)
 
 \engex{src/Rendering/Vulkan_Renderer.cpp,79,79,Using a declared logger}
 ```cpp
-Log::VulkanRenderer::Error("Could not determine shader type for shader [{}]", InAssetData->AssetPath.string());
+Log::VulkanRenderer::Error("Could not determine shader type for shader [{}]",
+                           InAssetData->AssetPath.string());
 ```
 \endex
 */

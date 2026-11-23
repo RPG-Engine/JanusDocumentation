@@ -182,7 +182,10 @@ How to use</h2>
 <div class="line">    }</div>
 </div><!-- fragment --><p>  </details></p>
 <p>Sprites use asset paths directly. The renderer loads and uploads the texture the first time it draws it:</p>
-<div class="fragment"><div class="line">.set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a>&gt;({ .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;Images\\Player&quot;</span>} }, .TextureSize = {32, 32} })</div>
+<div class="fragment"><div class="line">.set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a>&gt;({</div>
+<div class="line">    .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;Images\\Player&quot;</span>} },</div>
+<div class="line">    .TextureSize = {32, 32},</div>
+<div class="line">})</div>
 <div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
 </div><!-- fragment --><h2 class="doxsection"><a class="anchor" id="filesystem_paths"></a>
 Asset paths</h2>
@@ -367,7 +370,7 @@ Macros</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 id="header-enum-members" class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
 <tr class="memitem:ga84e0341c2c7fa23bcdd26ca56ea745e1" id="r_ga84e0341c2c7fa23bcdd26ca56ea745e1"><td class="memItemLeft">enum &#160;</td><td class="memItemRight"><a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1">Filesystem::EAssetType</a> { <br />
-&#160;&#160;<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">Filesystem::UNDEFINED</a> = 0
+&#160;&#160;<a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">Filesystem::UNDEFINED</a>
 , <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a>
 , <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a>
 , <a class="el" href="#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">Filesystem::FONT</a>
@@ -447,12 +450,9 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<b>Value:</b><div class="fragment"><div class="line"><span class="keyword">namespace </span><a class="code hl_namespace" href="namespace_filesystem_1_1_importers.html">Filesystem::Importers</a> { \</div>
-<div class="line">    <span class="keyword">template</span>&lt;&gt; Export <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;AssetType&gt;</a> LoadAsset&lt;AssetType&gt;(<span class="keyword">const</span> <a class="code hl_class" href="class_t_object_ptr.html">TObjectPtr&lt;SAssetData&gt;</a>&amp; InAssetData); \</div>
-<div class="line">}</div>
-<div class="ttc" id="anamespace_filesystem_1_1_importers_html"><div class="ttname"><a href="namespace_filesystem_1_1_importers.html">Filesystem::Importers</a></div><div class="ttdoc">Graphics importers.</div><div class="ttdef"><b>Definition</b> Importer.hpp:20</div></div>
-</div><!-- fragment --><p>Pass nothing for <span class="tt">Export</span> in game code.</p>
-<p>You still have to define the specialization in one source file. See <a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>. </p>
+<p>Pass nothing for <span class="tt">Export</span> in game code.</p>
+<p>You still have to define the specialization in one source file. See <a class="el" href="ex_assets.html" title="Assets and memory">Assets and memory</a>.</p>
+<p>Defined at <a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/include/Filesystem/Importers/Importer.hpp\#L15-L18" class="src-link">include/Filesystem/Importers/Importer.hpp:15</a>. </p>
 
 </div>
 </div>
@@ -876,23 +876,7 @@ template&lt;typename TAssetType&gt; </div>
   </tr>
 </table>
 </div><div class="memdoc">
-<b>Initial value:</b><div class="fragment"><div class="line">                             = {</div>
-<div class="line">    {<span class="stringliteral">&quot;UNDEFINED&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">UNDEFINED</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;TEXTURE&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">TEXTURE</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;SHADER&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">SHADER</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;FONT&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">FONT</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;PREFAB&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">PREFAB</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;LEVEL&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">LEVEL</a>},</div>
-<div class="line">   {<span class="stringliteral">&quot;CONFIG&quot;</span>, <a class="code hl_enumvalue" href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">CONFIG</a>}</div>
-<div class="line">}</div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a2064862b6a00021f2e94c4d4794ffe85">Filesystem::TEXTURE</a></div><div class="ttdeci">@ TEXTURE</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:20</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a5151f1232bbe65807098b556a44f7c5c">Filesystem::UNDEFINED</a></div><div class="ttdeci">@ UNDEFINED</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:19</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a711b7663a658653511769a13b7762e51">Filesystem::PREFAB</a></div><div class="ttdeci">@ PREFAB</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:23</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1a7feb6a2fa85aefd7611c2705cd222c14">Filesystem::CONFIG</a></div><div class="ttdeci">@ CONFIG</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:25</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1adb4a8fba0a71fc83f8db4b5dcb256e91">Filesystem::LEVEL</a></div><div class="ttdeci">@ LEVEL</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:24</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1af22e8272d6a241b59b457a3f4a0808b5">Filesystem::FONT</a></div><div class="ttdeci">@ FONT</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:22</div></div>
-<div class="ttc" id="anamespace_filesystem_html_ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a"><div class="ttname"><a href="namespace_filesystem.html#ga84e0341c2c7fa23bcdd26ca56ea745e1affc13f6bd3f0304ac9be139f3967d08a">Filesystem::SHADER</a></div><div class="ttdeci">@ SHADER</div><div class="ttdef"><b>Definition</b> FilesystemTypes.hpp:21</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 </div><!-- contents -->

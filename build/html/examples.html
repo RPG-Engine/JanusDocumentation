@@ -117,6 +117,7 @@ let searchBox = new SearchBox("searchBox", "search/",'.html');
 <p class="lede"></p>
 <p>Complete programs that use only Janus. Each is a single <code>.cpp</code> file, needs no image or data files (textures are generated in code), and was compiled and run against the documented engine commit.</p>
 <p>Build them all at once from <span class="tt">Engine/Documentation/examples</span>; see <a class="el" href="getting_started.html#getting_started_examples" title="Build and run the examples">Build and run the examples</a>. Each page shows a screenshot, explains the important parts, and ends with the full source.</p>
+<p>The examples start with <span class="tt">using namespace <a class="el" href="namespace_components.html" title="GLM Includes.">Components</a>;</span>, so the engine's components are written without their namespace: <span class="tt">FTransformComponent</span> is <span class="tt"><a class="el" href="struct_components_1_1_f_transform_component.html" title="Where an entity is: glm::vec3 Location, glm::vec3 Rotation, glm::vec3 Scale.">Components::FTransformComponent</a></span>. Lines are kept to 88 characters so the code fits the page without wrapping.</p>
 <h1 class="doxsection"><a class="anchor" id="examples_games"></a>
 Game examples</h1>
 <p>Three small games that show how the pieces fit together. They are meant to be read, not to be good games.</p>

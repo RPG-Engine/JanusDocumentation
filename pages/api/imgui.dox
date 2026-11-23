@@ -33,7 +33,8 @@ The Entity Debugger uses this to draw components: for each component on the sele
 \engex{include/Gameplay/ECS/Components.hpp,21,22,How a component's panel is registered}
 ```cpp
 #define REGISTER_COMPONENT_DEBUGGER(ComponentClass) \
-    ImGuiWrapper::RegisterFactory(#ComponentClass, TObjectPtr<Components::ComponentClass##Debug>())
+    ImGuiWrapper::RegisterFactory(#ComponentClass, \
+        TObjectPtr<Components::ComponentClass##Debug>())
 ```
 \endex
 

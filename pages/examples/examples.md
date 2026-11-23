@@ -4,6 +4,8 @@
 
 Build them all at once from `Engine/Documentation/examples`; see \ref getting_started_examples. Each page shows a screenshot, explains the important parts, and ends with the full source.
 
+The examples start with `using namespace Components;`, so the engine's components are written without their namespace: `FTransformComponent` is `Components::FTransformComponent`. Lines are kept to 88 characters so the code fits the page without wrapping.
+
 ## Game examples {#examples_games}
 
 Three small games that show how the pieces fit together. They are meant to be read, not to be good games.

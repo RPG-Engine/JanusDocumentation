@@ -158,9 +158,11 @@ The minimum for a visible game</h1>
 Startup, the loop and shutdown</h1>
 <div class="fragment"><div class="line">main()</div>
 <div class="line"> ├─ register CollisionTexture (and anything else needed during startup)</div>
-<div class="line"> ├─ Engine::InitializePlugins()   SDL, Log, Filesystem, ImGui, ECS, Renderer (opens the window), Editor</div>
+<div class="line"> ├─ Engine::InitializePlugins()   SDL, Log, Filesystem, ImGui, ECS,</div>
+<div class="line"> │                                Renderer (opens the window), Editor</div>
 <div class="line"> ├─ create entities, systems, input bindings, editor tools</div>
-<div class="line"> ├─ Engine::Run()                  every frame: input → ECS systems → render, until the window closes</div>
+<div class="line"> ├─ Engine::Run()                 every frame: input → ECS systems → render,</div>
+<div class="line"> │                                until the window closes</div>
 <div class="line"> └─ Engine::TeardownPlugins()</div>
 </div><!-- fragment --><ul>
 <li><span class="tt"><a class="el" href="group__engine__core.html#gaf4c789fb939a0870426c698a5124a0ee" title="Runs the game loop until the window is closed: input, ECS systems, editor tools, rendering.">Engine::Run()</a></span> caps the loop at 500 frames per second (<a href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Module.cpp\#L34" class="src-link">src/Module.cpp:34</a>).</li>

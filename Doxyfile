@@ -63,6 +63,9 @@ EXTRACT_STATIC         = YES
 EXTRACT_LOCAL_CLASSES  = NO
 HIDE_UNDOC_RELATIONS   = YES
 SOURCE_BROWSER         = NO
+# Don't print macro bodies ("Value:"). They are engine code with lines too long to show
+# without wrapping; each macro's page links to its definition on GitHub instead.
+MAX_INITIALIZER_LINES  = 0
 VERBATIM_HEADERS       = NO
 
 #---------------------------------------------------------------------

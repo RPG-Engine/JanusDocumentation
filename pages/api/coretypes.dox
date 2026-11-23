@@ -44,7 +44,8 @@ For each LDtk layer it records the tiles (auto-layer and grid tiles), loads the 
 Then draw it and get its collision rectangles with Renderer::LoadLevel(), and remember it with World::SetCurrentLevel(). ProtoRPG loads its level this way:
 
 ```
-auto level = World::GenerateLevel("Levels/PoutineDetective/PoutineDetectiveWorld", "Diner");
+auto level = World::GenerateLevel("Levels/PoutineDetective/PoutineDetectiveWorld",
+                                  "Diner");
 Collisions = Renderer::LoadLevel(level);
 World::SetCurrentLevel(level);
 ```

@@ -192,7 +192,8 @@ Build the engine on its own</h2>
 <h2 class="doxsection"><a class="anchor" id="getting_started_examples"></a>
 Build and run the examples</h2>
 <p>The examples have their own CMake project in <span class="tt">Engine/Documentation/examples</span>. It adds the engine as a subdirectory and builds one executable per example:</p>
-<div class="fragment"><div class="line">cmake -S Engine/Documentation/examples -B build-examples -G Ninja -DCMAKE_BUILD_TYPE=Release ^</div>
+<div class="fragment"><div class="line">cmake -S Engine/Documentation/examples -B build-examples -G Ninja ^</div>
+<div class="line">      -DCMAKE_BUILD_TYPE=Release ^</div>
 <div class="line">      -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^</div>
 <div class="line">      -DVCPKG_MANIFEST_DIR=Engine</div>
 <div class="line">cmake --build build-examples</div>

@@ -104,7 +104,10 @@ You should see a dark blue window with an orange square, plus three Dear ImGui w
 Put image files under `Resources/`, for example `MyGame/Resources/Images/Player.png`. After a build it is copied next to the executable, registered at startup, and can be used by its *asset path*: its path under `Resources/`, without the extension, with Windows separators. In C++, that is `"Images\\Player"`:
 
 ```cpp
-.set<Components::FTexture2DComponent>({ .Sprite = { .SpriteSheet = {"Images\\Player"} }, .TextureSize = {32, 32} })
+.set<Components::FTexture2DComponent>({
+    .Sprite = { .SpriteSheet = {"Images\\Player"} },
+    .TextureSize = {32, 32},
+})
 ```
 
 PNG and JPEG files are supported (see `filesystem.json`). The renderer uploads a texture the first time a sprite uses it. See \ref filesystem for the details of asset paths.

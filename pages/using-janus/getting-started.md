@@ -78,7 +78,8 @@ The result is the static library `Engine.lib`. The build also:
 The examples have their own CMake project in `Engine/Documentation/examples`. It adds the engine as a subdirectory and builds one executable per example:
 
 ```
-cmake -S Engine/Documentation/examples -B build-examples -G Ninja -DCMAKE_BUILD_TYPE=Release ^
+cmake -S Engine/Documentation/examples -B build-examples -G Ninja ^
+      -DCMAKE_BUILD_TYPE=Release ^
       -DCMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake ^
       -DVCPKG_MANIFEST_DIR=Engine
 cmake --build build-examples

@@ -314,7 +314,10 @@ Hello Janus: the orange square, with the engine's FPS Counter, Entity Debugger a
 <h1 class="doxsection"><a class="anchor" id="autotoc_md150"></a>
 5. Use your own images</h1>
 <p>Put image files under <span class="tt">Resources/</span>, for example <span class="tt">MyGame/Resources/Images/Player.png</span>. After a build it is copied next to the executable, registered at startup, and can be used by its <em>asset path</em>: its path under <span class="tt">Resources/</span>, without the extension, with Windows separators. In C++, that is <span class="tt">"Images\\Player"</span>:</p>
-<div class="fragment"><div class="line">.set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a>&gt;({ .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;Images\\Player&quot;</span>} }, .TextureSize = {32, 32} })</div>
+<div class="fragment"><div class="line">.set&lt;<a class="code hl_struct" href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a>&gt;({</div>
+<div class="line">    .Sprite = { .SpriteSheet = {<span class="stringliteral">&quot;Images\\Player&quot;</span>} },</div>
+<div class="line">    .TextureSize = {32, 32},</div>
+<div class="line">})</div>
 <div class="ttc" id="astruct_components_1_1_f_texture2_d_component_html"><div class="ttname"><a href="struct_components_1_1_f_texture2_d_component.html">Components::FTexture2DComponent</a></div><div class="ttdoc">What a sprite draws: Graphics::SSprite Sprite (texture path and cell), glm::vec2 TextureSize (32 × 32...</div><div class="ttdef"><b>Definition</b> RenderingComponent.hpp:19</div></div>
 </div><!-- fragment --><p>PNG and JPEG files are supported (see <span class="tt">filesystem.json</span>). The renderer uploads a texture the first time a sprite uses it. See <a class="el" href="group__filesystem.html" title="Filesystem">Filesystem</a> for the details of asset paths.</p>
 <h1 class="doxsection"><a class="anchor" id="autotoc_md151"></a>

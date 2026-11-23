@@ -133,14 +133,14 @@ The console shows (times will differ):
 
 \image html assets.png "The Asset Browser tool lists every registered asset; the checkerboard is a texture generated at runtime"
 
-Most of this example writes to the log. Its output looks like this (paths shortened):
+Most of this example writes to the log. Its output looks like this (paths and long lines shortened with `...`):
 
 ```
 [LogAssets] info: 13 assets registered
 [LogAssets] info: Shader asset: Shaders\Compiled\LightShader.vert
 ...
-[LogAssets] info: Name: PullSpriteBatch.vert  Extension: .dxil  File: ...\Resources\Shaders\Compiled\PullSpriteBatch.vert.dxil
-[LogAssets] info: FragmentShaderSrc.frag is 294 characters long. First line: Texture2D<float4> Texture : register(t0, space2);
+[LogAssets] info: Name: PullSpriteBatch.vert  Extension: .dxil  File: ...
+[LogAssets] info: FragmentShaderSrc.frag is 294 characters long. First line: ...
 [LogAssets] info: Cached: true
 [LogAssets] info: VertexShaderSrc.vert has 79 lines
 [LogAssets] info: Generated\Checker valid: true

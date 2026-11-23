@@ -173,8 +173,12 @@ Lifecycle</h2>
 <p> <details class="jd-example jd-engine"><summary><span class="jd-label">Engine example</span><span class="jd-title">What registration does</span><a class="src-link jd-source" href="https://github.com/RPG-Engine/RPG-Engine-Core/blob/824ee2043e545a75c0510187f5c7ca53b5aa21c4/src/Log/Module.cpp#L78-L97" target="_blank">src/Log/Module.cpp:78</a></summary> </p><div class="fragment"><div class="line"><span class="keywordtype">void</span> <a class="code hl_function" href="group__logging.html#gafe258f10926be3404488ecc7ca4dd6b6">RegisterLogger</a>(<span class="keyword">const</span> <a class="code hl_function" href="#a03724948a232b56bea0cc08b119cb272">SLogger</a>* Logger) {</div>
 <div class="line">    <span class="keyword">const</span> <a class="code hl_struct" href="struct_log_1_1_s_logger_configuration.html">SLoggerConfiguration</a>&amp; config = Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>;</div>
 <div class="line"> </div>
-<div class="line">    <span class="keywordflow">if</span> (std::shared_ptr&lt;spdlog::logger&gt; existingLogger = spdlog::get(Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>); existingLogger != <span class="keyword">nullptr</span>) {</div>
-<div class="line">        spdlog::trace(std::format(<span class="stringliteral">&quot;Logger {} found - Using existing logger instead of redefining...&quot;</span>, config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>));</div>
+<div class="line">    <span class="keywordflow">if</span> (std::shared_ptr&lt;spdlog::logger&gt; existingLogger =</div>
+<div class="line">            spdlog::get(Logger-&gt;<a class="code hl_variable" href="#a677abd5f9985a2fac3c2e9d799df9e8a">Config</a>.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>);</div>
+<div class="line">        existingLogger != <span class="keyword">nullptr</span>) {</div>
+<div class="line">        spdlog::trace(std::format(</div>
+<div class="line">            <span class="stringliteral">&quot;Logger {} found - Using existing logger instead of redefining...&quot;</span>,</div>
+<div class="line">            config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#afab3f2ea849408830230aa98ecffacc0">LoggerNamespace</a>));</div>
 <div class="line">        <span class="keywordflow">return</span>;</div>
 <div class="line">    }</div>
 <div class="line"> </div>
@@ -184,7 +188,9 @@ Lifecycle</h2>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    <span class="keywordflow">if</span> (<a class="code hl_function" href="group__logging.html#ga734988495e6f6d27d4e48c73a5838050">HasAnyOptions</a>(config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a069b9c55b71232e6cf9fc71ada1afe7c">LogOptions</a>, <a class="code hl_enumvalue" href="group__logging.html#gga9a7e2125af8d9667acef4e58e1277774a9270dc341307597ed24d3f143941c8b5">ELogOutputOptions::LOG_CONSOLE</a>)) {</div>
-<div class="line">        logger.sinks().push_back(std::move(CreateSink&lt;LogSinks::stdout_color_sink_mt&gt;(_Internal::DefaultLogPattern, config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a2640b5ef36dbdc65abefb72ab531f145">LogLevel</a>)));</div>
+<div class="line">        logger.sinks().push_back(std::move(</div>
+<div class="line">            CreateSink&lt;LogSinks::stdout_color_sink_mt&gt;(_Internal::DefaultLogPattern,</div>
+<div class="line">                                                       config.<a class="code hl_variable" href="struct_log_1_1_s_logger_configuration.html#a2640b5ef36dbdc65abefb72ab531f145">LogLevel</a>)));</div>
 <div class="line">    }</div>
 <div class="line"> </div>
 <div class="line">    logger.info(<span class="stringliteral">&quot;Logger initialized&quot;</span>);</div>
